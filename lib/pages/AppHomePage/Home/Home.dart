@@ -35,9 +35,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search),
-            tooltip: 'Search',
-            onPressed: () => debugPrint('Search button is pressed'),
+            icon: Image.asset("asset/images/home/saoQR.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
+//            tooltip: 'Search',
+            onPressed: (){
+              LogUtil.d('-------');
+            },
           ),
         ],
       ),
