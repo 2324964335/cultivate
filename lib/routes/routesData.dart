@@ -4,6 +4,8 @@ import '../pages/ErrorPage/ErrorPage.dart';
 import '../pages/AppHomePage/AppHomePage.dart';
 import '../pages/SplashPage/SplashPage.dart';
 import '../pages/TestDemo/TestDemo.dart';
+import '../pages/AppHomePage/Home/CurrentMonthCultive.dart';
+import '../pages/AppHomePage/Home/CultiveDetail.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -14,4 +16,10 @@ final Map<String, WidgetBuilder> routesData = {
       ErrorPage(params: params),
   RouteName.testDemo: (BuildContext context, {params}) =>
       TestDemo(params: params),
+  ///本月培训页面
+  RouteName.currentMonthCultive: (BuildContext context, {params}) =>
+      CurrentMonthCultive(params: params),
+  ///培训详情页面
+  RouteName.cultiveDetail: (BuildContext context, {params}) =>
+      CultiveDetail(params: params),
 };

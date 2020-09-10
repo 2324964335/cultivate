@@ -11,4 +11,10 @@ class RouteName {
 
   /// 测试页
   static String testDemo = '/testDemo';
+
+  /// 本月培训
+  static String currentMonthCultive = '/currentMonthCultive';
+
+  /// 培训详情 CultiveDetail
+  static String cultiveDetail = '/cultiveDetail';
 }
