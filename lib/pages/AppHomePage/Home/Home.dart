@@ -44,17 +44,29 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
           IconButton(
             icon: Image.asset("asset/images/home/saoQR.png",width: ScreenAdaper.width(35),height: ScreenAdaper.width(35),),
             onPressed: () async {
-              final result = await Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          RScanCameraDialog()));
+              PermUtils.cameraPerm();
+              PermissionStatus status = await Permission.camera.status;
+              if (status == PermissionStatus.granted) {
+                final result = await Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            RScanCameraDialog()));
 //              setState(() {
 //                this.result = result;
 //              });
-            LogUtil.d('扫码结果${result.toString().split(',').join('\n')}');
-              Future.delayed(Duration(seconds: 1), (){
-
-              });
+                LogUtil.d('扫码结果${result.toString().split(',').join('\n')}');
+               if(result != null){
+                 Future.delayed(Duration(milliseconds: 200), (){
+                   Navigator.pushNamed(
+                     context,
+                     '/courseSignSuccess',
+                     arguments: {}, //　传递参数
+                   );
+                 });
+               }
+              }else{
+                ToasrShow.show('请授权相机使用');
+              }
             },
           ),
         ],

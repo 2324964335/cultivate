@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../utils/perm_utils.dart';
 import 'scan_dialog.dart';
+import '../../utils/util.dart';
+import 'dart:ui';
 import 'package:r_scan/src/r_scan_camera.dart';
 
 List<RScanCameraDescription> rScanCameras;
@@ -80,11 +82,14 @@ class _RScanCameraDialogState extends State<RScanCameraDialog> {
     }
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(title: Text('签到',style: TextStyle(color: Colors.black54),),),
       body: Stack(
         children: <Widget>[
           ScanImageView(
             child: AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
+              //_controller.value.aspectRatio
+//              aspectRatio: 0.64,
+              aspectRatio: ScreenAdaper.screenWidth()/(ScreenAdaper.screenHeight() - 4* kToolbarHeight - MediaQueryData.fromWindow(window).padding.top),
               child: RScanCamera(_controller),
             ),
           ),

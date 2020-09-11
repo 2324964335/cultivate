@@ -66,7 +66,7 @@ class _CourseSignSuccessState extends State<CourseSignSuccess> {
             ),
           ),
           onTap: (){
-
+            Navigator.of(context).pop();
           },
         )
     );
