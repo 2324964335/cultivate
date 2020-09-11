@@ -60,10 +60,10 @@ class _CultiveDetailState extends State<CultiveDetail> {
         child:
             new ClipRRect(
 
-            borderRadius: BorderRadius.circular(ScreenAdaper.height(50)),
+            borderRadius: BorderRadius.circular(ScreenAdaper.width(50)),
             child:
                 Container(
-                  height: ScreenAdaper.height(100),
+                  height: ScreenAdaper.width(100),
                   width: ScreenAdaper.width(640),
                   alignment: Alignment.center,
                   color: Color(0xFF00D08D),

@@ -338,13 +338,6 @@
             </list>
           </value>
         </entry>
-        <entry key="r_scan">
-          <value>
-            <list>
-              <option value="$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/r_scan-0.1.4+1/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="rxdart">
           <value>
             <list>
@@ -567,7 +560,6 @@
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/process-3.0.13/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-4.3.2+1/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/pub_semver-1.4.4/lib" />
-      <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/r_scan-0.1.4+1/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/rxdart-0.24.1/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences-0.5.10/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences_linux-0.0.2+2/lib" />

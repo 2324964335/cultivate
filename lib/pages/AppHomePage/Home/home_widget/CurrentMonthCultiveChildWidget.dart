@@ -67,7 +67,7 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('主讲人：某某某',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
-                      Text('地点：A区6楼会议室2号',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                      Text('地点：A区6楼会议室',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                     ],
                   ),
                   SizedBox(width: ScreenAdaper.width(20),),

@@ -43,7 +43,7 @@ dependencies:
   multi_image_picker: ^4.6.1   #图片选择器
   uuid: ^2.0.4
   intl: any
-  r_scan: ^0.1.4     #二维码扫描
+#  r_scan: ^0.1.4     #二维码扫描
 
 dev_dependencies:
   flutter_test:
