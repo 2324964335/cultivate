@@ -72,10 +72,14 @@ class _CultiveDetailState extends State<CultiveDetail> {
             ),
         onTap: (){
           LogUtil.d('-------去签到');
+          Navigator.pushNamed(
+            context,
+            '/courseSignSuccess',
+            arguments: {}, //　传递参数
+          );
         },
       )
     );
-
   }
 
   Widget _buildItem(BuildContext context){

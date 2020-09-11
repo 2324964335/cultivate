@@ -17,4 +17,7 @@ class RouteName {
 
   /// 培训详情 CultiveDetail
   static String cultiveDetail = '/cultiveDetail';
+
+  /// 签到成功 CourseSignSuccess
+  static String courseSignSuccess = '/courseSignSuccess';
 }

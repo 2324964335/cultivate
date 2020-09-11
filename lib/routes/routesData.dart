@@ -6,6 +6,7 @@ import '../pages/SplashPage/SplashPage.dart';
 import '../pages/TestDemo/TestDemo.dart';
 import '../pages/AppHomePage/Home/CurrentMonthCultive.dart';
 import '../pages/AppHomePage/Home/CultiveDetail.dart';
+import '../pages/AppHomePage/Home/CourseSignSuccess.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -22,4 +23,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///培训详情页面
   RouteName.cultiveDetail: (BuildContext context, {params}) =>
       CultiveDetail(params: params),
+  ///签到成功页面
+  RouteName.courseSignSuccess: (BuildContext context, {params}) =>
+      CourseSignSuccess(params: params),
 };

@@ -105,8 +105,8 @@ class HomeTopHeader extends StatelessWidget {
                             LogUtil.d('--------');
                             Navigator.pushNamed(
                               context,
-                              '/currentMonthCultive',
-                              arguments: {}, //　传递参数
+                            '/currentMonthCultive',
+                            arguments: {}, //　传递参数
                             );
                           },
                         ),

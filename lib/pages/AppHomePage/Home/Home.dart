@@ -1,10 +1,15 @@
-
+import 'dart:io';
+import 'package:r_scan/r_scan.dart';
+import '../../../components/ThirdParty/scan_camera_dialog.dart';
+import '../../../components/ThirdParty/scan_dialog.dart';
 import 'package:cultivate/utils/screen_adaper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'provider/counterStore.p.dart';
 import '../../../utils/util.dart';
 import './home_widget/HomeTopHeader.dart';
+import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.params}) : super(key: key);
@@ -18,6 +23,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
   CounterStore _counter;
+  RScanResult result;
+
 
   @override
   void initState() {
@@ -35,10 +42,19 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
-            icon: Image.asset("asset/images/home/saoQR.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
-//            tooltip: 'Search',
-            onPressed: (){
-              LogUtil.d('-------');
+            icon: Image.asset("asset/images/home/saoQR.png",width: ScreenAdaper.width(35),height: ScreenAdaper.width(35),),
+            onPressed: () async {
+              final result = await Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          RScanCameraDialog()));
+//              setState(() {
+//                this.result = result;
+//              });
+            LogUtil.d('扫码结果${result.toString().split(',').join('\n')}');
+              Future.delayed(Duration(seconds: 1), (){
+
+              });
             },
           ),
         ],
