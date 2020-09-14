@@ -138,7 +138,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                         ),
                         Container(
                           margin: EdgeInsets.only(top: ScreenAdaper.height(10)),
-                          color: Colors.black26,
+                          color: Color(0xffe7e7e7),
                           height: ScreenAdaper.height(1),
                           width: ScreenAdaper.width(680),
                         ),

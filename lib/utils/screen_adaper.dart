@@ -8,7 +8,7 @@ class ScreenAdaper {
   }
   static sp(double value){
     if (Platform.isIOS) {
-      return ScreenUtil().setSp(value*1.22, allowFontScalingSelf: true);  /// 获取 计算后的字体
+      return ScreenUtil().setSp(value, allowFontScalingSelf: true);  /// 获取 计算后的字体
     }else{
       return ScreenUtil().setSp(value, allowFontScalingSelf: true);  /// 获取 计算后的字体
     }

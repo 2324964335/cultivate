@@ -9,9 +9,9 @@ import '../../config/app_config.dart';
 import '../../components/DoubleBackExitApp/DoubleBackExitApp.dart';
 import 'MyPersonal/MyPersonal.dart';
 import 'Search/Search.dart';
-import 'Hot/Hot.dart';
 import 'Home/Home.dart';
 import 'provider/appHomePageStore.p.dart';
+import 'Message/Message.dart';
 
 /// [params] 别名路由传递的参数
 /// [params.pageId] 跳转到指定tab页面（0第一页），如果不是别名路由跳转的话，又想实现跳转到指定tab页面，推荐别名路由跳转方式。
@@ -62,7 +62,7 @@ class _AppHomePageState extends State<AppHomePage> with PageViewListenerMixin {
       'title': '消息',
       'icon': Image.asset("asset/images/tabbar/tabbar_message.png",width: 44.sp,height: 44.sp,),
       'selectIcon':Image.asset("asset/images/tabbar/tabbar_message_select.png",width: 44.sp,height: 44.sp,),
-      'body': Hot(),
+      'body': Message(),
     },
     {
       'index':2,
