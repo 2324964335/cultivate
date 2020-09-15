@@ -33,5 +33,9 @@ class RouteName {
   ///ExaminePersonList 考核人员列表
   static String examinePersonList = '/examinePersonList';
 
+  ///ExaminePersonUpload 医生扣分后提交页面
+  static String examinePersonUpload = '/examinePersonUpload';
+
+
 
 }
