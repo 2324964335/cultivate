@@ -117,7 +117,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
         onTap: (){
           Navigator.pushNamed(
             context,
-            '/cultiveDetail',
+            '/examinePersonList',
             arguments: {}, //　传递参数
           );
         },

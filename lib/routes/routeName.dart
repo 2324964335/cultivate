@@ -30,4 +30,8 @@ class RouteName {
   ///CultiveCourceSignDetail 培训签到详情页
   static String cultiveCourceSignDetail = '/cultiveCourceSignDetail';
 
+  ///ExaminePersonList 考核人员列表
+  static String examinePersonList = '/examinePersonList';
+
+
 }
