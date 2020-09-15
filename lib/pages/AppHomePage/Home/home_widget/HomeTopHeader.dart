@@ -121,33 +121,43 @@ class HomeTopHeader extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        new ClipRRect(
+                        GestureDetector(
+                          child: new ClipRRect(
 
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
 
-                          child:
-                        Container(
-                          width: ScreenAdaper.width(160),
+                            child:
+                            Container(
+                              width: ScreenAdaper.width(160),
 //                          color: Colors.deepOrangeAccent,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xFFFFC79C), Color(0xFFFE6852)],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                              )),
-                          child: Column(
-                            children: [
-                              SizedBox(height: ScreenAdaper.height(30),),
-                              Container(
-                                child: Text("12",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [Color(0xFFFFC79C), Color(0xFFFE6852)],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                  )),
+                              child: Column(
+                                children: [
+                                  SizedBox(height: ScreenAdaper.height(30),),
+                                  Container(
+                                    child: Text("12",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: ScreenAdaper.width(10),bottom: ScreenAdaper.height(20)),
+                                    child: Text("本月考核",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30)),),
+                                  )
+                                ],
                               ),
-                              Container(
-                                margin: EdgeInsets.only(top: ScreenAdaper.width(10),bottom: ScreenAdaper.height(20)),
-                                child: Text("本月考核",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30)),),
-                              )
-                            ],
+                            ),
                           ),
-                        ),
+                          onTap: (){
+                            LogUtil.d('--------');
+                            Navigator.pushNamed(
+                              context,
+                              '/currentMonthExamine',
+                              arguments: {}, //　传递参数
+                            );
+                          },
                         ),
                         Container(
                           margin: EdgeInsets.only(top: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../../utils/util.dart';
 class CurrentMonthCultiveChildWidget extends StatefulWidget {
+  final int index;
+  CurrentMonthCultiveChildWidget(this.index);
   @override
   _CurrentMonthCultiveChildWidgetState createState() => _CurrentMonthCultiveChildWidgetState();
 }
 
 class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChildWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,6 +70,7 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('主讲人：某某某',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                      SizedBox(height: ScreenAdaper.height(10),),
                       Text('地点：A区6楼会议室',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                     ],
                   ),
@@ -75,6 +79,7 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('开始时间：2020年8月20日 14：20',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                      SizedBox(height: ScreenAdaper.height(10),),
                       Text('报名人数：203人',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                     ],
                   )
@@ -85,11 +90,19 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
           ),
         ),
         onTap: (){
-          Navigator.pushNamed(
-            context,
-            '/cultiveDetail',
-            arguments: {}, //　传递参数
-          );
+          if(widget.index == 2){
+            Navigator.pushNamed(
+              context,
+              '/cultiveSignQrcode',
+              arguments: {}, //　传递参数
+            );
+          }else{
+            Navigator.pushNamed(
+              context,
+              '/cultiveDetail',
+              arguments: {}, //　传递参数
+            );
+          }
         },
       ),
     );

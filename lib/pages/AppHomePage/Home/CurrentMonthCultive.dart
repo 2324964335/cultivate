@@ -70,13 +70,13 @@ class _CurrentMonthCultiveState extends State<CurrentMonthCultive>  with SingleT
                   width: ScreenAdaper.screenWidth(),
                 ),
                 Container(
-                  height: ScreenAdaper.height(1037),
+                  height: ScreenAdaper.height(1030),
                   child: TabBarView(
                     controller: _tabController,
                     children: <Widget>[
-                      CurrentMonthCultiveChildWidget(),
-                      CurrentMonthCultiveChildWidget(),
-                      CurrentMonthCultiveChildWidget(),
+                      CurrentMonthCultiveChildWidget(0),
+                      CurrentMonthCultiveChildWidget(1),
+                      CurrentMonthCultiveChildWidget(2),
                     ],
                   ),
                 )

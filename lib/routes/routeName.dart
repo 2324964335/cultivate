@@ -15,9 +15,19 @@ class RouteName {
   /// 本月培训
   static String currentMonthCultive = '/currentMonthCultive';
 
+  /// 本月培训 CurrentMonthExamine
+  static String currentMonthExamine = '/currentMonthExamine';
+
   /// 培训详情 CultiveDetail
   static String cultiveDetail = '/cultiveDetail';
 
   /// 签到成功 CourseSignSuccess
   static String courseSignSuccess = '/courseSignSuccess';
+
+  ///CultiveSignQrcode 培训签到页面
+  static String cultiveSignQrcode = '/cultiveSignQrcode';
+
+  ///CultiveCourceSignDetail 培训签到详情页
+  static String cultiveCourceSignDetail = '/cultiveCourceSignDetail';
+
 }

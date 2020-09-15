@@ -114,16 +114,16 @@ class _CultiveDetailState extends State<CultiveDetail> {
               ],
             ),
             SizedBox(height: ScreenAdaper.height(70),),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text('分享',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
-                Text('添加到',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
-                Text('收藏',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
-                Text('关注',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
-              ],
-            ),
-            SizedBox(height: ScreenAdaper.height(20),),
+//            Row(
+//              mainAxisAlignment: MainAxisAlignment.spaceAround,
+//              children: [
+//                Text('分享',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
+//                Text('添加到',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
+//                Text('收藏',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
+//                Text('关注',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
+//              ],
+//            ),
+//            SizedBox(height: ScreenAdaper.height(20),),
             Container(
               height: ScreenAdaper.height(0.5),
               color: Colors.black12,
@@ -131,6 +131,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
             ),
             SizedBox(height: ScreenAdaper.height(20),),
             Container(
+              margin: EdgeInsets.only(left: ScreenAdaper.width(20),),
               alignment: Alignment.centerLeft,
               child: Text('培训详情',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(32),fontWeight: FontWeight.bold),),
             ),
@@ -138,6 +139,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
 
             Row(
               children: [
+                SizedBox(width: ScreenAdaper.width(20),),
                 Text('开始时间',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
                 Text('2020年8月20日 14：20',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
@@ -147,6 +149,8 @@ class _CultiveDetailState extends State<CultiveDetail> {
 
             Row(
               children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+
                 Text('讲   师',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
                 Text('邓换',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
@@ -156,6 +160,8 @@ class _CultiveDetailState extends State<CultiveDetail> {
 
             Row(
               children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+
                 Text('地  点',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
 
@@ -166,6 +172,8 @@ class _CultiveDetailState extends State<CultiveDetail> {
 
             Row(
               children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+
                 Text('培训对象',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
 
@@ -176,6 +184,8 @@ class _CultiveDetailState extends State<CultiveDetail> {
 
             Row(
               children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+
                 Text('报名人数',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
 
