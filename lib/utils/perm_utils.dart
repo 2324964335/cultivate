@@ -5,12 +5,12 @@ class PermUtils {
   /// 基础权限申请
   static Future initPermissions() async {
     if (await Permission.contacts.request().isGranted) return;
-
     await [
       Permission.storage,
       Permission.camera,
     ].request();
   }
+
 
   /// 存储权限申请
   static Future<bool> storagePerm() async {
