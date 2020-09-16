@@ -44,6 +44,34 @@ class ExamineCountGoalProvider with ChangeNotifier {
         "goal":"10",
         "isSelect":0
       },
+      {
+        "id":"4",
+        "title":"素质要求4134",
+        "subTitle":"仪表大方，语言柔和、恰当321",
+        "goal":"5",
+        "isSelect":0
+      },
+      {
+        "id":"5",
+        "title":"评估12321",
+        "subTitle":"检查药品有无过期321321",
+        "goal":"100",
+        "isSelect":0
+      },
+      {
+        "id":"6",
+        "title":"素质要求324234",
+        "subTitle":"消毒效果，完整，无潮湿",
+        "goal":"5",
+        "isSelect":0
+      },
+      {
+        "id":"7",
+        "title":"操作前准备2121",
+        "subTitle":"洗手、戴口罩212121，放置合理",
+        "goal":"20",
+        "isSelect":0
+      },
     ];
 
     List _selectList = [];
@@ -62,6 +90,12 @@ class ExamineCountGoalProvider with ChangeNotifier {
       }
       _totalList = _selectList;
       notifyListeners();
+    }
+
+    void clearSelectList(){
+      _selectList.forEach((element) {
+        element["isSelect"] = 0;
+      });
     }
 
 }

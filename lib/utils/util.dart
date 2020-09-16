@@ -9,6 +9,7 @@ export 'toast_show.dart' show ToasrShow;
 export 'storage.dart' show StorageUtil;
 export 'package:bot_toast/bot_toast.dart' show BotToast;
 export 'CommenColor.dart' show CommenColor;
+export 'toast_show.dart' show ToastShow;
 class Util {
   /// 防抖函数
   static Function debounce(Function fn, [int t = 30]) {

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cultivate/utils/toast_show.dart';
 import 'package:r_scan/r_scan.dart';
 import '../../../components/ThirdParty/scan_camera_dialog.dart';
 import '../../../components/ThirdParty/scan_dialog.dart';
@@ -65,7 +66,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                  });
                }
               }else{
-                ToasrShow.show('请授权相机使用');
+                  ToastShow.show("请授权相机使用");
               }
             },
           ),

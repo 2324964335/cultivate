@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27657289-e72f-4347-a534-1db8bef5a30b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/ExamineDoctorTotalForm.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/components/alert_dialog.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/components/const.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/components/func.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/ExaminePersonUpload.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/ExaminePersonUpload.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/Home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/Home.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/provider/ExamineCountGoalProvider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/provider/ExamineCountGoalProvider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers_config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers_config.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/routes/routeName.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/routeName.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/routes/routesData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/routesData.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/toast_show.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/toast_show.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/util.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,13 +41,14 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/components/ThirdParty" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/components" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/components" />
       <recent name="$PROJECT_DIR$/lib/components/ThirdParty" />
       <recent name="$PROJECT_DIR$/lib/utils" />
     </key>

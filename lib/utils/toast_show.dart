@@ -1,6 +1,6 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
-class ToasrShow {
+class ToastShow {
 
   ///弹出普通信息
   static show(String message){

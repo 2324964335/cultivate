@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import 'package:provider/provider.dart';
 import 'provider/ExamineCountGoalProvider.dart';
+import '../../../components/func.dart';
+import '../../../components/alert_dialog.dart';
 class ExaminePersonUpload extends StatefulWidget {
   ExaminePersonUpload({Key key, this.params}) : super(key: key);
   final  params;
@@ -190,10 +192,26 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
           ),
           onTap: (){
             LogUtil.d('-------去签到');
-            Navigator.pushNamed(
+//            Navigator.pushNamed(
+//              context,
+//              '/courseSignSuccess',
+//              arguments: {}, //　传递参数
+//            );
+            FunctionUtil.popDialog(
               context,
-              '/courseSignSuccess',
-              arguments: {}, //　传递参数
+              ShowAlertDialog(
+                title: "温馨提示",
+                content: "操作考试成绩确认提交后，成绩将通知到考核人员，提交后无法修改。",
+                items: ['再想一下', '确认提交'],
+                onTap: (index) {
+                  LogUtil.d('object$index');
+                  if(index == 1){
+                    _examineCountGoalProvider.clearSelectList();
+                    ToastShow.show("提交成功");
+                    Navigator.pop(context);
+                  }
+                },
+              ),
             );
           },
         )
