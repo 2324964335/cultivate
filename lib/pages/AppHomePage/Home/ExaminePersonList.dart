@@ -71,7 +71,7 @@ class _ExaminePersonListState extends State<ExaminePersonList> {
         onTap: (){
           Navigator.pushNamed(
             context,
-            '/cultiveSignQrcode',
+            '/examinePersonUpload',
             arguments: {}, //　传递参数
           );
 

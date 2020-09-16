@@ -8,6 +8,9 @@ class ExaminePersonUpload extends StatefulWidget {
 }
 
 class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
+
+  List _dataList = [];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -32,9 +35,9 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
               child:
               Container(
                 child: ListView.builder(
-                    itemCount: 1,
+                    itemCount: _dataList.length + 2,
                     itemBuilder: (ctx, index) {
-                      return _buildItem(context);
+                      return _judgeWidgetByIndex(context, index);
                     }
                 ),
               ),
@@ -53,15 +56,39 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
   }
 
   Widget _judgeWidgetByIndex(BuildContext context,int index){
-
+      if(index == 0){
+        return _buildTopHeader(context);
+      }else if(index == _dataList.length + 1){
+        return _buildBottomWidget(context);
+      }else{
+        return _buildItem(context);
+      }
   }
 
   Widget _buildTopHeader(BuildContext context){
-
+      return Container(
+        padding: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.width(30),bottom: ScreenAdaper.width(20)),
+        child: Text('考核项目，无菌技术评分标准',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(34)),),
+      );
   }
 
   Widget _buildBottomWidget(BuildContext context){
-
+      return Container(
+        color: Colors.white,
+        margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.width(30)),
+        child: GestureDetector(
+          child: Row(
+            children: [
+              Image.asset("asset/images/home/koufenjia.png",width: ScreenAdaper.width(40),height: ScreenAdaper.width(40),),
+              SizedBox(width: ScreenAdaper.width(20),),
+              Text("添加扣分项",style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(26)),),
+            ],
+          ),
+          onTap: (){
+            LogUtil.d("点击了添加扣分项按钮");
+          },
+        ),
+      );
   }
 
   Widget _buildItem(BuildContext context){
