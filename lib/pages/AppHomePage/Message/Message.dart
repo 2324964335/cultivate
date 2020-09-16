@@ -1,5 +1,6 @@
-import '../../../utils/util.dart';
+//import '../../../utils/util.dart';
 import 'package:flutter/material.dart';
+import '../../../utils/screen_adaper.dart';
 
 class Message extends StatefulWidget {
   Message({Key key, this.params}) : super(key: key);
@@ -16,7 +17,7 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
-    LogUtil.d(widget.params);
+//    LogUtil.d(widget.params);
   }
 
   @override
