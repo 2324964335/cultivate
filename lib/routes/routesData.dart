@@ -12,6 +12,7 @@ import '../pages/AppHomePage/Home/CultiveSignQrcode.dart';
 import '../pages/AppHomePage/Home/CultiveCourceSignDetail.dart';
 import '../pages/AppHomePage/Home/ExaminePersonList.dart';
 import '../pages/AppHomePage/Home/ExaminePersonUpload.dart';
+import '../pages/AppHomePage/Home/ExamineDoctorTotalForm.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -46,4 +47,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///ExaminePersonUpload 医生口服提交页面
   RouteName.examinePersonUpload: (BuildContext context, {params}) =>
       ExaminePersonUpload(params: params),
+  ///ExamineDoctorTotalForm 医生扣分总表
+  RouteName.examineDoctorTotalForm: (BuildContext context, {params}) =>
+      ExamineDoctorTotalForm(params: params),
 };

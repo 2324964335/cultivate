@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
+import 'package:provider/provider.dart';
+import 'provider/ExamineCountGoalProvider.dart';
 class ExaminePersonUpload extends StatefulWidget {
   ExaminePersonUpload({Key key, this.params}) : super(key: key);
   final  params;
@@ -8,6 +10,9 @@ class ExaminePersonUpload extends StatefulWidget {
 }
 
 class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
+
+  ExamineCountGoalProvider _examineCountGoalProvider;
+
 
   List _dataList = [];
 
@@ -25,6 +30,18 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
 
   @override
   Widget build(BuildContext context) {
+    _examineCountGoalProvider = Provider.of<ExamineCountGoalProvider>(context);
+    if(_examineCountGoalProvider.getList.length == 0){
+//      _serviceItemListProvider.getServiceItemsList();
+    }else{
+      List m = _examineCountGoalProvider.getList;
+      _dataList = [];
+      m.forEach((element) {
+        if(element["isSelect"] == 1){
+          _dataList.add(element);
+        }
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('刘医生'),
@@ -61,7 +78,7 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
       }else if(index == _dataList.length + 1){
         return _buildBottomWidget(context);
       }else{
-        return _buildItem(context);
+        return _buildItem(context,index-1);
       }
   }
 
@@ -77,23 +94,77 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
         color: Colors.white,
         margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.width(30)),
         child: GestureDetector(
-          child: Row(
-            children: [
-              Image.asset("asset/images/home/koufenjia.png",width: ScreenAdaper.width(40),height: ScreenAdaper.width(40),),
-              SizedBox(width: ScreenAdaper.width(20),),
-              Text("添加扣分项",style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(26)),),
-            ],
+          child: Container(
+            color: Colors.white,
+            height: ScreenAdaper.height(90),
+            child: Row(
+              children: [
+                Image.asset("asset/images/home/koufenjia.png",width: ScreenAdaper.width(40),height: ScreenAdaper.width(40),),
+                SizedBox(width: ScreenAdaper.width(20),),
+                Text("添加扣分项",style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(26)),),
+              ],
+            ),
           ),
           onTap: (){
             LogUtil.d("点击了添加扣分项按钮");
+            Navigator.pushNamed(
+              context,
+              '/examineDoctorTotalForm',
+              arguments: {}, //　传递参数
+            );
+
           },
         ),
       );
   }
 
-  Widget _buildItem(BuildContext context){
-
-
+  Widget _buildItem(BuildContext context,int index){
+      return Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.width(20)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                    Row(
+                    children: [
+                      Text("${index+ 1}."),
+                      Text(_dataList[index]["title"]),
+                      ],
+                    ),
+                    FlatButton(
+                        child: Text("删除",style: TextStyle(fontSize: ScreenAdaper.sp(25)),),
+                        onPressed:(){
+                          LogUtil.d('------${_examineCountGoalProvider.getList}');
+                          Map m = _dataList[index];
+                          for (var i = 0; i < _examineCountGoalProvider.getList.length; i++) {
+                            if(m["id"] == _examineCountGoalProvider.getList[i]["id"]){
+                              _examineCountGoalProvider.changeSelectList(i, false);
+                            }
+                          }
+                        }),
+                ],
+              ),
+            ),
+            SizedBox(height: ScreenAdaper.height(20),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left: ScreenAdaper.width(30)),
+                  child: Text(_dataList[index]["subTitle"],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(25)),),
+                ),
+                Container(
+                  margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+                  child: Text("-${_dataList[index]["goal"]}",style: TextStyle(color: Colors.red,fontSize: ScreenAdaper.sp(26)),
+                  ),)
+              ],
+            ),
+          ],
+        ),
+      );
   }
 
   Widget _buildBottomTool(){

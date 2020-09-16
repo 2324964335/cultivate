@@ -36,6 +36,8 @@ class RouteName {
   ///ExaminePersonUpload 医生扣分后提交页面
   static String examinePersonUpload = '/examinePersonUpload';
 
+  ///ExamineDoctorTotalForm 医生扣分总表
+  static String examineDoctorTotalForm = '/examineDoctorTotalForm';
 
 
 }
