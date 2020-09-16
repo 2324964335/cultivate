@@ -9,18 +9,36 @@ class ScreenAdaper {
   static sp(double value){
     if (Platform.isIOS) {
       return ScreenUtil().setSp(value, allowFontScalingSelf: true);  /// 获取 计算后的字体
-    }else{
+    } else if (Platform.isMacOS) {
+      return ScreenUtil().setSp(value *0.8, allowFontScalingSelf: true);  /// 获取 计算后的字体
+    }
+    else{
       return ScreenUtil().setSp(value, allowFontScalingSelf: true);  /// 获取 计算后的字体
     }
   }
   static height(double value){
-    return  ScreenUtil().setHeight(value);  /// 获取 计算后的高度
+    if(Platform.isMacOS){
+      return ScreenUtil().setWidth(value*0.7);    /// 获取 计算后的宽度
+
+    }else {
+      return ScreenUtil().setHeight(value);
+
+      /// 获取 计算后的高度
+    }
   }
   static width(double value){
-    return ScreenUtil().setWidth(value);    /// 获取 计算后的宽度
+    if(Platform.isMacOS){
+      return ScreenUtil().setWidth(value*0.7);    /// 获取 计算后的宽度
+
+    }else{
+      return ScreenUtil().setWidth(value);    /// 获取 计算后的宽度
+    }
   }
   static screenHeight(){
-    return  ScreenUtil.screenHeight;  /// 获取 计算后的屏幕高度
+
+      return ScreenUtil.screenHeight;
+
+      /// 获取 计算后的屏幕高度
   }
   static screenWidth(){
     return  ScreenUtil.screenWidth;  /// 获取 计算后的屏幕高度
