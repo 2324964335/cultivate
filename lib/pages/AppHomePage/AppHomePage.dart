@@ -12,6 +12,8 @@ import 'Search/Search.dart';
 import 'Home/Home.dart';
 import 'provider/appHomePageStore.p.dart';
 import 'Message/Message.dart';
+import 'Mine/Mine.dart';
+import 'Contact/Contact.dart';
 
 /// [params] 别名路由传递的参数
 /// [params.pageId] 跳转到指定tab页面（0第一页），如果不是别名路由跳转的话，又想实现跳转到指定tab页面，推荐别名路由跳转方式。
@@ -69,14 +71,14 @@ class _AppHomePageState extends State<AppHomePage> with PageViewListenerMixin {
       'title': '通讯录',
       'icon': Image.asset("asset/images/tabbar/tabbar_contact.png",width: 44.sp,height: 44.sp,),
       'selectIcon':Image.asset("asset/images/tabbar/tabbar_contact_select.png",width: 44.sp,height: 44.sp,),
-      'body': Search(),
+      'body': Contact(),
     },
     {
       'index':3,
       'title': '我的',
       'icon': Image.asset("asset/images/tabbar/tabbar_mine.png",width: 44.sp,height: 44.sp,),
       'selectIcon':Image.asset("asset/images/tabbar/tabbar_mine_select.png",width: 44.sp,height: 44.sp,),
-      'body': MyPersonal(),
+      'body': Mine(),
     },
   ];
 
