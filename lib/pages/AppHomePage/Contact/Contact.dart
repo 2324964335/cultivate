@@ -69,7 +69,7 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
                 Text(data[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
                 Container(
                   margin: EdgeInsets.only(right: ScreenAdaper.width(40)),
-                  child: Image.asset("asset/images/contact/changyong.png",width: ScreenAdaper.width(20),height: ScreenAdaper.width(20),),
+                  child: Image.asset("asset/images/contact/jianttou.png",width: ScreenAdaper.width(40),height: ScreenAdaper.width(45),),
                 ),
               ],
             ),

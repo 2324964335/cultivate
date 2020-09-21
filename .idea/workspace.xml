@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27657289-e72f-4347-a534-1db8bef5a30b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/asset/images/contact/bumen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/images/contact/changyong.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/images/mine/gongzuoxinxi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/images/mine/guanyuwomen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/images/mine/jibenxinxi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/images/mine/touxiang.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/images/mine/tuichudenglu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/images/mine/xiaoxitixing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Contact/Contact.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/Mine.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/images/contact/jianttou.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
@@ -19,15 +10,31 @@
       <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/AppHomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/AppHomePage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/contact/bumen.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/contact/bumen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/contact/changyong.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/contact/changyong.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/home/chakan.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/home/chakan.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/home/dianzan.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/home/dianzan.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/home/koufenjia.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/home/koufenjia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/home/peixunguanli.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/home/peixunguanli.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/home/pinglun.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/home/pinglun.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/home/saoQR.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/home/saoQR.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/home/signsuccess.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/home/signsuccess.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/mine/gongzuoxinxi.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/mine/gongzuoxinxi.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/mine/guanyuwomen.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/mine/guanyuwomen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/mine/jibenxinxi.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/mine/jibenxinxi.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/mine/touxiang.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/mine/touxiang.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/mine/tuichudenglu.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/mine/tuichudenglu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/mine/xiaoxitixing.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/mine/xiaoxitixing.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/tabbar/tabbar_contact.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/tabbar/tabbar_contact.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/tabbar/tabbar_contact_select.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/tabbar/tabbar_contact_select.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/tabbar/tabbar_home.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/tabbar/tabbar_home.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/tabbar/tabbar_home_select.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/tabbar/tabbar_home_select.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/tabbar/tabbar_message.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/tabbar/tabbar_message.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/tabbar/tabbar_message_select.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/tabbar/tabbar_message_select.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/tabbar/tabbar_mine.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/tabbar/tabbar_mine.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/images/tabbar/tabbar_mine_select.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/images/tabbar/tabbar_mine_select.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Contact/Contact.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Contact/Contact.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
