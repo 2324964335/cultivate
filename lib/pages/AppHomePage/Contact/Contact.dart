@@ -37,11 +37,19 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
         title: Text('通讯录'),
         automaticallyImplyLeading: false,
       ),
-      body: ListView(
-        children: List.generate(2+bumenDataList.length + changyongDataList.length, (index) {
-          return _judgeItemByIndex(context, index);
-        }),
-      ),
+      body:
+        GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child:
+                ListView(
+                  children: List.generate(2+bumenDataList.length + changyongDataList.length, (index) {
+                    return _judgeItemByIndex(context, index);
+                  }),
+                ),
+        )
     );
   }
 
@@ -50,38 +58,56 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
       return _buildItemHeader(context, index);
     }else{
       if(index >0&&index < bumenDataList.length + 1){
-        return _buildItem(context, index-1,bumenDataList);
+        return _buildItem(context, index-1,bumenDataList,false);
       }else{
-        return _buildItem(context, index-2-bumenDataList.length,changyongDataList);
+        return _buildItem(context, index-2-bumenDataList.length,changyongDataList,true);
       }
     }
   }
 
-  Widget _buildItem(BuildContext context,int index,List data){
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(left: ScreenAdaper.width(80),top: ScreenAdaper.width(35),bottom: ScreenAdaper.width(35)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(data[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
-                Container(
-                  margin: EdgeInsets.only(right: ScreenAdaper.width(40)),
-                  child: Image.asset("asset/images/contact/jianttou.png",width: ScreenAdaper.width(40),height: ScreenAdaper.width(45),),
-                ),
-              ],
+  Widget _buildItem(BuildContext context,int index,List data,bool single){
+    return GestureDetector(
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: ScreenAdaper.width(80),top: ScreenAdaper.width(35),bottom: ScreenAdaper.width(35)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(data[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+                  Container(
+                    margin: EdgeInsets.only(right: ScreenAdaper.width(40)),
+                    child: Image.asset("asset/images/contact/jianttou.png",width: ScreenAdaper.width(40),height: ScreenAdaper.width(45),),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
-            color: Color(0xffe7e7e7),
-            height:ScreenAdaper.height(1.5),
-            width: ScreenAdaper.width(700),
-          ),
-        ],
+            Container(
+              margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
+              color: Color(0xffe7e7e7),
+              height:ScreenAdaper.height(1.5),
+              width: ScreenAdaper.width(700),
+            ),
+          ],
+        ),
       ),
+      onTap: (){
+        if(single){
+          Navigator.pushNamed(
+            context,
+            '/personInfomation',
+            arguments: {"isme":"0"}, //　传递参数
+          );
+        }else{
+          Navigator.pushNamed(
+            context,
+            '/contactList',
+            arguments: {}, //　传递参数
+          );
+        }
+      },
     );
   }
 

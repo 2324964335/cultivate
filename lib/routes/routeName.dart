@@ -39,5 +39,9 @@ class RouteName {
   ///ExamineDoctorTotalForm 医生扣分总表
   static String examineDoctorTotalForm = '/examineDoctorTotalForm';
 
+  ///PersonInfomation 用户详情页
+  static String personInfomation = '/personInfomation';
 
+  ///ContactList 通讯录列表
+  static String contactList = '/contactList';
 }

@@ -76,27 +76,39 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
   }
 
   Widget _buildItem(BuildContext context,int index){
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.only(left: ScreenAdaper.width(60),top: ScreenAdaper.width(40)),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Image.asset(_imageArr[index],width: ScreenAdaper.width(45),height: ScreenAdaper.width(45),),
-              SizedBox(width: ScreenAdaper.width(20),),
-              Text(_titleArr[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
-            ],
-          ),
-          SizedBox(height: ScreenAdaper.width(40),),
-          Container(
-            margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
-            color: Color(0xffe7e7e7),
-            height: index == 3||index == 6?ScreenAdaper.height(0):ScreenAdaper.height(1.5),
-            width: ScreenAdaper.width(700),
-          ),
-        ],
+    return GestureDetector(
+      child: Container(
+        color: Colors.white,
+        padding: EdgeInsets.only(left: ScreenAdaper.width(60),top: ScreenAdaper.width(40)),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Image.asset(_imageArr[index],width: ScreenAdaper.width(45),height: ScreenAdaper.width(45),),
+                SizedBox(width: ScreenAdaper.width(20),),
+                Text(_titleArr[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+              ],
+            ),
+            SizedBox(height: ScreenAdaper.width(40),),
+            Container(
+              margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
+              color: Color(0xffe7e7e7),
+              height: index == 3||index == 6?ScreenAdaper.height(0):ScreenAdaper.height(1.5),
+              width: ScreenAdaper.width(700),
+            ),
+          ],
+        ),
       ),
+      onTap: (){
+        if(index == 2){
+          ///PersonInfomation
+          Navigator.pushNamed(
+            context,
+            '/personInfomation',
+            arguments: {"isme":"1"}, //　传递参数
+          );
+        }
+      },
     );
   }
   

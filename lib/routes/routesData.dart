@@ -13,6 +13,8 @@ import '../pages/AppHomePage/Home/CultiveCourceSignDetail.dart';
 import '../pages/AppHomePage/Home/ExaminePersonList.dart';
 import '../pages/AppHomePage/Home/ExaminePersonUpload.dart';
 import '../pages/AppHomePage/Home/ExamineDoctorTotalForm.dart';
+import '../pages/AppHomePage/Mine/PersonInfomation.dart';
+import '../pages/AppHomePage/Contact/ContactList.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -50,4 +52,10 @@ final Map<String, WidgetBuilder> routesData = {
   ///ExamineDoctorTotalForm 医生扣分总表
   RouteName.examineDoctorTotalForm: (BuildContext context, {params}) =>
       ExamineDoctorTotalForm(params: params),
+  ///PersonInfomation 用户信息详情页
+  RouteName.personInfomation: (BuildContext context, {params}) =>
+      PersonInfomation(params: params),
+  ///ContactList 通讯录列表页
+  RouteName.contactList: (BuildContext context, {params}) =>
+      ContactList(params: params),
 };
