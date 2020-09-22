@@ -14,12 +14,14 @@ class _WaitEnrollPersonState extends State<WaitEnrollPerson> {
   Animation<double> _rotationAnimation;
   Color _fabColor = Colors.blue;
   void handleSlideAnimationChanged(Animation<double> slideAnimation) {
+    LogUtil.d('-------aaaa');
     setState(() {
       _rotationAnimation = slideAnimation;
     });
   }
 
   void handleSlideIsOpenChanged(bool isOpen) {
+    LogUtil.d('-------');
     setState(() {
       _fabColor = isOpen ? Colors.green : Colors.blue;
     });
@@ -70,14 +72,14 @@ class _WaitEnrollPersonState extends State<WaitEnrollPerson> {
         child: SlidableDrawerDismissal(),
         closeOnCanceled: true,
         onWillDismiss: (actionType){
-
+            LogUtil.d('-----------aaaaa');
         },
         onDismissed: (actionType) {
-
+          LogUtil.d('-----------aaaaabb');
         },
       ),
       actionPane: SlidableStrechActionPane(),
-      actionExtentRatio: 0.25,
+      actionExtentRatio: 0.20,
       child: _buildItem(),
       secondaryActionDelegate: SlideActionBuilderDelegate(
           actionCount: 3,
@@ -92,8 +94,10 @@ class _WaitEnrollPersonState extends State<WaitEnrollPerson> {
                     alignment: Alignment.center,
                     child: Text('取消',style: TextStyle(color: Colors.white),),
                   ),
-                  onTap: () =>
-                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('取消'))),
+                  onTap: (){
+//                    slidableController.onSlideIsOpenChanged;
+//                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('取消')));
+                  }
                 ),
               );
             } else if(index == 1){
@@ -106,8 +110,9 @@ class _WaitEnrollPersonState extends State<WaitEnrollPerson> {
                     alignment: Alignment.center,
                     child: Text('拒绝',style: TextStyle(color: Colors.white),),
                   ),
-                  onTap: () =>
-                      Scaffold.of(context).showSnackBar(SnackBar(content: Text('拒绝'))),
+                  onTap: (){
+
+                  }
                 ),
               );
             }else {
@@ -120,8 +125,9 @@ class _WaitEnrollPersonState extends State<WaitEnrollPerson> {
                     alignment: Alignment.center,
                     child: Text('通过',style: TextStyle(color: Colors.white),),
                   ),
-                  onTap: () =>
-                      Scaffold.of(context).showSnackBar(SnackBar(content: Text('通过'))),
+                  onTap: (){
+
+                  }
                 ),
               );
             }
