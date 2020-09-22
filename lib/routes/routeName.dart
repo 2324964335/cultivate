@@ -44,4 +44,8 @@ class RouteName {
 
   ///ContactList 通讯录列表
   static String contactList = '/contactList';
+
+  ///WaitEnrollPerson 审核报名人员列表
+  static String waitEnrollPerson = '/waitEnrollPerson';
+
 }

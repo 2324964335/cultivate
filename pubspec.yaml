@@ -44,6 +44,7 @@ dependencies:
   multi_image_picker: ^4.6.1   #图片选择器
   uuid: ^2.0.4
   intl: any
+  flutter_slidable: ^0.5.6
 #  barcode_scan: 0.0.8   #二维码扫描
 #  cupertino_icons: ^0.1.2
   r_scan: ^0.1.4     #二维码扫描

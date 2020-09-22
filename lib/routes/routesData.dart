@@ -15,6 +15,7 @@ import '../pages/AppHomePage/Home/ExaminePersonUpload.dart';
 import '../pages/AppHomePage/Home/ExamineDoctorTotalForm.dart';
 import '../pages/AppHomePage/Mine/PersonInfomation.dart';
 import '../pages/AppHomePage/Contact/ContactList.dart';
+import '../pages/AppHomePage/Home/WaitEnrollPerson.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -58,4 +59,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///ContactList 通讯录列表页
   RouteName.contactList: (BuildContext context, {params}) =>
       ContactList(params: params),
+  ///WaitEnrollPerson 审核报名人员列表
+  RouteName.waitEnrollPerson: (BuildContext context, {params}) =>
+      WaitEnrollPerson(params: params),
 };
