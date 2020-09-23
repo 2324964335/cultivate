@@ -1,6 +1,8 @@
+import 'package:cultivate/utils/screen_adaper.dart';
 import 'package:flutter/material.dart';
 import 'func.dart';
 import 'const.dart';
+import 'text_field.dart';
 
 class ShowAlertDialog extends StatefulWidget {
   // 内容区域布局
@@ -14,12 +16,16 @@ class ShowAlertDialog extends StatefulWidget {
   //按钮
   List<String> items;
 
+  ///定制审核不通过组件
+  bool isShenhe;
+
   ShowAlertDialog({
     this.contentAlign = TextAlign.left,
     this.onTap,
     @required this.items,
     this.content,
     this.title,
+    this.isShenhe,
   });
 
   @override
@@ -27,6 +33,17 @@ class ShowAlertDialog extends StatefulWidget {
 }
 
 class _ShowAlertDialogState extends State<ShowAlertDialog> {
+  //用于焦点
+  final FocusNode _inputNode = FocusNode();
+  TextEditingController _inputController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _inputController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -54,6 +71,8 @@ class _ShowAlertDialogState extends State<ShowAlertDialog> {
                 SizedBox(height: 30),
                 Container(
                   margin: EdgeInsets.only(left: 15, right: 15),
+                  width: ScreenAdaper.width(460),
+                  alignment: widget.isShenhe==null?Alignment.center:widget.isShenhe==true?Alignment.centerLeft:Alignment.center,
                   child: Text(
                     widget.content==null?"温馨提示":widget.content,
                     style: TextStyle(
@@ -62,7 +81,25 @@ class _ShowAlertDialogState extends State<ShowAlertDialog> {
                     ),
                   ),
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: widget.isShenhe != null?10:40),
+                widget.isShenhe != null?Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),///圆角
+                      border: Border.all(color: Color(0xff979797),width: ScreenAdaper.width(1))///边框颜色、宽
+                  ),
+                  height: ScreenAdaper.width(240),
+                  margin: EdgeInsets.only(left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.width(20)),
+                  padding: EdgeInsets.only(left: ScreenAdaper.width(10)),
+                  child: MyTextField(
+                    focusNode: _inputNode,
+                    placeHolder: '请输入拒绝理由',
+                    maxLength: null,
+                    noBottomLine: true,
+                    keyboardType: TextInputType.multiline,
+                    controller: _inputController,
+                    isMultiHang: true,
+                  ),
+                ):Container(),
                 Container(
                   decoration: BoxDecoration(
                     border: Border(

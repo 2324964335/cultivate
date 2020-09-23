@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
+import '../../../components/func.dart';
+import '../../../components/alert_dialog.dart';
 class WaitEnrollPerson extends StatefulWidget {
   WaitEnrollPerson({Key key, this.params}) : super(key: key);
   final  params;
@@ -85,50 +86,63 @@ class _WaitEnrollPersonState extends State<WaitEnrollPerson> {
           actionCount: 3,
           builder: (context, index, animation, renderingMode) {
             if (index == 0) {
-              return Container(
-                child: GestureDetector(
-                  child: Container(
+              return IconSlideAction(
+                color: Color(0xffd8d8d8),
+                iconWidget:Container(
                     color: Color(0xffd8d8d8),
-                    width: ScreenAdaper.width(70),
-                    height: ScreenAdaper.width(131),
+//                    width: ScreenAdaper.width(70),
+//                    height: ScreenAdaper.width(131),
                     alignment: Alignment.center,
                     child: Text('取消',style: TextStyle(color: Colors.white),),
                   ),
-                  onTap: (){
-//                    slidableController.onSlideIsOpenChanged;
-//                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('取消')));
-                  }
-                ),
+                onTap: (){
+                  LogUtil.d('---------ddddddd');
+                },
               );
             } else if(index == 1){
-              return Container(
-                child: GestureDetector(
-                  child: Container(
-                    color: Color(0xffFF5B3E),
-                    width: ScreenAdaper.width(70),
-                    height: ScreenAdaper.width(131),
-                    alignment: Alignment.center,
-                    child: Text('拒绝',style: TextStyle(color: Colors.white),),
-                  ),
-                  onTap: (){
-
-                  }
+              return IconSlideAction(
+                color: Color(0xffd8d8d8),
+                iconWidget:Container(
+                  color: Color(0xffFF5B3E),
+//                  width: ScreenAdaper.width(70),
+//                  height: ScreenAdaper.width(131),
+                  alignment: Alignment.center,
+                  child: Text('拒绝',style: TextStyle(color: Colors.white),),
                 ),
+                onTap: (){
+                  LogUtil.d('---------ddddddd');
+                  FunctionUtil.popDialog(
+                    context,
+                    ShowAlertDialog(
+                      title: "审核不通过",
+
+                      content: "请填写审核不通过原因",
+                      items: ['取消', '确认提交'],
+                      onTap: (index) {
+                        LogUtil.d('object$index');
+                        if(index == 1){
+                          ToastShow.show("提交成功");
+//                          Navigator.pop(context);
+                        }
+                      },
+                      isShenhe: true,
+                    ),
+                  );
+                },
               );
             }else {
-              return Container(
-                child: GestureDetector(
-                  child: Container(
-                    color: Color(0xff31D12B),
-                    width: ScreenAdaper.width(70),
-                    height: ScreenAdaper.width(131),
-                    alignment: Alignment.center,
-                    child: Text('通过',style: TextStyle(color: Colors.white),),
-                  ),
-                  onTap: (){
-
-                  }
+              return IconSlideAction(
+                color: Color(0xffd8d8d8),
+                iconWidget:Container(
+                  color: Color(0xff31D12B),
+//                  width: ScreenAdaper.width(70),
+//                  height: ScreenAdaper.width(131),
+                  alignment: Alignment.center,
+                  child: Text('通过',style: TextStyle(color: Colors.white),),
                 ),
+                onTap: (){
+                  LogUtil.d('---------ddddddd');
+                },
               );
             }
           }),
