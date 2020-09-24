@@ -203,7 +203,7 @@ class HomeTopHeader extends StatelessWidget {
                             LogUtil.d('--------');
                             Navigator.pushNamed(
                               context,
-                              '/waitEnrollPerson',
+                              '/waitEnrollCultive',
                               arguments: {}, //　传递参数
                             );
                           },

@@ -116,105 +116,113 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             borderRadius: BorderRadius.circular(5),
             child:
                   GestureDetector(
-                    child: Column(
-                      children: [
-                        Row(
+                    child: Container(
+                      color: Colors.white,
+                     child: Column(
+                       children: [
+                         Row(
 
-                          children: [
-                            Container(
-                              
-                              child: Text("2020.8 传染病防控",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
-                              margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
-                            ),
-                                      Container(
-                                        margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
+                           children: [
+                             Container(
 
-                                        color: Color(0xFFBD4EFB),
+                               child: Text("2020.8 传染病防控",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
+                               margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
+                             ),
+                             Container(
+                               margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
 
-                                        padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                                        child: Text("员工线上培训",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
-                                      ),
-                          ],
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: ScreenAdaper.height(10)),
-                          color: Color(0xffe7e7e7),
-                          height: ScreenAdaper.height(1),
-                          width: ScreenAdaper.width(680),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: ScreenAdaper.width(10),top: ScreenAdaper.height(10),bottom: ScreenAdaper.height(10)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                child: Row(
-                                  children: [
-                                    ClipOval(
-                                      child: Container(
-                                        color: Colors.lightBlueAccent,
-                                        width: ScreenAdaper.width(70),
-                                        height: ScreenAdaper.width(70),
-                                      ),
-                                    ),
-                                    SizedBox(width: ScreenAdaper.width(10),),
-                                    Text("某某某",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
-                                    SizedBox(width: ScreenAdaper.width(40),),
-                                    Text("今天14:20",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+                               color: Color(0xFFBD4EFB),
 
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
-                                          SizedBox(width: ScreenAdaper.width(5),),
-                                          Text("126",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
-                                        ],
-                                      ),
+                               padding: EdgeInsets.all(ScreenAdaper.width(10)),
+                               child: Text("员工线上培训",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                             ),
+                           ],
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         ),
+                         Container(
+                           margin: EdgeInsets.only(top: ScreenAdaper.height(10)),
+                           color: Color(0xffe7e7e7),
+                           height: ScreenAdaper.height(1),
+                           width: ScreenAdaper.width(680),
+                         ),
+                         Container(
+                           padding: EdgeInsets.only(left: ScreenAdaper.width(10),top: ScreenAdaper.height(10),bottom: ScreenAdaper.height(10)),
+                           child: Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Container(
+                                 child: Row(
+                                   children: [
+                                     ClipOval(
+                                       child: Container(
+                                         color: Colors.lightBlueAccent,
+                                         width: ScreenAdaper.width(70),
+                                         height: ScreenAdaper.width(70),
+                                       ),
+                                     ),
+                                     SizedBox(width: ScreenAdaper.width(10),),
+                                     Text("某某某",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                     SizedBox(width: ScreenAdaper.width(40),),
+                                     Text("今天14:20",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                   ],
+                                 ),
+                               ),
+                               Container(
+                                 child: Row(
+                                   children: [
+                                     Container(
+                                       margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
 
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+                                       child: Row(
+                                         crossAxisAlignment: CrossAxisAlignment.center,
+                                         children: [
+                                           Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
+                                           SizedBox(width: ScreenAdaper.width(5),),
+                                           Text("126",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                         ],
+                                       ),
 
-                                      child: Row(
-                                        children: [
-                                          Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
-                                          SizedBox(width: ScreenAdaper.width(5),),
-                                          Text("64",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
-                                        ],
-                                      ),
+                                     ),
+                                     Container(
+                                       margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
 
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
-                                          SizedBox(width: ScreenAdaper.width(5),),
-                                          Text("1526",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
-                                        ],
-                                      ),
+                                       child: Row(
+                                         children: [
+                                           Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
+                                           SizedBox(width: ScreenAdaper.width(5),),
+                                           Text("64",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                         ],
+                                       ),
 
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                                     ),
+                                     Container(
+                                       margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+                                       child: Row(
+                                         crossAxisAlignment: CrossAxisAlignment.center,
+                                         children: [
+                                           Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
+                                           SizedBox(width: ScreenAdaper.width(5),),
+                                           Text("1526",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                         ],
+                                       ),
+
+                                     ),
+                                   ],
+                                 ),
+                               ),
+                             ],
+                           ),
+                         ),
+                       ],
+                     ),
                     ),
                     onTap: (){
                       LogUtil.d("------点击");
+                      Navigator.pushNamed(
+                        context,
+                        '/cultiveDetail',
+                        arguments: {}, //　传递参数
+                      );
                     },
                   ),
                   ),

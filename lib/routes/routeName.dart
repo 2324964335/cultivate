@@ -48,4 +48,8 @@ class RouteName {
   ///WaitEnrollPerson 审核报名人员列表
   static String waitEnrollPerson = '/waitEnrollPerson';
 
+  ///WaitEnrollCultive  待我确认审核培训
+  static String waitEnrollCultive = '/waitEnrollCultive';
+
+
 }
