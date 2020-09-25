@@ -60,5 +60,9 @@ class RouteName {
   ///NoReadInfomation  未读公告
   static String noReadInfomation = '/noReadInfomation';
 
+  ///InformationDetail 公告详情
+  static String informationDetail = '/informationDetail';
+
+
 
 }

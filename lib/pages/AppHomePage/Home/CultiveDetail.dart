@@ -14,15 +14,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
       appBar: AppBar(
         title: Text('培训详情',style: TextStyle(color: Colors.black45),),
       ),
-      body: 
-//      Container(
-//        child: ListView.builder(
-//            itemCount: 1,
-//            itemBuilder: (ctx, index) {
-//              return _buildItem(context);
-//            }
-//        ),
-//      ),
+      body:
         Stack(
           children: [
             Positioned(

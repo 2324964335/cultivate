@@ -20,6 +20,7 @@ import '../pages/AppHomePage/Home/WaitEnrollCultive.dart';
 import '../pages/AppHomePage/Home/ExaminePersonListResult.dart';
 import '../pages/AppHomePage/Home/ExaminePersonResultDetail.dart';
 import '../pages/AppHomePage/Home/NoReadInfomation.dart';
+import '../pages/AppHomePage/Home/InformationDetail.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -78,4 +79,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///NoReadInfomation 未读公告
   RouteName.noReadInfomation: (BuildContext context, {params}) =>
       NoReadInfomation(params: params),
+  ///InformationDetail 公告详情
+  RouteName.informationDetail: (BuildContext context, {params}) =>
+      InformationDetail(params: params),
 };

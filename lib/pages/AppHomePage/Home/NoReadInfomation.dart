@@ -163,7 +163,7 @@ class _NoReadInfomationState extends State<NoReadInfomation> {
               LogUtil.d("------点击");
               Navigator.pushNamed(
                 context,
-                '/cultiveDetail',
+                '/informationDetail',
                 arguments: {}, //　传递参数
               );
             },
