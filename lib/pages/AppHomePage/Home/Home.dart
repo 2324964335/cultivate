@@ -97,7 +97,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   Widget _buildItem(BuildContext context){
       return Container(
-//        height: ScreenAdaper.height(200),
         padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
         child: Container(
           decoration: BoxDecoration(
@@ -153,13 +152,14 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                Container(
                                  child: Row(
                                    children: [
-                                     ClipOval(
-                                       child: Container(
-                                         color: Colors.lightBlueAccent,
-                                         width: ScreenAdaper.width(70),
-                                         height: ScreenAdaper.width(70),
-                                       ),
-                                     ),
+//                                     ClipOval(
+//                                       child: Container(
+//                                         color: Colors.lightBlueAccent,
+//                                         width: ScreenAdaper.width(70),
+//                                         height: ScreenAdaper.width(70),
+//                                       ),
+//                                     ),
+                                     Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
                                      SizedBox(width: ScreenAdaper.width(10),),
                                      Text("某某某",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                      SizedBox(width: ScreenAdaper.width(40),),

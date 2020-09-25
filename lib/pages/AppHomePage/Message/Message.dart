@@ -48,13 +48,14 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
        children: [
          Row(
            children: [
-             ClipOval(
-               child: Container(
-                 color: Colors.lightBlueAccent,
-                 width: ScreenAdaper.width(90),
-                 height: ScreenAdaper.width(90),
-               ),
-             ),
+//             ClipOval(
+//               child: Container(
+//                 color: Colors.lightBlueAccent,
+//                 width: ScreenAdaper.width(90),
+//                 height: ScreenAdaper.width(90),
+//               ),
+//             ),
+             Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(90),height:ScreenAdaper.width(90),),
              SizedBox(width: ScreenAdaper.width(20),),
              Column(
                crossAxisAlignment: CrossAxisAlignment.start,

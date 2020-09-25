@@ -57,5 +57,8 @@ class RouteName {
   ///ExaminePersonResultDetail 考试人员详情页
   static String examinePersonResultDetail = '/examinePersonResultDetail';
 
+  ///NoReadInfomation  未读公告
+  static String noReadInfomation = '/noReadInfomation';
+
 
 }

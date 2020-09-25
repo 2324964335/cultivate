@@ -19,6 +19,7 @@ import '../pages/AppHomePage/Home/WaitEnrollPerson.dart';
 import '../pages/AppHomePage/Home/WaitEnrollCultive.dart';
 import '../pages/AppHomePage/Home/ExaminePersonListResult.dart';
 import '../pages/AppHomePage/Home/ExaminePersonResultDetail.dart';
+import '../pages/AppHomePage/Home/NoReadInfomation.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -74,4 +75,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///ExaminePersonResultDetail 人员考试详情页
   RouteName.examinePersonResultDetail: (BuildContext context, {params}) =>
       ExaminePersonResultDetail(params: params),
+  ///NoReadInfomation 未读公告
+  RouteName.noReadInfomation: (BuildContext context, {params}) =>
+      NoReadInfomation(params: params),
 };

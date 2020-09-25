@@ -166,13 +166,14 @@ class _WaitEnrollPersonState extends State<WaitEnrollPerson> {
                       children: [
                         SizedBox(width: ScreenAdaper.width(20),),
 
-                        ClipOval(
-                          child: Container(
-                            color: Colors.lightBlueAccent,
-                            width: ScreenAdaper.width(90),
-                            height: ScreenAdaper.width(90),
-                          ),
-                        ),
+//                        ClipOval(
+//                          child: Container(
+//                            color: Colors.lightBlueAccent,
+//                            width: ScreenAdaper.width(90),
+//                            height: ScreenAdaper.width(90),
+//                          ),
+//                        ),
+                        Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(90),height:ScreenAdaper.width(90),),
                         SizedBox(width: ScreenAdaper.width(15),),
                         Text("刘医生",style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30)),),
                         SizedBox(width: ScreenAdaper.width(15),),

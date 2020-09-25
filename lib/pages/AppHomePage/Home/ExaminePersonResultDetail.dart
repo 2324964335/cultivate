@@ -25,37 +25,6 @@ class _ExaminePersonResultDetailState extends State<ExaminePersonResultDetail> {
   }
 
   Widget _buildItem(BuildContext context,int index){
-//    return Container(
-//      child: Column(
-//        crossAxisAlignment: CrossAxisAlignment.start,
-//        children: [
-//          Container(
-//            margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.width(20)),
-//            child:Row(
-//              children: [
-//                Text("${index+ 1}."),
-//                Text("素质要求"),
-//              ],
-//            ),
-//          ),
-//          SizedBox(height: ScreenAdaper.height(20),),
-//          Row(
-//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//            children: [
-//              Container(
-//                margin: EdgeInsets.only(left: ScreenAdaper.width(30)),
-//                child: Text('仪表大方，素质端庄，语言柔和，恰当',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(25)),),
-//              ),
-//              Container(
-//                margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
-//                child: Text("-5",style: TextStyle(color: Colors.red,fontSize: ScreenAdaper.sp(26)),
-//                ),)
-//            ],
-//          ),
-//        ],
-//      ),
-//    );
-
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
       child: Container(
@@ -98,7 +67,6 @@ class _ExaminePersonResultDetailState extends State<ExaminePersonResultDetail> {
                         ],
                       ),
                       SizedBox(height: ScreenAdaper.height(20),),
-
                     ],
       ),
           ),

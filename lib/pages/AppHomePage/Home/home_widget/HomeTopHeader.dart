@@ -219,33 +219,42 @@ class HomeTopHeader extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        new ClipRRect(
+                        GestureDetector(
+                          child: new ClipRRect(
 
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
 
-                          child:
-                        Container(
-                          width: ScreenAdaper.width(160),
+                            child:
+                            Container(
+                              width: ScreenAdaper.width(160),
 //                          color: Colors.pink,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xFFFF9177), Color(0xFFF64640)],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                              )),
-                          child: Column(
-                            children: [
-                              SizedBox(height: ScreenAdaper.height(30),),
-                              Container(
-                                child: Text("8",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [Color(0xFFFF9177), Color(0xFFF64640)],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                  )),
+                              child: Column(
+                                children: [
+                                  SizedBox(height: ScreenAdaper.height(30),),
+                                  Container(
+                                    child: Text("8",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: ScreenAdaper.width(10),bottom: ScreenAdaper.height(20)),
+                                    child: Text("未读公告",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30)),),
+                                  )
+                                ],
                               ),
-                              Container(
-                                margin: EdgeInsets.only(top: ScreenAdaper.width(10),bottom: ScreenAdaper.height(20)),
-                                child: Text("未读公告",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30)),),
-                              )
-                            ],
+                            ),
                           ),
-                        ),
+                          onTap: (){
+                            Navigator.pushNamed(
+                              context,
+                              '/noReadInfomation',
+                              arguments: {}, //　传递参数
+                            );
+                          },
                         ),
                         Container(
                           margin: EdgeInsets.only(top: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
