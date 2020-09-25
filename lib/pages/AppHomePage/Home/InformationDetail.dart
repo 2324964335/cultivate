@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
-
+import '../../../components/func.dart';
+import '../../../components/alert_dialog.dart';
 class InformationDetail extends StatefulWidget {
   InformationDetail({Key key, this.params}) : super(key: key);
   final  params;
@@ -63,11 +64,20 @@ class _InformationDetailState extends State<InformationDetail> {
             ),
           ),
           onTap: (){
-            LogUtil.d('-------去签到');
-            Navigator.pushNamed(
+            FunctionUtil.popDialog(
               context,
-              '/courseSignSuccess',
-              arguments: {}, //　传递参数
+              ShowAlertDialog(
+                title: "培训报名",
+                content: "你已报名此次培训计划，请耐心等待培训管理人员审核，审核结果请注意查看消息通知",
+                items: ['再想一下', '确认提交'],
+                onTap: (index) {
+                  LogUtil.d('object$index');
+                  if(index == 1){
+                    ToastShow.show("提交成功");
+                    Navigator.pop(context);
+                  }
+                },
+              ),
             );
           },
         )

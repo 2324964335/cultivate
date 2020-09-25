@@ -63,6 +63,9 @@ class RouteName {
   ///InformationDetail 公告详情
   static String informationDetail = '/informationDetail';
 
+  ///InformationDetailComment 公告详情评论
+  static String informationDetailComment = '/informationDetailComment';
+
 
 
 }

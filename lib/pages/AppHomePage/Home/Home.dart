@@ -220,7 +220,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       LogUtil.d("------点击");
                       Navigator.pushNamed(
                         context,
-                        '/cultiveDetail',
+                        '/informationDetailComment',
                         arguments: {}, //　传递参数
                       );
                     },

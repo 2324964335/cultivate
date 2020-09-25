@@ -21,6 +21,7 @@ import '../pages/AppHomePage/Home/ExaminePersonListResult.dart';
 import '../pages/AppHomePage/Home/ExaminePersonResultDetail.dart';
 import '../pages/AppHomePage/Home/NoReadInfomation.dart';
 import '../pages/AppHomePage/Home/InformationDetail.dart';
+import '../pages/AppHomePage/Home/InformationDetailComment.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -82,4 +83,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///InformationDetail 公告详情
   RouteName.informationDetail: (BuildContext context, {params}) =>
       InformationDetail(params: params),
+  ///InformationDetailComment 公告详情评论
+  RouteName.informationDetailComment: (BuildContext context, {params}) =>
+      InformationDetailComment(params: params),
 };
