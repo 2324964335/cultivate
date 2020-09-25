@@ -17,6 +17,8 @@ import '../pages/AppHomePage/Mine/PersonInfomation.dart';
 import '../pages/AppHomePage/Contact/ContactList.dart';
 import '../pages/AppHomePage/Home/WaitEnrollPerson.dart';
 import '../pages/AppHomePage/Home/WaitEnrollCultive.dart';
+import '../pages/AppHomePage/Home/ExaminePersonListResult.dart';
+import '../pages/AppHomePage/Home/ExaminePersonResultDetail.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -66,4 +68,10 @@ final Map<String, WidgetBuilder> routesData = {
   ///WaitEnrollCultive 待我确认审核培训
   RouteName.waitEnrollCultive: (BuildContext context, {params}) =>
       WaitEnrollCultive(params: params),
+  ///ExaminePersonListResult 考试结果人员列表
+  RouteName.examinePersonListResult: (BuildContext context, {params}) =>
+      ExaminePersonListResult(params: params),
+  ///ExaminePersonResultDetail 人员考试详情页
+  RouteName.examinePersonResultDetail: (BuildContext context, {params}) =>
+      ExaminePersonResultDetail(params: params),
 };

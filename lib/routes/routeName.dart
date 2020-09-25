@@ -51,5 +51,11 @@ class RouteName {
   ///WaitEnrollCultive  待我确认审核培训
   static String waitEnrollCultive = '/waitEnrollCultive';
 
+  ///ExaminePersonListResult 考试分数人员列表
+  static String examinePersonListResult = '/examinePersonListResult';
+
+  ///ExaminePersonResultDetail 考试人员详情页
+  static String examinePersonResultDetail = '/examinePersonResultDetail';
+
 
 }

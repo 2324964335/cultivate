@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../utils/util.dart';
 class CurrentMonthExamineChildWidget extends StatefulWidget {
+  final int index;
+  CurrentMonthExamineChildWidget(this.index);
   @override
   _CurrentMonthExamineChildWidgetState createState() => _CurrentMonthExamineChildWidgetState();
 }
@@ -115,11 +117,20 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
           ),
         ),
         onTap: (){
-          Navigator.pushNamed(
-            context,
-            '/examinePersonList',
-            arguments: {}, //　传递参数
-          );
+          if(widget.index == 1){
+            Navigator.pushNamed(
+              context,
+              '/examinePersonListResult',
+              arguments: {}, //　传递参数
+            );
+          }else{
+            Navigator.pushNamed(
+              context,
+              '/examinePersonList',
+              arguments: {}, //　传递参数
+            );
+          }
+          ///ExaminePersonListResult
         },
       ),
     );
