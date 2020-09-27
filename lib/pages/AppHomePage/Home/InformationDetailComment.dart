@@ -1,6 +1,7 @@
 //InformationDetailComment
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
+import '../../../components/text_field.dart';
 
 class InformationDetailComment extends StatefulWidget {
   InformationDetailComment({Key key, this.params}) : super(key: key);
@@ -10,18 +11,53 @@ class InformationDetailComment extends StatefulWidget {
 }
 
 class _InformationDetailCommentState extends State<InformationDetailComment> {
+
+  //用于焦点
+  final FocusNode _inputNode = FocusNode();
+  TextEditingController _inputController = TextEditingController();
+
+  @override
+  void dispose() {
+    _inputController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('公告'),),
-      body: Container(
-        child: ListView.builder(
-          itemCount: 100,
-          itemBuilder: (ctx,index){
-            return _buildItemByIndex(context, index);
-          },
+      body: GestureDetector(
+        child: Container(
+            child:
+            Stack(
+              children: [
+                Positioned(
+                    child:
+                    Container(
+                      child: ListView.builder(
+                        itemCount: 100,
+                        itemBuilder: (ctx,index){
+                          return _buildItemByIndex(context, index);
+                        },
+                      ),
+                    ),
+                    left: 0,
+                    bottom: ScreenAdaper.height(101),
+                    right: 0,
+                    top: 0),
+                Positioned(
+                  child: _buildBottomTool(),
+                  left: 0,
+                  bottom: 0,),
+              ],
+              alignment: Alignment.center,
+            )
         ),
-      ),
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+      )
     );
   }
 
@@ -31,6 +67,36 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
     }else{
       return _buildItem(context, index-1);
     }
+  }
+
+  Widget _buildBottomTool(){
+    return Container(
+//      margin: EdgeInsets.only(left: 0,right: 0),
+        color: Colors.transparent,
+        width: ScreenAdaper.width(745),
+        height: ScreenAdaper.height(100),
+        alignment: Alignment.center,
+        child: Row(
+          children: [
+            Container(
+              width: ScreenAdaper.width(600),
+              padding: EdgeInsets.only(left: ScreenAdaper.width(100)),
+              child: MyTextField(
+                focusNode: _inputNode,
+                placeHolder: '说点什么...',
+                maxLength: null,
+                noBottomLine: true,
+                keyboardType: TextInputType.multiline,
+                controller: _inputController,
+                isMultiHang: false,
+              ),
+            ),
+            SizedBox(width: ScreenAdaper.width(10),),
+            Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
+
+          ],
+        )
+    );
   }
 
   Widget _buildHeaderItem(BuildContext context,int index){
@@ -108,8 +174,10 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                                       ],
                                     ),
                                     SizedBox(height: ScreenAdaper.height(20),),
-
-                                    Text('请至微课堂栏目中进行学习请至微课堂栏目中进行学习',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                                    Container(
+                                      width: ScreenAdaper.width(580),
+                                      child: Text('请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 100,),
+                                    ),
                                     SizedBox(height: ScreenAdaper.height(20),),
 
                                     Container(
