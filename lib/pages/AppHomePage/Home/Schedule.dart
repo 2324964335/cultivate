@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
-import 'package:flutter_custom_calendar/flutter_custom_calendar.dart';
+import '../../../components/Calendar/flutter_custom_calendar.dart';
 import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 class Schedule extends StatefulWidget {
@@ -32,9 +32,9 @@ class _ScheduleState extends State<Schedule> {
     // TODO: implement initState
     _selectedDate.add(DateTime.now());
     controller = new CalendarController(
-        minYear: 2020,
+        minYear: 2019,
         minYearMonth: 1,
-        maxYear: 2024,
+        maxYear: 2021,
         maxYearMonth: 12,
         showMode: CalendarConstants.MODE_SHOW_WEEK_AND_MONTH,
         selectedDateTimeList: _selectedDate,
@@ -46,8 +46,8 @@ class _ScheduleState extends State<Schedule> {
         });
       })
       ..addOnCalendarUnSelectListener((dateModel) {
-        LogUtil.d("TAG: '_selectedModels', message: ${_selectedModels.toString()}");
-        LogUtil.d("TAG: 'dateModel', message: ${dateModel.toString()}");
+//        LogUtil.log(TAG: '_selectedModels', message: _selectedModels.toString());
+//        LogUtil.log(TAG: 'dateModel', message: dateModel.toString());
         if (_selectedModels.contains(dateModel)) {
           _selectedModels.remove(dateModel);
         }
@@ -59,7 +59,6 @@ class _ScheduleState extends State<Schedule> {
       key: _globalKey,
       calendarController: controller,
       dayWidgetBuilder: (DateModel model) {
-        double wd = (MediaQuery.of(context).size.width - 20) / 7;
         bool _isSelected = model.isSelected;
         if (_isSelected &&
             CalendarSelectedMode.singleSelect ==
@@ -162,29 +161,144 @@ class _ScheduleState extends State<Schedule> {
 
   Widget _buildHeaderItem(BuildContext context,int index){
     return Container(
-      height: _isMonthSelected==true?ScreenAdaper.width(950):ScreenAdaper.width(350),
-      child: CupertinoScrollbar(
-        child: CustomScrollView(
-          slivers: <Widget>[
-//            _topButtons(),
+      height: _isMonthSelected==true?ScreenAdaper.width(1050):ScreenAdaper.width(350),
+      child:
+//      CupertinoScrollbar(
+//        child: CustomScrollView(
+//          slivers: <Widget>[
+////            _topButtons(),
 //            _topMonths(),
-            SliverToBoxAdapter(
-              child: calendar,
-            ),
-//            _topMonths(),
-          SliverToBoxAdapter(
-            child: _calendarTool(),
-          ),
 //            SliverToBoxAdapter(
-//              child: Container(
-//                child: Text(
-//                  ' $_selectDate ',
-//                  style: TextStyle(color: Theme.of(context).focusColor),
-//                ),
-//              ),
-//            )
+//              child: calendar,
+//            ),
+////            SliverToBoxAdapter(
+////              child: Container(
+////                child: Text(
+////                  ' $_selectDate ',
+////                  style: TextStyle(color: Theme.of(context).focusColor),
+////                ),
+////              ),
+////            )
+//          ],
+//        ),
+//      ),
+        Column(
+          children: [
+            calendar,
+            _calendarTool()
           ],
+
         ),
+    );
+  }
+
+  Widget _topButtons() {
+    return SliverToBoxAdapter(
+      child: Wrap(
+        direction: Axis.vertical,
+        crossAxisAlignment: WrapCrossAlignment.start,
+        children: <Widget>[
+          Text('请选择mode'),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: <Widget>[
+              FlatButton(
+                child: Text(
+                  '单选',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  setState(() {
+                    controller.calendarConfiguration.selectMode =
+                        CalendarSelectedMode.singleSelect;
+                  });
+                },
+                color: controller.calendarConfiguration.selectMode ==
+                    CalendarSelectedMode.singleSelect
+                    ? Colors.teal
+                    : Colors.black38,
+              ),
+              FlatButton(
+                child: Text(
+                  '多选',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  setState(() {
+                    controller.calendarConfiguration.selectMode =
+                        CalendarSelectedMode.multiSelect;
+                  });
+                },
+                color: controller.calendarConfiguration.selectMode ==
+                    CalendarSelectedMode.multiSelect
+                    ? Colors.teal
+                    : Colors.black38,
+              ),
+              FlatButton(
+                child: Text(
+                  '多选 选择开始和结束',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  setState(() {
+                    controller.calendarConfiguration.selectMode =
+                        CalendarSelectedMode.mutltiStartToEndSelect;
+                  });
+                },
+                color: controller.calendarConfiguration.selectMode ==
+                    CalendarSelectedMode.mutltiStartToEndSelect
+                    ? Colors.teal
+                    : Colors.black38,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+
+  Widget _topMonths() {
+    return SliverToBoxAdapter(
+      child: Wrap(
+        direction: Axis.vertical,
+        crossAxisAlignment: WrapCrossAlignment.start,
+        children: <Widget>[
+//          Text('月视图和周视图'),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: <Widget>[
+              FlatButton(
+                child: Text(
+                  '月视图',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  setState(() {
+                    controller.weekAndMonthViewChange(
+                        CalendarConstants.MODE_SHOW_ONLY_WEEK);
+                  });
+                },
+                color: _isMonthSelected ? Colors.teal : Colors.black38,
+              ),
+              FlatButton(
+                child: Text(
+                  '周视图',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  setState(() {
+                    controller.weekAndMonthViewChange(
+                        CalendarConstants.MODE_SHOW_ONLY_MONTH);
+                  });
+                },
+                color: _isMonthSelected == false ? Colors.teal : Colors.black38,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
