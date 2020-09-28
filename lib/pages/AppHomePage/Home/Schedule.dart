@@ -58,6 +58,7 @@ class _ScheduleState extends State<Schedule> {
     calendar = new CalendarViewWidget(
       key: _globalKey,
       calendarController: controller,
+        verticalSpacing:0,
       dayWidgetBuilder: (DateModel model) {
         bool _isSelected = model.isSelected;
         if (_isSelected &&
@@ -65,28 +66,31 @@ class _ScheduleState extends State<Schedule> {
                 controller.calendarConfiguration.selectMode) {
           _selectDate = model.toString();
         }
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(ScreenAdaper.width(5)),
-          child: Container(
-            color: _isSelected ? Color(0xffFF5B3E) : Colors.white,
-            alignment: Alignment.center,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  model.day.toString(),
-                  style: TextStyle(
-                      color: model.isCurrentMonth
-                          ? (_isSelected == false
-                          ? (model.isWeekend
-                          ? Colors.black38
-                          : Colors.black87)
-                          : Colors.white)
-                          : Colors.black38),
-                ),
+        return Container(
+          padding: EdgeInsets.all(ScreenAdaper.width(15)),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(ScreenAdaper.width(5)),
+            child: Container(
+              color: _isSelected ? Color(0xffFF5B3E) : Colors.white,
+              alignment: Alignment.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    model.day.toString(),
+                    style: TextStyle(
+                        color: model.isCurrentMonth
+                            ? (_isSelected == false
+                            ? (model.isWeekend
+                            ? Colors.black38
+                            : Colors.black87)
+                            : Colors.white)
+                            : Colors.black38),
+                  ),
 //              Text(model.lunarDay.toString()),
-              ],
+                ],
+              ),
             ),
           ),
         );
@@ -161,7 +165,7 @@ class _ScheduleState extends State<Schedule> {
 
   Widget _buildHeaderItem(BuildContext context,int index){
     return Container(
-      height: _isMonthSelected==true?ScreenAdaper.width(1050):ScreenAdaper.width(350),
+//      height: _isMonthSelected==true?ScreenAdaper.width(850):ScreenAdaper.width(350),
       child:
 //      CupertinoScrollbar(
 //        child: CustomScrollView(
@@ -185,121 +189,20 @@ class _ScheduleState extends State<Schedule> {
         Column(
           children: [
             calendar,
-            _calendarTool()
+            _calendarTool(),
+            Container(
+              width: ScreenAdaper.screenW (context),
+              height: ScreenAdaper.width(10),
+              color: Color(0xffFCFCFC),
+            ),
+            Container(
+              alignment: Alignment.center,
+              height: ScreenAdaper.width(70),
+              width: ScreenAdaper.screenW(context),
+              child: Text('08月31日 周五',style: TextStyle(color: Color(0xffFF5B3E),fontSize: ScreenAdaper.sp(35)),),
+            ),
           ],
-
         ),
-    );
-  }
-
-  Widget _topButtons() {
-    return SliverToBoxAdapter(
-      child: Wrap(
-        direction: Axis.vertical,
-        crossAxisAlignment: WrapCrossAlignment.start,
-        children: <Widget>[
-          Text('请选择mode'),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: <Widget>[
-              FlatButton(
-                child: Text(
-                  '单选',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  setState(() {
-                    controller.calendarConfiguration.selectMode =
-                        CalendarSelectedMode.singleSelect;
-                  });
-                },
-                color: controller.calendarConfiguration.selectMode ==
-                    CalendarSelectedMode.singleSelect
-                    ? Colors.teal
-                    : Colors.black38,
-              ),
-              FlatButton(
-                child: Text(
-                  '多选',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  setState(() {
-                    controller.calendarConfiguration.selectMode =
-                        CalendarSelectedMode.multiSelect;
-                  });
-                },
-                color: controller.calendarConfiguration.selectMode ==
-                    CalendarSelectedMode.multiSelect
-                    ? Colors.teal
-                    : Colors.black38,
-              ),
-              FlatButton(
-                child: Text(
-                  '多选 选择开始和结束',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  setState(() {
-                    controller.calendarConfiguration.selectMode =
-                        CalendarSelectedMode.mutltiStartToEndSelect;
-                  });
-                },
-                color: controller.calendarConfiguration.selectMode ==
-                    CalendarSelectedMode.mutltiStartToEndSelect
-                    ? Colors.teal
-                    : Colors.black38,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-
-  Widget _topMonths() {
-    return SliverToBoxAdapter(
-      child: Wrap(
-        direction: Axis.vertical,
-        crossAxisAlignment: WrapCrossAlignment.start,
-        children: <Widget>[
-//          Text('月视图和周视图'),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: <Widget>[
-              FlatButton(
-                child: Text(
-                  '月视图',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  setState(() {
-                    controller.weekAndMonthViewChange(
-                        CalendarConstants.MODE_SHOW_ONLY_WEEK);
-                  });
-                },
-                color: _isMonthSelected ? Colors.teal : Colors.black38,
-              ),
-              FlatButton(
-                child: Text(
-                  '周视图',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  setState(() {
-                    controller.weekAndMonthViewChange(
-                        CalendarConstants.MODE_SHOW_ONLY_MONTH);
-                  });
-                },
-                color: _isMonthSelected == false ? Colors.teal : Colors.black38,
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 
@@ -309,30 +212,36 @@ class _ScheduleState extends State<Schedule> {
       child: GestureDetector(
         child: Column(
           children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text('下午13:20'),
-                      new ClipRRect(
-                        borderRadius: BorderRadius.circular(ScreenAdaper.width(5)),
-                        child:Container(
-                              width: ScreenAdaper.width(10),
-                              height: ScreenAdaper.width(10),
-                              color: Color(0xff00D08D),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text('下午13:20',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                        SizedBox(width: ScreenAdaper.width(15),),
+                        new ClipRRect(
+                          borderRadius: BorderRadius.circular(ScreenAdaper.width(5)),
+                          child:Container(
+                            width: ScreenAdaper.width(10),
+                            height: ScreenAdaper.width(10),
+                            color: Color(0xff00D08D),
                           ),
-                      ),
-                      Text('提交护理闹报告'),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text('来自：'),
-                      Text('日程提醒'),
-                    ],
-                  ),
-                ],
+                        ),
+                        SizedBox(width: ScreenAdaper.width(15),),
+                        Text('提交护理闹报告',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text('来自：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                        SizedBox(width: ScreenAdaper.width(10),),
+                        Text('日程提醒',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                      ],
+                    ),
+                  ],
+                ),
+                margin: EdgeInsets.all(ScreenAdaper.width(15)),
               ),
             Container(
               margin: EdgeInsets.only(top: ScreenAdaper.height(10)),

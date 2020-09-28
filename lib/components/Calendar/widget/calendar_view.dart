@@ -43,7 +43,7 @@ class CalendarViewWidget extends StatefulWidget {
         this.boxDecoration,
         this.padding = EdgeInsets.zero,
         this.margin = EdgeInsets.zero,
-        this.verticalSpacing = 10,
+        this.verticalSpacing = 0,
         this.itemSize})
       : super(key: key);
 
@@ -209,7 +209,7 @@ class CalendarContainerState extends State<CalendarContainer>
            */
           calendarProvider.calendarConfiguration.weekBarItemWidgetBuilder(),
           AnimatedContainer(
-              duration: Duration(milliseconds: 500),
+              duration: Duration(milliseconds: 200),
               height: expand ? totalHeight : itemHeight,
               child: IndexedStack(
                 index: index,
