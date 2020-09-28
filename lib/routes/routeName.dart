@@ -72,6 +72,10 @@ class RouteName {
   ///AllInformation 所有公告
   static String allInformation = '/allInformation';
 
+  ///添加日程 AddSchedule
+  static String addSchedule = '/addSchedule';
+
+
 
 
 

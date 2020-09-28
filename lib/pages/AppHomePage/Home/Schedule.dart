@@ -125,6 +125,11 @@ class _ScheduleState extends State<Schedule> {
           backgroundColor:Colors.transparent,
         onPressed: (){
               LogUtil.d('-----');
+              Navigator.pushNamed(
+                context,
+                '/addSchedule',
+                arguments: {}, //　传递参数
+              );
         },
       ),
     );
@@ -254,7 +259,7 @@ class _ScheduleState extends State<Schedule> {
         onTap: (){
 //          Navigator.pushNamed(
 //            context,
-//            '/waitEnrollPerson',
+//            '/addSchedule',
 //            arguments: {}, //　传递参数
 //          );
         LogUtil.d('点击了日程');
