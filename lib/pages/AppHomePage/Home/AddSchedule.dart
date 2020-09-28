@@ -168,7 +168,12 @@ class _AddScheduleState extends State<AddSchedule> {
             arguments: {}, //　传递参数
           );
         }else{
-
+          ///SelectTotalRecivePerson
+          Navigator.pushNamed(
+            context,
+            '/selectTotalRecivePerson',
+            arguments: {}, //　传递参数
+          );
         }
       },
     );

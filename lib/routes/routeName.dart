@@ -78,6 +78,9 @@ class RouteName {
   ///AddScheduleRemind 日程提醒
   static String addScheduleRemind = '/addScheduleRemind';
 
+  ///SelectTotalRecivePerson 选择全部接收人
+  static String selectTotalRecivePerson = '/selectTotalRecivePerson';
+
 
 
 
