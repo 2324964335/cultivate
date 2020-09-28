@@ -1,5 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 //import 'dart:io';
+import 'package:flutter/material.dart';
 /// 直接通过`类名称`访问里面的方法，方法为 静态方法
 const bool kIsWeb = identical(0, 0.0);
 class ScreenAdaper {
@@ -29,6 +30,10 @@ class ScreenAdaper {
   }
   static screenWidth(){
     return  ScreenUtil.screenWidth;  /// 获取 计算后的屏幕高度
+  }
+
+  static screenW(BuildContext context){
+    return MediaQuery.of(context).size.width;
   }
 
 }
