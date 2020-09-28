@@ -75,6 +75,8 @@ class RouteName {
   ///添加日程 AddSchedule
   static String addSchedule = '/addSchedule';
 
+  ///AddScheduleRemind 日程提醒
+  static String addScheduleRemind = '/addScheduleRemind';
 
 
 

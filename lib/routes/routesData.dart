@@ -25,6 +25,7 @@ import '../pages/AppHomePage/Home/InformationDetailComment.dart';
 import '../pages/AppHomePage/Home/Schedule.dart';
 import '../pages/AppHomePage/Home/AllInformation.dart';
 import '../pages/AppHomePage/Home/AddSchedule.dart';
+import '../pages/AppHomePage/Home/AddScheduleRemind.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -98,4 +99,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///AddSchedule 添加日程
   RouteName.addSchedule: (BuildContext context, {params}) =>
       AddSchedule(params: params),
+  ///AddScheduleRemind 添加日程提醒
+  RouteName.addScheduleRemind: (BuildContext context, {params}) =>
+      AddScheduleRemind(params: params),
 };
