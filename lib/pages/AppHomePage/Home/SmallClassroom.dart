@@ -16,7 +16,13 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('微课堂'),),
-      body: SectionGridView.builder(adapter: this),
+      body:
+//      Container(
+//        child: Center(
+//          child: Text('ssadsdssd'),
+//        ),
+//      )
+      SectionGridView.builder(adapter: this),
     );
   }
 
