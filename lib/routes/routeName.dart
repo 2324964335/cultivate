@@ -81,6 +81,8 @@ class RouteName {
   ///SelectTotalRecivePerson 选择全部接收人
   static String selectTotalRecivePerson = '/selectTotalRecivePerson';
 
+  ///SmallClassroom 微课堂
+  static String smallClassroom = '/smallClassroom';
 
 
 

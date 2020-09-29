@@ -239,13 +239,29 @@ class HomeTopHeader extends StatelessWidget {
                             );
                           },
                         ),
-                        Container(
-                          margin: EdgeInsets.only(top: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
-                          width: ScreenAdaper.width(120),
-                          height: ScreenAdaper.width(120),
-                          child: Image.asset("asset/images/home/weiketang.png"),
+                        GestureDetector(
+                          child: Container(
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
+                                  width: ScreenAdaper.width(120),
+                                  height: ScreenAdaper.width(120),
+                                  child: Image.asset("asset/images/home/weiketang.png"),
+                                ),
+                                Text('微课堂',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(30)),)
+                              ],
+                            ),
+                          ),
+                          onTap: (){
+                            ///SmallClassroom
+                            Navigator.pushNamed(
+                              context,
+                              '/smallClassroom',
+                              arguments: {}, //　传递参数
+                            );
+                          },
                         ),
-                        Text('微课堂',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(30)),)
                       ],
                     ),
                     Column(

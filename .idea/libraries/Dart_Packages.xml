@@ -142,6 +142,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_section_list">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_section_list-1.0.4/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_slidable">
           <value>
             <list>
@@ -555,6 +562,7 @@
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_cache_manager-1.4.2/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_my_picker-1.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_screenutil-1.1.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_section_list-1.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_slidable-0.5.7/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/fluttertoast-4.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../fluttersdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/get_it-4.0.4/lib" />

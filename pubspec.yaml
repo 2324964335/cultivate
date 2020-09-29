@@ -50,6 +50,7 @@ dependencies:
   r_scan: ^0.1.4     #二维码扫描
 #  flutter_custom_calendar: ^1.0.4+0.5
   flutter_my_picker: ^1.0.3  #时间选择器
+  flutter_section_list: ^1.0.4  #gridview 分组
 
 dev_dependencies:
   flutter_test:

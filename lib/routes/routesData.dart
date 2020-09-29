@@ -27,6 +27,7 @@ import '../pages/AppHomePage/Home/AllInformation.dart';
 import '../pages/AppHomePage/Home/AddSchedule.dart';
 import '../pages/AppHomePage/Home/AddScheduleRemind.dart';
 import '../pages/AppHomePage/Home/SelectTotalRecivePerson.dart';
+import '../pages/AppHomePage/Home/SmallClassroom.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -106,4 +107,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///SelectTotalRecivePerson 选择全部接受人
   RouteName.selectTotalRecivePerson: (BuildContext context, {params}) =>
       SelectTotalRecivePerson(params: params),
+  ///SmallClassroom 微课堂
+  RouteName.smallClassroom: (BuildContext context, {params}) =>
+      SmallClassroom(params: params),
 };
