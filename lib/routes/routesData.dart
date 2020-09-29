@@ -28,6 +28,7 @@ import '../pages/AppHomePage/Home/AddSchedule.dart';
 import '../pages/AppHomePage/Home/AddScheduleRemind.dart';
 import '../pages/AppHomePage/Home/SelectTotalRecivePerson.dart';
 import '../pages/AppHomePage/Home/SmallClassroom.dart';
+import '../pages/AppHomePage/Home/SmallClassroomLearnStep.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -110,4 +111,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///SmallClassroom 微课堂
   RouteName.smallClassroom: (BuildContext context, {params}) =>
       SmallClassroom(params: params),
+  ///SmallClassroomLearnStep 微课堂学习记录
+  RouteName.smallClassroomLearnStep: (BuildContext context, {params}) =>
+      SmallClassroomLearnStep(params: params),
 };

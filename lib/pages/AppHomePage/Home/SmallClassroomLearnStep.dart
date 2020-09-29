@@ -15,7 +15,7 @@ class _SmallClassroomLearnStepState extends State<SmallClassroomLearnStep>  with
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('微课堂'),),
+      appBar: AppBar(title: Text('微课堂学习计划'),),
       body:
 //      Container(
 //        child: Center(
@@ -26,7 +26,7 @@ class _SmallClassroomLearnStepState extends State<SmallClassroomLearnStep>  with
     );
   }
 
-  void _changeCount(){
+  void _clickStep(){
     LogUtil.d('-----点击了课堂');
   }
 
@@ -55,39 +55,58 @@ class _SmallClassroomLearnStepState extends State<SmallClassroomLearnStep>  with
 
     return GestureDetector(
       onTap: (){
-        _changeCount();
+        _clickStep();
       },
       child: Container(
+        margin: EdgeInsets.all(ScreenAdaper.width(15)),
           width: totalWidth,
-          height: ScreenAdaper.width(370),
+//          height: ScreenAdaper.width(270),
           child: Column(
+//            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                alignment: Alignment.center,
-                color: Color(0xffF1B900),
-                width: totalWidth / 2,
-                height: ScreenAdaper.width(200),
-                child: Text('护理常识',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(35)),),
-              ),
-              SizedBox(height: ScreenAdaper.width(10),),
-
-              Text('2020.8 传染病防控',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(32),fontWeight: FontWeight.bold),),
-              SizedBox(height: ScreenAdaper.width(10),),
-              LightText.build('护理考试'),
-              SizedBox(height: ScreenAdaper.width(10),),
-
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LightText.build('10课时'),
+                  LightText.build('8月7日下午13:20'),
                   Container(
-                    padding: EdgeInsets.only(right: ScreenAdaper.width(10)),
-                    child: LightText.build('1232次学习'),
+                    margin: EdgeInsets.only(top: ScreenAdaper.width(10),left: ScreenAdaper.width(10),right: ScreenAdaper.width(10)),
+                    child: new ClipRRect(
+                      borderRadius: BorderRadius.circular(ScreenAdaper.width(5)),
+                      child:Container(
+                        width: ScreenAdaper.width(10),
+                        height: ScreenAdaper.width(10),
+                        color: Color(0xff00D08D),
+                      ),
+                    ),
                   ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('传染病防治传染病防治',style: TextStyle(color: Color(0xff565656),fontSize:ScreenAdaper.sp(30)),),
+                      SizedBox(height: ScreenAdaper.width(17),),
+                      Row(
+                        children: [
+                          LightText.build('护理联盟'),
+                          SizedBox(width: ScreenAdaper.width(25),),
+                          LightText.build('10课时'),
+                        ],
+                      ),
+                      SizedBox(height: ScreenAdaper.width(17),),
+                      Row(
+                        children: [
+                          LightText.build('时长：20:30'),
+                          SizedBox(width: ScreenAdaper.width(25),),
 
+                          LightText.build('学习进度：60%'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ],
               ),
+              SizedBox(height: ScreenAdaper.width(20),),
+              Line.build()
             ],
           )
       ),
@@ -147,12 +166,6 @@ class _SmallClassroomLearnStepState extends State<SmallClassroomLearnStep>  with
   @override
   Widget getSectionHeader(BuildContext context, int section) {
     return Container(
-      color: Colors.white,
-      width: ScreenAdaper.screenW(context),
-      height: ScreenAdaper.height(70),
-      padding: EdgeInsets.only(left: ScreenAdaper.width(20)),
-      alignment: Alignment.centerLeft,
-      child: DarkText.build('热门微课'),
     );
   }
 

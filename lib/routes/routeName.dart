@@ -84,6 +84,8 @@ class RouteName {
   ///SmallClassroom 微课堂
   static String smallClassroom = '/smallClassroom';
 
+  ///SmallClassroomLearnStep 微课堂
+  static String smallClassroomLearnStep = '/smallClassroomLearnStep';
 
 
 }
