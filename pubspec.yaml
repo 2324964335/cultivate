@@ -36,7 +36,6 @@ dependencies:
   package_info: ^0.4.0+17 # app相关信息获取
   url_launcher: ^5.4.5
   permission_handler: ^5.0.0+hotfix.5 # 权限
-#  permission_handler: ^3.0.0
   get_it: ^4.0.2
   fluttertoast: ^4.0.1
   bot_toast: ^3.0.4
@@ -51,6 +50,13 @@ dependencies:
 #  flutter_custom_calendar: ^1.0.4+0.5
   flutter_my_picker: ^1.0.3  #时间选择器
   flutter_section_list: ^1.0.4  #gridview 分组
+#  flutter_tencentplayer: 0.10.0 #视频播放器带直播功能
+#  flutter_forbidshot: 0.0.2
+#  screen: 0.0.5
+  chewie: ^0.9.5
+  video_player: ^0.10.0+2
+#  auto_orientation: ^0.0.2
+
 
 dev_dependencies:
   flutter_test:

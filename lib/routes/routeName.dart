@@ -87,5 +87,8 @@ class RouteName {
   ///SmallClassroomLearnStep 微课堂
   static String smallClassroomLearnStep = '/smallClassroomLearnStep';
 
+  ///LessonPlayer 视频播放页面
+  static String lessonPlayer = '/lessonPlayer';
+
 
 }

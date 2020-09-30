@@ -16,13 +16,7 @@ class _SmallClassroomLearnStepState extends State<SmallClassroomLearnStep>  with
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('微课堂学习计划'),),
-      body:
-//      Container(
-//        child: Center(
-//          child: Text('ssadsdssd'),
-//        ),
-//      )
-      SectionGridView.builder(adapter: this),
+      body: SectionGridView.builder(adapter: this),
     );
   }
 
