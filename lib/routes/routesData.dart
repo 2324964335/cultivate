@@ -30,6 +30,7 @@ import '../pages/AppHomePage/Home/SelectTotalRecivePerson.dart';
 import '../pages/AppHomePage/Home/SmallClassroom.dart';
 import '../pages/AppHomePage/Home/SmallClassroomLearnStep.dart';
 import '../pages/AppHomePage/Home/LessonPlayer.dart';
+import '../pages/AppHomePage/Home/TheoreticalModeling.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -118,4 +119,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///LessonPlayer 视频播放页面
   RouteName.lessonPlayer: (BuildContext context, {params}) =>
       LessonPlayer(params: params),
+  ///TheoreticalModeling 理论模拟页面
+  RouteName.theoreticalModeling: (BuildContext context, {params}) =>
+      TheoreticalModeling(params: params),
 };

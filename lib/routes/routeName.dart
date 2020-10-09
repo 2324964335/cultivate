@@ -90,5 +90,9 @@ class RouteName {
   ///LessonPlayer 视频播放页面
   static String lessonPlayer = '/lessonPlayer';
 
+  ///TheoreticalModeling 理论模拟
+  static String theoreticalModeling = '/theoreticalModeling';
+
+
 
 }
