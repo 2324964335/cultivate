@@ -16,7 +16,7 @@ class _TheoreticalModelingState extends State<TheoreticalModeling> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("asset/images/home/lilunmoniBG.png"),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: ListView.builder(
