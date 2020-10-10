@@ -93,6 +93,10 @@ class RouteName {
   ///TheoreticalModeling 理论模拟
   static String theoreticalModeling = '/theoreticalModeling';
 
+  ///ExamQuestions 理论模拟考试界面
+  static String examQuestions = '/examQuestions';
 
+  ///AnswerQuestion 理论模拟考试界面
+  static String answerQuestion = '/answerQuestion';
 
 }

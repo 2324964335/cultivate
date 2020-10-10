@@ -31,6 +31,8 @@ import '../pages/AppHomePage/Home/SmallClassroom.dart';
 import '../pages/AppHomePage/Home/SmallClassroomLearnStep.dart';
 import '../pages/AppHomePage/Home/LessonPlayer.dart';
 import '../pages/AppHomePage/Home/TheoreticalModeling.dart';
+import '../pages/AppHomePage/Exam/practice_page.dart';
+import '../pages/AppHomePage/Examine/AnswerQuestion.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -122,4 +124,10 @@ final Map<String, WidgetBuilder> routesData = {
   ///TheoreticalModeling 理论模拟页面
   RouteName.theoreticalModeling: (BuildContext context, {params}) =>
       TheoreticalModeling(params: params),
+  ///ExamQuestions 理论模拟考试页面
+  RouteName.examQuestions: (BuildContext context, {params}) =>
+      ExamQuestions(params: params),
+  ///AnswerQuestion 理论模拟考试页面
+  RouteName.answerQuestion: (BuildContext context, {params}) =>
+      AnswerQuestion(params: params),
 };

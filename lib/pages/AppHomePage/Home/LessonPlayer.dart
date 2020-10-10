@@ -62,7 +62,6 @@ class _LessonPlayerState extends State<LessonPlayer> {
 
           snap: true,//与floating结合使用
           floating: true, //是否随着滑动隐藏标题,滑动到最上面，再snap滑动是否隐藏导航栏的文字和标题等的具体内容，为true是隐藏，为false是不隐藏
-//            title: _title(),
           pinned: false,  //是否固定在顶部,往上滑，导航栏可以隐藏
           leading:GestureDetector(
             child: Icon(
@@ -71,8 +70,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
               Navigator.pop(context);
             },
           ),
-//          title: _title(),
-            flexibleSpace:_title()
+            flexibleSpace:_topPlayer()
 
         )
       ];
@@ -90,7 +88,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
 //      _buildBody()
     );
   }
-  _title() {
+  _topPlayer() {
     return Container(
       child: Chewie(
         controller: _chewieController,
@@ -104,36 +102,6 @@ class _LessonPlayerState extends State<LessonPlayer> {
         "条目$index",
         style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
       ),),
-    );
-  }
-
-  Widget _buildBody(){
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            child:Column(
-              children: [
-                Center(
-                  child: Chewie(
-                    controller: _chewieController,
-                  ),
-                ),
-              ],
-            )
-          ),
-         Container(
-           height: ScreenAdaper.width(820),
-
-           child:  ListView.builder(
-             itemCount: 10,
-             itemBuilder: (ctx,index){
-               return _buildWidgetByIndex(context,index);
-             },
-           ),
-         ),
-        ],
-      ),
     );
   }
 
@@ -169,7 +137,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
                     spreadRadius: 1.0 //阴影扩散程度
                 )
               ]),
-          child: Row(
+          child:  Row(
             children: [
               Container(
                 margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16),left: ScreenAdaper.height(16),bottom: ScreenAdaper.height(16)),
@@ -183,7 +151,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
               ),
               DarkText.build('传染病防治传染病防治备份'),
             ],
-          )
+          ),
         ),
         onTap: (){
         },

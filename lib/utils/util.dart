@@ -27,6 +27,10 @@ class Util {
     };
   }
 
+  static String getImagePath(String name,{String format:"png"}) {
+    return "asset/images/$name.$format";
+  }
+
   /// tosat提示
   static toastTips(String text) {
     Fluttertoast.showToast(

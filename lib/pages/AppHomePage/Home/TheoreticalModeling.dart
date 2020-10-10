@@ -55,7 +55,7 @@ class _TheoreticalModelingState extends State<TheoreticalModeling> {
         onTap: (){
           Navigator.pushNamed(
             context,
-            '/examinePersonUpload',
+            '/answerQuestion',
             arguments: {}, //　传递参数
           );
 
