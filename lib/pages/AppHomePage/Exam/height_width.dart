@@ -32,7 +32,7 @@ double practiceTestLeftSelectHeight = ScreenUtil().setHeight(70);
 //右侧单一Item高度
 double practiceTestRightSelectHeight = ScreenUtil().setHeight(100);
 //底部Drawer
-double practiceBottomDrawerHeight = ScreenUtil().setHeight(500);
+double practiceBottomDrawerHeight = ScreenUtil().setHeight(700);
 //考试结束Img高度
 double testCompleteImgHeight = ScreenUtil().setHeight(420);
 //考试结束按钮宽度

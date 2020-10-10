@@ -15,4 +15,5 @@ class Question{
   String thumb;
   String catname;
   List answers=['A.口服','B.皮下注射','C.吸入疗法','D.静脉注射'];
+  String clickLabel;
 }

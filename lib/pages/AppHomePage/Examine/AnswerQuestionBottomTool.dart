@@ -46,7 +46,7 @@ class AnswerQuestionBottomTool extends StatefulWidget {
 
 class AnswerQuestionBottomToolState extends State<AnswerQuestionBottomTool>
     with SingleTickerProviderStateMixin {
-  double offsetDistance = ScreenAdaper.height(500) - ScreenAdaper.height(100);
+  double offsetDistance = ScreenAdaper.height(700) - ScreenAdaper.height(100);
 
   AnimationController animalController;
   Animation<double> animation;

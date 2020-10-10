@@ -7,7 +7,6 @@ class QuestionSourceChange extends ChangeNotifier{
   int countTrue = 0;
   int countFalse = 0;
 
-
   Map<int, UserSource>  questionMap;
   int current = 0;
   QuestionSourceChange(this.questionMap);
