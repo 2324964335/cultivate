@@ -9,11 +9,11 @@ class Question{
   bool iscorrect;
   bool isSelect = false;
   int myanswer;
-  String describe;
+  String describe = '这是这道题的错误分析';
   String hits;
   String addtime;
   String thumb;
   String catname;
-  List answers=['A.口服','B.皮下注射','C.吸入疗法','D.静脉注射'];
+  List answers=['口服','皮下注射','吸入疗法','静脉注射'];
   String clickLabel;
 }

@@ -1,5 +1,4 @@
 //import 'prace_test_entity.dart';
-//import 'question_change.dart';
 import 'package:cultivate/pages/AppHomePage/Examine/QuestionModel.dart';
 import 'package:cultivate/utils/screen_adaper.dart';
 import 'AnswerQuestion.dart';
@@ -11,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'QuestionSliverControllProvider.dart';
 import '../Exam/height_width.dart';
 import 'QuestionModel.dart';
+import '../../../utils/util.dart';
 
 enum QuestionLayer{
   top,
@@ -92,7 +92,7 @@ class QuestionPageState extends State<QuestionPage> {
     }
     //跟随答案数目，此处强制4题
     for (int i = 0; i < question.answers.length; i++) {
-      _list.add(_answerSelect(question.answers[i]));
+      _list.add(_answerSelect(question.answers[i],i));
     }
     //答案A，您选择B
     if (_isSelected && !_isCorrect) {
@@ -181,7 +181,7 @@ class QuestionPageState extends State<QuestionPage> {
           width_10dp, height_10dp, width_10dp, 0),
       child: Stack(
         children: <Widget>[
-          Text('         ' + question.title,
+          Text('           ' + '${question.questionIndex}.'+question.title,
             style: TextStyle(fontSize: ScreenAdaper.sp(27), fontWeight: FontWeight.w300),
             strutStyle: StrutStyle(leading: 1),
           ),
@@ -208,7 +208,7 @@ class QuestionPageState extends State<QuestionPage> {
   }
 
 
-  Widget _answerSelect(String answer_str) {
+  Widget _answerSelect(String answer_str,int index) {
     return !_isSelected ? GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -216,30 +216,30 @@ class QuestionPageState extends State<QuestionPage> {
         _isSelected = true;
         if (clickLabel == question.answers[question.answer]) {
           _isCorrect = true;
-          Provider.of<QuestionProvider>(context).getCurrentSource(selectTrue: true);
+          Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: true);
         } else {
           _isCorrect = false;
-          Provider.of<QuestionProvider>(context).getCurrentSource(selectTrue: false);
+          Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: false);
         }
-        Provider.of<QuestionProvider>(context).getQuestionList[Provider.of<QuestionProvider>(context).current].isSelected = _isSelected;
-        Provider.of<QuestionProvider>(context).getQuestionList[Provider.of<QuestionProvider>(context).current].isCorrect = _isCorrect;
-        Provider.of<QuestionProvider>(context).getQuestionList[Provider.of<QuestionProvider>(context).current].clickLabel = clickLabel;
+        Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].isSelect = _isSelected;
+        Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].iscorrect = _isCorrect;
+        Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].clickLabel = clickLabel;
 
         setState(() {});
         //如果答对，延时1S跳到下一问题
         if (clickLabel == question.answers[question.answer]) {
           Future.delayed(Duration(milliseconds: 300), () {
-            if( widget.selfControll != null && Provider.of<QuestionProvider>(context).current != Provider.of<QuestionProvider>(context).getQuestionList.length - 1){
+            if( widget.selfControll != null && Provider.of<QuestionProvider>(context,listen: false).current != Provider.of<QuestionProvider>(context,listen: false).getQuestionList.length - 1){
               widget.selfControll.next();
             }
           });
         }
       },
-      child: _unClickWidget(answer_str),
-    ) : _unClickWidget(answer_str);
+      child: _unClickWidget(answer_str,index),
+    ) : _unClickWidget(answer_str,index);
   }
 
-  Widget _unClickWidget(String answer_str) {
+  Widget _unClickWidget(String answer_str,int index) {
     Widget _labelWidget;
     Widget _noSelectWidget = Card(
       shape: CircleBorder(),
@@ -248,7 +248,7 @@ class QuestionPageState extends State<QuestionPage> {
         alignment: Alignment.center,
         width: ScreenAdaper.width(40),
         height: ScreenAdaper.width(40),
-        child:Text('A',
+        child:Text(['A','B','C','D'][index],
           style: TextStyle(fontSize: ScreenAdaper.sp(29), fontWeight: FontWeight.w300),),
       ),
     );
@@ -257,19 +257,20 @@ class QuestionPageState extends State<QuestionPage> {
       //未选择时的标签A,B,C,D
       _labelWidget = _noSelectWidget;
     } else {
+      LogUtil.d('dsddsdsds');
       if (_isCorrect) { //选择了正确的标签
         _labelWidget = Container(
           margin: EdgeInsets.only(left: width_2dp),
-          child: Image.asset('images/practice_success.png'),
-          width: width_28dp,
-          height: width_28dp,
+          child: Image.asset("asset/images/home/practice_success.png",width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
+//          width: ScreenAdaper.width(34),
+//          height: ScreenAdaper.width(34),
         );
       } else { //选择了错误的标签
         _labelWidget = Container(
           margin: EdgeInsets.only(left: width_2dp),
-          child: Image.asset('images/practice_fill.png'),
-          width: width_28dp,
-          height: width_28dp,
+          child: Image.asset("asset/images/home/practice_fill.png",width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
+//          width: ScreenAdaper.width(34),
+//          height: ScreenAdaper.width(34),
         );
       }
     }
@@ -284,14 +285,14 @@ class QuestionPageState extends State<QuestionPage> {
           ('answer.label' == clickLabel ||
              'answer.label' == 'question.answer.label' ? answer_str == clickLabel ? _labelWidget : Container(
             margin: EdgeInsets.only(left: width_2dp),
-            child: Image.asset('images/practice_success.png'),
-            width: width_28dp,
-            height: width_28dp,
+            child: Image.asset('asset/images/home/practice_success.png',width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
+//            width: ScreenAdaper.width(34),
+//            height: ScreenAdaper.width(34),
           ) : _noSelectWidget) :
           _noSelectWidget,
           SizedBox(width: width_10dp,),
           Expanded(child: Container(
-            child: Text('ddfssfdfds皮下注射',
+            child: Text(answer_str,
               style: TextStyle(fontSize: ScreenAdaper.sp(28), fontWeight: FontWeight.w300),),
           )),
         ],

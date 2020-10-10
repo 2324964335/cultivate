@@ -77,7 +77,8 @@ class _AnswerQuestionState extends State<AnswerQuestion> {
           Align(
             alignment: Alignment.bottomCenter,
             child: AnswerQuestionBottomTool(_questionProvider.getQuestionList, (int index) {
-              _questionProvider.questionIndex = index;
+              _questionProvider.current = index;
+              _questionProvider.notifyListeners();
             }, (double veOffset) {
               alpha = 1 - veOffset / (ScreenAdaper.height(700) - ScreenAdaper.height(100));
               _questionProvider.changeAlpha(alpha);
@@ -126,8 +127,8 @@ class TestAlphaWidget extends StatefulWidget {
 class TestAlphaWidgetState extends State<TestAlphaWidget> {
   @override
   Widget build(BuildContext context) {
-    print('TestAlphaWidgetState Build');
-    print('alphaRatio==> ${Provider.of<QuestionProvider>(context).alphaRatio}');
+//    print('TestAlphaWidgetState Build');
+//    print('alphaRatio==> ${Provider.of<QuestionProvider>(context).alphaRatio}');
     return Opacity(
       opacity: Provider.of<QuestionProvider>(context).alphaRatio,
       child: widget.child,

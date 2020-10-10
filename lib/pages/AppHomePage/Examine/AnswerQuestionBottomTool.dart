@@ -174,25 +174,25 @@ class AnswerQuestionBottomToolState extends State<AnswerQuestionBottomTool>
 
 
   Widget _rightItem() {
-//    int countTrue = Provider.of<QuestionSourceChange>(context).countTrue;
-//    int countFalse = Provider.of<QuestionSourceChange>(context).countFalse;
-//    int current = Provider.of<QuestionSourceChange>(context).current;
-    int countTrue = 4;
-    int countFalse = 6;
-    int current = 7;
+    int countTrue = Provider.of<QuestionProvider>(context).countTrue;
+    int countFalse = Provider.of<QuestionProvider>(context).countFalse;
+    int current = Provider.of<QuestionProvider>(context).current;
+//    int countTrue = 4;
+//    int countFalse = 6;
+//    int current = 7;
     int countNum = widget.questionMap.length;
     return Container(
       // width: ScreenUtil.getInstance().setWidth(180),
       child: Row(
         children: <Widget>[
-          _buttonItem('images/practice_success.png', '$countTrue', true),
+          _buttonItem("asset/images/home/practice_success.png", '$countTrue', true),
           Expanded(child: SizedBox(), flex: 1,),
-          _buttonItem('images/practice_fill.png', '$countFalse', false),
+          _buttonItem("asset/images/home/practice_fill.png", '$countFalse', false),
 
           Expanded(child: SizedBox(), flex: 1,),
           GestureDetector(
             child: _buttonItemCount(
-                'images/practice_count.png', '${current + 1}', '$countNum'),
+                "asset/images/home/practice_count.png", '${current + 1}', '$countNum'),
             onTap: () {
               endSliver(true);
             },
@@ -338,7 +338,7 @@ class AnswerQuestionBottomToolState extends State<AnswerQuestionBottomTool>
       start = offsetDistance;
       end = 0;
     } else {
-      print('回收');
+//      print('回收');
       start = offsetDistance;
       end = practiceBottomDrawerHeight - videoFixHeight;
     }

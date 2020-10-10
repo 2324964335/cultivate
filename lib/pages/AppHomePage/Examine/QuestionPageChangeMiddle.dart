@@ -316,7 +316,7 @@ class SliverPageSelfState extends State<SliverPageSelf>
         });
       animalController1.forward();
     } else {
-      print('回收');
+//      print('回收');
       start = leftOffsetDistance;
       end = 0;
 

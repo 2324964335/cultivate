@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'fault_sliver_self_controll.dart';
 import 'height_width.dart';
+import '../../../utils/util.dart';
 
 enum QuestionLayer{
     top,
@@ -106,7 +107,7 @@ class QuestionPageState extends State<QuestionPage> {
               width: width_4dp,
             ),
             SizedBox(width: width_10dp,),
-            Text('试题详解', style: TextStyle(fontSize: fontSize_18sp, fontWeight: FontWeight.bold),)
+            Text('试题详解', style: TextStyle(fontSize: ScreenAdaper.sp(34), fontWeight: FontWeight.bold),)
           ],
         ),
       ));
@@ -134,7 +135,7 @@ class QuestionPageState extends State<QuestionPage> {
   Widget _questionAnalysis(){
     return Container(
       padding: EdgeInsets.fromLTRB(width_10dp, height_5dp, width_10dp, height_5dp),
-      child: Text(question.describe, style: TextStyle(fontSize: fontSize_14sp,), strutStyle: StrutStyle(leading: 0.5),),
+      child: Text(question.describe, style: TextStyle(fontSize: ScreenAdaper.sp(25),), strutStyle: StrutStyle(leading: 0.5),),
     );
   }
 
@@ -149,15 +150,15 @@ class QuestionPageState extends State<QuestionPage> {
       child: Row(
         children: <Widget>[
           Text(
-            '答案', style: TextStyle(fontSize: fontSize_14sp, fontWeight: FontWeight.bold),),
+            '答案', style: TextStyle(fontSize: ScreenAdaper.sp(25), fontWeight: FontWeight.bold),),
           SizedBox(width: width_5dp,),
           Text(question.answer.label,
-            style: TextStyle(fontSize: fontSize_14sp,color: Colors.blueAccent, fontWeight: FontWeight.bold),),
+            style: TextStyle(fontSize: ScreenAdaper.sp(25),color: Colors.blueAccent, fontWeight: FontWeight.bold),),
           SizedBox(width: width_10dp,),
           Text('您选择',
-            style: TextStyle(fontSize: fontSize_14sp, fontWeight: FontWeight.bold),),
+            style: TextStyle(fontSize: ScreenAdaper.sp(25), fontWeight: FontWeight.bold),),
           SizedBox(width: width_5dp,),
-          Text(clickLabel, style: TextStyle(fontSize: fontSize_14sp,color: Colors.redAccent, fontWeight: FontWeight.bold),),
+          Text(clickLabel, style: TextStyle(fontSize: ScreenAdaper.sp(25),color: Colors.redAccent, fontWeight: FontWeight.bold),),
         ],
       ),
     );
