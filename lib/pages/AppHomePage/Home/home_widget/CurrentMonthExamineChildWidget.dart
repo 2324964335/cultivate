@@ -54,7 +54,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
                   children: [
                     Text('满分',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(34),fontWeight: FontWeight.bold),),
                     SizedBox(height: ScreenAdaper.height(1),),
-                    Text('100分',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(34),fontWeight: FontWeight.bold),),
+                    Text('100分',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30),fontWeight: FontWeight.bold),),
                   ],
                ),
              ),

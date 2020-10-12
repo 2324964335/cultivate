@@ -120,18 +120,6 @@ class _ExamineMangerState extends State<ExamineManger> {
             }
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Image.asset("asset/images/home/richengjia.png",width: ScreenAdaper.width(100),height:ScreenAdaper.width(100),),
-        backgroundColor:Colors.transparent,
-        onPressed: (){
-          LogUtil.d('-----');
-          Navigator.pushNamed(
-            context,
-            '/addCultivatePlan',
-            arguments: {}, //　传递参数
-          );
-        },
-      ),
     );
   }
 
@@ -226,11 +214,11 @@ class _ExamineMangerState extends State<ExamineManger> {
               child: Image.asset("asset/images/home/caozuokaoshi.png",fit: BoxFit.fitWidth,),
             ),
             onTap: (){
-//              Navigator.pushNamed(
-//                context,
-//                '/ExamineManger',
-//                arguments: {},
-//              );
+              Navigator.pushNamed(
+                context,
+                '/currentMonthExamine',
+                arguments: {},
+              );
             },
           ),
           GestureDetector(
@@ -332,7 +320,7 @@ class _ExamineMangerState extends State<ExamineManger> {
                           children: [
                             Text('满分',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(34),fontWeight: FontWeight.bold),),
                             SizedBox(height: ScreenAdaper.height(1),),
-                            Text('100分',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(34),fontWeight: FontWeight.bold),),
+                            Text('100分',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30),fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
