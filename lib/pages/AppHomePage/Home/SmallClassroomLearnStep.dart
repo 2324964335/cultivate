@@ -54,9 +54,7 @@ class _SmallClassroomLearnStepState extends State<SmallClassroomLearnStep>  with
       child: Container(
         margin: EdgeInsets.all(ScreenAdaper.width(15)),
           width: totalWidth,
-//          height: ScreenAdaper.width(270),
           child: Column(
-//            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(

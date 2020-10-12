@@ -99,5 +99,9 @@ class RouteName {
   ///WrongQuestionReview 错题巩固
   static String wrongQuestionReview = '/wrongQuestionReview';
 
+  ///CultivateManger 培训管理
+  static String cultivateManger = '/cultivateManger';
+
+
 
 }

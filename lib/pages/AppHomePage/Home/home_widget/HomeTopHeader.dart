@@ -333,16 +333,34 @@ class HomeTopHeader extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: ScreenAdaper.width(345),
-                      height: ScreenAdaper.height(160),
-                      child: Image.asset("asset/images/home/peixunguanli.png",fit: BoxFit.fitWidth,),
+                    GestureDetector(
+                      child: Container(
+                        width: ScreenAdaper.width(345),
+                        height: ScreenAdaper.height(160),
+                        child: Image.asset("asset/images/home/peixunguanli.png",fit: BoxFit.fitWidth,),
+                      ),
+                      onTap: (){
+                        Navigator.pushNamed(
+                          context,
+                          '/cultivateManger',
+                          arguments: {},
+                        );
+                      },
                     ),
-                    Container(
-                      width: ScreenAdaper.width(345),
-                      height: ScreenAdaper.height(160),
-                     child: Image.asset("asset/images/home/kaoheguanli.png",fit: BoxFit.fitWidth,),
-                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: ScreenAdaper.width(345),
+                        height: ScreenAdaper.height(160),
+                        child: Image.asset("asset/images/home/kaoheguanli.png",fit: BoxFit.fitWidth,),
+                      ),
+                      onTap: (){
+                        Navigator.pushNamed(
+                          context,
+                          '/cultivateManger',
+                          arguments: {},
+                        );
+                      },
+                    )
                   ],
                 ),
               ],
