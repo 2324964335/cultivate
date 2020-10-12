@@ -102,6 +102,10 @@ class RouteName {
   ///CultivateManger 培训管理
   static String cultivateManger = '/cultivateManger';
 
+  ///AddCultivatePlan 新增培训计划
+  static String addCultivatePlan = '/addCultivatePlan';
+
+
 
 
 }

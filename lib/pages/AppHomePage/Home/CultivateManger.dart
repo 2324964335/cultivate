@@ -127,7 +127,7 @@ class _CultivateMangerState extends State<CultivateManger> {
           LogUtil.d('-----');
           Navigator.pushNamed(
             context,
-            '/addCultivateManger',
+            '/addCultivatePlan',
             arguments: {}, //　传递参数
           );
         },
