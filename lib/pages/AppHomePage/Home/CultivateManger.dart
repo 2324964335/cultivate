@@ -110,7 +110,7 @@ class _CultivateMangerState extends State<CultivateManger> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('日程'),),
+      appBar: AppBar(title: Text('培训管理'),),
       body: Container(
         color: Colors.white,
         child:  ListView.builder(
@@ -193,6 +193,8 @@ class _CultivateMangerState extends State<CultivateManger> {
 //      ),
       Column(
         children: [
+          _buildTop(),
+          _titleWidget(),
           calendar,
           _calendarTool(),
           Container(
@@ -208,6 +210,94 @@ class _CultivateMangerState extends State<CultivateManger> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildTop(){
+    return Container(
+      margin: EdgeInsets.all(ScreenAdaper.width(25)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            child: Container(
+              width: ScreenAdaper.width(345),
+              height: ScreenAdaper.height(170),
+              child: Image.asset("asset/images/home/wodepeixun.png",fit: BoxFit.fitWidth,),
+            ),
+            onTap: (){
+//              Navigator.pushNamed(
+//                context,
+//                '/cultivateManger',
+//                arguments: {},
+//              );
+            },
+          ),
+          Column(
+            children: [
+              GestureDetector(
+                child: Container(
+                  width: ScreenAdaper.width(345),
+                  height: ScreenAdaper.height(80),
+                  child: Image.asset("asset/images/home/baomingliebiao.png",fit: BoxFit.fitWidth,),
+                ),
+                onTap: (){
+//                  Navigator.pushNamed(
+//                    context,
+//                    '/cultivateManger',
+//                    arguments: {},
+//                  );
+                },
+              ),
+              SizedBox(height: ScreenAdaper.width(10),),
+              GestureDetector(
+                child: Container(
+                  width: ScreenAdaper.width(345),
+                  height: ScreenAdaper.height(80),
+                  child: Image.asset("asset/images/home/peixunqiandao.png",fit: BoxFit.fitWidth,),
+                ),
+                onTap: (){
+//                  Navigator.pushNamed(
+//                    context,
+//                    '/cultivateManger',
+//                    arguments: {},
+//                  );
+                },
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _titleWidget(){
+    return Container(
+      margin: EdgeInsets.only(top: ScreenAdaper.width(10)),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: ScreenAdaper.width(20)),
+                alignment: Alignment.center,
+                child: DarkText.build('培训计划'),
+              ),
+              Container(
+                margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
+
+                color: Color(0xFFF1B900),
+
+                padding: EdgeInsets.all(ScreenAdaper.width(10)),
+                child: Text("返回今天",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+              ),
+            ],
+          ),
+          Line.build(),
+        ],
+      )
     );
   }
 
@@ -238,22 +328,51 @@ class _CultivateMangerState extends State<CultivateManger> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('传染病防治传染病防治',style: TextStyle(color: Color(0xff565656),fontSize:ScreenAdaper.sp(30)),),
+                      Text('   微课堂《输液规则技术》',style: TextStyle(color: Color(0xff565656),fontSize:ScreenAdaper.sp(30)),),
                       SizedBox(height: ScreenAdaper.width(17),),
                       Row(
                         children: [
-                          LightText.build('护理联盟'),
-                          SizedBox(width: ScreenAdaper.width(25),),
-                          LightText.build('10课时'),
+                          SizedBox(width: ScreenAdaper.width(20),),
+                          Text('发布人：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                          SizedBox(width: ScreenAdaper.height(10),),
+                          Text('某某某',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
                         ],
                       ),
-                      SizedBox(height: ScreenAdaper.width(17),),
+                      SizedBox(height: ScreenAdaper.height(20),),
+
                       Row(
                         children: [
-                          LightText.build('时长：20:30'),
-                          SizedBox(width: ScreenAdaper.width(25),),
-
-                          LightText.build('学习进度：60%'),
+                          SizedBox(width: ScreenAdaper.width(20),),
+                          Text('发布时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                          SizedBox(width: ScreenAdaper.height(10),),
+                          Text('2020年8月20日 14：20',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                        ],
+                      ),
+                      SizedBox(height: ScreenAdaper.height(20),),
+                      Row(
+                        children: [
+                          SizedBox(width: ScreenAdaper.width(20),),
+                          Text('培训类别：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                          SizedBox(width: ScreenAdaper.height(10),),
+                          Text('高级护理',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                        ],
+                      ),
+                      SizedBox(height: ScreenAdaper.height(20),),
+                      Row(
+                        children: [
+                          SizedBox(width: ScreenAdaper.width(20),),
+                          Text('课程类型：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                          SizedBox(width: ScreenAdaper.height(10),),
+                          Text('线下培训',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                        ],
+                      ),
+                      SizedBox(height: ScreenAdaper.height(20),),
+                      Row(
+                        children: [
+                          SizedBox(width: ScreenAdaper.width(20),),
+                          Text('开始时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                          SizedBox(width: ScreenAdaper.height(10),),
+                          Text('2020年8月20日 14：20',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
                         ],
                       ),
                     ],
