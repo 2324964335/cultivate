@@ -33,7 +33,7 @@ class _CurrentMonthExamineState extends State<CurrentMonthExamine>  with SingleT
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('本月考核',style: TextStyle(color: Colors.black45),),
+        title: Text(widget.params["examineType"]==0?'本月考核':(widget.params["examineType"]==1?'操作考试':'理论考试'),style: TextStyle(color: Colors.black45),),
       ),
       body: Container(
         child: Container(
@@ -73,8 +73,8 @@ class _CurrentMonthExamineState extends State<CurrentMonthExamine>  with SingleT
                   child: TabBarView(
                     controller: _tabController,
                     children: <Widget>[
-                      CurrentMonthExamineChildWidget(0),
-                      CurrentMonthExamineChildWidget(1),
+                      CurrentMonthExamineChildWidget(0,widget.params["examineType"]),
+                      CurrentMonthExamineChildWidget(1,widget.params["examineType"]),
                     ],
                   ),
                 )

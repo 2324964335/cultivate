@@ -170,7 +170,7 @@ class HomeTopHeader extends StatelessWidget {
                             Navigator.pushNamed(
                               context,
                               '/currentMonthExamine',
-                              arguments: {}, //　传递参数
+                              arguments: {"examineType":0}, //　传递参数
                             );
                           },
                         ),

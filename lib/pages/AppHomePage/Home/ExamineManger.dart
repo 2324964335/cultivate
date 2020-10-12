@@ -217,7 +217,8 @@ class _ExamineMangerState extends State<ExamineManger> {
               Navigator.pushNamed(
                 context,
                 '/currentMonthExamine',
-                arguments: {},
+                ///examineType:0 全部 1 操作 2 理论
+                arguments: {"examineType":1},
               );
             },
           ),
@@ -228,11 +229,11 @@ class _ExamineMangerState extends State<ExamineManger> {
               child: Image.asset("asset/images/home/lilunkaoshi.png",fit: BoxFit.fitWidth,),
             ),
             onTap: (){
-//              Navigator.pushNamed(
-//                context,
-//                '/ExamineManger',
-//                arguments: {},
-//              );
+              Navigator.pushNamed(
+                context,
+                '/currentMonthExamine',
+                arguments: {"examineType":2},
+              );
             },
           ),
         ],

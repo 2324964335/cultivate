@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../utils/util.dart';
 class CurrentMonthExamineChildWidget extends StatefulWidget {
   final int index;
-  CurrentMonthExamineChildWidget(this.index);
+  final int examineType;
+  CurrentMonthExamineChildWidget(this.index,this.examineType);
   @override
   _CurrentMonthExamineChildWidgetState createState() => _CurrentMonthExamineChildWidgetState();
 }
