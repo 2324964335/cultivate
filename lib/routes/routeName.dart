@@ -108,6 +108,10 @@ class RouteName {
   ///ExamineManger 考核管理
   static String examineManger = '/examineManger';
 
+  ///TheoryExamineQuestion 理论考试试题
+  static String theoryExamineQuestion = '/theoryExamineQuestion';
+
+
 
 
 

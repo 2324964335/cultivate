@@ -36,6 +36,7 @@ import '../pages/AppHomePage/Examine/WrongQuestionReview.dart';
 import '../pages/AppHomePage/Home/CultivateManger.dart';
 import '../pages/AppHomePage/Home/AddCultivatePlan.dart';
 import '../pages/AppHomePage/Home/ExamineManger.dart';
+import '../pages/AppHomePage/Home/TheoryExamineQuestion.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -142,4 +143,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///ExamineManger 考核管理
   RouteName.examineManger: (BuildContext context, {params}) =>
       ExamineManger(params: params),
+  ///TheoryExamineQuestion 理论考试试题
+  RouteName.theoryExamineQuestion: (BuildContext context, {params}) =>
+      TheoryExamineQuestion(params: params),
 };

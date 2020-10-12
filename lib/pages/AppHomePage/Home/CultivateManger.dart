@@ -226,11 +226,11 @@ class _CultivateMangerState extends State<CultivateManger> {
               child: Image.asset("asset/images/home/wodepeixun.png",fit: BoxFit.fitWidth,),
             ),
             onTap: (){
-//              Navigator.pushNamed(
-//                context,
-//                '/cultivateManger',
-//                arguments: {},
-//              );
+              Navigator.pushNamed(
+                context,
+                '/currentMonthCultive',
+                arguments: {},
+              );
             },
           ),
           Column(
@@ -242,11 +242,11 @@ class _CultivateMangerState extends State<CultivateManger> {
                   child: Image.asset("asset/images/home/baomingliebiao.png",fit: BoxFit.fitWidth,),
                 ),
                 onTap: (){
-//                  Navigator.pushNamed(
-//                    context,
-//                    '/cultivateManger',
-//                    arguments: {},
-//                  );
+                  Navigator.pushNamed(
+                    context,
+                    '/currentMonthCultive',
+                    arguments: {},
+                  );
                 },
               ),
               SizedBox(height: ScreenAdaper.width(10),),
@@ -257,11 +257,11 @@ class _CultivateMangerState extends State<CultivateManger> {
                   child: Image.asset("asset/images/home/peixunqiandao.png",fit: BoxFit.fitWidth,),
                 ),
                 onTap: (){
-//                  Navigator.pushNamed(
-//                    context,
-//                    '/cultivateManger',
-//                    arguments: {},
-//                  );
+                  Navigator.pushNamed(
+                    context,
+                    '/currentMonthCultive',
+                    arguments: {},
+                  );
                 },
               )
             ],

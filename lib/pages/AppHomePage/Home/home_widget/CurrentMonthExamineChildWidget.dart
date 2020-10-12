@@ -125,11 +125,19 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
               arguments: {}, //　传递参数
             );
           }else{
-            Navigator.pushNamed(
-              context,
-              '/examinePersonList',
-              arguments: {}, //　传递参数
-            );
+            if(widget.examineType== 2){
+              Navigator.pushNamed(
+                context,
+                '/theoryExamineQuestion',
+                arguments: {}, //　传递参数
+              );
+            }else{
+              Navigator.pushNamed(
+                context,
+                '/examinePersonList',
+                arguments: {}, //　传递参数
+              );
+            }
           }
           ///ExaminePersonListResult
         },
