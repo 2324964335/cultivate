@@ -2,9 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27657289-e72f-4347-a534-1db8bef5a30b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/images/examine/cuotiBG.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Examine/WrongQuestionReview.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Flutter/Flutter.framework/Flutter" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Flutter.framework/Flutter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Exam/bottom_drawer.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Exam/fault_sliver_self_controll.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Exam/height_width.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Examine/height_width.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Exam/prace_test_entity.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Exam/practice_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Exam/pratice_sliver.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Exam/question_change.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Exam/question_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Examine/AnswerQuestionBottomTool.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Examine/AnswerQuestionBottomTool.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Examine/QuestionPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Examine/QuestionPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/TheoreticalModeling.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/TheoreticalModeling.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/routeName.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/routeName.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/routesData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/routesData.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,11 +64,11 @@
       <recent name="$PROJECT_DIR$/lib/components/Calendar" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/asset/images/examine" />
+      <recent name="$PROJECT_DIR$/lib/pages/AppHomePage/Examine" />
       <recent name="$PROJECT_DIR$/asset/images/home" />
       <recent name="$PROJECT_DIR$/lib/pages/AppHomePage/Home" />
       <recent name="$PROJECT_DIR$/asset/images/mine" />
-      <recent name="$PROJECT_DIR$/asset/images/contact" />
-      <recent name="$PROJECT_DIR$/asset/images/tabbar" />
     </key>
   </component>
   <component name="RunDashboard">

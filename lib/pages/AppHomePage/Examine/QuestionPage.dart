@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 //import 'fault_sliver_self_controll.dart';
 import 'QuestionSliverControllProvider.dart';
-import '../Exam/height_width.dart';
+import 'height_width.dart';
 import 'QuestionModel.dart';
 import '../../../utils/util.dart';
 
@@ -194,6 +194,7 @@ class QuestionPageState extends State<QuestionPage> {
             child: Container(
               padding: EdgeInsets.fromLTRB(
                   width_7dp, height_4dp, width_7dp, height_4dp),
+              margin: EdgeInsets.only(top: ScreenAdaper.width(14)),
               decoration: BoxDecoration(
                 color: Color(0XFF0676FC),
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(5),

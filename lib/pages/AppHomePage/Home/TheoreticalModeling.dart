@@ -53,11 +53,20 @@ class _TheoreticalModelingState extends State<TheoreticalModeling> {
           ),
         ),
         onTap: (){
-          Navigator.pushNamed(
-            context,
-            '/answerQuestion',
-            arguments: {}, //　传递参数
-          );
+          ///WrongQuestionReview
+          if(index == 0){
+            Navigator.pushNamed(
+              context,
+              '/answerQuestion',
+              arguments: {}, //　传递参数
+            );
+          }else{
+            Navigator.pushNamed(
+              context,
+              '/wrongQuestionReview',
+              arguments: {}, //　传递参数
+            );
+          }
 
         },
       ),
