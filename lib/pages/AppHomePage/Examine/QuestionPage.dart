@@ -181,12 +181,15 @@ class QuestionPageState extends State<QuestionPage> {
           width_10dp, height_10dp, width_10dp, 0),
       child: Stack(
         children: <Widget>[
-          Text('           ' + '${question.questionIndex}.'+question.title,
-            style: TextStyle(fontSize: ScreenAdaper.sp(27), fontWeight: FontWeight.w300),
-            strutStyle: StrutStyle(leading: 1),
+          Container(
+            margin: EdgeInsets.only(top: ScreenAdaper.width(10)),
+            child: Text('           ' + '${question.questionIndex}.'+question.title,
+              style: TextStyle(fontSize: ScreenAdaper.sp(27), fontWeight: FontWeight.w300),
+              strutStyle: StrutStyle(leading: 1),
+            ),
           ),
           Positioned(
-            top: ScreenAdaper.width(16),
+            top: ScreenAdaper.width(10),
             left: 0,
             child: Container(
               padding: EdgeInsets.fromLTRB(
