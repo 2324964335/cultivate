@@ -313,7 +313,7 @@ class _CultivateMangerState extends State<CultivateManger> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LightText.build('8月7日下午13:20'),
+                  LightText.build('下午13:20'),
                   Container(
                     margin: EdgeInsets.only(top: ScreenAdaper.width(10),left: ScreenAdaper.width(10),right: ScreenAdaper.width(10)),
                     child: new ClipRRect(

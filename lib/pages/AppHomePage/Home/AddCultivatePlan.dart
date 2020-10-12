@@ -14,6 +14,8 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
   //用于焦点
   final FocusNode _inputNode = FocusNode();
   TextEditingController _inputController = TextEditingController();
+  final FocusNode _titleInputNode = FocusNode();
+  TextEditingController _titleInputController = TextEditingController();
 
   bool isAllDay = true;
 
@@ -40,6 +42,7 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
   void dispose() {
     // TODO: implement dispose
     _inputController.dispose();
+   _titleInputController.dispose();
 
     super.dispose();
   }
@@ -83,7 +86,7 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
               icon: Text('提交',style: TextStyle(color: Color(0xff00D08D)),),
               tooltip: 'Search',
               onPressed: (){
-                ToastShow.show("日程发布成功");
+                ToastShow.show("培训发布成功");
                 Navigator.pop(context);
               },
             ),
@@ -108,48 +111,81 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
     );
   }
 
+  Widget _buildTitleInputItem(BuildContext context,int index){
+    return Container(
+      color: Colors.white,
+      margin: EdgeInsets.only(top: ScreenAdaper.width(20),right: ScreenAdaper.width(32),left: ScreenAdaper.width(32),bottom: ScreenAdaper.width(20)),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              LightText.build('标题：'),
+              Container(
+//                padding: EdgeInsets.only(top: ScreenAdaper.width(20)),
+                width: ScreenAdaper.width(450),
+                height: ScreenAdaper.width(90),
+                child: MyTextField(
+                  focusNode: _titleInputNode,
+                  placeHolder: '请输入标题',
+                  maxLength: null,
+                  noBottomLine: true,
+                  keyboardType: TextInputType.multiline,
+                  controller: _titleInputController,
+                  isMultiHang: false,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: ScreenAdaper.height(15),),
+          Line.build()
+        ],
+      ),
+    );
+  }
+
   Widget _buildInputItem(BuildContext context,int index){
     return Container(
         margin: EdgeInsets.only(top: ScreenAdaper.width(20),right: ScreenAdaper.width(32),left: ScreenAdaper.width(32),bottom: ScreenAdaper.width(20)),
 
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-//            crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('内容:',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(36),fontWeight: FontWeight.bold),),
-                SizedBox(width: ScreenAdaper.width(10),),
-                Container(
-                  width: ScreenAdaper.width(450),
-                  height: ScreenAdaper.width(250),
-                  child:MyTextField(
-                    focusNode: _inputNode,
-                    placeHolder: '发布属于你的日程',
-                    maxLength: null,
-                    noBottomLine: true,
-                    keyboardType: TextInputType.multiline,
-                    controller: _inputController,
-                    isMultiHang: false,
-                  ),
-                ),
-              ],
+            LightText.build('培训内容：'),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(2),///圆角
+                  border: Border.all(color: Color(0xff979797),width: ScreenAdaper.width(0.6))///边框颜色、宽
+              ),
+              width: ScreenAdaper.width(700),
+              margin: EdgeInsets.only(left: ScreenAdaper.width(6),top: ScreenAdaper.width(20),right: ScreenAdaper.width(10),bottom: ScreenAdaper.width(20)),
+              padding: EdgeInsets.all(ScreenAdaper.width(10)),
+              height: ScreenAdaper.width(200),
+              child:MyTextField(
+                focusNode: _inputNode,
+                placeHolder: '发布培训内容',
+                maxLength: null,
+                noBottomLine: true,
+                keyboardType: TextInputType.multiline,
+                controller: _inputController,
+                isMultiHang: false,
+              ),
             ),
             SizedBox(height: ScreenAdaper.height(15),),
-
-            Container(
-              height: ScreenAdaper.height(10),
-              width: ScreenAdaper.screenW(context),
-              color: Colors.white,
-            ),
+            Line.build()
           ],
         )
     );
   }
 
   Widget _buildItemByIndex(BuildContext context,int index){
-    if(index == 2||index == 3){
+    if(index == 3){
       return _buildInputItem(context, index);
-    }else if(index == 4||index == 5||index == 6||index == 7){
+    }else if(index == 2){
+      return _buildTitleInputItem(context, index);
+    }
+    else if(index == 4||index == 5||index == 6||index == 7){
       return _buildTimeItem(context, index);
     }else{
       return _buildCommenItem(context, index);
