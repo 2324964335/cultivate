@@ -356,7 +356,7 @@ class HomeTopHeader extends StatelessWidget {
                       onTap: (){
                         Navigator.pushNamed(
                           context,
-                          '/cultivateManger',
+                          '/examineManger',
                           arguments: {},
                         );
                       },

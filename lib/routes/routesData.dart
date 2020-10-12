@@ -35,6 +35,7 @@ import '../pages/AppHomePage/Examine/AnswerQuestion.dart';
 import '../pages/AppHomePage/Examine/WrongQuestionReview.dart';
 import '../pages/AppHomePage/Home/CultivateManger.dart';
 import '../pages/AppHomePage/Home/AddCultivatePlan.dart';
+import '../pages/AppHomePage/Home/ExamineManger.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -138,4 +139,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///AddCultivatePlan 新增培训计划
   RouteName.addCultivatePlan: (BuildContext context, {params}) =>
       AddCultivatePlan(params: params),
+  ///ExamineManger 考核管理
+  RouteName.examineManger: (BuildContext context, {params}) =>
+      ExamineManger(params: params),
 };
