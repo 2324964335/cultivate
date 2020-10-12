@@ -104,7 +104,7 @@ class QuestionPageState extends State<QuestionPage> {
       ));*/
       //标题  试题解析
       _list.add(Container(
-        margin: EdgeInsets.only(left: width_10dp, bottom: height_10dp, top: height_10dp),
+        margin: EdgeInsets.only(left: width_10dp, bottom: height_10dp, top: ScreenAdaper.width(16)),
         alignment: Alignment.centerLeft,
         child: Row(
           children: <Widget>[
@@ -117,7 +117,7 @@ class QuestionPageState extends State<QuestionPage> {
               width: width_4dp,
             ),
             SizedBox(width: width_10dp,),
-            Text('试题详解', style: TextStyle(fontSize: fontSize_18sp, fontWeight: FontWeight.bold),)
+            Text('试题详解', style: TextStyle(fontSize: ScreenAdaper.sp(31), fontWeight: FontWeight.bold),)
           ],
         ),
       ));
@@ -145,14 +145,14 @@ class QuestionPageState extends State<QuestionPage> {
   Widget _questionAnalysis(){
     return Container(
       padding: EdgeInsets.fromLTRB(width_10dp, height_5dp, width_10dp, height_5dp),
-      child: Text(question.describe, style: TextStyle(fontSize: fontSize_14sp,), strutStyle: StrutStyle(leading: 0.5),),
+      child: Text(question.describe, style: TextStyle(fontSize: ScreenAdaper.sp(26),), strutStyle: StrutStyle(leading: 0.5),),
     );
   }
 
   Widget _correntTrip() {
     return Container(
       margin: EdgeInsets.fromLTRB(width_10dp, height_5dp, width_10dp, height_5dp),
-      padding: EdgeInsets.fromLTRB(width_15dp, height_7dp, width_15dp, height_7dp),
+      padding: EdgeInsets.fromLTRB(width_15dp, height_7dp, ScreenAdaper.width(20), height_7dp),
       decoration: BoxDecoration(
         color: Color(0XFFF8F6F9),
         borderRadius: BorderRadius.all(Radius.circular(2)),
@@ -160,15 +160,15 @@ class QuestionPageState extends State<QuestionPage> {
       child: Row(
         children: <Widget>[
           Text(
-            '答案', style: TextStyle(fontSize: fontSize_14sp, fontWeight: FontWeight.bold),),
-          SizedBox(width: width_5dp,),
+            '答案', style: TextStyle(fontSize: ScreenAdaper.sp(26), fontWeight: FontWeight.bold),),
+          SizedBox(width: ScreenAdaper.width(14),),
           Text(question.answers[0],
-            style: TextStyle(fontSize: fontSize_14sp,color: Colors.blueAccent, fontWeight: FontWeight.bold),),
-          SizedBox(width: width_10dp,),
+            style: TextStyle(fontSize: ScreenAdaper.sp(26),color: Colors.blueAccent, fontWeight: FontWeight.bold),),
+          SizedBox(width: ScreenAdaper.width(14),),
           Text('您选择',
-            style: TextStyle(fontSize: fontSize_14sp, fontWeight: FontWeight.bold),),
-          SizedBox(width: width_5dp,),
-          Text(clickLabel, style: TextStyle(fontSize: fontSize_14sp,color: Colors.redAccent, fontWeight: FontWeight.bold),),
+            style: TextStyle(fontSize: ScreenAdaper.sp(26), fontWeight: FontWeight.bold),),
+          SizedBox(width: ScreenAdaper.width(14),),
+          Text(clickLabel, style: TextStyle(fontSize: ScreenAdaper.sp(26),color: Colors.redAccent, fontWeight: FontWeight.bold),),
         ],
       ),
     );
@@ -228,7 +228,7 @@ class QuestionPageState extends State<QuestionPage> {
         setState(() {});
         //如果答对，延时1S跳到下一问题
         if (clickLabel == question.answers[question.answer]) {
-          Future.delayed(Duration(milliseconds: 300), () {
+          Future.delayed(Duration(milliseconds: 1000), () {
             if( widget.selfControll != null && Provider.of<QuestionProvider>(context,listen: false).current != Provider.of<QuestionProvider>(context,listen: false).getQuestionList.length - 1){
               widget.selfControll.next();
             }
@@ -260,14 +260,14 @@ class QuestionPageState extends State<QuestionPage> {
       LogUtil.d('dsddsdsds');
       if (_isCorrect) { //选择了正确的标签
         _labelWidget = Container(
-          margin: EdgeInsets.only(left: width_2dp),
+          margin: EdgeInsets.only(left: ScreenAdaper.width(5)),
           child: Image.asset("asset/images/home/practice_success.png",width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
 //          width: ScreenAdaper.width(34),
 //          height: ScreenAdaper.width(34),
         );
       } else { //选择了错误的标签
         _labelWidget = Container(
-          margin: EdgeInsets.only(left: width_2dp),
+          margin: EdgeInsets.only(left: ScreenAdaper.width(5)),
           child: Image.asset("asset/images/home/practice_fill.png",width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
 //          width: ScreenAdaper.width(34),
 //          height: ScreenAdaper.width(34),
@@ -275,21 +275,33 @@ class QuestionPageState extends State<QuestionPage> {
       }
     }
 
+    Widget _duiWidget(){
+      return Container(
+        margin: EdgeInsets.only(left: ScreenAdaper.width(7),right: ScreenAdaper.width(7)),
+        child: Image.asset("asset/images/home/practice_success.png",width: ScreenAdaper.width(43),height: ScreenAdaper.width(43),),
+      );
+    }
+    Widget _cuoWidget(){
+      return Container(
+        margin: EdgeInsets.only(left: ScreenAdaper.width(7),right: ScreenAdaper.width(7)),
+        child: Image.asset("asset/images/home/practice_fill.png",width: ScreenAdaper.width(43),height: ScreenAdaper.width(43),),
+      );
+    }
+
     return Container(
       margin: EdgeInsets.fromLTRB(
           width_10dp, height_10dp, width_10dp, height_10dp),
       child: Row(
         children: <Widget>[
-          _isSelected ? _isCorrect ?
-          ('answer.label' == clickLabel ? _labelWidget : _noSelectWidget) :
-          ('answer.label' == clickLabel ||
-             'answer.label' == 'question.answer.label' ? answer_str == clickLabel ? _labelWidget : Container(
-            margin: EdgeInsets.only(left: width_2dp),
-            child: Image.asset('asset/images/home/practice_success.png',width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
-//            width: ScreenAdaper.width(34),
-//            height: ScreenAdaper.width(34),
-          ) : _noSelectWidget) :
-          _noSelectWidget,
+//          _isSelected ? _isCorrect ?
+//          ('answer.label' == clickLabel ? _labelWidget : _noSelectWidget) :
+//          ('answer.label' == clickLabel ||
+//             'answer.label' == 'question.answer.label' ? answer_str == clickLabel ? _labelWidget : Container(
+//            margin: EdgeInsets.only(left: width_2dp),
+//            child: Image.asset('asset/images/home/practice_success.png',width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
+//          ) : _noSelectWidget) :
+//          _noSelectWidget,
+          _isSelected ? (_isCorrect ?(answer_str == question.clickLabel?_duiWidget():_noSelectWidget):(question.answers[question.answer] == answer_str?_duiWidget():(answer_str==question.clickLabel?_cuoWidget():_noSelectWidget))) : _noSelectWidget,
           SizedBox(width: width_10dp,),
           Expanded(child: Container(
             child: Text(answer_str,

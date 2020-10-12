@@ -38,6 +38,7 @@ class _AnswerQuestionState extends State<AnswerQuestion> {
   
   @override
   Widget build(BuildContext context) {
+    LogUtil.d('----------------------重绘');
     _questionProvider = Provider.of<QuestionProvider>(context);
     _sliverDrawBottomControll = Provider.of<SliverDrawBottomControll>(context);
     _questionSliverControllProvider = Provider.of<QuestionSliverControllProvider>(context);
@@ -81,7 +82,7 @@ class _AnswerQuestionState extends State<AnswerQuestion> {
               _questionProvider.notifyListeners();
             }, (double veOffset) {
               alpha = 1 - veOffset / (ScreenAdaper.height(700) - ScreenAdaper.height(100));
-              _questionProvider.changeAlpha(alpha);
+//              _questionProvider.changeAlpha(alpha);
               if (alpha == 1) {
                 //不透明，不让点击
                 isAllowShow = false;
@@ -127,8 +128,8 @@ class TestAlphaWidget extends StatefulWidget {
 class TestAlphaWidgetState extends State<TestAlphaWidget> {
   @override
   Widget build(BuildContext context) {
-//    print('TestAlphaWidgetState Build');
-//    print('alphaRatio==> ${Provider.of<QuestionProvider>(context).alphaRatio}');
+    print('TestAlphaWidgetState Build');
+    print('alphaRatio==> ${Provider.of<QuestionProvider>(context).alphaRatio}');
     return Opacity(
       opacity: Provider.of<QuestionProvider>(context).alphaRatio,
       child: widget.child,

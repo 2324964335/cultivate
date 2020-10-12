@@ -208,11 +208,11 @@ class AnswerQuestionBottomToolState extends State<AnswerQuestionBottomTool>
       children: <Widget>[
         Image.asset(
           imageUri,
-          width: width_13dp,
-          height: width_13dp,
+          width: ScreenAdaper.width(40),
+          height: ScreenAdaper.width(40),
         ),
         SizedBox(
-          width: width_3dp,
+          width: ScreenAdaper.width(10),
         ),
         Text.rich(
           TextSpan(children: [
@@ -254,11 +254,11 @@ class AnswerQuestionBottomToolState extends State<AnswerQuestionBottomTool>
       children: <Widget>[
         Image.asset(
           imageUri,
-          width: width_15dp,
-          height: width_15dp,
+          width: ScreenAdaper.width(40),
+          height: ScreenAdaper.width(40),
         ),
         SizedBox(
-          width: width_3dp,
+          width: ScreenAdaper.width(10),
         ),
         Text(
           label,
@@ -338,7 +338,7 @@ class AnswerQuestionBottomToolState extends State<AnswerQuestionBottomTool>
       start = offsetDistance;
       end = 0;
     } else {
-//      print('回收');
+      print('回收');
       start = offsetDistance;
       end = practiceBottomDrawerHeight - videoFixHeight;
     }
