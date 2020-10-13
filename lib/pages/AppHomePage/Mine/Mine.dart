@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 import '../../../utils/util.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,8 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
   List _imageArr = ["","","asset/images/mine/jibenxinxi.png","asset/images/mine/gongzuoxinxi.png","","asset/images/mine/xiaoxitixing.png","asset/images/mine/guanyuwomen.png","","asset/images/mine/tuichudenglu.png"];
   List _titleArr = ["","","基本信息","工作信息","","消息提醒设置","关于我们","","退出登录",];
 
-
+  List _noLogineImageArr = ["","","asset/images/mine/guanyuwomen.png"];
+  List _noLogineTitleArr = ["","","关于我们"];
   @override
   void initState() {
     super.initState();
@@ -38,7 +41,7 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
         automaticallyImplyLeading: false,
       ),
       body: ListView(
-        children: List.generate(_imageArr.length, (index) {
+        children: List.generate(_noLogineImageArr.length, (index) {
           return _buildItemByIndex(context,index);
         }),
       ),
@@ -48,7 +51,7 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
   Widget  _buildItemByIndex(BuildContext context,int index){
       if(index == 0){
         return _buildTopHeader(context, index);
-      }else if(_imageArr[index] == ""){
+      }else if(_noLogineImageArr[index] == ""){
         return _buildKongBai(context, index);
       }else{
         return _buildItem(context, index);
@@ -56,22 +59,31 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
   }
 
   Widget _buildTopHeader(BuildContext context,int index){
-    return Container(
-      padding: EdgeInsets.only(left: ScreenAdaper.width(50),top: ScreenAdaper.width(60),bottom: ScreenAdaper.width(60)),
-      child: Row(
-        children: [
-          Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(105),height: ScreenAdaper.width(105),),
-          SizedBox(width: ScreenAdaper.width(20),),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('刘医生',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(35),fontWeight: FontWeight.bold),),
-              SizedBox(height: ScreenAdaper.width(14),),
-              Text('无菌技术组',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
-            ],
-          )
-        ],
+    return GestureDetector(
+      child: Container(
+        padding: EdgeInsets.only(left: ScreenAdaper.width(50),top: ScreenAdaper.width(60),bottom: ScreenAdaper.width(60)),
+        child: Row(
+          children: [
+            Image.asset("asset/images/mine/unlogin.png",width: ScreenAdaper.width(105),height: ScreenAdaper.width(106),fit: BoxFit.contain,),
+            SizedBox(width: ScreenAdaper.width(20),),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('登录',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(35),fontWeight: FontWeight.bold),),
+                SizedBox(height: ScreenAdaper.width(14),),
+                Text('点击登录，开启学习路径',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+              ],
+            )
+          ],
+        ),
       ),
+      onTap: (){
+        Navigator.pushNamed(
+          context,
+          '/login',
+          arguments: {"isme":"1"}, //　传递参数
+        );
+      },
     );
   }
 
@@ -84,9 +96,9 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
           children: [
             Row(
               children: [
-                Image.asset(_imageArr[index],width: ScreenAdaper.width(45),height: ScreenAdaper.width(45),),
+                Image.asset(_noLogineImageArr[index],width: ScreenAdaper.width(45),height: ScreenAdaper.width(45),),
                 SizedBox(width: ScreenAdaper.width(20),),
-                Text(_titleArr[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+                Text(_noLogineTitleArr[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.width(40),),
@@ -107,6 +119,10 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
             '/personInfomation',
             arguments: {"isme":"1"}, //　传递参数
           );
+        }else if(index==3){
+           Api().loginByPass("058", "e7db56dbec713f0510010c6d997d9ddd").then((value){
+             LogUtil.d('------${value}');
+           });
         }
       },
     );

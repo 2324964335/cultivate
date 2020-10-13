@@ -7,6 +7,7 @@ import 'provider/themeStore.p.dart';
 import 'pages/AppHomePage/Examine/QuestionProvider.dart';
 import 'pages/AppHomePage/Examine/AnswerQuestionBottomTool.dart';
 import 'pages/AppHomePage/Examine/QuestionSliverControllProvider.dart';
+import 'provider/appCommenNetData.dart';
 List<SingleChildWidget> providersConfig = [
   ChangeNotifierProvider<ThemeStore>.value(value: ThemeStore()), // 主题颜色
   ChangeNotifierProvider<AppHomePageStore>.value(value: AppHomePageStore()),
@@ -15,5 +16,5 @@ List<SingleChildWidget> providersConfig = [
   ChangeNotifierProvider<QuestionProvider>.value(value: QuestionProvider()), ///QuestionProvider 题库
   ChangeNotifierProvider<SliverDrawBottomControll>.value(value: SliverDrawBottomControll()), ///QuestionProvider 题库底部
   ChangeNotifierProvider<QuestionSliverControllProvider>.value(value: QuestionSliverControllProvider()), ///QuestionProvider 题库前进后退
-
+  ChangeNotifierProvider<GainUserModel>.value(value: GainUserModel()), ///用户信息
 ];

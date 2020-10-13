@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'CommenColor.dart';
+import '../services/api.dart';
 export 'sp_util.dart' show SpUtil;
 export 'perm_utils.dart' show PermUtils;
 export 'log_util.dart' show LogUtil;
@@ -13,6 +14,7 @@ export 'toast_show.dart' show ToastShow;
 export 'DarkText.dart' show DarkText;
 export 'LightText.dart' show LightText;
 export 'Line.dart' show Line;
+export '../services/api.dart' show Api;
 class Util {
   /// 防抖函数
   static Function debounce(Function fn, [int t = 30]) {

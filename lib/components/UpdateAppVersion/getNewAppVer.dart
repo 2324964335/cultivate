@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../utils/log_util.dart';
 import '../../ioc/locator.dart' show locator, CommonService;
 import '../../utils/util.dart' show PermUtils, SpUtil;
@@ -30,16 +32,16 @@ Future getNewAppVer({int seconds = 360 * 12, bool forceUpdate = false}) async {
     Duration diffTime = newTime.difference(oldTime);
 
     // 指定时间内不在触发检查更新APP
-    if (!forceUpdate) {
-      if (diffTime.inSeconds < seconds) {
-        _showFlag = false;
-        return;
-      }
-    }
+//    if (!forceUpdate) {
+//      if (diffTime.inSeconds < seconds) {
+//        _showFlag = false;
+//        return;
+//      }
+//    }
 
     // TODO:获取最新APP版本, 自定义getNewVersion接口获取
-    Map resData = await getNewVersion();
-
+    Map resData = await Api().getNewVersion();
+    LogUtil.d('--------${resData}');
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     // APP版本号对比检查
     if (resData['version'] == packageInfo.version && !forceUpdate) return;
@@ -69,11 +71,10 @@ Future getNewAppVer({int seconds = 360 * 12, bool forceUpdate = false}) async {
           child: UpdateAppVersion(
             // TODO: 传入新版本APP相关参数、版本号、更新内容、下载地址等
             version: resData['version'] ?? '', // 版本号
-            info: (resData['info'] as List).cast<String>() ?? [], // 更新内容介绍
+            info: (resData['info'] as List).cast<String>() ?? [],
             // ios是苹果应用商店地址
-            iosUrl: 'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8',
-            androidUrl:
-                'https://b6.market.xiaomi.com/download/AppStore/08fee50a2945783f419a5945f8e89707f2640c6b0/com.ss.android.ugc.aweme.apk',
+            iosUrl: resData['iosURL'],
+            androidUrl:resData['androidURL'],
           ),
         );
       },
