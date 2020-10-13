@@ -38,7 +38,7 @@ dependencies:
   permission_handler: ^5.0.0+hotfix.5 # 权限
   get_it: ^4.0.2
   fluttertoast: ^4.0.1
-  bot_toast: ^3.0.4
+  bot_toast: 3.0.4
   cached_network_image: ^2.2.0+1 #缓存图片相关
   multi_image_picker: ^4.6.1   #图片选择器
   uuid: ^2.0.4
@@ -56,6 +56,7 @@ dependencies:
   chewie: ^0.9.5
   video_player: ^0.10.0+2
 #  auto_orientation: ^0.0.2
+  crypto: ^2.0.6
 
 
 dev_dependencies:

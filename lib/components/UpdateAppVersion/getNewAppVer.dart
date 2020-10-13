@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 import '../../services/api.dart'; // 接口
 import 'UpdateAppVersion.dart';
+import '../../utils/util.dart';
 
 bool _showFlag = false;
 
@@ -38,7 +39,9 @@ Future getNewAppVer({int seconds = 360 * 12, bool forceUpdate = false}) async {
 //        return;
 //      }
 //    }
-
+//    BotToast.showLoading(
+//        duration: Duration(milliseconds: 700)
+//    );
     // TODO:获取最新APP版本, 自定义getNewVersion接口获取
     Map resData = await Api().getNewVersion();
     LogUtil.d('--------${resData}');

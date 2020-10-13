@@ -2,11 +2,14 @@ import 'package:flutter/widgets.dart';
 
 import '../../../utils/util.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import '../../../provider/appCommenNetData.dart';
+import '../../../utils/LoginModel.dart';
+import '../../../components/func.dart';
+import '../../../components/alert_dialog.dart';
 class Mine extends StatefulWidget {
   Mine({Key key, this.params}) : super(key: key);
   final params;
-
   @override
   _MineState createState() => _MineState();
 }
@@ -14,7 +17,7 @@ class Mine extends StatefulWidget {
 class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-
+  GainUserModel _userModelProvider;
   List _imageArr = ["","","asset/images/mine/jibenxinxi.png","asset/images/mine/gongzuoxinxi.png","","asset/images/mine/xiaoxitixing.png","asset/images/mine/guanyuwomen.png","","asset/images/mine/tuichudenglu.png"];
   List _titleArr = ["","","基本信息","工作信息","","消息提醒设置","关于我们","","退出登录",];
 
@@ -33,25 +36,48 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-
     super.build(context);
+    LogUtil.d("------a---------------");
+    _userModelProvider = Provider.of<GainUserModel>(context);
+    if(_userModelProvider.getuserModel == null){
+      _userModelProvider.setCurrenUserModel();
+    }else{
+//      _currentUserModel = _userModelProvider.getuserModel;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('我的',style: TextStyle(color: Color(0xff565656)),),
         automaticallyImplyLeading: false,
       ),
-      body: ListView(
-        children: List.generate(_noLogineImageArr.length, (index) {
-          return _buildItemByIndex(context,index);
-        }),
-      ),
+      body: Container(
+        child: Consumer<GainUserModel>(
+          builder: (_, a, child) =>
+          _userModelProvider.getuserModel == 0||_userModelProvider == null?
+          ListView(
+            children: List.generate(_noLogineTitleArr.length, (index) {
+              return _buildItemByIndex(context,index);
+            }),
+          )
+              :
+          ListView(
+              children: List.generate(_imageArr.length, (index) {
+                return _buildItemByIndex(context,index);
+              }),
+            ),
+              ),
+            )
+//      ListView(
+//        children: List.generate(_noLogineImageArr.length, (index) {
+//          return _buildItemByIndex(context,index);
+//        }),
+//      ),
     );
   }
 
   Widget  _buildItemByIndex(BuildContext context,int index){
       if(index == 0){
         return _buildTopHeader(context, index);
-      }else if(_noLogineImageArr[index] == ""){
+      }else if(_userModelProvider.getuserModel == 0||_userModelProvider == null?_noLogineImageArr[index]=="":_imageArr[index] == ""){
         return _buildKongBai(context, index);
       }else{
         return _buildItem(context, index);
@@ -59,30 +85,41 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
   }
 
   Widget _buildTopHeader(BuildContext context,int index){
+    String title = "";
+    if(_userModelProvider.getuserModel == 0||_userModelProvider == null){
+      title = '登录';
+    }else{
+      title = _userModelProvider.getuserModel.Name;
+    }
     return GestureDetector(
       child: Container(
+        color: Colors.white,
         padding: EdgeInsets.only(left: ScreenAdaper.width(50),top: ScreenAdaper.width(60),bottom: ScreenAdaper.width(60)),
         child: Row(
           children: [
-            Image.asset("asset/images/mine/unlogin.png",width: ScreenAdaper.width(105),height: ScreenAdaper.width(106),fit: BoxFit.contain,),
+            Image.asset(_userModelProvider.getuserModel == 0||_userModelProvider == null?"asset/images/mine/unlogin.png":"asset/images/mine/touxiang.png",width: ScreenAdaper.width(105),height: ScreenAdaper.width(106),fit: BoxFit.contain,),
             SizedBox(width: ScreenAdaper.width(20),),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('登录',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(35),fontWeight: FontWeight.bold),),
+                Text(_userModelProvider.getuserModel == 0||_userModelProvider == null?'登录':title,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(35),fontWeight: FontWeight.bold),),
                 SizedBox(height: ScreenAdaper.width(14),),
-                Text('点击登录，开启学习路径',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+                Text(_userModelProvider.getuserModel == 0||_userModelProvider == null?'点击登录，开启学习路径':'管理员',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
               ],
             )
           ],
         ),
       ),
       onTap: (){
-        Navigator.pushNamed(
-          context,
-          '/login',
-          arguments: {"isme":"1"}, //　传递参数
-        );
+        if(_userModelProvider.getuserModel == 0||_userModelProvider == null){
+          Navigator.pushNamed(
+            context,
+            '/login',
+            arguments: {}, //　传递参数
+          );
+        }else{
+
+        }
       },
     );
   }
@@ -96,9 +133,9 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
           children: [
             Row(
               children: [
-                Image.asset(_noLogineImageArr[index],width: ScreenAdaper.width(45),height: ScreenAdaper.width(45),),
+                Image.asset(_userModelProvider.getuserModel == 0||_userModelProvider == null?_noLogineImageArr[index]:_imageArr[index],width: ScreenAdaper.width(45),height: ScreenAdaper.width(45),),
                 SizedBox(width: ScreenAdaper.width(20),),
-                Text(_noLogineTitleArr[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+                Text(_userModelProvider.getuserModel == 0||_userModelProvider == null?_noLogineTitleArr[index]:_titleArr[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.width(40),),
@@ -119,10 +156,23 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
             '/personInfomation',
             arguments: {"isme":"1"}, //　传递参数
           );
-        }else if(index==3){
-           Api().loginByPass("058", "e7db56dbec713f0510010c6d997d9ddd").then((value){
-             LogUtil.d('------${value}');
-           });
+        }else if(_titleArr[index] == '退出登录'){
+          FunctionUtil.popDialog(
+            context,
+            ShowAlertDialog(
+              title: "温馨提示",
+              content: "您现在正在退出登录",
+              items: ['取消', '确认退出'],
+              onTap: (index) {
+                LogUtil.d('object$index');
+                if(index == 1){
+                  StorageUtil().removeLogin().then((value){
+                    _userModelProvider.setCurrenUserModel();
+                  });
+                }
+              },
+            ),
+          );
         }
       },
     );

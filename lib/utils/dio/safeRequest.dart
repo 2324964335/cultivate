@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import '../../config/app_config.dart';
 import 'interceptors/header_interceptor.dart';
 import 'interceptors/log_interceptor.dart';
-
+import '../../utils/util.dart';
 /// 底层请求方法说明
 ///
 /// [options] dio请求的配置参数，默认get请求
@@ -33,6 +33,9 @@ Future safeRequest(
   Map<String, dynamic> queryParameters,
   CancelToken cancelToken,
 }) async {
+  BotToast.showLoading(
+      duration: Duration(milliseconds: 800)
+  );
   try {
     BaseOptions baseOpts = new BaseOptions(
       baseUrl: AppConfig.host, // 前缀url

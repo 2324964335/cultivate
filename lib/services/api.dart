@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import '../utils/dio/safeRequest.dart';
 import 'service_url.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
 class Api{
   /// 获取APP最新版本号, 演示更新APP组件
   Future<Map> getNewVersion([String version]) async {
@@ -26,7 +28,7 @@ class Api{
       serviceUrl['app_login'],
       data: {
         'Account':account,
-        'Password':password,
+        'Password':md5.convert(utf8.encode(password)).toString(),
         'TenantID':"",
         'DeviceID':'',
         'Build':0

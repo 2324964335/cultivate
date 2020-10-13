@@ -43,7 +43,7 @@ class _LoginState extends State<Login> {
 
   Widget _buildHeader(){
     return Container(
-      margin: EdgeInsets.only(bottom: ScreenAdaper.width(100),top: ScreenAdaper.width(100)),
+      margin: EdgeInsets.only(bottom: ScreenAdaper.width(50),top: ScreenAdaper.width(100)),
       child:Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -130,14 +130,14 @@ class _passwordState extends State<password>  with AutomaticKeepAliveClientMixin
     print('name $name');
     String password = _passwordController.text;
     print('password $password');
-    if (name.isEmpty || name.length < 11) {
+    if (name.isEmpty || name.length < 3) {
       setState(() {
         _isClickPass = false;
       });
       return;
     }
 
-    if (password.isEmpty || password.length < 6) {
+    if (password.isEmpty || password.length < 3) {
       setState(() {
         _isClickPass = false;
       });
@@ -149,6 +149,9 @@ class _passwordState extends State<password>  with AutomaticKeepAliveClientMixin
   }
 
   _loginPass() {
+//    BotToast.showLoading(
+//        duration: Duration(milliseconds: 700)
+//    );
     print('login action');
     LoginByPass.requestLoginByPASS(_namePassController.text, _passwordController.text).then((value){
       LogUtil.d(value);
@@ -156,7 +159,7 @@ class _passwordState extends State<password>  with AutomaticKeepAliveClientMixin
         _userModelProvider.setCurrenUserModel();
         Navigator.pop(context);
       }else{
-//        ToasrShow.show('登录失败');
+        ToastShow.show('登录失败');
       }
     });
   }

@@ -9,7 +9,7 @@ import 'provider/themeStore.p.dart'; // 全局主题
 import 'ioc/locator.dart' show setupLocator, locator, CommonService;
 import 'package:ana_page_loop/ana_page_loop.dart' show anaAllObs;
 import 'utils/myAppSetup/index.dart' show myAppSetup;
-
+import 'package:bot_toast/bot_toast.dart';
 void main() {
   setupLocator();
 
@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
     return Consumer<ThemeStore>(
       builder: (context, themeStore, child) {
         return MaterialApp(
+          builder: BotToastInit(),
           navigatorKey: jhDebug.getNavigatorKey,
           locale: const Locale('zh', 'CH'),
           localizationsDelegates: const [
