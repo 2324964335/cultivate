@@ -39,6 +39,7 @@ import '../pages/AppHomePage/Home/ExamineManger.dart';
 import '../pages/AppHomePage/Home/TheoryExamineQuestion.dart';
 import '../pages/AppHomePage/Mine/Login.dart';
 import '../pages/AppHomePage/Home/TheoryExamineQuestionDetail.dart';
+import '../pages/AppHomePage/Message/MessageDetail.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -154,4 +155,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///TheoryExamineQuestionDetail 理论考题试卷结果查看
   RouteName.theoryExamineQuestionDetail: (BuildContext context, {params}) =>
       TheoryExamineQuestionDetail(params: params),
+  ///消息详情页面 MessageDetail
+  RouteName.messageDetail: (BuildContext context, {params}) =>
+      MessageDetail(params: params),
 };

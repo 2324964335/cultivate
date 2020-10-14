@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27657289-e72f-4347-a534-1db8bef5a30b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/TheoryExamineQuestionDetail.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_widget/TheoryExamineQuestionDetailChild.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/files/chinese_cities.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/images/message/ding.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/components/flutter_jd_address_selector.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Message/MessageDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/ExaminePersonListResult.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/ExaminePersonListResult.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/TheoryExamineQuestion.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/TheoryExamineQuestion.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_widget/CurrentMonthExamineChildWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_widget/CurrentMonthExamineChildWidget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Message/Message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Message/Message.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/routes/routeName.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/routeName.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/routes/routesData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/routesData.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/LightText.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/LightText.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,25 +47,25 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/provider" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/asset" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib/provider" />
-      <recent name="$PROJECT_DIR$/asset/images/home" />
-      <recent name="$PROJECT_DIR$/lib/pages/AppHomePage/Exam" />
-      <recent name="$PROJECT_DIR$/lib/components/Video" />
-      <recent name="$PROJECT_DIR$/asset/images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/asset/images/message" />
       <recent name="$PROJECT_DIR$/asset/images/mine" />
       <recent name="$PROJECT_DIR$/asset/images/home" />
       <recent name="$PROJECT_DIR$/asset/images/examine" />
       <recent name="$PROJECT_DIR$/lib/pages/AppHomePage/Examine" />
-      <recent name="$PROJECT_DIR$/lib/pages/AppHomePage/Home" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/asset" />
+      <recent name="$PROJECT_DIR$/lib/components" />
+      <recent name="$PROJECT_DIR$/lib/provider" />
+      <recent name="$PROJECT_DIR$/asset/images/home" />
+      <recent name="$PROJECT_DIR$/lib/pages/AppHomePage/Exam" />
     </key>
   </component>
   <component name="RunDashboard">

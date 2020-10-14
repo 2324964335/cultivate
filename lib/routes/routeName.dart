@@ -117,6 +117,8 @@ class RouteName {
   ///TheoryExamineQuestionDetail 理论考题试卷结果查看
   static String theoryExamineQuestionDetail = '/theoryExamineQuestionDetail';
 
+  ///MessageDetail 消息详情界面
+  static String messageDetail = '/messageDetail';
 
 
 
