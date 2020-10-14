@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
-import 'home_widget/TheoryExamineQuestionChild.dart';
-class TheoryExamineQuestion extends StatefulWidget {
-  TheoryExamineQuestion({Key key, this.params}) : super(key: key);
+import 'home_widget/TheoryExamineQuestionDetailChild.dart';
+class TheoryExamineQuestionDetail extends StatefulWidget {
+  TheoryExamineQuestionDetail({Key key, this.params}) : super(key: key);
   final  params;
   @override
-  _TheoryExamineQuestionState createState() => _TheoryExamineQuestionState();
+  _TheoryExamineQuestionDetailState createState() => _TheoryExamineQuestionDetailState();
 }
 
-class _TheoryExamineQuestionState extends State<TheoryExamineQuestion>  with SingleTickerProviderStateMixin {
+class _TheoryExamineQuestionDetailState extends State<TheoryExamineQuestionDetail>  with SingleTickerProviderStateMixin {
 
   // 选项卡控制器
   TabController _tabController;
@@ -17,7 +17,7 @@ class _TheoryExamineQuestionState extends State<TheoryExamineQuestion>  with Sin
   void initState() {
     // TODO: implement initState
     super.initState();
-    _tabController = TabController(initialIndex: 0,length: 3, vsync: this,);
+    _tabController = TabController(initialIndex: 0,length: 2, vsync: this,);
 
   }
 
@@ -33,7 +33,7 @@ class _TheoryExamineQuestionState extends State<TheoryExamineQuestion>  with Sin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('理论考题',style: TextStyle(color: Colors.black45),),
+        title: Text('查看试卷',style: TextStyle(color: Colors.black45),),
       ),
       body: Container(
         child: Container(
@@ -42,11 +42,21 @@ class _TheoryExamineQuestionState extends State<TheoryExamineQuestion>  with Sin
             child: Column(
               children: [
                 Container(
+                  margin: EdgeInsets.only(top: ScreenAdaper.width(30),bottom: ScreenAdaper.width(10)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('考核项目：2020年跨科室晋级操作考',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25),fontWeight: FontWeight.bold),),
+                      SizedBox(width: ScreenAdaper.width(10),),
+                      Text('评分：95分',style: TextStyle(color: Colors.red,fontSize: ScreenAdaper.sp(25),fontWeight: FontWeight.bold),),
+                    ],
+                  ),
+                ),
+                Container(
                   height: ScreenAdaper.height(110),
                   child: TabBar(controller: _tabController, tabs: [
-                    Tab(text: "单选题(35)",),
-                    Tab(text: "多选题(25)",),
-                    Tab(text: "判断题(40)",),
+                    Tab(text: "全部",),
+                    Tab(text: "错题",),
                   ],
                     isScrollable: true,
                     indicatorColor: CommenColor.commen(),
@@ -70,13 +80,12 @@ class _TheoryExamineQuestionState extends State<TheoryExamineQuestion>  with Sin
                   width: ScreenAdaper.screenWidth(),
                 ),
                 Container(
-                  height: ScreenAdaper.height(1030),
+                  height: ScreenAdaper.height(950),
                   child: TabBarView(
                     controller: _tabController,
                     children: <Widget>[
-                      TheoryExamineQuestionChild(),
-                      TheoryExamineQuestionChild(),
-                      TheoryExamineQuestionChild(),
+                      TheoryExamineQuestionDetailChild(),
+                      TheoryExamineQuestionDetailChild(),
                     ],
                   ),
                 )

@@ -38,6 +38,7 @@ import '../pages/AppHomePage/Home/AddCultivatePlan.dart';
 import '../pages/AppHomePage/Home/ExamineManger.dart';
 import '../pages/AppHomePage/Home/TheoryExamineQuestion.dart';
 import '../pages/AppHomePage/Mine/Login.dart';
+import '../pages/AppHomePage/Home/TheoryExamineQuestionDetail.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -150,4 +151,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///Login 登录页
   RouteName.login: (BuildContext context, {params}) =>
       Login(params: params),
+  ///TheoryExamineQuestionDetail 理论考题试卷结果查看
+  RouteName.theoryExamineQuestionDetail: (BuildContext context, {params}) =>
+      TheoryExamineQuestionDetail(params: params),
 };

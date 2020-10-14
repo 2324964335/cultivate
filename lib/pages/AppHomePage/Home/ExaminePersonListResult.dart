@@ -11,7 +11,7 @@ class _ExaminePersonListResultState extends State<ExaminePersonListResult> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('考核人员列表'),),
+      appBar: AppBar(title: Text(widget.params["examineType"] == 2?'成绩查询':'考核人员列表'),),
       body: Container(
         child: ListView.builder(
             itemCount: 100,
@@ -115,13 +115,20 @@ class _ExaminePersonListResultState extends State<ExaminePersonListResult> {
 //              arguments: {}, //　传递参数
 //            );
 //          }
-          ///examinePersonResultDetail
-          Navigator.pushNamed(
+          if(widget.params["examineType"] == 2){
+            Navigator.pushNamed(
+              context,
+              '/theoryExamineQuestionDetail',
+              arguments: {}, //　传递参数
+            );
+          }else{
+            Navigator.pushNamed(
               context,
               '/examinePersonResultDetail',
               arguments: {}, //　传递参数
             );
           }
+        }
       ),
     );
   }

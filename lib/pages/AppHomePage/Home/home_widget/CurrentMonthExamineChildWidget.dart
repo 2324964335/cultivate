@@ -119,11 +119,27 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
         ),
         onTap: (){
           if(widget.index == 1){
-            Navigator.pushNamed(
-              context,
-              '/examinePersonListResult',
-              arguments: {}, //　传递参数
-            );
+            if(widget.examineType== 2){
+              Navigator.pushNamed(
+                context,
+                '/examinePersonListResult',
+                arguments: {"examineType":2}, //　传递参数
+              );
+            }else if(widget.examineType== 1){
+              Navigator.pushNamed(
+                context,
+                '/examinePersonListResult',
+                arguments: {"examineType":1}, //　传递参数
+              );
+            }
+            else{
+              Navigator.pushNamed(
+                context,
+                '/examinePersonListResult',
+                arguments: {"examineType":0}, //　传递参数
+              );
+            }//　传递参数
+
           }else{
             if(widget.examineType== 2){
               Navigator.pushNamed(

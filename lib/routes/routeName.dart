@@ -114,6 +114,9 @@ class RouteName {
   ///Login 登录页
   static String login = '/login';
 
+  ///TheoryExamineQuestionDetail 理论考题试卷结果查看
+  static String theoryExamineQuestionDetail = '/theoryExamineQuestionDetail';
+
 
 
 
