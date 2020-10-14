@@ -104,7 +104,7 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
               children: [
                 Text(_userModelProvider.getuserModel == 0||_userModelProvider == null?'登录':title,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(35),fontWeight: FontWeight.bold),),
                 SizedBox(height: ScreenAdaper.width(14),),
-                Text(_userModelProvider.getuserModel == 0||_userModelProvider == null?'点击登录，开启学习路径':'管理员',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+                Text(_userModelProvider.getuserModel == 0||_userModelProvider == null?'点击登录，开启学习路径':_userModelProvider.getuserModel.Job,style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
               ],
             )
           ],
@@ -154,7 +154,7 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
           Navigator.pushNamed(
             context,
             '/personInfomation',
-            arguments: {"isme":"1"}, //　传递参数
+            arguments: {"isme":"1","name":_userModelProvider.getuserModel.Name,"mobile":_userModelProvider.getuserModel.MobilePhone}, //　传递参数
           );
         }else if(_titleArr[index] == '退出登录'){
           FunctionUtil.popDialog(

@@ -79,7 +79,7 @@ class _PersonInfomationState extends State<PersonInfomation> {
                   ),
                   Row(
                     children: [
-                      Text(index == 1?'刘医生':'139 0519 0433',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+                      Text(index == 1?(this.widget.params["isme"] == "1"?this.widget.params["name"]:'刘医生'):(this.widget.params["isme"] == "1"?this.widget.params["mobile"]:'139 0519 0433'),style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
                       SizedBox(width: ScreenAdaper.width(10),),
                       Image.asset("asset/images/contact/jianttou.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
                     ],

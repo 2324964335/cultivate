@@ -244,11 +244,11 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
         ),
       ),
       onTap: (){
-        Navigator.pushNamed(
-          context,
-          '/messageDetail',
-          arguments: {}, //　传递参数
-        );
+//        Navigator.pushNamed(
+//          context,
+//          '/messageDetail',
+//          arguments: {}, //　传递参数
+//        );
       },
     );
   }
