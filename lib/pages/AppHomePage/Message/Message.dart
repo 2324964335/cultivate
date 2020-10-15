@@ -60,7 +60,7 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
 
   Widget _buildTopItem(BuildContext context,int index){
     return Container(
-      height: ScreenAdaper.width(100),
+      height: ScreenAdaper.width(80),
       margin: EdgeInsets.only(top: ScreenAdaper.width(17)),
       padding: EdgeInsets.all(ScreenAdaper.width(20)),
       color: Colors.white,
@@ -73,9 +73,9 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
               color: Colors.white,
               child: Row(
                 children: [
-                  Text(timeString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(35)),),
+                  Text(timeString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30)),),
                   SizedBox(width: ScreenAdaper.width(10),),
-                  Image.asset(isTimeSelect==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(34),height:ScreenAdaper.width(34),),
+                  Image.asset(isTimeSelect==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
                 ],
               ),
             ),
@@ -93,9 +93,9 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
               color: Colors.white,
               child: Row(
                 children: [
-                  Text(readString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(35)),),
+                  Text(readString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30)),),
                   SizedBox(width: ScreenAdaper.width(10),),
-                  Image.asset(isRead==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(34),height:ScreenAdaper.width(34),),
+                  Image.asset(isRead==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
 
                 ],
               ),
@@ -115,9 +115,9 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
               color: Colors.white,
               child: Row(
                 children: [
-                  Text(remindString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(35)),),
+                  Text(remindString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30)),),
                   SizedBox(width: ScreenAdaper.width(10),),
-                  Image.asset(isRemind==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(34),height:ScreenAdaper.width(34),),
+                  Image.asset(isRemind==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
 
                 ],
               ),
