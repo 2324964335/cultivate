@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
-import 'dart:math';
 import 'package:flutter_section_list/flutter_section_list.dart';
 import 'package:flutter/cupertino.dart';
-//import '../../../components/Video/window_video_page.dart';
-//import '../../../components/Video/full_video_page.dart';
 class SmallClassroom extends StatefulWidget {
   SmallClassroom({Key key, this.params}) : super(key: key);
   final  params;
@@ -19,11 +16,6 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
     return Scaffold(
       appBar: AppBar(title: Text('微课堂'),),
       body:
-//      Container(
-//        child: Center(
-//          child: Text('ssadsdssd'),
-//        ),
-//      )
       SectionGridView.builder(adapter: this),
     );
   }
