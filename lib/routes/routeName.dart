@@ -132,6 +132,12 @@ class RouteName {
   ///CommenWebview 公共网页跳转
   static String commenWebview = '/commenWebview';
 
+  ///WorkingMessage 工作信息
+  static String workingMessage = '/workingMessage';
+
+  ///ChangeMobileFirst 更换手机号1
+  static String changeMobileFirst = '/changeMobileFirst';
+
 
 
 

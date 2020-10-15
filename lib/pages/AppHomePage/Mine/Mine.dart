@@ -194,6 +194,12 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
               '/messageRemindSetting',
               arguments: {}, //　传递参数
             );
+          }else if(_titleArr[index] == '工作信息'){
+            Navigator.pushNamed(
+              context,
+              '/workingMessage',
+              arguments: {}, //　传递参数
+            );
           }
         }
       },

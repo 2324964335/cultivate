@@ -44,6 +44,8 @@ import '../pages/AppHomePage/Mine/SettingPersonalHeadImage.dart';
 import '../pages/AppHomePage/Mine/AboutUS.dart';
 import '../pages/AppHomePage/Mine/MessageRemindSetting.dart';
 import '../pages/AppHomePage/Commen/CommenWebview.dart';
+import '../pages/AppHomePage/Mine/WorkingMessage.dart';
+import '../pages/AppHomePage/Mine/ChangeMobileFirst.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -174,4 +176,10 @@ final Map<String, WidgetBuilder> routesData = {
   ///CommenWebview 公共网页跳转
   RouteName.commenWebview: (BuildContext context, {params}) =>
       CommenWebview(params: params),
+  ///WorkingMessage 工作信息
+  RouteName.workingMessage: (BuildContext context, {params}) =>
+      WorkingMessage(params: params),
+  ///ChangeMobileFirst
+  RouteName.changeMobileFirst: (BuildContext context, {params}) =>
+      ChangeMobileFirst(params: params),
 };

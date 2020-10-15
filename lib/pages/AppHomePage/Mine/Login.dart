@@ -233,7 +233,13 @@ class _passwordState extends State<password>  with AutomaticKeepAliveClientMixin
                   color: Color(0xFF999999),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  '/changeMobileFirst',
+                  arguments: {}, //　传递参数
+                );
+              },
             ),
           ),
           SizedBox(
