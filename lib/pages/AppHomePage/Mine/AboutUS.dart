@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
+import '../../../components/UpdateAppVersion/UpdateAppVersion.dart'
+    show getNewAppVer;
 class AboutUS extends StatefulWidget {
   AboutUS({Key key, this.params}) : super(key: key);
   final  params;
@@ -100,11 +102,22 @@ class _AboutUSState extends State<AboutUS> {
           ),
         ),
         onTap: (){
-          Navigator.pushNamed(
-            context,
-            '/examinePersonUpload',
-            arguments: {}, //　传递参数
-          );
+
+          if(index == 0){
+            Navigator.pushNamed(
+              context,
+              '/commenWebview',
+              arguments: {"url":"https://www.baidu.com","title":"服务与协议"}, //　传递参数
+            );
+          }else if(index == 1){
+            Navigator.pushNamed(
+              context,
+              '/commenWebview',
+              arguments: {"url":"https://www.baidu.com","title":"隐私政策"}, //　传递参数
+            );
+          }else{
+            getNewAppVer();
+          }
 
         },
       ),

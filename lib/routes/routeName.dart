@@ -129,6 +129,9 @@ class RouteName {
   ///MessageRemindSetting 消息提醒设置
   static String messageRemindSetting = '/messageRemindSetting';
 
+  ///CommenWebview 公共网页跳转
+  static String commenWebview = '/commenWebview';
+
 
 
 
