@@ -27,7 +27,8 @@ class _PersonInfomationState extends State<PersonInfomation> {
 
   Widget _buildItemByIndex(BuildContext context,int index){
     if(index == 0){
-      return Container(
+      return GestureDetector(
+        child: Container(
           child:Column(
             children: [
               Container(
@@ -60,6 +61,16 @@ class _PersonInfomationState extends State<PersonInfomation> {
               ),
             ],
           ),
+        ),
+        onTap: (){
+          if(this.widget.params["isme"] == "1"){
+            Navigator.pushNamed(
+              context,
+              '/settingPersonalHeadImage',
+              arguments: {}, //　传递参数
+            );
+          }
+        },
       );
     }else{
       return Container(

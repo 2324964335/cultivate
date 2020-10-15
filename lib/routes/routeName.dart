@@ -120,6 +120,10 @@ class RouteName {
   ///MessageDetail 消息详情界面
   static String messageDetail = '/messageDetail';
 
+  ///SettingPersonalHeadImage 设置个人头像
+  static String settingPersonalHeadImage = '/settingPersonalHeadImage';
+
+
 
 
 

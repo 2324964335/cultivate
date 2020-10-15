@@ -16,7 +16,7 @@ class UserModel{
     this.nickname = json["nickname"].toString();
     this.MobilePhone = json["MobilePhone"].toString();
     this.realname = json["realname"].toString();
-    this.HeadImgPath = json["HeadImgPath"].toString();
+    this.HeadImgPath = "http://app.hosmart.com:7194/" + json["HeadImgPath"].toString();
     this.Name = json["Name"].toString();
     this.uid = json["uid"].toString();
     this.TokenID = json["token"].toString();

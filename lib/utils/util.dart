@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'CommenColor.dart';
 import '../services/api.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 export 'sp_util.dart' show SpUtil;
 export 'perm_utils.dart' show PermUtils;
 export 'log_util.dart' show LogUtil;
@@ -15,6 +16,7 @@ export 'DarkText.dart' show DarkText;
 export 'LightText.dart' show LightText;
 export 'Line.dart' show Line;
 export '../services/api.dart' show Api;
+export 'package:cached_network_image/cached_network_image.dart' show CachedNetworkImage;
 class Util {
   /// 防抖函数
   static Function debounce(Function fn, [int t = 30]) {

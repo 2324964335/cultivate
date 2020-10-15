@@ -40,6 +40,7 @@ import '../pages/AppHomePage/Home/TheoryExamineQuestion.dart';
 import '../pages/AppHomePage/Mine/Login.dart';
 import '../pages/AppHomePage/Home/TheoryExamineQuestionDetail.dart';
 import '../pages/AppHomePage/Message/MessageDetail.dart';
+import '../pages/AppHomePage/Mine/SettingPersonalHeadImage.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -158,4 +159,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///消息详情页面 MessageDetail
   RouteName.messageDetail: (BuildContext context, {params}) =>
       MessageDetail(params: params),
+  ///SettingPersonalHeadImage 设置个人头像
+  RouteName.settingPersonalHeadImage: (BuildContext context, {params}) =>
+      SettingPersonalHeadImage(params: params),
 };

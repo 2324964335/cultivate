@@ -97,7 +97,7 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
         padding: EdgeInsets.only(left: ScreenAdaper.width(50),top: ScreenAdaper.width(60),bottom: ScreenAdaper.width(60)),
         child: Row(
           children: [
-            Image.asset(_userModelProvider.getuserModel == 0||_userModelProvider == null?"asset/images/mine/unlogin.png":"asset/images/mine/touxiang.png",width: ScreenAdaper.width(105),height: ScreenAdaper.width(106),fit: BoxFit.contain,),
+            _userModelProvider.getuserModel == 0||_userModelProvider == null?Image.asset("asset/images/mine/unlogin.png",width: ScreenAdaper.width(105),height: ScreenAdaper.width(106),fit: BoxFit.contain,):CachedNetworkImage(imageUrl: _userModelProvider.getuserModel.HeadImgPath,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(105),height: ScreenAdaper.width(106),fit: BoxFit.contain,),
             SizedBox(width: ScreenAdaper.width(20),),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
