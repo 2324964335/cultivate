@@ -123,6 +123,12 @@ class RouteName {
   ///SettingPersonalHeadImage 设置个人头像
   static String settingPersonalHeadImage = '/settingPersonalHeadImage';
 
+  ///AboutUS 关于我们
+  static String aboutUS = '/aboutUS';
+
+  ///MessageRemindSetting 消息提醒设置
+  static String messageRemindSetting = '/messageRemindSetting';
+
 
 
 

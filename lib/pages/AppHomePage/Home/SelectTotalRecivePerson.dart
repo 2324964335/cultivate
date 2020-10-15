@@ -115,7 +115,7 @@ class _SelectTotalRecivePersonState extends State<SelectTotalRecivePerson> {
                     ),
                       Container(
                         margin: EdgeInsets.only(right: ScreenAdaper.width(40)),
-                        child: Image.asset("asset/images/SelectTotalRecivePerson/jianttou.png",width: ScreenAdaper.width(40),height: ScreenAdaper.width(45),),
+                        child: Image.asset("asset/images/contact/jianttou.png",width: ScreenAdaper.width(40),height: ScreenAdaper.width(45),),
                       ),
                     ],
                   ),
@@ -208,7 +208,7 @@ class _SelectTotalRecivePersonState extends State<SelectTotalRecivePerson> {
             margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.width(30),bottom: ScreenAdaper.width(30)),
             child: Row(
               children: [
-                Image.asset(index == 0?"asset/images/SelectTotalRecivePerson/bumen.png":"asset/images/SelectTotalRecivePerson/changyong.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
+                Image.asset(index == 0?"asset/images/contact/bumen.png":"asset/images/contact/changyong.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
                 SizedBox(width: ScreenAdaper.width(10),),
                 Text(index==0?'上海第九人民医院':"常用联系人",style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30),fontWeight: FontWeight.bold),),
               ],

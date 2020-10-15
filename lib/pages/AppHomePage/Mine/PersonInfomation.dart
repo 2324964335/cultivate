@@ -29,6 +29,7 @@ class _PersonInfomationState extends State<PersonInfomation> {
     if(index == 0){
       return GestureDetector(
         child: Container(
+          color: Colors.white,
           child:Column(
             children: [
               Container(

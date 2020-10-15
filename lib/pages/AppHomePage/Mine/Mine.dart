@@ -149,30 +149,52 @@ class _MineState extends State<Mine> with AutomaticKeepAliveClientMixin {
         ),
       ),
       onTap: (){
-        if(index == 2){
-          ///PersonInfomation
-          Navigator.pushNamed(
-            context,
-            '/personInfomation',
-            arguments: {"isme":"1","name":_userModelProvider.getuserModel.Name,"mobile":_userModelProvider.getuserModel.MobilePhone}, //　传递参数
-          );
-        }else if(_titleArr[index] == '退出登录'){
-          FunctionUtil.popDialog(
-            context,
-            ShowAlertDialog(
-              title: "温馨提示",
-              content: "您现在正在退出登录",
-              items: ['取消', '确认退出'],
-              onTap: (index) {
-                LogUtil.d('object$index');
-                if(index == 1){
-                  StorageUtil().removeLogin().then((value){
-                    _userModelProvider.setCurrenUserModel();
-                  });
-                }
-              },
-            ),
-          );
+        if(_userModelProvider.getuserModel == 0||_userModelProvider == null){
+          if(_noLogineTitleArr[index] == '关于我们'){
+            Navigator.pushNamed(
+              context,
+              '/aboutUS',
+              arguments: {}, //　传递参数
+            );
+          }
+        }else{
+          if(_titleArr[index] == '基本信息'){
+            ///PersonInfomation
+            Navigator.pushNamed(
+              context,
+              '/personInfomation',
+              arguments: {"isme":"1","name":_userModelProvider.getuserModel.Name,"mobile":_userModelProvider.getuserModel.MobilePhone}, //　传递参数
+            );
+          }else if(_titleArr[index] == '退出登录'){
+            FunctionUtil.popDialog(
+              context,
+              ShowAlertDialog(
+                title: "温馨提示",
+                content: "您现在正在退出登录",
+                items: ['取消', '确认退出'],
+                onTap: (index) {
+                  LogUtil.d('object$index');
+                  if(index == 1){
+                    StorageUtil().removeLogin().then((value){
+                      _userModelProvider.setCurrenUserModel();
+                    });
+                  }
+                },
+              ),
+            );
+          }else if(_titleArr[index] == '关于我们'){
+            Navigator.pushNamed(
+              context,
+              '/aboutUS',
+              arguments: {}, //　传递参数
+            );
+          }else if(_titleArr[index] == '消息提醒设置'){
+            Navigator.pushNamed(
+              context,
+              '/messageRemindSetting',
+              arguments: {}, //　传递参数
+            );
+          }
         }
       },
     );
