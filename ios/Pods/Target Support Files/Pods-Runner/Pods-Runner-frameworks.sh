@@ -213,6 +213,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/url_launcher/url_launcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/video_player/video_player.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/wakelock/wakelock.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/webview_flutter/webview_flutter.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
@@ -231,6 +232,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/url_launcher/url_launcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/video_player/video_player.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/wakelock/wakelock.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/webview_flutter/webview_flutter.framework"
 fi
 if [[ "$CONFIGURATION" == "Profile" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
@@ -249,6 +251,7 @@ if [[ "$CONFIGURATION" == "Profile" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/url_launcher/url_launcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/video_player/video_player.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/wakelock/wakelock.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/webview_flutter/webview_flutter.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

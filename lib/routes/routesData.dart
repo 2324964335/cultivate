@@ -179,7 +179,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///WorkingMessage 工作信息
   RouteName.workingMessage: (BuildContext context, {params}) =>
       WorkingMessage(params: params),
-  ///ChangeMobileFirst
+  ///ChangeMobileFirst 修改手机号页面
   RouteName.changeMobileFirst: (BuildContext context, {params}) =>
       ChangeMobileFirst(params: params),
 };
