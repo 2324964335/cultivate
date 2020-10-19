@@ -11,7 +11,10 @@ import '../../../utils/util.dart';
 import './home_widget/HomeTopHeader.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
-
+import 'home_request/HomeRequest.dart';
+import 'package:provider/provider.dart';
+import '../../../provider/appCommenNetData.dart';
+import 'home_request/home_page_top_month_entity.dart';
 class Home extends StatefulWidget {
   Home({Key key, this.params}) : super(key: key);
   final params;
@@ -25,16 +28,63 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   bool get wantKeepAlive => true;
   CounterStore _counter;
   RScanResult result;
-
+  GainUserModel _userModelProvider;
+  HomePageTopMonthEntity _topdata = null;
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
+    LogUtil.d('-----1');
+//    Future.delayed(Duration(milliseconds: 200)).then((e) {
+//      getHomeTopData();
+//    });
+  }
+
+  void getHomeTopData(){
+    if(_userModelProvider.getIsLogin() == true){
+      HomeRequest.requestHomePageMonth(_userModelProvider.getuserModel.TokenID).then((value){
+        LogUtil.d('----------${value}');
+        if(value is Map){
+          if(value["success"] == -1101){
+            StorageUtil().removeLogin().then((value){
+              _userModelProvider.setCurrenUserModel();
+            });
+            return;
+          }
+        }
+        _topdata = value;
+        _isLoading = false;
+        setState(() {
+        });
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    LogUtil.d('-----2');
     super.build(context);
+    _userModelProvider = Provider.of<GainUserModel>(context);
+    if(_userModelProvider.getuserModel == null){
+      _userModelProvider.setCurrenUserModel();
+    }else{
+//      getHomeTopData();
+    }
+
+    if(_userModelProvider.getIsLogin()==false){
+      _topdata = null;
+    }
+
+    Future.delayed(Duration(milliseconds: 200)).then((e) {
+      if(_userModelProvider.getIsLogin()==true&&_topdata == null&&_isLoading == false){
+        _isLoading = true;
+        getHomeTopData();
+      }
+//      else if(_userModelProvider.getIsLogin()==false){
+//        _topdata = null;
+//      }
+    });
     _counter = Provider.of<CounterStore>(context);
 
     return Scaffold(
@@ -89,7 +139,12 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   Widget _judegeItemByIndex(BuildContext context,int index){
     if(index == 0){
-     return HomeTopHeader();
+//     return HomeTopHeader();
+     return Consumer<GainUserModel>(
+       builder: (key, build, child){
+        return HomeTopHeader(_topdata);
+       }
+     );
     }else{
       return _buildItem(context);
     }

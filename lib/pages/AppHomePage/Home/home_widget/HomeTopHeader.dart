@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
 import '../../../../utils/util.dart';
 import 'package:cultivate/utils/screen_adaper.dart';
+import '../home_request/home_page_top_month_entity.dart';
 class HomeTopHeader extends StatelessWidget {
   final controller = TextEditingController();
-
+  final HomePageTopMonthEntity data;
+  HomeTopHeader(this.data);
+  String benyuepeixun_string = '0';
+  String benyuekaohe_string = '0';
+  String daiwoqueren_string = '0';
+  String weidugonggao_string = '0';
   @override
   Widget build(BuildContext context) {
+    if(this.data != null){
+      this.data.xList.forEach((element) {
+        if(element.key == "本月考核"){
+            benyuekaohe_string = element.value;
+        }else if(element.key == "本月培训"){
+          benyuepeixun_string = element.value;
+        }else if(element.key == "未读公告"){
+          weidugonggao_string = element.value;
+        }else if(element.key == "待我确认"){
+          daiwoqueren_string = element.value;
+        }
+      });
+    }
     return Container(
       color: Colors.white70,
       child: Column(
@@ -91,7 +110,7 @@ class HomeTopHeader extends StatelessWidget {
                                 children: [
                                   SizedBox(height: ScreenAdaper.height(30),),
                                   Container(
-                                    child: Text("5",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
+                                    child: Text(benyuepeixun_string,style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(top: ScreenAdaper.width(10),bottom: ScreenAdaper.height(20)),
@@ -102,12 +121,21 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                            LogUtil.d('--------');
-                            Navigator.pushNamed(
-                              context,
-                            '/currentMonthCultive',
-                            arguments: {}, //　传递参数
-                            );
+
+                            if(this.data==null){
+                              Navigator.pushNamed(
+                                context,
+                                '/login',
+                                arguments: {}, //　传递参数
+                              );
+                            }else{
+                              LogUtil.d('--------');
+                              Navigator.pushNamed(
+                                context,
+                                '/currentMonthCultive',
+                                arguments: {}, //　传递参数
+                              );
+                            }
                           },
                         ),
                         GestureDetector(
@@ -125,11 +153,19 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                            Navigator.pushNamed(
+                            if(this.data==null){
+                              Navigator.pushNamed(
+                                context,
+                                '/login',
+                                arguments: {}, //　传递参数
+                              );
+                            }else{
+                              Navigator.pushNamed(
                                 context,
                                 '/schedule',
                                 arguments: {},
-                            );//　传递参数
+                              );//　传递参数
+                            }
                           },
                         )
                       ],
@@ -155,7 +191,7 @@ class HomeTopHeader extends StatelessWidget {
                                 children: [
                                   SizedBox(height: ScreenAdaper.height(30),),
                                   Container(
-                                    child: Text("12",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
+                                    child: Text(benyuekaohe_string,style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(top: ScreenAdaper.width(10),bottom: ScreenAdaper.height(20)),
@@ -167,11 +203,19 @@ class HomeTopHeader extends StatelessWidget {
                           ),
                           onTap: (){
                             LogUtil.d('--------');
-                            Navigator.pushNamed(
-                              context,
-                              '/currentMonthExamine',
-                              arguments: {"examineType":0}, //　传递参数
-                            );
+                            if(this.data==null){
+                              Navigator.pushNamed(
+                                context,
+                                '/login',
+                                arguments: {}, //　传递参数
+                              );
+                            }else{
+                              Navigator.pushNamed(
+                                context,
+                                '/currentMonthExamine',
+                                arguments: {"examineType":0}, //　传递参数
+                              );
+                            }
                           },
                         ),
                         ///AllInformation
@@ -190,11 +234,19 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                            Navigator.pushNamed(
-                              context,
-                              '/allInformation',
-                              arguments: {}, //　传递参数
-                            );
+                            if(this.data==null){
+                              Navigator.pushNamed(
+                                context,
+                                '/login',
+                                arguments: {}, //　传递参数
+                              );
+                            }else{
+                              Navigator.pushNamed(
+                                context,
+                                '/allInformation',
+                                arguments: {}, //　传递参数
+                              );
+                            }
                           },
                         )
                       ],
@@ -220,7 +272,7 @@ class HomeTopHeader extends StatelessWidget {
                                 children: [
                                   SizedBox(height: ScreenAdaper.height(30),),
                                   Container(
-                                    child: Text("21",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
+                                    child: Text(daiwoqueren_string,style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(top: ScreenAdaper.width(10),bottom: ScreenAdaper.height(20)),
@@ -232,11 +284,20 @@ class HomeTopHeader extends StatelessWidget {
                           ),
                           onTap: (){
                             LogUtil.d('--------');
-                            Navigator.pushNamed(
-                              context,
-                              '/waitEnrollCultive',
-                              arguments: {}, //　传递参数
-                            );
+
+                            if(this.data==null){
+                              Navigator.pushNamed(
+                                context,
+                                '/login',
+                                arguments: {}, //　传递参数
+                              );
+                            }else{
+                              Navigator.pushNamed(
+                                context,
+                                '/waitEnrollCultive',
+                                arguments: {}, //　传递参数
+                              );
+                            }
                           },
                         ),
                         GestureDetector(
@@ -254,12 +315,21 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                            ///SmallClassroom
-                            Navigator.pushNamed(
-                              context,
-                              '/smallClassroom',
-                              arguments: {}, //　传递参数
-                            );
+                            if(this.data==null){
+                              Navigator.pushNamed(
+                                context,
+                                '/login',
+                                arguments: {}, //　传递参数
+                              );
+                            }else{
+                              ///SmallClassroom
+                              Navigator.pushNamed(
+                                context,
+                                '/smallClassroom',
+                                arguments: {}, //　传递参数
+                              );
+
+                            }
                           },
                         ),
                       ],
@@ -285,8 +355,9 @@ class HomeTopHeader extends StatelessWidget {
                                 children: [
                                   SizedBox(height: ScreenAdaper.height(30),),
                                   Container(
-                                    child: Text("8",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
+                                    child: Text(weidugonggao_string,style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
                                   ),
+                                  
                                   Container(
                                     margin: EdgeInsets.only(top: ScreenAdaper.width(10),bottom: ScreenAdaper.height(20)),
                                     child: Text("未读公告",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30)),),
@@ -296,6 +367,14 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
+                            if(this.data==null){
+                              Navigator.pushNamed(
+                                context,
+                                '/login',
+                                arguments: {}, //　传递参数
+                              );
+                              return;
+                            }
                             Navigator.pushNamed(
                               context,
                               '/noReadInfomation',
@@ -318,6 +397,14 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
+                            if(this.data==null){
+                              Navigator.pushNamed(
+                                context,
+                                '/login',
+                                arguments: {}, //　传递参数
+                              );
+                              return;
+                            }
                             Navigator.pushNamed(
                                 context,
                                 '/theoreticalModeling',
@@ -340,6 +427,14 @@ class HomeTopHeader extends StatelessWidget {
                         child: Image.asset("asset/images/home/peixunguanli.png",fit: BoxFit.fitWidth,),
                       ),
                       onTap: (){
+                        if(this.data==null){
+                          Navigator.pushNamed(
+                            context,
+                            '/login',
+                            arguments: {}, //　传递参数
+                          );
+                          return;
+                        }
                         Navigator.pushNamed(
                           context,
                           '/cultivateManger',
@@ -354,6 +449,14 @@ class HomeTopHeader extends StatelessWidget {
                         child: Image.asset("asset/images/home/kaoheguanli.png",fit: BoxFit.fitWidth,),
                       ),
                       onTap: (){
+                        if(this.data==null){
+                          Navigator.pushNamed(
+                            context,
+                            '/login',
+                            arguments: {}, //　传递参数
+                          );
+                          return;
+                        }
                         Navigator.pushNamed(
                           context,
                           '/examineManger',

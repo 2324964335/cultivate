@@ -22,7 +22,7 @@ class Api{
     return resData ?? {};
   }
 
-  /// 获取首页轮播图数据
+  /// 账号密码登录
   Future<Map> loginByPass(String account,String password) async {
     Map resData = await safeRequest(
       serviceUrl['app_login'],
@@ -38,4 +38,14 @@ class Api{
     return resData ?? {};
   }
 
+  /// 账号密码登录
+  Future<Map> getHomePageTopData(String TokenID) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_total'] + '?TokenID=${TokenID}',
+      data: {
+      },
+      options: Options(method: 'POST'),
+    );
+    return resData ?? {};
+  }
 }
