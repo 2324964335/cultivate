@@ -46,6 +46,8 @@ import '../pages/AppHomePage/Mine/MessageRemindSetting.dart';
 import '../pages/AppHomePage/Commen/CommenWebview.dart';
 import '../pages/AppHomePage/Mine/WorkingMessage.dart';
 import '../pages/AppHomePage/Mine/ChangeMobileFirst.dart';
+import '../pages/AppHomePage/Mine/InputNewMobile.dart';
+import '../pages/AppHomePage/Mine/IdentifiCode.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -182,4 +184,10 @@ final Map<String, WidgetBuilder> routesData = {
   ///ChangeMobileFirst 修改手机号页面
   RouteName.changeMobileFirst: (BuildContext context, {params}) =>
       ChangeMobileFirst(params: params),
+  ///InputNewMobile 输入新手机号
+  RouteName.inputNewMobile: (BuildContext context, {params}) =>
+      InputNewMobile(params: params),
+  ///IdentifiCode 更改手机号输入验证码
+  RouteName.identifiCode: (BuildContext context, {params}) =>
+      IdentifiCode(params: params),
 };

@@ -138,6 +138,12 @@ class RouteName {
   ///ChangeMobileFirst 更换手机号1
   static String changeMobileFirst = '/changeMobileFirst';
 
+  ///InputNewMobile 输入新号码
+  static String inputNewMobile = '/inputNewMobile';
+
+  ///IdentifiCode 验证码
+  static String identifiCode = '/identifiCode';
+
 
 
 

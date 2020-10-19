@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import '../../../../utils/util.dart';
 import 'package:cultivate/utils/screen_adaper.dart';
 import '../home_request/home_page_top_month_entity.dart';
+import '../home_request/home_page_top_total_data_entity.dart';
 class HomeTopHeader extends StatelessWidget {
   final controller = TextEditingController();
-  final HomePageTopMonthEntity data;
+  final HomePageTopTotalDataData data;
   HomeTopHeader(this.data);
   String benyuepeixun_string = '0';
   String benyuekaohe_string = '0';
@@ -12,16 +13,17 @@ class HomeTopHeader extends StatelessWidget {
   String weidugonggao_string = '0';
   @override
   Widget build(BuildContext context) {
+    LogUtil.d('-----------0-${this.data}');
     if(this.data != null){
       this.data.xList.forEach((element) {
-        if(element.key == "本月考核"){
-            benyuekaohe_string = element.value;
-        }else if(element.key == "本月培训"){
-          benyuepeixun_string = element.value;
-        }else if(element.key == "未读公告"){
-          weidugonggao_string = element.value;
-        }else if(element.key == "待我确认"){
-          daiwoqueren_string = element.value;
+        if(element.value == "本月考核"){
+            benyuekaohe_string = element.key.toString();
+        }else if(element.value == "本月培训"){
+          benyuepeixun_string = element.key.toString();
+        }else if(element.value == "未读公告"){
+          weidugonggao_string = element.key.toString();
+        }else if(element.value == "待我确认"){
+          daiwoqueren_string = element.key.toString();
         }
       });
     }

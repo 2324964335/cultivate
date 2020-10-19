@@ -15,6 +15,7 @@ import 'home_request/HomeRequest.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/appCommenNetData.dart';
 import 'home_request/home_page_top_month_entity.dart';
+import 'home_request/home_page_top_total_data_entity.dart';
 class Home extends StatefulWidget {
   Home({Key key, this.params}) : super(key: key);
   final params;
@@ -29,22 +30,20 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   CounterStore _counter;
   RScanResult result;
   GainUserModel _userModelProvider;
-  HomePageTopMonthEntity _topdata = null;
+  HomePageTopTotalDataData _topdata = null;
   bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
     LogUtil.d('-----1');
-//    Future.delayed(Duration(milliseconds: 200)).then((e) {
-//      getHomeTopData();
-//    });
   }
 
   void getHomeTopData(){
     if(_userModelProvider.getIsLogin() == true){
       HomeRequest.requestHomePageMonth(_userModelProvider.getuserModel.TokenID).then((value){
-        LogUtil.d('----------${value}');
+        LogUtil.d('------ffff----${value}');
+        _isLoading = false;
         if(value is Map){
           if(value["success"] == -1101){
             StorageUtil().removeLogin().then((value){
@@ -53,8 +52,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             return;
           }
         }
-        _topdata = value;
-        _isLoading = false;
+        _topdata = value.data[0];
         setState(() {
         });
       });
@@ -67,24 +65,33 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     super.build(context);
     _userModelProvider = Provider.of<GainUserModel>(context);
     if(_userModelProvider.getuserModel == null){
+      LogUtil.d('-----3');
       _userModelProvider.setCurrenUserModel();
     }else{
 //      getHomeTopData();
     }
 
     if(_userModelProvider.getIsLogin()==false){
+      LogUtil.d('-----4');
       _topdata = null;
     }
-
+    LogUtil.d('----54----${_topdata}------${_userModelProvider.getIsLogin()}-------${_isLoading}');
     Future.delayed(Duration(milliseconds: 200)).then((e) {
+      LogUtil.d('-----8');
       if(_userModelProvider.getIsLogin()==true&&_topdata == null&&_isLoading == false){
         _isLoading = true;
+        LogUtil.d('-----5');
         getHomeTopData();
       }
 //      else if(_userModelProvider.getIsLogin()==false){
 //        _topdata = null;
 //      }
     });
+
+    Future.delayed(Duration(milliseconds: 2000)).then((e) {
+      _isLoading = false;
+    });
+
     _counter = Provider.of<CounterStore>(context);
 
     return Scaffold(

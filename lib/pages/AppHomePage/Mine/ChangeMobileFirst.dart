@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
+import '../../../components/func.dart';
+import '../../../components/alert_dialog.dart';
 class ChangeMobileFirst extends StatefulWidget {
   ChangeMobileFirst({Key key, this.params}) : super(key: key);
   final  params;
@@ -37,7 +40,7 @@ class _ChangeMobileFirstState extends State<ChangeMobileFirst> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               LightText.build('您的手机号：'),
-              DarkText.build('136 4455 5566'),
+              DarkText.build(this.widget.params["mobile"]),
             ],
           ),
           SizedBox(height: ScreenAdaper.width(20),),
@@ -52,15 +55,37 @@ class _ChangeMobileFirstState extends State<ChangeMobileFirst> {
                 width: ScreenAdaper.width(480),
                 alignment: Alignment.center,
                 color: Color(0xFF00D08D),
-                child: Text("去签到",style: TextStyle(color: Colors.white),),
+                child: Text("更换手机号",style: TextStyle(color: Colors.white),),
               ),
             ),
             onTap: (){
+              FunctionUtil.popDialog(
+                context,
+                ShowAlertDialog(
+                  title: "验证信息",
 
+                  content: "为了保障您的合法权益，请输入您的登陆密码进行身份验证",
+                  items: ['取消', '确认提交'],
+                  onTap: (index) {
+                    LogUtil.d('object$index');
+                    if(index == 1){
+                      ToastShow.show("验证成功");
+//                          Navigator.pop(context);
+                    ///inputNewMobile
+                        Navigator.pushNamed(
+                          context,
+                          '/inputNewMobile',
+                          arguments: {'mobile':this.widget.params["mobile"]}, //　传递参数
+                        );
+                    }
+                  },
+                  isShenhe: false,
+                  isChangeMobile: true,
+                ),
+              );
             },
           ),
           SizedBox(height: ScreenAdaper.width(40),),
-
           LightText.build('更换手机号后，企业通讯录号码将同步改变'),
         ],
       )

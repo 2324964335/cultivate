@@ -221,27 +221,27 @@ class _passwordState extends State<password>  with AutomaticKeepAliveClientMixin
           SizedBox(
             height: 12,
           ),
-          Container(
-            height: 16,
-            alignment: Alignment.topRight,
-            child: FlatButton(
-              child: Text(
-                '忘记密码',
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Color(0xFF999999),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  '/changeMobileFirst',
-                  arguments: {}, //　传递参数
-                );
-              },
-            ),
-          ),
+//          Container(
+//            height: 16,
+//            alignment: Alignment.topRight,
+//            child: FlatButton(
+//              child: Text(
+//                '忘记密码',
+//                textAlign: TextAlign.right,
+//                style: TextStyle(
+//                  fontSize: 12,
+//                  color: Color(0xFF999999),
+//                ),
+//              ),
+//              onPressed: () {
+//                Navigator.pushNamed(
+//                  context,
+//                  '/changeMobileFirst',
+//                  arguments: {}, //　传递参数
+//                );
+//              },
+//            ),
+//          ),
           SizedBox(
             height: ScreenAdaper.width(170),
           ),

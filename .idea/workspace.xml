@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27657289-e72f-4347-a534-1db8bef5a30b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/generated/json/base/json_convert_content.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/generated/json/base/json_field.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/generated/json/home_page_top_month_entity_helper.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/HomeRequest.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/home_page_top_month_entity.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/generated/json/home_page_top_total_data_entity_helper.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/home_page_top_total_data_entity.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/IdentifiCode.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/InputNewMobile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.bin" afterDir="false" />
@@ -15,13 +14,16 @@
       <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Flutter/Flutter.framework/Flutter" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Flutter.framework/Flutter" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/app_config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/app_config.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/alert_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/alert_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/json/base/json_convert_content.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/json/base/json_convert_content.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/Home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/Home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/HomeRequest.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/HomeRequest.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_widget/HomeTopHeader.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_widget/HomeTopHeader.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/provider/appCommenNetData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/provider/appCommenNetData.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/service_url.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/service_url.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/LoginModel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/LoginModel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/ChangeMobileFirst.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/ChangeMobileFirst.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/Login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/Login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/PersonInfomation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/PersonInfomation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/routeName.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/routeName.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/routesData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/routesData.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,11 +61,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/pages/AppHomePage/Mine" />
       <recent name="$PROJECT_DIR$/asset/images/mine" />
       <recent name="$PROJECT_DIR$/asset/images/message" />
       <recent name="$PROJECT_DIR$/asset/images/home" />
       <recent name="$PROJECT_DIR$/asset/images/examine" />
-      <recent name="$PROJECT_DIR$/lib/pages/AppHomePage/Examine" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib/pages/AppHomePage/Commen" />

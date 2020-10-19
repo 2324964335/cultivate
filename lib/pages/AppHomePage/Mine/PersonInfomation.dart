@@ -74,30 +74,48 @@ class _PersonInfomationState extends State<PersonInfomation> {
         },
       );
     }else{
+      /*
+                Navigator.pushNamed(
+                  context,
+                  '/changeMobileFirst',
+                  arguments: {}, //　传递参数
+                );
+      */
       return Container(
         child:Column(
           children: [
-            Container(
-              padding: EdgeInsets.all(ScreenAdaper.width(35)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Image.asset(index == 1?"asset/images/mine/xinming.png":"asset/images/mine/shouji.png",width: ScreenAdaper.width(35),height:ScreenAdaper.width(35),),
-                      SizedBox(width: ScreenAdaper.width(10),),
-                      Text(index == 1?'姓名':'手机号',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(index == 1?(this.widget.params["isme"] == "1"?this.widget.params["name"]:'刘医生'):(this.widget.params["isme"] == "1"?this.widget.params["mobile"]:'139 0519 0433'),style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
-                      SizedBox(width: ScreenAdaper.width(10),),
-                      Image.asset("asset/images/contact/jianttou.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
-                    ],
-                  ),
-                ],
+            GestureDetector(
+              child:  Container(
+                padding: EdgeInsets.all(ScreenAdaper.width(35)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Image.asset(index == 1?"asset/images/mine/xinming.png":"asset/images/mine/shouji.png",width: ScreenAdaper.width(35),height:ScreenAdaper.width(35),),
+                        SizedBox(width: ScreenAdaper.width(10),),
+                        Text(index == 1?'姓名':'手机号',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(index == 1?(this.widget.params["isme"] == "1"?this.widget.params["name"]:'刘医生'):(this.widget.params["isme"] == "1"?this.widget.params["mobile"]:'139 0519 0433'),style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+                        SizedBox(width: ScreenAdaper.width(10),),
+                        Image.asset("asset/images/contact/jianttou.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
+                      ],
+                    ),
+                  ],
+                ),
               ),
+              onTap: (){
+                if(index == 2&&this.widget.params["isme"] == "1"){
+                  Navigator.pushNamed(
+                    context,
+                    '/changeMobileFirst',
+                    arguments: {'mobile':this.widget.params["mobile"]}, //　传递参数
+                  );
+                }
+              },
             ),
             Container(
               margin: EdgeInsets.only(right: ScreenAdaper.width(20)),

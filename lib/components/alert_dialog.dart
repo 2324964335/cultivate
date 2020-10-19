@@ -18,6 +18,8 @@ class ShowAlertDialog extends StatefulWidget {
 
   ///定制审核不通过组件
   bool isShenhe;
+  ///定制修改手机号组件
+  bool isChangeMobile=false;
 
   ShowAlertDialog({
     this.contentAlign = TextAlign.left,
@@ -26,6 +28,7 @@ class ShowAlertDialog extends StatefulWidget {
     this.content,
     this.title,
     this.isShenhe,
+    this.isChangeMobile,
   });
 
   @override
@@ -87,12 +90,12 @@ class _ShowAlertDialogState extends State<ShowAlertDialog> {
                       borderRadius: BorderRadius.circular(2),///圆角
                       border: Border.all(color: Color(0xff979797),width: ScreenAdaper.width(1))///边框颜色、宽
                   ),
-                  height: ScreenAdaper.width(240),
+                  height: this.widget.isChangeMobile==true?ScreenAdaper.width(80):ScreenAdaper.width(240),
                   margin: EdgeInsets.only(left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.width(20)),
                   padding: EdgeInsets.only(left: ScreenAdaper.width(10)),
                   child: MyTextField(
                     focusNode: _inputNode,
-                    placeHolder: '请输入拒绝理由',
+                    placeHolder: this.widget.isChangeMobile==true?'':'请输入拒绝理由',
                     maxLength: null,
                     noBottomLine: true,
                     keyboardType: TextInputType.multiline,
