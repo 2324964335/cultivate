@@ -74,7 +74,7 @@ class _CultiveSignQrcodeState extends State<CultiveSignQrcode> {
             Navigator.pushNamed(
               context,
               '/cultiveCourceSignDetail',
-              arguments: {}, //　传递参数
+              arguments: {"id":this.widget.params["id"]}, //　传递参数
             );
           },
         )

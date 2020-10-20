@@ -47,6 +47,12 @@ class StorageUtil {
      }
   }
 
+  UserModel getSureUserModel(){
+    String jsonString = _prefs.getString(userToken);
+      Map<String, dynamic> user = jsonDecode(jsonString);
+      return UserModel.fromMap(user);
+  }
+
   /// 设置 json 对象
   Future<bool> setUserJSON(dynamic jsonVal) {
     String jsonString = jsonEncode(jsonVal);

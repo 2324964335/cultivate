@@ -14,8 +14,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'home_request/HomeRequest.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/appCommenNetData.dart';
-import 'home_request/home_page_top_month_entity.dart';
 import 'home_request/home_page_top_total_data_entity.dart';
+import 'home_request/home_page_data_entity.dart';
 class Home extends StatefulWidget {
   Home({Key key, this.params}) : super(key: key);
   final params;
@@ -31,6 +31,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   RScanResult result;
   GainUserModel _userModelProvider;
   HomePageTopTotalDataData _topdata = null;
+  HomePageDataEntity _bottomdata = null;
   bool _isLoading = false;
 
   @override
@@ -56,6 +57,23 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         setState(() {
         });
       });
+
+
+      HomeRequest.requestHomePageData(_userModelProvider.getuserModel.TokenID,'1','1').then((value){
+        LogUtil.d('------ffff----${value}');
+        _isLoading = false;
+        if(value is Map){
+          if(value["success"] == -1101){
+            StorageUtil().removeLogin().then((value){
+              _userModelProvider.setCurrenUserModel();
+            });
+            return;
+          }
+        }
+        _bottomdata = value;
+        setState(() {
+        });
+      });
     }
   }
 
@@ -74,6 +92,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     if(_userModelProvider.getIsLogin()==false){
       LogUtil.d('-----4');
       _topdata = null;
+      _bottomdata = null;
     }
     LogUtil.d('----54----${_topdata}------${_userModelProvider.getIsLogin()}-------${_isLoading}');
     Future.delayed(Duration(milliseconds: 200)).then((e) {
@@ -135,7 +154,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             FocusScope.of(context).requestFocus(FocusNode());
             },
               child:   ListView.builder(
-                    itemCount: 10,
+                    itemCount: _bottomdata==null?2:_bottomdata.xList.length + 1,
                     itemBuilder: (ctx, index) {
                       return _judegeItemByIndex(context,index);
                     }
@@ -153,11 +172,22 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
        }
      );
     }else{
-      return _buildItem(context);
+      if(_bottomdata == null){
+        return _buildGoToLogin(context);
+      }else{
+        return _buildItem(context,index-1);
+      }
     }
   }
 
-  Widget _buildItem(BuildContext context){
+  Widget _buildGoToLogin(BuildContext context){
+    return GestureDetector(
+      child: Text('去登录'),
+    );
+  }
+
+  Widget _buildItem(BuildContext context,int index){
+    HomePageDataList ittem = _bottomdata.xList[index];
       return Container(
         padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
         child: Container(
@@ -186,7 +216,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                            children: [
                              Container(
 
-                               child: Text("2020.8 传染病防控",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
+                               child: Text(ittem.title,style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
                                margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
                              ),
                              Container(
@@ -195,7 +225,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                color: Color(0xFFBD4EFB),
 
                                padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                               child: Text("员工线上培训",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                               child: Text(ittem.type==0?"线下":"线上",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
                              ),
                            ],
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -221,11 +251,12 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 //                                         height: ScreenAdaper.width(70),
 //                                       ),
 //                                     ),
-                                     Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
+//                                     Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
+                                     CachedNetworkImage(imageUrl: ittem.icon,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(70),height: ScreenAdaper.width(70),fit: BoxFit.contain,),
                                      SizedBox(width: ScreenAdaper.width(10),),
-                                     Text("某某某",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                     Text(ittem.trainer,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                      SizedBox(width: ScreenAdaper.width(40),),
-                                     Text("今天14:20",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                     Text(ittem.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                    ],
                                  ),
                                ),
@@ -240,7 +271,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                          children: [
                                            Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                            SizedBox(width: ScreenAdaper.width(5),),
-                                           Text("126",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                           Text(ittem.likeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                          ],
                                        ),
 
@@ -252,7 +283,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                          children: [
                                            Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                            SizedBox(width: ScreenAdaper.width(5),),
-                                           Text("64",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                           Text(ittem.commentCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                          ],
                                        ),
 
@@ -264,7 +295,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                          children: [
                                            Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                            SizedBox(width: ScreenAdaper.width(5),),
-                                           Text("1526",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                           Text(ittem.viewCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                          ],
                                        ),
 

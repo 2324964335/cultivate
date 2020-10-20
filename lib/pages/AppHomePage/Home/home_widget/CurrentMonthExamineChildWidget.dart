@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../utils/util.dart';
+import '../home_request/HomeRequest.dart';
+import '../home_request/current_month_examine_list_entity.dart';
 class CurrentMonthExamineChildWidget extends StatefulWidget {
   final int index;
   final int examineType;
@@ -9,11 +11,28 @@ class CurrentMonthExamineChildWidget extends StatefulWidget {
 }
 
 class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChildWidget> {
+
+  CurrentMonthExamineListEntity _data = null;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Map params = {
+      "page":0,
+      "status":1
+    };
+    HomeRequest.requestCurrentMonthExaminList(StorageUtil().getSureUserModel().TokenID, params).then((value){
+      _data = value;
+      setState(() {
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child:  ListView.builder(
-          itemCount: 30,
+          itemCount: _data==null?0:_data.xList.length,
           itemBuilder: (ctx, index) {
             return _buildItem(context,index);
           }
@@ -22,6 +41,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
   }
 
   Widget _buildItem(BuildContext context,int index){
+    CurrentMonthExamineListList item = _data.xList[index];
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
       child: GestureDetector(
@@ -46,7 +66,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
                decoration: BoxDecoration(
                    borderRadius: BorderRadius.circular(4.0),
                    gradient: LinearGradient(
-                     colors: index%2==0?[Color(0xFFFF9177), Color(0xFFF64640)]:[Color(0xFFCECCCC), Color(0xFFCECCCC)],
+                     colors: item.status==0?[Color(0xFFFF9177), Color(0xFFF64640)]:[Color(0xFFCECCCC), Color(0xFFCECCCC)],
                      begin: Alignment.topCenter,
                      end: Alignment.bottomCenter,
                    )),
@@ -55,7 +75,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
                   children: [
                     Text('满分',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(34),fontWeight: FontWeight.bold),),
                     SizedBox(height: ScreenAdaper.height(1),),
-                    Text('100分',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30),fontWeight: FontWeight.bold),),
+                    Text('${item.score.toString()}分',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30),fontWeight: FontWeight.bold),),
                   ],
                ),
              ),
@@ -67,17 +87,18 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
                    children: [
                      Container(
                        alignment: Alignment.centerLeft,
+                       width: ScreenAdaper.width(330),
                        margin: EdgeInsets.only(left: ScreenAdaper.width(10),top: ScreenAdaper.height(16)),
-                       child: Text('2020年跨科室晋级操作考',style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
+                       child: Text(item.title,style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),maxLines: 1,overflow: TextOverflow.ellipsis,),
                      ),
                      SizedBox(width: ScreenAdaper.width(75),),
                      Container(
                        margin: EdgeInsets.only(top: ScreenAdaper.height(16)),
 
-                       color: index%2==0?Color(0xFF00D08D):Color(0xFFCECCCC),
+                       color: item.status==0?Color(0xFF00D08D):Color(0xFFCECCCC),
 
                        padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                       child: Text(index%2==0?"未开始":"已结束",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                       child: Text(item.status==0?"未开始":"已结束",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
                      ),
                    ],
                  ),
@@ -104,9 +125,9 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
                      Column(
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: [
-                         Text('2020年8月20日 14：20',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                         Text(item.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                          SizedBox(height: ScreenAdaper.width(10),),
-                         Text('2020年8月20日 14：20',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                         Text(item.endTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                        ],
                      )
                    ],

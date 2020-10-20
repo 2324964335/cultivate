@@ -78,6 +78,18 @@
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/wakelock/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/wakelock/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/wakelock/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/webview_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/webview_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/webview_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/webview_flutter/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/webview_flutter/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/webview_flutter/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/flutter_my_picker/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/flutter_my_picker/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/flutter_my_picker/build" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/flutter_my_picker/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/flutter_my_picker/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/flutter_my_picker/example/build" />
       <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/fluttertoast/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/fluttertoast/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/fluttertoast/build" />
@@ -180,6 +192,27 @@
       <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/url_launcher_web/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/url_launcher_web/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/url_launcher_web/build" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/video_player/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/video_player/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/video_player/build" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/video_player/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/video_player/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/video_player/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/video_player_web/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/video_player_web/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/video_player_web/build" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/wakelock/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/wakelock/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/wakelock/build" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/wakelock/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/wakelock/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/wakelock/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/webview_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/webview_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/webview_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/webview_flutter/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/webview_flutter/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/macos/Flutter/ephemeral/.symlinks/plugins/webview_flutter/example/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

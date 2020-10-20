@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import './home_widget/CultiveCourceSignDetailChildWidget.dart';
+import 'home_request/HomeRequest.dart';
+import 'home_request/my_cultivate_detail_top_total_entity.dart';
 class CultiveCourceSignDetail extends StatefulWidget {
   CultiveCourceSignDetail({Key key, this.params}) : super(key: key);
   final  params;
@@ -9,7 +11,12 @@ class CultiveCourceSignDetail extends StatefulWidget {
 }
 
 class _CultiveCourceSignDetailState extends State<CultiveCourceSignDetail>  with SingleTickerProviderStateMixin {
+  String canjiazongshu_str = '0';
+  String benrenqiandao_str = '0';
+  String daiqianrenshu_str = '0';
+  String weiqianrenshu_str = '0';
 
+  MyCultivateDetailTopTotalEntity _data = null;
 
   // 选项卡控制器
   TabController _tabController;
@@ -19,7 +26,25 @@ class _CultiveCourceSignDetailState extends State<CultiveCourceSignDetail>  with
     // TODO: implement initState
     super.initState();
     _tabController = TabController(initialIndex: 0,length: 3, vsync: this,);
-
+    Map params = {
+      "id":this.widget.params["id"]
+    };
+    HomeRequest.requestMyCultivateSignTotal(StorageUtil().getSureUserModel().TokenID, params).then((value){
+      _data= value;
+      _data.xList.forEach((element) {
+        if(element.value == '参加总数'){
+          canjiazongshu_str = element.key.toString();
+        }else if(element.value == '本人签到'){
+          benrenqiandao_str = element.key.toString();
+        }else if(element.value == '代签人数'){
+          daiqianrenshu_str = element.key.toString();
+        }else if(element.value == '未签人数'){
+          weiqianrenshu_str = element.key.toString();
+        }
+      });
+      setState(() {
+      });
+    });
   }
 
 
@@ -64,7 +89,7 @@ class _CultiveCourceSignDetailState extends State<CultiveCourceSignDetail>  with
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('100',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(38),fontWeight: FontWeight.bold),),
+                      Text(canjiazongshu_str,style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(38),fontWeight: FontWeight.bold),),
                       SizedBox(height: ScreenAdaper.height(10),),
                       Text('参加总数',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(26)),),
                     ],
@@ -86,7 +111,7 @@ class _CultiveCourceSignDetailState extends State<CultiveCourceSignDetail>  with
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('12',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(38),fontWeight: FontWeight.bold),),
+                      Text(benrenqiandao_str,style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(38),fontWeight: FontWeight.bold),),
                       SizedBox(height: ScreenAdaper.height(10),),
                       Text('本人签到',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(26)),),
                     ],
@@ -108,7 +133,7 @@ class _CultiveCourceSignDetailState extends State<CultiveCourceSignDetail>  with
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('21',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(38),fontWeight: FontWeight.bold),),
+                      Text(daiqianrenshu_str,style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(38),fontWeight: FontWeight.bold),),
                       SizedBox(height: ScreenAdaper.height(10),),
                       Text('代签人数',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(26)),),
                     ],
@@ -130,7 +155,7 @@ class _CultiveCourceSignDetailState extends State<CultiveCourceSignDetail>  with
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('8',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(38),fontWeight: FontWeight.bold),),
+                      Text(weiqianrenshu_str,style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(38),fontWeight: FontWeight.bold),),
                       SizedBox(height: ScreenAdaper.height(10),),
                       Text('未签人数',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(26)),),
                     ],
@@ -174,9 +199,9 @@ class _CultiveCourceSignDetailState extends State<CultiveCourceSignDetail>  with
             child: TabBarView(
               controller: _tabController,
               children: <Widget>[
-                CultiveCourceSignDetailChildWidget(),
-                CultiveCourceSignDetailChildWidget(),
-                CultiveCourceSignDetailChildWidget(),
+                CultiveCourceSignDetailChildWidget({"id":this.widget.params["id"],"index":'0'}),
+                CultiveCourceSignDetailChildWidget({"id":this.widget.params["id"],"index":'1'}),
+                CultiveCourceSignDetailChildWidget({"id":this.widget.params["id"],"index":'2'}),
               ],
             ),
           )

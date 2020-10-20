@@ -38,13 +38,84 @@ class Api{
     return resData ?? {};
   }
 
-  /// 账号密码登录
+  /// 首页头部数据
   Future<Map> getHomePageTopData(String TokenID) async {
     Map resData = await safeRequest(
       serviceUrl['app_home_total'] + '?TokenID=${TokenID}',
       data: {
       },
       options: Options(method: 'POST'),
+    );
+    return resData ?? {};
+  }
+
+  /// 首页数据
+  Future<Map> getHomePageData(String TokenID,String leixing,String yuedu) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_bottom'] + '?TokenID=${TokenID}' + '&yuedu=${yuedu}' + '&leixing=${leixing}',
+      data: {
+      },
+      options: Options(method: 'POST'),
+    );
+    return resData ?? {};
+  }
+
+  ///本月培训
+  Future<Map> getCurrentCultivate(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_current_cultivate'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
+  ///本月培训详情
+  Future<Map> getCurrentCultivateDetail(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_current_cultivate_detail'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
+  ///本月培训签到
+  Future<Map> getSignCultivate(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_sign_cultivate'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
+  ///我的培训签到详情头部数据
+  Future<Map> getMySignCultivateTotal(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_my_sign_cultivate_total'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
+  ///我的培训签到详情底部分类
+  Future<Map> getMySignCultivateBottomFenLei(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_my_sign_cultivate_fenlei'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
+  ///本月培训
+  Future<Map> getCurrentMonthExaminList(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_curren_month_examine'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
     );
     return resData ?? {};
   }

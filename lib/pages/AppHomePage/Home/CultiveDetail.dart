@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
+import 'home_request/HomeRequest.dart';
+import 'home_request/cultivate_deatil_entity.dart';
 class CultiveDetail extends StatefulWidget {
   CultiveDetail({Key key, this.params}) : super(key: key);
   final  params;
@@ -8,6 +10,24 @@ class CultiveDetail extends StatefulWidget {
 }
 
 class _CultiveDetailState extends State<CultiveDetail> {
+
+  CultivateDeatilEntity _data = null;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    Map params= {
+     "id":this.widget.params['id']
+    };
+    HomeRequest.requestCurrentCultivateDeatilData(StorageUtil().getSureUserModel().TokenID, params).then((value){
+        _data = value;
+        setState(() {
+        });
+    });
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +41,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
                 child:
                     Container(
                       child: ListView.builder(
-                          itemCount: 1,
+                          itemCount: _data == null?0:1,
                           itemBuilder: (ctx, index) {
                             return _buildItem(context);
                           }
@@ -64,11 +84,16 @@ class _CultiveDetailState extends State<CultiveDetail> {
             ),
         onTap: (){
           LogUtil.d('-------去签到');
-          Navigator.pushNamed(
-            context,
-            '/courseSignSuccess',
-            arguments: {}, //　传递参数
-          );
+          Map params= {
+            "id":this.widget.params['id']
+          };
+          HomeRequest.requestSignCultivateData(StorageUtil().getSureUserModel().TokenID, params).then((value){
+            Navigator.pushNamed(
+              context,
+              '/courseSignSuccess',
+              arguments: {}, //　传递参数
+            );
+          });
         },
       )
     );
@@ -80,29 +105,30 @@ class _CultiveDetailState extends State<CultiveDetail> {
       child: Container(
         child: Column(
           children: [
-              new ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Container(
-                  color: Colors.black12,
-                  width: ScreenAdaper.width(700),
-                  height: ScreenAdaper.height(230),
-                ),
-              ),
+//              new ClipRRect(
+//                borderRadius: BorderRadius.circular(5),
+//                child: Container(
+//                  color: Colors.black12,
+//                  width: ScreenAdaper.width(700),
+//                  height: ScreenAdaper.height(230),
+//                ),
+//              ),
+            CachedNetworkImage(imageUrl: _data.banner,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(700),height: ScreenAdaper.width(230),fit: BoxFit.cover,),
             SizedBox(height: ScreenAdaper.height(20),),
             Container(
               margin: EdgeInsets.only(left: ScreenAdaper.width(20),),
               alignment: Alignment.centerLeft,
-              child: Text('2020执业护士考核指南',style: TextStyle(color: Colors.black,fontSize: ScreenAdaper.sp(37),fontWeight: FontWeight.bold),),
+              child: Text(_data.title,style: TextStyle(color: Colors.black,fontSize: ScreenAdaper.sp(37),fontWeight: FontWeight.bold),),
             ),
             SizedBox(height: ScreenAdaper.height(20),),
             Row(
               children: [
                 SizedBox(width: ScreenAdaper.width(20),),
                 Text('发布人',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                Text('某某某',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.oP_Regist,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.width(50),),
                 Text('发布时间:',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                Text('2020年8月20日',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.releaseTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(70),),
@@ -134,7 +160,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
                 SizedBox(width: ScreenAdaper.width(20),),
                 Text('开始时间',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
-                Text('2020年8月20日 14：20',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -145,7 +171,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
 
                 Text('讲   师',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
-                Text('邓换',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.trainer,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -157,7 +183,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
                 Text('地  点',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
 
-                Text('A区6楼会议室2号',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.address,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -169,7 +195,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
                 Text('培训对象',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
 
-                Text('护理科全员',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.trainingObjects,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -181,7 +207,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
                 Text('报名人数',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
 
-                Text('203/300人',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                Text('${_data.personCount}/' +'${_data.joinCount}' + '人',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
           ],
