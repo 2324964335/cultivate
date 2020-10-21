@@ -73,8 +73,8 @@ class _CurrentMonthExamineState extends State<CurrentMonthExamine>  with SingleT
                   child: TabBarView(
                     controller: _tabController,
                     children: <Widget>[
-                      CurrentMonthExamineChildWidget(0,widget.params["examineType"]),
-                      CurrentMonthExamineChildWidget(1,widget.params["examineType"]),
+                      CurrentMonthExamineChildWidget(0,0,widget.params["examineType"]),
+                      CurrentMonthExamineChildWidget(1,1,widget.params["examineType"]),
                     ],
                   ),
                 )

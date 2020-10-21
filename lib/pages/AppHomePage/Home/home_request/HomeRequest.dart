@@ -109,4 +109,17 @@ class HomeRequest{
       return null;
     }
   }
+
+  ///本月培训人员列表 getCurrentMonthExaminList
+  static Future<dynamic> requestCurrentMonthExaminPersonList(String tokenID,Map params) async {
+    Map resData = await Api().getCurrentMonthExaminPersonList(tokenID,params);
+    LogUtil.d(resData);
+//    if (resData['success'] == 1){
+//      return JsonConvert.fromJsonAsT<CurrentMonthExamineListEntity>(resData['data'][0]);
+//    }else if(resData['success'] == -1101){
+//      return resData;
+//    }else{
+//      return null;
+//    }
+  }
 }

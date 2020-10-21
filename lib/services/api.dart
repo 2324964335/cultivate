@@ -119,4 +119,14 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///本月培训人员列表
+  Future<Map> getCurrentMonthExaminPersonList(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_curren_month_examine_person'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }

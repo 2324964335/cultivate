@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
+import 'home_request/HomeRequest.dart';
 class ExaminePersonList extends StatefulWidget {
   ExaminePersonList({Key key, this.params}) : super(key: key);
   final  params;
@@ -8,6 +9,18 @@ class ExaminePersonList extends StatefulWidget {
 }
 
 class _ExaminePersonListState extends State<ExaminePersonList> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Map params = {
+      "id":this.widget.params['id']
+    };
+    HomeRequest.requestCurrentMonthExaminPersonList(StorageUtil().getSureUserModel().TokenID, params).then((value){
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

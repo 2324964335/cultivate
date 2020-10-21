@@ -5,7 +5,8 @@ import '../home_request/current_month_examine_list_entity.dart';
 class CurrentMonthExamineChildWidget extends StatefulWidget {
   final int index;
   final int examineType;
-  CurrentMonthExamineChildWidget(this.index,this.examineType);
+  final int isEnd;
+  CurrentMonthExamineChildWidget(this.index,this.isEnd,this.examineType);
   @override
   _CurrentMonthExamineChildWidgetState createState() => _CurrentMonthExamineChildWidgetState();
 }
@@ -19,7 +20,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
     super.initState();
     Map params = {
       "page":0,
-      "status":1
+      "status":this.widget.isEnd
     };
     HomeRequest.requestCurrentMonthExaminList(StorageUtil().getSureUserModel().TokenID, params).then((value){
       _data = value;
@@ -172,7 +173,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
               Navigator.pushNamed(
                 context,
                 '/examinePersonList',
-                arguments: {}, //　传递参数
+                arguments: {'id':item.iD}, //　传递参数
               );
             }
           }

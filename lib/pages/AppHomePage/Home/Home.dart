@@ -182,7 +182,12 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   Widget _buildGoToLogin(BuildContext context){
     return GestureDetector(
-      child: Text('去登录'),
+      child: Container(
+        width: ScreenAdaper.width(750),
+        height: ScreenAdaper.width(300),
+        alignment: Alignment.center,
+        child: LightText.build('暂未登录'),
+      ),
     );
   }
 

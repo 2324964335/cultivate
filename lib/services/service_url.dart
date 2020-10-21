@@ -11,4 +11,6 @@ const serviceUrl = {
    'app_my_sign_cultivate_total':appurlPro + 'Education/GetUserEduTotal', /// 我的签到培训详情总
    'app_my_sign_cultivate_fenlei':appurlPro + 'Education/GetUserEduList', /// 我的签到培训详情分类
    'app_curren_month_examine':appurlPro + 'Education/GetCheckList', ///本月培训列表
+   'app_curren_month_examine_person':appurlPro + 'Education/GetCheckUser', ///本月培训人员列表
+
 };
