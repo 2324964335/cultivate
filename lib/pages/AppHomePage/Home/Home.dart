@@ -33,6 +33,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   HomePageTopTotalDataData _topdata = null;
   HomePageDataEntity _bottomdata = null;
   bool _isLoading = false;
+  String _lei = '-1';
+  String _yue = '-1';
 
   @override
   void initState() {
@@ -57,24 +59,26 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         setState(() {
         });
       });
-
-
-      HomeRequest.requestHomePageData(_userModelProvider.getuserModel.TokenID,'1','1').then((value){
-        LogUtil.d('------ffff----${value}');
-        _isLoading = false;
-        if(value is Map){
-          if(value["success"] == -1101){
-            StorageUtil().removeLogin().then((value){
-              _userModelProvider.setCurrenUserModel();
-            });
-            return;
-          }
-        }
-        _bottomdata = value;
-        setState(() {
-        });
-      });
+      getHomeList('-1', '-1');
     }
+  }
+
+  void getHomeList(String lei,String yue){
+    HomeRequest.requestHomePageData(_userModelProvider.getuserModel.TokenID,lei,yue).then((value){
+      LogUtil.d('------ffff----${value}');
+      _isLoading = false;
+      if(value is Map){
+        if(value["success"] == -1101){
+          StorageUtil().removeLogin().then((value){
+            _userModelProvider.setCurrenUserModel();
+          });
+          return;
+        }
+      }
+      _bottomdata = value;
+      setState(() {
+      });
+    });
   }
 
   @override
@@ -168,7 +172,33 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 //     return HomeTopHeader();
      return Consumer<GainUserModel>(
        builder: (key, build, child){
-        return HomeTopHeader(_topdata);
+//        return HomeTopHeader(
+//            data:_topdata,
+//            onSingleSelected(index,index){
+//
+//        });
+       return HomeTopHeader(
+         data: _topdata,
+         onSelected: (lei,yue){
+           LogUtil.d('------${lei}------${yue}');
+           if(lei=='全部'){
+             _lei = '-1';
+           }else if(lei == '线上'){
+             _lei = '1';
+           }else{
+             _lei = '0';
+           }
+
+           if(lei=='全部'){
+             _yue = '-1';
+           }else if(lei == '已读'){
+              _yue = '1';
+           }else{
+              _yue = '0';
+           }
+           getHomeList(_lei, _yue);
+         },
+       );
        }
      );
     }else{

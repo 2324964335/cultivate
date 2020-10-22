@@ -3,21 +3,87 @@ import '../../../../utils/util.dart';
 import 'package:cultivate/utils/screen_adaper.dart';
 import '../home_request/home_page_top_month_entity.dart';
 import '../home_request/home_page_top_total_data_entity.dart';
-class HomeTopHeader extends StatelessWidget {
-  final controller = TextEditingController();
+import '../../../../components/flutter_jd_address_selector.dart';
+
+
+
+
+class HomeTopHeader extends StatefulWidget {
+  final Function(String Lei,String yue) onSelected;
+
   final HomePageTopTotalDataData data;
-  HomeTopHeader(this.data);
+  HomeTopHeader({Key key,
+    this.data,
+    this.onSelected
+  });
+  @override
+  _HomeTopHeaderState createState() => _HomeTopHeaderState();
+}
+
+class _HomeTopHeaderState extends State<HomeTopHeader> {
+
+  final controller = TextEditingController();
   String benyuepeixun_string = '0';
   String benyuekaohe_string = '0';
   String daiwoqueren_string = '0';
   String weidugonggao_string = '0';
+
+    bool isLeixing = false;
+    bool isYueDu = false;
+
+    String leixing_str = "全部";
+    String yuedu_str = "全部";
+
+
+
+
+  void _choiceDialog(String titlee,List titleList) async {
+    if(titlee == '选择类型'){
+      isLeixing = true;
+    }else{
+      isYueDu = true;
+    }
+    setState(() {});
+    print('======');
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return JDAddressDialog(
+              onSingleSelected: (title) {
+//                titleList.forEach((element) {
+//                  if(element.name == title){
+//                    if(title == '选择日期'){
+//                      timeString = element;
+//                    }else if(title == '选择阅读'){
+//                      readString = element;
+//                    }else{
+//                      remindString = element;
+//                    }
+//                  }
+//                });
+                if(titlee == '选择类型'){
+                  leixing_str = title;
+                  isLeixing = false;
+                }else{
+                  yuedu_str = title;
+                  isYueDu = false;
+                }
+                this.widget.onSelected(leixing_str,yuedu_str);
+                setState(() {});
+              },
+              title: titlee,
+              titleArr: titleList,
+              selectedColor: Colors.red,
+              unselectedColor: Colors.black);
+        });
+  }
   @override
   Widget build(BuildContext context) {
-    LogUtil.d('-----------0-${this.data}');
-    if(this.data != null){
-      this.data.xList.forEach((element) {
+    LogUtil.d('-----------0-${this.widget.data}');
+    if(this.widget.data != null){
+      this.widget.data.xList.forEach((element) {
         if(element.value == "本月考核"){
-            benyuekaohe_string = element.key.toString();
+          benyuekaohe_string = element.key.toString();
         }else if(element.value == "本月培训"){
           benyuepeixun_string = element.key.toString();
         }else if(element.value == "未读公告"){
@@ -56,12 +122,12 @@ class HomeTopHeader extends StatelessWidget {
 //                                        hintText: 'Search',
                                         hintStyle: TextStyle(color: Colors.black45),
                                         border: InputBorder.none,
-                                      enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 0.8,
-                                          )
-                                      )
+                                        enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 0.8,
+                                            )
+                                        )
                                     ),
                                     // onChanged: onSearchTextChanged,
                                   ),
@@ -124,7 +190,7 @@ class HomeTopHeader extends StatelessWidget {
                           ),
                           onTap: (){
 
-                            if(this.data==null){
+                            if(this.widget.data==null){
                               Navigator.pushNamed(
                                 context,
                                 '/login',
@@ -155,7 +221,7 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                            if(this.data==null){
+                            if(this.widget.data==null){
                               Navigator.pushNamed(
                                 context,
                                 '/login',
@@ -205,7 +271,7 @@ class HomeTopHeader extends StatelessWidget {
                           ),
                           onTap: (){
                             LogUtil.d('--------');
-                            if(this.data==null){
+                            if(this.widget.data==null){
                               Navigator.pushNamed(
                                 context,
                                 '/login',
@@ -236,7 +302,7 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                            if(this.data==null){
+                            if(this.widget.data==null){
                               Navigator.pushNamed(
                                 context,
                                 '/login',
@@ -287,7 +353,7 @@ class HomeTopHeader extends StatelessWidget {
                           onTap: (){
                             LogUtil.d('--------');
 
-                            if(this.data==null){
+                            if(this.widget.data==null){
                               Navigator.pushNamed(
                                 context,
                                 '/login',
@@ -317,7 +383,7 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                            if(this.data==null){
+                            if(this.widget.data==null){
                               Navigator.pushNamed(
                                 context,
                                 '/login',
@@ -359,7 +425,7 @@ class HomeTopHeader extends StatelessWidget {
                                   Container(
                                     child: Text(weidugonggao_string,style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(50),fontWeight: FontWeight.bold),),
                                   ),
-                                  
+
                                   Container(
                                     margin: EdgeInsets.only(top: ScreenAdaper.width(10),bottom: ScreenAdaper.height(20)),
                                     child: Text("未读公告",style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(30)),),
@@ -369,7 +435,7 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                            if(this.data==null){
+                            if(this.widget.data==null){
                               Navigator.pushNamed(
                                 context,
                                 '/login',
@@ -399,7 +465,7 @@ class HomeTopHeader extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                            if(this.data==null){
+                            if(this.widget.data==null){
                               Navigator.pushNamed(
                                 context,
                                 '/login',
@@ -408,9 +474,9 @@ class HomeTopHeader extends StatelessWidget {
                               return;
                             }
                             Navigator.pushNamed(
-                                context,
-                                '/theoreticalModeling',
-                                arguments: {},
+                              context,
+                              '/theoreticalModeling',
+                              arguments: {},
                             );//　传递参数
                           },
                         )
@@ -429,7 +495,7 @@ class HomeTopHeader extends StatelessWidget {
                         child: Image.asset("asset/images/home/peixunguanli.png",fit: BoxFit.fitWidth,),
                       ),
                       onTap: (){
-                        if(this.data==null){
+                        if(this.widget.data==null){
                           Navigator.pushNamed(
                             context,
                             '/login',
@@ -451,7 +517,7 @@ class HomeTopHeader extends StatelessWidget {
                         child: Image.asset("asset/images/home/kaoheguanli.png",fit: BoxFit.fitWidth,),
                       ),
                       onTap: (){
-                        if(this.data==null){
+                        if(this.widget.data==null){
                           Navigator.pushNamed(
                             context,
                             '/login',
@@ -491,24 +557,39 @@ class HomeTopHeader extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
-                  child: Row(
-                    children: [
-                      Text('类型',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
-                      Icon(Icons.add,size: ScreenAdaper.width(25),),
-                    ],
+                GestureDetector(
+                  child: Container(
+                    margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
+                    child: Row(
+                      children: [
+                        Text(leixing_str,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+//                      Icon(Icons.add,size: ScreenAdaper.width(25),),
+                        Image.asset("asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
+
+                      ],
+                    ),
                   ),
+                  onTap: (){
+                      _choiceDialog('选择类型', ['全部','线下','线上']);
+                  },
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
-                  child: Row(
-                    children: [
-                      Text('阅读',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
-                      Icon(Icons.add,size: ScreenAdaper.width(25),),
-                    ],
+                GestureDetector(
+                  child: Container(
+                    margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
+                    child: Row(
+                      children: [
+                        Text(yuedu_str,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+//                      Icon(Icons.add,size: ScreenAdaper.width(25),),
+                        Image.asset("asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
+
+                      ],
+                    ),
                   ),
-                ),
+                  onTap: (){
+                    _choiceDialog('选择阅读', ['全部','已读','未读']);
+
+                  },
+                )
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 class CultiveSignQrcode extends StatefulWidget {
   CultiveSignQrcode({Key key, this.params}) : super(key: key);
   final  params;
@@ -8,6 +9,13 @@ class CultiveSignQrcode extends StatefulWidget {
 }
 
 class _CultiveSignQrcodeState extends State<CultiveSignQrcode> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,24 +97,25 @@ class _CultiveSignQrcodeState extends State<CultiveSignQrcode> {
 //        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: ScreenAdaper.height(15),),
-          Text('2020.8传染病防控',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(40)),),
+          Text(this.widget.params["title"],style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(40)),),
           SizedBox(height: ScreenAdaper.height(25),),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('培训人：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-              Text('某某某',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+              Text(this.widget.params["trainer"],style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
 //              Image.asset(''),
             ],
           ),
           SizedBox(height: ScreenAdaper.height(35),),
 
-          Container(
-            width: ScreenAdaper.width(450),
-            height: ScreenAdaper.width(450),
-            color: Color(0xFF757575),
-          ),
+//          Container(
+//            width: ScreenAdaper.width(450),
+//            height: ScreenAdaper.width(450),
+//            color: Color(0xFF757575),
+//          ),
+          QrImage(data: this.widget.params["id"].toString(),size: ScreenAdaper.width(450),),
           SizedBox(height: ScreenAdaper.height(55),),
 
         ],

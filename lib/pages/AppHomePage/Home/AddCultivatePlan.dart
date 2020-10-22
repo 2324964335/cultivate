@@ -243,20 +243,11 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
         ),
       ),
       onTap: (){
-        if(index == 5){
-          Navigator.pushNamed(
-            context,
-            '/addScheduleRemind',
-            arguments: {}, //　传递参数
-          );
-        }else{
-          ///SelectTotalRecivePerson
-          Navigator.pushNamed(
-            context,
-            '/selectTotalRecivePerson',
-            arguments: {}, //　传递参数
-          );
-        }
+        Navigator.pushNamed(
+          context,
+          '/selectTotalRecivePerson',
+          arguments: {}, //　传递参数
+        );
       },
     );
   }

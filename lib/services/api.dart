@@ -52,10 +52,10 @@ class Api{
   /// 首页数据
   Future<Map> getHomePageData(String TokenID,String leixing,String yuedu) async {
     Map resData = await safeRequest(
-      serviceUrl['app_home_bottom'] + '?TokenID=${TokenID}' + '&yuedu=${yuedu}' + '&leixing=${leixing}',
+      serviceUrl['app_home_bottom'] + '?TokenID=${TokenID}' + '&leixing=${yuedu}' + '&yuedu=${leixing}',
       data: {
       },
-      options: Options(method: 'POST'),
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
     );
     return resData ?? {};
   }

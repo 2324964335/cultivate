@@ -16,7 +16,7 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
   void initState() {
     // TODO: implement initState
     Map params = {
-      'type':0,
+      'type':this.widget.index,
       'pageIdx':1,
       'pageSize':20
     };
@@ -119,7 +119,7 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
             Navigator.pushNamed(
               context,
               '/cultiveSignQrcode',
-              arguments: {"id":data.iD}, //　传递参数
+              arguments: {"id":data.iD,"title":data.title,"trainer":data.trainer}, //　传递参数
             );
           }else{
             Navigator.pushNamed(

@@ -58,7 +58,7 @@ dependencies:
 #  auto_orientation: ^0.0.2
   crypto: ^2.0.6
   webview_flutter: ^0.3.7+1 #网页加载
-
+  qr_flutter: ^3.1.0
 
 dev_dependencies:
   flutter_test:
