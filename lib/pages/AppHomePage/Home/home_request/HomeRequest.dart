@@ -11,6 +11,7 @@ import 'my_cultivate_detail_top_total_entity.dart';
 import 'my_cultivate_detail_bottom_person_list_entity.dart';
 import 'current_month_examine_list_entity.dart';
 import 'information_detail_comment_model_entity.dart';
+import 'home_unread_information_model_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -149,4 +150,26 @@ class HomeRequest{
     return resData;
   }
 
+  ///首页未读公告列表
+  static Future<dynamic> requestHomeUnreadInformation(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeUnReadInformationList(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeUnreadInformationModelEntity>(resData['data'][0]);
+    }else{
+      return null;
+    }
+  }
+
+
+  ///首页未读公告列表详情
+  static Future<dynamic> requestHomeUnreadInformationDentail(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeUnReadInformationItemdetail(tokenID,params);
+    LogUtil.d(resData);
+//    if (resData['success'] == 1){
+//      return JsonConvert.fromJsonAsT<HomeUnreadInformationModelEntity>(resData['data'][0]);
+//    }else{
+//      return null;
+//    }
+  }
 }

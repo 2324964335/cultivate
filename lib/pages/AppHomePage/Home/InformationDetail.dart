@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import '../../../components/func.dart';
 import '../../../components/alert_dialog.dart';
+import 'home_request/HomeRequest.dart';
 class InformationDetail extends StatefulWidget {
   InformationDetail({Key key, this.params}) : super(key: key);
   final  params;
@@ -10,6 +11,21 @@ class InformationDetail extends StatefulWidget {
 }
 
 class _InformationDetailState extends State<InformationDetail> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getUnreadInformationDetail();
+  }
+
+  void _getUnreadInformationDetail(){
+    HomeRequest.requestHomeUnreadInformationDentail(StorageUtil().getSureUserModel().TokenID, {"id":this.widget.params["id"]}).then((value){
+
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

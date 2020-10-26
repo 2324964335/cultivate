@@ -158,4 +158,24 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///首页未读公告数据列表
+  Future<Map> getRequestHomeUnReadInformationList(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_unread'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
+  ///首页未读公告数据列表详情
+  Future<Map> getRequestHomeUnReadInformationItemdetail(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_unread_detail'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }
