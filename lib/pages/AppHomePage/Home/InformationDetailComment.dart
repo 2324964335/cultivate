@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import '../../../components/text_field.dart';
+import 'home_request/HomeRequest.dart';
+import 'home_request/information_detail_comment_model_entity.dart';
 
 class InformationDetailComment extends StatefulWidget {
   InformationDetailComment({Key key, this.params}) : super(key: key);
@@ -15,6 +17,57 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   //用于焦点
   final FocusNode _inputNode = FocusNode();
   TextEditingController _inputController = TextEditingController();
+  ScrollController _scrollController = ScrollController(); //listview的控制器
+  InformationDetailCommentModelEntity _dataTotal = null;
+  bool canContinueLoading = true;
+  int PageIndex = 1;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getListData(1);
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        print('滑动到了最底部');
+        getListData(PageIndex);
+      }
+    });
+  }
+
+  void getListData(int pageIndex){
+    if(pageIndex!=1&&canContinueLoading == false){
+      ToastShow.show('暂无更多数据');
+      return;
+    }
+    Map params = {
+      'id':this.widget.params['id'],
+      'pageIdx':pageIndex,
+      'pageSize':10
+    };
+    HomeRequest.requestHomeItemDetail(StorageUtil().getSureUserModel().TokenID,params).then((value){
+      _dataTotal = value;
+      if(pageIndex==1){
+        _dataTotal = value;
+        canContinueLoading = true;
+      }else{
+        _dataTotal.data.xList.addAll(value.data.xList);
+        if((value.xList as List).length < 10){
+          canContinueLoading = false;
+        }
+      }
+      PageIndex +=1;
+      setState(() {
+      });
+    });
+  }
+
+  Future<Null> _handleRefresh() async {
+    PageIndex = 1;
+    getListData(PageIndex);
+  }
 
   @override
   void dispose() {
@@ -34,12 +87,19 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                 Positioned(
                     child:
                     Container(
-                      child: ListView.builder(
-                        itemCount: 100,
+                      child:
+                      RefreshIndicator(
+                        onRefresh: _handleRefresh,
+                        child:
+                      ListView.builder(
+                        controller: _scrollController,
+                        physics: new AlwaysScrollableScrollPhysics(),
+                        itemCount: _dataTotal == null?0:_dataTotal.data.xList.length + 1,
                         itemBuilder: (ctx,index){
                           return _buildItemByIndex(context, index);
                         },
                       ),
+                      )
                     ),
                     left: 0,
                     bottom: ScreenAdaper.height(101),
@@ -100,6 +160,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   }
 
   Widget _buildHeaderItem(BuildContext context,int index){
+    InformationDetailCommentModelData data = _dataTotal.data;
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
       child: Column(
@@ -128,7 +189,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                       children: [
                         Container(
 
-                          child: Text("微课堂《输液规则技术》",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
+                          child: Text(data.title,style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
                           margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
                         ),
                         Container(
@@ -157,7 +218,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                             child: Row(
 
                               children: [
-                                Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(75),height:ScreenAdaper.width(75),),
+                                CachedNetworkImage(imageUrl: data.icon,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(75),height: ScreenAdaper.width(75),fit: BoxFit.contain,),
                                 SizedBox(width: ScreenAdaper.width(20),),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,16 +228,16 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                                       children: [
 //                                      SizedBox(width: ScreenAdaper.width(20),),
                                         Text('主讲人：',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                                        Text('某某某',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                        Text(data.trainer,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                         SizedBox(width: ScreenAdaper.width(50),),
                                         Text('开始时间:',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                                        Text('2020年8月20日',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                        Text(data.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                       ],
                                     ),
                                     SizedBox(height: ScreenAdaper.height(20),),
                                     Container(
                                       width: ScreenAdaper.width(580),
-                                      child: Text('请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习请至微课堂栏目中进行学习',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 100,),
+                                      child: Text(data.content,style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 100,),
                                     ),
                                     SizedBox(height: ScreenAdaper.height(20),),
 
@@ -191,7 +252,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                                               children: [
                                                 Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                                 SizedBox(width: ScreenAdaper.width(5),),
-                                                Text("126",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                                Text(data.likes.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                               ],
                                             ),
 
@@ -203,7 +264,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                                               children: [
                                                 Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                                 SizedBox(width: ScreenAdaper.width(5),),
-                                                Text("64",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                                Text(data.comments.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                               ],
                                             ),
 
@@ -215,7 +276,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                                               children: [
                                                 Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                                 SizedBox(width: ScreenAdaper.width(5),),
-                                                Text("1526",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                                Text(data.seeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                               ],
                                             ),
 
@@ -249,6 +310,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   }
 
   Widget _buildItem(BuildContext context,int index){
+    InformationDetailCommantModelDataList item = _dataTotal.data.xList[index];
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(0),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(0)),
       child: Container(
@@ -281,7 +343,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                           child: Row(
 
                             children: [
-                              Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(75),height:ScreenAdaper.width(75),),
+                              CachedNetworkImage(imageUrl: item.icon,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(75),height: ScreenAdaper.width(75),fit: BoxFit.contain,),
                               SizedBox(width: ScreenAdaper.width(20),),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,16 +352,16 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                                   Row(
                                     children: [
 //                                      SizedBox(width: ScreenAdaper.width(20),),
-                                      Text('某某某',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                      Text(item.name,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                       SizedBox(width: ScreenAdaper.width(290),),
-                                      Text('2020年8月20日',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                      Text(item.tsComment,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                     ],
                                   ),
                                   SizedBox(height: ScreenAdaper.height(20),),
                                   Container(
                                       width: ScreenAdaper.width(580),
                                       height: ScreenAdaper.height(60),
-                                    child:Text('关于2020 考试的通知的评论关于2020 考试的通知的评论关于2020 考试的通知的评论',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 2,),
+                                    child:Text(item.comment,style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 2,),
                                   ),
                                   SizedBox(height: ScreenAdaper.height(20),)
                                 ],

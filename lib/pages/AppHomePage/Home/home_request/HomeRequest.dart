@@ -10,6 +10,7 @@ import 'cultivate_deatil_entity.dart';
 import 'my_cultivate_detail_top_total_entity.dart';
 import 'my_cultivate_detail_bottom_person_list_entity.dart';
 import 'current_month_examine_list_entity.dart';
+import 'information_detail_comment_model_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -122,4 +123,18 @@ class HomeRequest{
 //      return null;
 //    }
   }
+
+
+  ///首页公告列表明细
+  static Future<dynamic> requestHomeItemDetail(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeItemDetail(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<InformationDetailCommentModelEntity>(resData);
+    }else{
+      return null;
+    }
+  }
+
+
 }

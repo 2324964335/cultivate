@@ -128,4 +128,14 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///首页列表明细
+  Future<Map> getRequestHomeItemDetail(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_item_detail'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }

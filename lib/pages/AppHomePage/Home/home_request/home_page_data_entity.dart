@@ -9,6 +9,8 @@ class HomePageDataEntity with JsonConvert<HomePageDataEntity> {
 class HomePageDataList with JsonConvert<HomePageDataList> {
 	@JSONField(name: "Title")
 	String title;
+	@JSONField(name: "ID")
+	String iD;
 	@JSONField(name: "Type")
 	int type;
 	@JSONField(name: "ReadType")

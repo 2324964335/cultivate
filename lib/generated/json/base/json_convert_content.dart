@@ -9,6 +9,8 @@ import 'package:cultivate/pages/AppHomePage/Home/home_request/home_page_top_tota
 import 'package:cultivate/generated/json/home_page_top_total_data_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/current_month_examine_list_entity.dart';
 import 'package:cultivate/generated/json/current_month_examine_list_entity_helper.dart';
+import 'package:cultivate/pages/AppHomePage/Home/home_request/information_detail_comment_model_entity.dart';
+import 'package:cultivate/generated/json/information_detail_comment_model_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/my_cultivate_detail_bottom_person_list_entity.dart';
 import 'package:cultivate/generated/json/my_cultivate_detail_bottom_person_list_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/current_cultivate_list_entity.dart';
@@ -36,7 +38,10 @@ class JsonConvert<T> {
 			return homePageTopTotalDataDataFromJson(data as HomePageTopTotalDataData, json) as T;			case HomePageTopTotalDataDataList:
 			return homePageTopTotalDataDataListFromJson(data as HomePageTopTotalDataDataList, json) as T;			case CurrentMonthExamineListEntity:
 			return currentMonthExamineListEntityFromJson(data as CurrentMonthExamineListEntity, json) as T;			case CurrentMonthExamineListList:
-			return currentMonthExamineListListFromJson(data as CurrentMonthExamineListList, json) as T;			case MyCultivateDetailBottomPersonListEntity:
+			return currentMonthExamineListListFromJson(data as CurrentMonthExamineListList, json) as T;			case InformationDetailCommentModelEntity:
+			return informationDetailCommentModelEntityFromJson(data as InformationDetailCommentModelEntity, json) as T;			case InformationDetailCommentModelData:
+			return informationDetailCommentModelDataFromJson(data as InformationDetailCommentModelData, json) as T;			case InformationDetailCommantModelDataList:
+			return informationDetailCommantModelDataListFromJson(data as InformationDetailCommantModelDataList, json) as T;			case MyCultivateDetailBottomPersonListEntity:
 			return myCultivateDetailBottomPersonListEntityFromJson(data as MyCultivateDetailBottomPersonListEntity, json) as T;			case MyCultivateDetailBottomPersonListList:
 			return myCultivateDetailBottomPersonListListFromJson(data as MyCultivateDetailBottomPersonListList, json) as T;			case CurrentCultivateListEntity:
 			return currentCultivateListEntityFromJson(data as CurrentCultivateListEntity, json) as T;			case CurrentCultivateListList:
@@ -57,7 +62,10 @@ class JsonConvert<T> {
 			return homePageTopTotalDataDataToJson(data as HomePageTopTotalDataData);			case HomePageTopTotalDataDataList:
 			return homePageTopTotalDataDataListToJson(data as HomePageTopTotalDataDataList);			case CurrentMonthExamineListEntity:
 			return currentMonthExamineListEntityToJson(data as CurrentMonthExamineListEntity);			case CurrentMonthExamineListList:
-			return currentMonthExamineListListToJson(data as CurrentMonthExamineListList);			case MyCultivateDetailBottomPersonListEntity:
+			return currentMonthExamineListListToJson(data as CurrentMonthExamineListList);			case InformationDetailCommentModelEntity:
+			return informationDetailCommentModelEntityToJson(data as InformationDetailCommentModelEntity);			case InformationDetailCommentModelData:
+			return informationDetailCommentModelDataToJson(data as InformationDetailCommentModelData);			case InformationDetailCommantModelDataList:
+			return informationDetailCommantModelDataListToJson(data as InformationDetailCommantModelDataList);			case MyCultivateDetailBottomPersonListEntity:
 			return myCultivateDetailBottomPersonListEntityToJson(data as MyCultivateDetailBottomPersonListEntity);			case MyCultivateDetailBottomPersonListList:
 			return myCultivateDetailBottomPersonListListToJson(data as MyCultivateDetailBottomPersonListList);			case CurrentCultivateListEntity:
 			return currentCultivateListEntityToJson(data as CurrentCultivateListEntity);			case CurrentCultivateListList:
@@ -78,7 +86,10 @@ class JsonConvert<T> {
 			return HomePageTopTotalDataData().fromJson(json);			case 'HomePageTopTotalDataDataList':
 			return HomePageTopTotalDataDataList().fromJson(json);			case 'CurrentMonthExamineListEntity':
 			return CurrentMonthExamineListEntity().fromJson(json);			case 'CurrentMonthExamineListList':
-			return CurrentMonthExamineListList().fromJson(json);			case 'MyCultivateDetailBottomPersonListEntity':
+			return CurrentMonthExamineListList().fromJson(json);			case 'InformationDetailCommentModelEntity':
+			return InformationDetailCommentModelEntity().fromJson(json);			case 'InformationDetailCommentModelData':
+			return InformationDetailCommentModelData().fromJson(json);			case 'InformationDetailCommantModelDataList':
+			return InformationDetailCommantModelDataList().fromJson(json);			case 'MyCultivateDetailBottomPersonListEntity':
 			return MyCultivateDetailBottomPersonListEntity().fromJson(json);			case 'MyCultivateDetailBottomPersonListList':
 			return MyCultivateDetailBottomPersonListList().fromJson(json);			case 'CurrentCultivateListEntity':
 			return CurrentCultivateListEntity().fromJson(json);			case 'CurrentCultivateListList':
@@ -100,7 +111,10 @@ class JsonConvert<T> {
 			return List<HomePageTopTotalDataData>();			case 'HomePageTopTotalDataDataList':
 			return List<HomePageTopTotalDataDataList>();			case 'CurrentMonthExamineListEntity':
 			return List<CurrentMonthExamineListEntity>();			case 'CurrentMonthExamineListList':
-			return List<CurrentMonthExamineListList>();			case 'MyCultivateDetailBottomPersonListEntity':
+			return List<CurrentMonthExamineListList>();			case 'InformationDetailCommentModelEntity':
+			return List<InformationDetailCommentModelEntity>();			case 'InformationDetailCommentModelData':
+			return List<InformationDetailCommentModelData>();			case 'InformationDetailCommantModelDataList':
+			return List<InformationDetailCommantModelDataList>();			case 'MyCultivateDetailBottomPersonListEntity':
 			return List<MyCultivateDetailBottomPersonListEntity>();			case 'MyCultivateDetailBottomPersonListList':
 			return List<MyCultivateDetailBottomPersonListList>();			case 'CurrentCultivateListEntity':
 			return List<CurrentCultivateListEntity>();			case 'CurrentCultivateListList':

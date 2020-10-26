@@ -9,7 +9,9 @@ class CurrentMonthCultiveChildWidget extends StatefulWidget {
   _CurrentMonthCultiveChildWidgetState createState() => _CurrentMonthCultiveChildWidgetState();
 }
 
-class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChildWidget> {
+class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChildWidget>  with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   CurrentCultivateListEntity _dataList = null;
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool canContinueLoading = true;
@@ -75,6 +77,7 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
       child: RefreshIndicator(
         onRefresh: _handleRefresh,
         child:ListView.builder(
+                    physics: new AlwaysScrollableScrollPhysics(),
                     itemCount: _dataList == null ? 0:_dataList.xList.length,
                     controller: _scrollController,
                     itemBuilder: (ctx, index) {

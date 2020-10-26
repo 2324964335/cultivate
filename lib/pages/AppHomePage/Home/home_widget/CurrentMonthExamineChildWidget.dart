@@ -69,6 +69,8 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
             onRefresh: _handleRefresh,
             child:
                 ListView.builder(
+                    physics: new AlwaysScrollableScrollPhysics(),
+
                     itemCount: _data==null?0:_data.xList.length,
                     controller: _scrollController,
                     itemBuilder: (ctx, index) {
