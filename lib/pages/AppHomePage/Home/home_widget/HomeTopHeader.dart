@@ -68,6 +68,7 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
                   yuedu_str = title;
                   isYueDu = false;
                 }
+                LogUtil.d('---------${leixing_str}---------${yuedu_str}');
                 this.widget.onSelected(leixing_str,yuedu_str);
                 setState(() {});
               },
@@ -92,6 +93,11 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
           daiwoqueren_string = element.key.toString();
         }
       });
+    }else{
+       benyuepeixun_string = '0';
+       benyuekaohe_string = '0';
+       daiwoqueren_string = '0';
+       weidugonggao_string = '0';
     }
     return Container(
       color: Colors.white70,

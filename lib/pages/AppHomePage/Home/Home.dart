@@ -32,14 +32,32 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   GainUserModel _userModelProvider;
   HomePageTopTotalDataData _topdata = null;
   HomePageDataEntity _bottomdata = null;
+  ScrollController _scrollController = ScrollController(); //listview的控制器
   bool _isLoading = false;
   String _lei = '-1';
   String _yue = '-1';
+  bool canContinueLoading = true;
+  int pageIndex = 1;
 
   @override
   void initState() {
     super.initState();
     LogUtil.d('-----1');
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        print('滑动到了最底部');
+        _getHomeList(_lei, _yue,pageIndex);
+      }
+    });
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _scrollController.dispose();
   }
 
   void getHomeTopData(){
@@ -59,23 +77,47 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         setState(() {
         });
       });
-      getHomeList('-1', '-1');
+      _getHomeList('-1', '-1',1);
     }
   }
 
-  void getHomeList(String lei,String yue){
-    HomeRequest.requestHomePageData(_userModelProvider.getuserModel.TokenID,lei,yue).then((value){
+  void _getHomeList(String lei,String yue,int pageInx){
+    if(_userModelProvider.getIsLogin()==false){
+      return;
+    }
+    if(pageIndex!=1&&canContinueLoading == false){
+      ToastShow.show('暂无更多数据');
+      return;
+    }
+    Map params = {
+      "leixing":lei,
+      "yue":yue,
+      "pageIdx":pageIndex,
+      "pageSize":10
+    };
+    HomeRequest.requestHomePageData(_userModelProvider.getuserModel.TokenID,params).then((value){
       LogUtil.d('------ffff----${value}');
       _isLoading = false;
       if(value is Map){
         if(value["success"] == -1101){
           StorageUtil().removeLogin().then((value){
+//            canContinueLoading = true;
+//            pageIndex = 1;
             _userModelProvider.setCurrenUserModel();
           });
           return;
         }
       }
-      _bottomdata = value;
+      if(pageInx==1){
+        _bottomdata = value;
+        canContinueLoading = true;
+      }else{
+        _bottomdata.xList.addAll(value.xList);
+        if((value.xList as List).length < 10){
+          canContinueLoading = false;
+        }
+      }
+      pageIndex +=1;
       setState(() {
       });
     });
@@ -83,32 +125,37 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    LogUtil.d('-----2');
     super.build(context);
     _userModelProvider = Provider.of<GainUserModel>(context);
     if(_userModelProvider.getuserModel == null){
-      LogUtil.d('-----3');
       _userModelProvider.setCurrenUserModel();
     }else{
-//      getHomeTopData();
     }
 
     if(_userModelProvider.getIsLogin()==false){
-      LogUtil.d('-----4');
       _topdata = null;
       _bottomdata = null;
     }
     LogUtil.d('----54----${_topdata}------${_userModelProvider.getIsLogin()}-------${_isLoading}');
     Future.delayed(Duration(milliseconds: 200)).then((e) {
-      LogUtil.d('-----8');
       if(_userModelProvider.getIsLogin()==true&&_topdata == null&&_isLoading == false){
         _isLoading = true;
-        LogUtil.d('-----5');
+        _lei = '-1';
+        _yue = '-1';
+        canContinueLoading = true;
+        pageIndex = 1;
         getHomeTopData();
+      }else if(_userModelProvider.getIsLogin()==false&&_isLoading == false){
+        _isLoading = true;
+        _lei = '-1';
+        _yue = '-1';
+        canContinueLoading = true;
+        pageIndex = 1;
+        _bottomdata = null;
+        _topdata = null;
+        setState(() {
+        });
       }
-//      else if(_userModelProvider.getIsLogin()==false){
-//        _topdata = null;
-//      }
     });
 
     Future.delayed(Duration(milliseconds: 2000)).then((e) {
@@ -157,14 +204,23 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
             },
-              child:   ListView.builder(
+              child:   RefreshIndicator(
+                onRefresh: _handleRefresh,
+                child: ListView.builder(
                     itemCount: _bottomdata==null?2:_bottomdata.xList.length + 1,
+                    controller: _scrollController,
                     itemBuilder: (ctx, index) {
                       return _judegeItemByIndex(context,index);
                     }
-                    )
+                ),
+              )
       )
     );
+  }
+
+  Future<Null> _handleRefresh() async {
+     pageIndex = 1;
+    _getHomeList(_lei, _yue,pageIndex);
   }
 
   Widget _judegeItemByIndex(BuildContext context,int index){
@@ -189,14 +245,16 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
              _lei = '0';
            }
 
-           if(lei=='全部'){
+           if(yue=='全部'){
              _yue = '-1';
-           }else if(lei == '已读'){
+           }else if(yue == '已读'){
               _yue = '1';
            }else{
               _yue = '0';
            }
-           getHomeList(_lei, _yue);
+           canContinueLoading = true;
+           pageIndex = 1;
+           _getHomeList(_lei, _yue,pageIndex);
          },
        );
        }
@@ -216,7 +274,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         width: ScreenAdaper.width(750),
         height: ScreenAdaper.width(300),
         alignment: Alignment.center,
-        child: LightText.build('暂未登录'),
+        child: LightText.build('暂无数据'),
       ),
     );
   }

@@ -14,13 +14,41 @@ class CurrentMonthExamineChildWidget extends StatefulWidget {
 class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChildWidget> {
 
   CurrentMonthExamineListEntity _data = null;
+  ScrollController _scrollController = ScrollController(); //listview的控制器
+  bool canContinueLoading = true;
+  int PageIndex = 1;
   @override
   void initState() {
     // TODO: implement initState
+    getListData(1);
     super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        print('滑动到了最底部');
+        getListData(PageIndex);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _scrollController.dispose();
+
+  }
+
+  void getListData(int pageIndex){
+    if(pageIndex!=1&&canContinueLoading == false){
+      ToastShow.show('暂无更多数据');
+      return;
+    }
     Map params = {
-      "page":0,
-      "status":this.widget.isEnd
+//      "page":0,
+      "status":this.widget.isEnd,
+      "pageIdx":pageIndex,
+      "pageSize":10
     };
     HomeRequest.requestCurrentMonthExaminList(StorageUtil().getSureUserModel().TokenID, params).then((value){
       _data = value;
@@ -29,15 +57,25 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
     });
   }
 
+  Future<Null> _handleRefresh() async {
+    PageIndex = 1;
+    getListData(PageIndex);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child:  ListView.builder(
-          itemCount: _data==null?0:_data.xList.length,
-          itemBuilder: (ctx, index) {
-            return _buildItem(context,index);
-          }
-      ),
+      child: RefreshIndicator(
+            onRefresh: _handleRefresh,
+            child:
+                ListView.builder(
+                    itemCount: _data==null?0:_data.xList.length,
+                    controller: _scrollController,
+                    itemBuilder: (ctx, index) {
+                      return _buildItem(context,index);
+                    }
+                ),
+      )
     );
   }
 

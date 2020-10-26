@@ -23,8 +23,8 @@ class HomeRequest{
     }
   }
 
-  static Future<dynamic> requestHomePageData(String tokenID,String leixing,String yuedu) async {
-    Map resData = await Api().getHomePageData(tokenID,leixing,yuedu);
+  static Future<dynamic> requestHomePageData(String tokenID,Map params) async {
+    Map resData = await Api().getHomePageData(tokenID,params);
     LogUtil.d(resData);
     if (resData['success'] == 1){
       return JsonConvert.fromJsonAsT<HomePageDataEntity>(resData['data'][0]);
