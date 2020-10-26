@@ -91,7 +91,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     }
     Map params = {
       "leixing":lei,
-      "yue":yue,
+      "yuedu":yue,
       "pageIdx":pageIndex,
       "pageSize":10
     };
@@ -112,7 +112,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         _bottomdata = value;
         canContinueLoading = true;
       }else{
-        _bottomdata.xList.addAll(value.xList);
+        if((value.xList as List).length > 0) {
+          _bottomdata.xList.addAll(value.xList);
+        }
         if((value.xList as List).length < 10){
           canContinueLoading = false;
         }
@@ -207,6 +209,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               child:   RefreshIndicator(
                 onRefresh: _handleRefresh,
                 child: ListView.builder(
+                    physics: new AlwaysScrollableScrollPhysics(),
                     itemCount: _bottomdata==null?2:_bottomdata.xList.length + 1,
                     controller: _scrollController,
                     itemBuilder: (ctx, index) {
@@ -407,7 +410,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       Navigator.pushNamed(
                         context,
                         '/informationDetailComment',
-                        arguments: {'id':ittem.iD}, //　传递参数
+                        arguments: {'id':ittem.iD,'st_see':ittem.st_see}, //　传递参数
                       );
                     },
                   ),

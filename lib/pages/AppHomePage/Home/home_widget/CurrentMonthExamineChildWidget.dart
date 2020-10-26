@@ -11,7 +11,9 @@ class CurrentMonthExamineChildWidget extends StatefulWidget {
   _CurrentMonthExamineChildWidgetState createState() => _CurrentMonthExamineChildWidgetState();
 }
 
-class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChildWidget> {
+class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChildWidget>   with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
 
   CurrentMonthExamineListEntity _data = null;
   ScrollController _scrollController = ScrollController(); //listview的控制器
@@ -52,6 +54,23 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
     };
     HomeRequest.requestCurrentMonthExaminList(StorageUtil().getSureUserModel().TokenID, params).then((value){
       _data = value;
+      if(pageIndex==1){
+        _data = value;
+        canContinueLoading = true;
+      }else{
+        LogUtil.d('1111');
+        if((value.xList as List).length > 0){
+          LogUtil.d('1111');
+
+          _data.xList.addAll(value.xList);
+        }
+        if((value.xList as List).length < 10){
+          canContinueLoading = false;
+        }
+      }
+      PageIndex +=1;
+      LogUtil.d('1112222221-------'+'${_data.xList.length}');
+
       setState(() {
       });
     });

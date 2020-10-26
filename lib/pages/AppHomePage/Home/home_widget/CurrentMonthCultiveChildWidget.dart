@@ -55,7 +55,9 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
         _dataList = value;
         canContinueLoading = true;
       }else{
-        _dataList.xList.addAll(value.xList);
+        if((value.xList as List).length > 0) {
+          _dataList.xList.addAll(value.xList);
+        }
         if((value.xList as List).length < 10){
           canContinueLoading = false;
         }

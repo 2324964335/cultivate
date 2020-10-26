@@ -3,6 +3,8 @@ import '../../../utils/util.dart';
 import '../../../components/text_field.dart';
 import 'package:flutter_my_picker/flutter_my_picker.dart';
 import 'package:flutter_my_picker/common/date.dart';
+import '../../../components/flutter_jd_address_selector.dart';
+
 class AddCultivatePlan extends StatefulWidget {
   AddCultivatePlan({Key key, this.params}) : super(key: key);
   final  params;
@@ -25,6 +27,9 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
   String endDateStr;
   String signStartDateStr;
   String baomingEndDateStr;
+
+  String leibie_string ='选择类别';
+
   bool isClickStartTime = false;
   int timeClickIndex = 0;
 
@@ -231,7 +236,7 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
                 LightText.build(title),
                 Row(
                   children: [
-//                    LightText.build(index == 4?'添加参与人':'无提醒'),
+                    index == 0?LightText.build(leibie_string):Container(),
                     Image.asset("asset/images/contact/jianttou.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
                   ],
                 ),
@@ -243,13 +248,44 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
         ),
       ),
       onTap: (){
-        Navigator.pushNamed(
-          context,
-          '/selectTotalRecivePerson',
-          arguments: {}, //　传递参数
-        );
+        if(title == '类别'){
+          _choiceDialog('选择类别',['高级护理','幼儿护理','中医护理','临床护理','涉外护理']);
+        }else{
+          Navigator.pushNamed(
+            context,
+            '/selectTotalRecivePerson',
+            arguments: {}, //　传递参数
+          );
+        }
       },
     );
+  }
+
+  void _choiceDialog(String titlee,List titleList) async {
+//    if(titlee == '选择类别'){
+//      isTimeSelect = true;
+//    }else if(titlee == '选择阅读'){
+//      isRead = true;
+//    }else{
+//      isRemind = true;
+//    }
+//    setState(() {});
+    print('======');
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return JDAddressDialog(
+              onSingleSelected: (title) {
+                if(titlee == '选择日期'){
+                  leibie_string = title;
+                }
+                setState(() {});
+              },
+              title: titlee,
+              titleArr: titleList,
+              selectedColor: Colors.red,
+              unselectedColor: Colors.black);
+        });
   }
 
 

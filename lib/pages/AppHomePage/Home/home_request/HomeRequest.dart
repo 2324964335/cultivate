@@ -136,5 +136,16 @@ class HomeRequest{
     }
   }
 
+  ///首页公告列表明细查看
+  static Future<dynamic> requestHomeItemDetailSee(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeItemDetailSee(tokenID,params);
+    LogUtil.d(resData);
+  }
+
+  ///首页公告列表明细点赞
+  static Future<dynamic> requestHomeItemDetailZan(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeItemDetailZan(tokenID,params);
+    LogUtil.d(resData);
+  }
 
 }

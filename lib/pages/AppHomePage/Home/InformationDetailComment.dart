@@ -22,12 +22,23 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   bool canContinueLoading = true;
   int PageIndex = 1;
 
+  void upLoadSee(){
+    if(this.widget.params['st_see'] == 0){
+      Map params = {
+        "id":this.widget.params["id"],
+        "ST_see":0
+      };
+      HomeRequest.requestHomeItemDetailSee(StorageUtil().getSureUserModel().TokenID, params).then((value){
+      });
+    }
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getListData(1);
+    upLoadSee();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -53,8 +64,10 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
         _dataTotal = value;
         canContinueLoading = true;
       }else{
-        _dataTotal.data.xList.addAll(value.data.xList);
-        if((value.xList as List).length < 10){
+        if((value.data.xList as List).length > 0) {
+          _dataTotal.data.xList.addAll(value.data.xList);
+        }
+        if((value.data.xList as List).length < 10){
           canContinueLoading = false;
         }
       }
@@ -67,6 +80,10 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   Future<Null> _handleRefresh() async {
     PageIndex = 1;
     getListData(PageIndex);
+  }
+
+  void dianZan(){
+
   }
 
   @override
@@ -229,7 +246,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
 //                                      SizedBox(width: ScreenAdaper.width(20),),
                                         Text('主讲人：',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                                         Text(data.trainer,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
-                                        SizedBox(width: ScreenAdaper.width(50),),
+                                        SizedBox(width: ScreenAdaper.width(30),),
                                         Text('开始时间:',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                                         Text(data.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                       ],

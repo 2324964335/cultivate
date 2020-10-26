@@ -138,4 +138,24 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///首页列表明细查看
+  Future<Map> getRequestHomeItemDetailSee(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_item_detail_see'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
+  ///首页列表明细点赞
+  Future<Map> getRequestHomeItemDetailZan(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_item_detail_zan'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }
