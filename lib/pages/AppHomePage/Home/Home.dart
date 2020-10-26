@@ -32,6 +32,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   GainUserModel _userModelProvider;
   HomePageTopTotalDataData _topdata = null;
   HomePageDataEntity _bottomdata = null;
+  List _bottomdata_list = [];
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool _isLoading = false;
   String _lei = '-1';
@@ -109,11 +110,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         }
       }
       if(pageInx==1){
+        _bottomdata_list = [];
         _bottomdata = value;
+        _bottomdata_list.addAll(value.xList);
         canContinueLoading = true;
       }else{
         if((value.xList as List).length > 0) {
-          _bottomdata.xList.addAll(value.xList);
+          _bottomdata_list.addAll(value.xList);
         }
         if((value.xList as List).length < 10){
           canContinueLoading = false;
@@ -283,7 +286,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   }
 
   Widget _buildItem(BuildContext context,int index){
-    HomePageDataList ittem = _bottomdata.xList[index];
+    HomePageDataList ittem = _bottomdata_list[index];
       return Container(
         padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
         child: Container(

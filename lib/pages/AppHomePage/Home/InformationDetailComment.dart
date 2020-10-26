@@ -19,6 +19,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   TextEditingController _inputController = TextEditingController();
   ScrollController _scrollController = ScrollController(); //listview的控制器
   InformationDetailCommentModelEntity _dataTotal = null;
+  List _dataTotal_list = [];
   bool canContinueLoading = true;
   int PageIndex = 1;
 
@@ -61,19 +62,25 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
     HomeRequest.requestHomeItemDetail(StorageUtil().getSureUserModel().TokenID,params).then((value){
       _dataTotal = value;
       if(pageIndex==1){
+        LogUtil.d('----3');
+        _dataTotal_list = [];
         _dataTotal = value;
+        _dataTotal_list.addAll(value.data.xList);
         canContinueLoading = true;
+        setState(() {
+        });
       }else{
         if((value.data.xList as List).length > 0) {
-          _dataTotal.data.xList.addAll(value.data.xList);
+          LogUtil.d('----2');
+          _dataTotal_list.addAll(value.data.xList);
         }
         if((value.data.xList as List).length < 10){
           canContinueLoading = false;
         }
+        setState(() {
+        });
       }
       PageIndex +=1;
-      setState(() {
-      });
     });
   }
 
@@ -82,13 +89,24 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
     getListData(PageIndex);
   }
 
-  void dianZan(){
-
+  void _dianZan(){
+    Map params = {
+      "id":this.widget.params["id"],
+      "ST_like":0
+    };
+     HomeRequest.requestHomeItemDetailZan(StorageUtil().getSureUserModel().TokenID, params).then((value){
+       if(value["success"] == 1){
+         ToastShow.show('点赞成功');
+       }else{
+         ToastShow.show('点赞失败');
+       }
+     });
   }
 
   @override
   void dispose() {
     _inputController.dispose();
+    _scrollController.dispose();
     // TODO: implement dispose
     super.dispose();
   }
@@ -111,7 +129,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                       ListView.builder(
                         controller: _scrollController,
                         physics: new AlwaysScrollableScrollPhysics(),
-                        itemCount: _dataTotal == null?0:_dataTotal.data.xList.length + 1,
+                        itemCount: _dataTotal == null?0:_dataTotal_list.length + 1,
                         itemBuilder: (ctx,index){
                           return _buildItemByIndex(context, index);
                         },
@@ -169,8 +187,12 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
               ),
             ),
             SizedBox(width: ScreenAdaper.width(10),),
-            Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
-
+            GestureDetector(
+              child: Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
+              onTap: (){
+                _dianZan();
+              },
+            ),
           ],
         )
     );
@@ -327,7 +349,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   }
 
   Widget _buildItem(BuildContext context,int index){
-    InformationDetailCommantModelDataList item = _dataTotal.data.xList[index];
+    InformationDetailCommantModelDataList item = _dataTotal_list[index];
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(0),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(0)),
       child: Container(

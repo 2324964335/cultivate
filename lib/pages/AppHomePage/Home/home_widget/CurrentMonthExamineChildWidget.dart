@@ -16,6 +16,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
   bool get wantKeepAlive => true;
 
   CurrentMonthExamineListEntity _data = null;
+  List _data_list = [];
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool canContinueLoading = true;
   int PageIndex = 1;
@@ -55,14 +56,16 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
     HomeRequest.requestCurrentMonthExaminList(StorageUtil().getSureUserModel().TokenID, params).then((value){
       _data = value;
       if(pageIndex==1){
+        _data_list= [];
         _data = value;
+        _data_list.addAll(value.xList);
         canContinueLoading = true;
       }else{
         LogUtil.d('1111');
         if((value.xList as List).length > 0){
           LogUtil.d('1111');
 
-          _data.xList.addAll(value.xList);
+          _data_list.addAll(value.xList);
         }
         if((value.xList as List).length < 10){
           canContinueLoading = false;
@@ -90,7 +93,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
                 ListView.builder(
                     physics: new AlwaysScrollableScrollPhysics(),
 
-                    itemCount: _data==null?0:_data.xList.length,
+                    itemCount: _data==null?0:_data_list.length,
                     controller: _scrollController,
                     itemBuilder: (ctx, index) {
                       return _buildItem(context,index);
@@ -101,7 +104,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
   }
 
   Widget _buildItem(BuildContext context,int index){
-    CurrentMonthExamineListList item = _data.xList[index];
+    CurrentMonthExamineListList item = _data_list[index];
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
       child: GestureDetector(

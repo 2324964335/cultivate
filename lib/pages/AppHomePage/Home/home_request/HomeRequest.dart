@@ -146,6 +146,7 @@ class HomeRequest{
   static Future<dynamic> requestHomeItemDetailZan(String tokenID,Map params) async {
     Map resData = await Api().getRequestHomeItemDetailZan(tokenID,params);
     LogUtil.d(resData);
+    return resData;
   }
 
 }

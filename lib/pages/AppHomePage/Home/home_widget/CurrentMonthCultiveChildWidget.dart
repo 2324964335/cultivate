@@ -13,6 +13,7 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
   @override
   bool get wantKeepAlive => true;
   CurrentCultivateListEntity _dataList = null;
+  List _dataList_list = [];
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool canContinueLoading = true;
   int PageIndex = 1;
@@ -52,11 +53,13 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
     HomeRequest.requestCurrentCultivateData(StorageUtil().getSureUserModel().TokenID,params).then((value){
       _dataList = value;
       if(pageIndex==1){
+        _dataList_list = [];
         _dataList = value;
+        _dataList_list.addAll(value.xList);
         canContinueLoading = true;
       }else{
         if((value.xList as List).length > 0) {
-          _dataList.xList.addAll(value.xList);
+          _dataList_list.addAll(value.xList);
         }
         if((value.xList as List).length < 10){
           canContinueLoading = false;
@@ -80,7 +83,7 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
         onRefresh: _handleRefresh,
         child:ListView.builder(
                     physics: new AlwaysScrollableScrollPhysics(),
-                    itemCount: _dataList == null ? 0:_dataList.xList.length,
+                    itemCount: _dataList == null ? 0:_dataList_list.length,
                     controller: _scrollController,
                     itemBuilder: (ctx, index) {
                       return _buildItem(context,index);
@@ -91,7 +94,7 @@ class _CurrentMonthCultiveChildWidgetState extends State<CurrentMonthCultiveChil
   }
 
   Widget _buildItem(BuildContext context,int index){
-    CurrentCultivateListList data = _dataList.xList[index];
+    CurrentCultivateListList data = _dataList_list[index];
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
       child: GestureDetector(
