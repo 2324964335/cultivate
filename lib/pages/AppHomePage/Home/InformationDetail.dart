@@ -3,6 +3,7 @@ import '../../../utils/util.dart';
 import '../../../components/func.dart';
 import '../../../components/alert_dialog.dart';
 import 'home_request/HomeRequest.dart';
+import 'home_request/home_unread_information_detail_model_entity.dart';
 class InformationDetail extends StatefulWidget {
   InformationDetail({Key key, this.params}) : super(key: key);
   final  params;
@@ -12,6 +13,7 @@ class InformationDetail extends StatefulWidget {
 
 class _InformationDetailState extends State<InformationDetail> {
 
+  HomeUnreadInformationDetailModelEntity _data = null;
   @override
   void initState() {
     // TODO: implement initState
@@ -21,7 +23,10 @@ class _InformationDetailState extends State<InformationDetail> {
 
   void _getUnreadInformationDetail(){
     HomeRequest.requestHomeUnreadInformationDentail(StorageUtil().getSureUserModel().TokenID, {"id":this.widget.params["id"]}).then((value){
+        _data = value;
+        setState(() {
 
+        });
     });
   }
 
@@ -36,7 +41,7 @@ class _InformationDetailState extends State<InformationDetail> {
               child:
               Container(
                 child: ListView.builder(
-                    itemCount: 1,
+                    itemCount: _data == null?0:1,
                     itemBuilder: (ctx, index) {
                       return _buildItem(context);
                     }
@@ -111,7 +116,7 @@ class _InformationDetailState extends State<InformationDetail> {
               children: [
                 Container(
 
-                  child: Text("微课堂《输液规则技术》",style: TextStyle(color: Color(0xff565656),fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
+                  child: Text(_data.title,style: TextStyle(color: Color(0xff565656),fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
                   margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
                 ),
                 Container(
@@ -147,7 +152,7 @@ class _InformationDetailState extends State<InformationDetail> {
                 SizedBox(width: ScreenAdaper.width(20),),
                 Text('发布时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
-                Text('2020年8月20日 14：20',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.tsRegist,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -156,7 +161,7 @@ class _InformationDetailState extends State<InformationDetail> {
                 SizedBox(width: ScreenAdaper.width(20),),
                 Text('培训类别：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
-                Text('高级护理',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.eduCategory,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -165,7 +170,7 @@ class _InformationDetailState extends State<InformationDetail> {
                 SizedBox(width: ScreenAdaper.width(20),),
                 Text('课程类型：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
-                Text('线下培训',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.classType,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -174,7 +179,7 @@ class _InformationDetailState extends State<InformationDetail> {
                 SizedBox(width: ScreenAdaper.width(20),),
                 Text('开始时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
-                Text('2020年8月20日 14：20',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.beginTime,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -183,7 +188,7 @@ class _InformationDetailState extends State<InformationDetail> {
                 SizedBox(width: ScreenAdaper.width(20),),
                 Text('结束时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
-                Text('2020年8月20日 14：20',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.endtime,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -193,7 +198,7 @@ class _InformationDetailState extends State<InformationDetail> {
 
                 Text('讲   师',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
-                Text('邓换',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.trainer,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -203,22 +208,26 @@ class _InformationDetailState extends State<InformationDetail> {
 
                 Text('学时：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
-                Text('2课时',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                Text('${_data.traineeScore}课时',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
-            Row(
+            _data.status == 0?Column(
               children: [
-                SizedBox(width: ScreenAdaper.width(20),),
+                Row(
+                  children: [
+                    SizedBox(width: ScreenAdaper.width(20),),
 
-                Text('地  点',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-                SizedBox(width: ScreenAdaper.height(10),),
+                    Text('地  点',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                    SizedBox(width: ScreenAdaper.height(10),),
 
-                Text('A区6楼会议室2号',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                    Text(_data.address,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                  ],
+                ),
+                SizedBox(height: ScreenAdaper.height(20),),
+
               ],
-            ),
-            SizedBox(height: ScreenAdaper.height(20),),
-
+            ):Container(),
             Row(
               children: [
                 SizedBox(width: ScreenAdaper.width(20),),
@@ -226,7 +235,7 @@ class _InformationDetailState extends State<InformationDetail> {
                 Text('培训对象',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
 
-                Text('护理科全员',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                Text(_data.eduObject,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
             SizedBox(height: ScreenAdaper.height(20),),
@@ -238,7 +247,7 @@ class _InformationDetailState extends State<InformationDetail> {
                 Text('报名人数',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                 SizedBox(width: ScreenAdaper.height(10),),
 
-                Text('203/300人',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                Text('${_data.personCount}/${_data.personMax}人',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
               ],
             ),
           ],

@@ -1,0 +1,51 @@
+import 'package:cultivate/generated/json/base/json_convert_content.dart';
+import 'package:cultivate/generated/json/base/json_field.dart';
+
+class HomeUnreadInformationDetailModelEntity with JsonConvert<HomeUnreadInformationDetailModelEntity> {
+	@JSONField(name: "ID")
+	int iD;
+	@JSONField(name: "Status")
+	int status;
+	@JSONField(name: "OP_Regist")
+	String opRegist;
+	@JSONField(name: "EduCategory")
+	String eduCategory;
+	@JSONField(name: "ClassType")
+	String classType;
+	@JSONField(name: "TS_Regist")
+	String tsRegist;
+	@JSONField(name: "Address")
+	String address;
+	@JSONField(name: "Title")
+	String title;
+	@JSONField(name: "Content")
+	String content;
+	@JSONField(name: "BeginTime")
+	String beginTime;
+	@JSONField(name: "Endtime")
+	String endtime;
+	@JSONField(name: "Trainer")
+	String trainer;
+	@JSONField(name: "MembersEndTime")
+	String membersEndTime;
+	@JSONField(name: "EduObject")
+	String eduObject;
+	@JSONField(name: "SignInTime")
+	String signInTime;
+	@JSONField(name: "Trainee_Score")
+	String traineeScore;
+	@JSONField(name: "PersonCount")
+	int personCount;
+	@JSONField(name: "PersonMax")
+	int personMax;
+	@JSONField(name: "Likes")
+	int likes;
+	@JSONField(name: "SeeCount")
+	int seeCount;
+	@JSONField(name: "Comments")
+	int comments;
+	@JSONField(name: "ST_MyLike")
+	int stMylike;
+	@JSONField(name: "ST_MyComment")
+	int stMycomment;
+}

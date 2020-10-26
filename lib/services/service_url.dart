@@ -16,6 +16,6 @@ const serviceUrl = {
    'app_home_item_detail_see':appurlPro + 'Education/EduItemSee', ///首页列表明细详情查看
    'app_home_item_detail_zan':appurlPro + 'Education/EduItemLikes', ///首页列表明细详情点赞
    'app_home_unread':appurlPro + 'Education/GetEduNotice', ///首页未读公告数据列表
-   'app_home_unread_detail':appurlPro + 'Education/EduAnnItemDetail', ///首页未读公告数据列表详情页
+   'app_home_unread_detail':appurlPro + 'Education/GetEduNoticeDetail', ///首页未读公告数据列表详情页
 
 };
