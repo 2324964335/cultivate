@@ -149,6 +149,16 @@ class Api{
     return resData ?? {};
   }
 
+  ///首页列表明细评论
+  Future<Map> getRequestHomeItemDetailComment(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_item_detail_comment'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
   ///首页列表明细点赞
   Future<Map> getRequestHomeItemDetailZan(String TokenID,Map params) async {
     Map resData = await safeRequest(

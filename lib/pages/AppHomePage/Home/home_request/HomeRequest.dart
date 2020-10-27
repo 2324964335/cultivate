@@ -151,6 +151,13 @@ class HomeRequest{
     return resData;
   }
 
+  ///首页公告列表明细点赞
+  static Future<dynamic> requestHomeItemDetailComment(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeItemDetailComment(tokenID,params);
+    LogUtil.d(resData);
+    return resData;
+  }
+
   ///首页未读公告列表
   static Future<dynamic> requestHomeUnreadInformation(String tokenID,Map params) async {
     Map resData = await Api().getRequestHomeUnReadInformationList(tokenID,params);

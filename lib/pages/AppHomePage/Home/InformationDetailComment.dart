@@ -174,7 +174,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
         child: Row(
           children: [
             Container(
-              width: ScreenAdaper.width(600),
+              width: ScreenAdaper.width(500),
               padding: EdgeInsets.only(left: ScreenAdaper.width(100)),
               child: MyTextField(
                 focusNode: _inputNode,
@@ -193,9 +193,37 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                 _dianZan();
               },
             ),
+            SizedBox(width: ScreenAdaper.width(30),),
+            Container(
+              alignment: Alignment.center,
+              width: ScreenAdaper.width(110),
+              child: OutlineButton(
+                child: LightText.build('确定'),
+                onPressed: (){
+                  LogUtil.d('------');
+                  requestComment();
+                },
+              ),
+            )
           ],
         )
     );
+  }
+
+  void requestComment(){
+    Map params = {
+      "id":this.widget.params["id"],
+      "ST_comment":0,
+      "comment":_inputController.text
+    };
+    HomeRequest.requestHomeItemDetailComment(StorageUtil().getSureUserModel().TokenID, params).then((value){
+      LogUtil.d('-----------${value}');
+      ToastShow.show(value["msg"]);
+      if(value["msg"] == "评论成功"){
+        _inputController.text = "";
+        getListData(1);
+      }
+    });
   }
 
   Widget _buildHeaderItem(BuildContext context,int index){
