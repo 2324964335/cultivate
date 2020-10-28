@@ -278,9 +278,16 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     return GestureDetector(
       child: Container(
         width: ScreenAdaper.width(750),
-        height: ScreenAdaper.width(300),
+        height: ScreenAdaper.width(400),
         alignment: Alignment.center,
-        child: LightText.build('暂无数据'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("asset/images/home/zanwushuju.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
+            SizedBox(height: ScreenAdaper.width(20),),
+            LightText.build('暂无数据'),
+          ],
+        ),
       ),
     );
   }
