@@ -40,6 +40,9 @@ informationDetailCommentModelDataFromJson(InformationDetailCommentModelData data
 	if (json['OP_Regist'] != null) {
 		data.opRegist = json['OP_Regist']?.toString();
 	}
+	if (json['Address'] != null) {
+		data.address = json['Address']?.toString();
+	}
 	if (json['TS_Regist'] != null) {
 		data.tsRegist = json['TS_Regist']?.toString();
 	}
@@ -73,6 +76,9 @@ informationDetailCommentModelDataFromJson(InformationDetailCommentModelData data
 	if (json['PersonMax'] != null) {
 		data.personMax = json['PersonMax']?.toInt();
 	}
+	if (json['ST_MyLike'] != null) {
+		data.sT_MyLike = json['ST_MyLike']?.toInt();
+	}
 	if (json['Likes'] != null) {
 		data.likes = json['Likes']?.toInt();
 	}
@@ -97,6 +103,7 @@ Map<String, dynamic> informationDetailCommentModelDataToJson(InformationDetailCo
 	data['Status'] = entity.status;
 	data['Icon'] = entity.icon;
 	data['OP_Regist'] = entity.opRegist;
+	data['Address'] = entity.address;
 	data['TS_Regist'] = entity.tsRegist;
 	data['Title'] = entity.title;
 	data['Content'] = entity.content;
@@ -108,6 +115,7 @@ Map<String, dynamic> informationDetailCommentModelDataToJson(InformationDetailCo
 	data['Trainee_Score'] = entity.traineeScore;
 	data['PersonCount'] = entity.personCount;
 	data['PersonMax'] = entity.personMax;
+	data['ST_MyLike'] = entity.sT_MyLike;
 	data['Likes'] = entity.likes;
 	data['SeeCount'] = entity.seeCount;
 	data['Comments'] = entity.comments;

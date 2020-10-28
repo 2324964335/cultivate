@@ -3,6 +3,10 @@ import '../../../utils/util.dart';
 import '../../../components/Calendar/flutter_custom_calendar.dart';
 import 'dart:collection';
 import 'package:flutter/cupertino.dart';
+import '../../../components/Calendar/model/date_model.dart';
+import 'home_request/HomeRequest.dart';
+import 'home_request/home_cultivate_mangager_list_entity.dart';
+import 'package:intl/intl.dart';
 class CultivateManger extends StatefulWidget {
   CultivateManger({Key key, this.params}) : super(key: key);
   final  params;
@@ -16,10 +20,12 @@ class _CultivateMangerState extends State<CultivateManger> {
   CalendarViewWidget calendar;
   HashSet<DateTime> _selectedDate = new HashSet();
   HashSet<DateModel> _selectedModels = new HashSet();
+  HomeCultivateMangagerListEntity _dataList = null;
 
   GlobalKey<CalendarContainerState> _globalKey = new GlobalKey();
   bool _isMonthSelected = false;
-  String _selectDate = '';
+  String _selectDate_str = '';
+  String _desplay_selectData_str = '';
 
   @override
   void dispose() {
@@ -27,32 +33,63 @@ class _CultivateMangerState extends State<CultivateManger> {
     super.dispose();
   }
 
+
+  void getListData(){
+    Map params = {
+      'date':_selectDate_str,
+    };
+    HomeRequest.requestHomeCultiveMangagerList(StorageUtil().getSureUserModel().TokenID,params).then((value){
+      _dataList = value;
+      setState(() {
+      });
+    });
+  }
+
+  String formatterTime(DateModel model){
+    return '${model.year}年${model.month}月${model.day}日';
+  }
+
+  String formatterTimeByLine(DateModel model){
+    return '${model.year}-${model.month}-${model.day}';
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     _selectedDate.add(DateTime.now());
+    DateModel today = DateModel.fromDateTime(DateTime.now());
+//    _selectedModels.add(today);
+    _selectDate_str = formatterTimeByLine(today);
+    _desplay_selectData_str = formatterTime(today);
+    LogUtil.d('--------dsdsdsdsds------${_selectedModels.toString()}');
+
     controller = new CalendarController(
         minYear: 2019,
         minYearMonth: 1,
-        maxYear: 2021,
+        maxYear: 2023,
         maxYearMonth: 12,
+        selectDateModel:DateModel.fromDateTime(DateTime.now()),
         showMode: CalendarConstants.MODE_SHOW_WEEK_AND_MONTH,
         selectedDateTimeList: _selectedDate,
         selectMode: CalendarSelectedMode.singleSelect)
       ..addOnCalendarSelectListener((dateModel) {
         _selectedModels.add(dateModel);
+        LogUtil.d('--------dsdsdsdsds-ddd-----${_selectedModels.toString()}');
+        _desplay_selectData_str = formatterTime(dateModel);
+        _selectDate_str = formatterTimeByLine(dateModel);
+        getListData();
         setState(() {
-          _selectDate = _selectedModels.toString();
         });
       })
       ..addOnCalendarUnSelectListener((dateModel) {
 //        LogUtil.log(TAG: '_selectedModels', message: _selectedModels.toString());
 //        LogUtil.log(TAG: 'dateModel', message: dateModel.toString());
+      LogUtil.d('---------ssss------${_selectedModels.toString()}');
         if (_selectedModels.contains(dateModel)) {
           _selectedModels.remove(dateModel);
         }
         setState(() {
-          _selectDate = '';
+          _selectDate_str = '';
         });
       });
     calendar = new CalendarViewWidget(
@@ -64,7 +101,7 @@ class _CultivateMangerState extends State<CultivateManger> {
         if (_isSelected &&
             CalendarSelectedMode.singleSelect ==
                 controller.calendarConfiguration.selectMode) {
-          _selectDate = model.toString();
+          _selectDate_str = model.toString();
         }
         return Container(
           padding: EdgeInsets.all(ScreenAdaper.width(15)),
@@ -103,7 +140,7 @@ class _CultivateMangerState extends State<CultivateManger> {
         setState(() {});
       });
     });
-
+    getListData();
     super.initState();
   }
 
@@ -114,7 +151,7 @@ class _CultivateMangerState extends State<CultivateManger> {
       body: Container(
         color: Colors.white,
         child:  ListView.builder(
-            itemCount: 30,
+            itemCount: _dataList == null?1:_dataList.xList.length==0?2:_dataList.xList.length + 1,
             itemBuilder: (ctx, index) {
               return _buildItemByIndex(context,index);
             }
@@ -139,9 +176,32 @@ class _CultivateMangerState extends State<CultivateManger> {
     if(index == 0){
       return _buildHeaderItem(context, index);
     }else{
-      return _buildItem(context, index);
+      if(_dataList.xList.length == 0){
+        return _buildNoData(context);
+      }else{
+        return _buildItem(context, index-1);
+      }
     }
   }
+
+  Widget _buildNoData(BuildContext context){
+    return GestureDetector(
+      child: Container(
+        width: ScreenAdaper.width(750),
+        height: ScreenAdaper.width(400),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("asset/images/home/zanwushuju.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
+            SizedBox(height: ScreenAdaper.width(20),),
+            LightText.build('暂无数据'),
+          ],
+        ),
+      ),
+    );
+  }
+
 
   Widget _calendarTool(){
     return GestureDetector(
@@ -206,7 +266,7 @@ class _CultivateMangerState extends State<CultivateManger> {
             alignment: Alignment.center,
             height: ScreenAdaper.width(70),
             width: ScreenAdaper.screenW(context),
-            child: Text('08月31日 周五',style: TextStyle(color: Color(0xffFF5B3E),fontSize: ScreenAdaper.sp(35)),),
+            child: Text(_desplay_selectData_str,style: TextStyle(color: Color(0xffFF5B3E),fontSize: ScreenAdaper.sp(35)),),
           ),
         ],
       ),
@@ -302,6 +362,7 @@ class _CultivateMangerState extends State<CultivateManger> {
   }
 
   Widget _buildItem(BuildContext context,int index){
+    HomeCultivateMangagerListList item = _dataList.xList[index];
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
       child: Container(
@@ -313,7 +374,8 @@ class _CultivateMangerState extends State<CultivateManger> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LightText.build('下午13:20'),
+                  LightText.build(item.signInTime.split(" ")[1]),
+                  SizedBox(width: ScreenAdaper.width(5),),
                   Container(
                     margin: EdgeInsets.only(top: ScreenAdaper.width(10),left: ScreenAdaper.width(10),right: ScreenAdaper.width(10)),
                     child: new ClipRRect(
@@ -325,17 +387,21 @@ class _CultivateMangerState extends State<CultivateManger> {
                       ),
                     ),
                   ),
+                  SizedBox(width: ScreenAdaper.width(5),),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('   微课堂《输液规则技术》',style: TextStyle(color: Color(0xff565656),fontSize:ScreenAdaper.sp(30)),),
+                      Container(
+                        margin: EdgeInsets.only(left: ScreenAdaper.width(18)),
+                        child: Text(item.title,style: TextStyle(color: Color(0xff565656),fontSize:ScreenAdaper.sp(30)),),
+                      ),
                       SizedBox(height: ScreenAdaper.width(17),),
                       Row(
                         children: [
                           SizedBox(width: ScreenAdaper.width(20),),
                           Text('发布人：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                           SizedBox(width: ScreenAdaper.height(10),),
-                          Text('某某某',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          Text(item.opRegist,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
                         ],
                       ),
                       SizedBox(height: ScreenAdaper.height(20),),
@@ -345,7 +411,7 @@ class _CultivateMangerState extends State<CultivateManger> {
                           SizedBox(width: ScreenAdaper.width(20),),
                           Text('发布时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                           SizedBox(width: ScreenAdaper.height(10),),
-                          Text('2020年8月20日 14：20',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          Text(item.tsRegist,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
                         ],
                       ),
                       SizedBox(height: ScreenAdaper.height(20),),
@@ -354,7 +420,7 @@ class _CultivateMangerState extends State<CultivateManger> {
                           SizedBox(width: ScreenAdaper.width(20),),
                           Text('培训类别：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                           SizedBox(width: ScreenAdaper.height(10),),
-                          Text('高级护理',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          Text(item.category,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
                         ],
                       ),
                       SizedBox(height: ScreenAdaper.height(20),),
@@ -363,7 +429,7 @@ class _CultivateMangerState extends State<CultivateManger> {
                           SizedBox(width: ScreenAdaper.width(20),),
                           Text('课程类型：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                           SizedBox(width: ScreenAdaper.height(10),),
-                          Text('线下培训',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          Text(item.status,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
                         ],
                       ),
                       SizedBox(height: ScreenAdaper.height(20),),
@@ -372,7 +438,7 @@ class _CultivateMangerState extends State<CultivateManger> {
                           SizedBox(width: ScreenAdaper.width(20),),
                           Text('开始时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                           SizedBox(width: ScreenAdaper.height(10),),
-                          Text('2020年8月20日 14：20',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          Text(item.beginTime,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
                         ],
                       ),
                     ],

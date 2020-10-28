@@ -17,6 +17,8 @@ class InformationDetailCommentModelData with JsonConvert<InformationDetailCommen
 	String icon;
 	@JSONField(name: "OP_Regist")
 	String opRegist;
+	@JSONField(name: "Address")
+	String address;
 	@JSONField(name: "TS_Regist")
 	String tsRegist;
 	@JSONField(name: "Title")
@@ -39,6 +41,8 @@ class InformationDetailCommentModelData with JsonConvert<InformationDetailCommen
 	int personCount;
 	@JSONField(name: "PersonMax")
 	int personMax;
+	@JSONField(name: "ST_MyLike")
+	int sT_MyLike;
 	@JSONField(name: "Likes")
 	int likes;
 	@JSONField(name: "SeeCount")

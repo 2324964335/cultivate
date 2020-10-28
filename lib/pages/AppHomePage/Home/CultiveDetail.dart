@@ -48,7 +48,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
                       ),
                     ),
                 left: 0,
-                bottom: ScreenAdaper.height(201),
+                bottom: ScreenAdaper.height(501),
                 right: 0,
                 top: 0),
             Positioned(
@@ -62,18 +62,56 @@ class _CultiveDetailState extends State<CultiveDetail> {
   }
 
   Widget _buildBottomTool(){
-    return Container(
+    return Column(
+      children: [
+        Container(
 //      margin: EdgeInsets.only(left: 0,right: 0),
-      color: Colors.transparent,
-      width: ScreenAdaper.width(745),
-      height: ScreenAdaper.height(200),
-      alignment: Alignment.center,
-      child: GestureDetector(
-        child:
-            new ClipRRect(
+        color: Colors.transparent,
+        width: ScreenAdaper.width(745),
+//        height: ScreenAdaper.height(200),
+        alignment: Alignment.center,
+        child: GestureDetector(
+          child:
+          new ClipRRect(
 
             borderRadius: BorderRadius.circular(ScreenAdaper.width(45)),
             child:
+            Container(
+              height: ScreenAdaper.width(90),
+              width: ScreenAdaper.width(640),
+              alignment: Alignment.center,
+              color: Color(0xFF00D08D),
+              child: Text("去代签",style: TextStyle(color: Colors.white),),
+            ),
+          ),
+          onTap: (){
+            LogUtil.d('-------去签到');
+            Map params= {
+              "id":this.widget.params['id']
+            };
+            HomeRequest.requestSignCultivateData(StorageUtil().getSureUserModel().TokenID, params).then((value){
+              Navigator.pushNamed(
+                context,
+                '/courseSignSuccess',
+                arguments: {}, //　传递参数
+              );
+            });
+          },
+        )
+       ),
+//        SizedBox(height: ScreenAdaper.height(90),),
+        Container(
+//      margin: EdgeInsets.only(left: 0,right: 0),
+            color: Colors.transparent,
+            width: ScreenAdaper.width(745),
+            height: ScreenAdaper.height(200),
+            alignment: Alignment.center,
+            child: GestureDetector(
+              child:
+              new ClipRRect(
+
+                borderRadius: BorderRadius.circular(ScreenAdaper.width(45)),
+                child:
                 Container(
                   height: ScreenAdaper.width(90),
                   width: ScreenAdaper.width(640),
@@ -81,21 +119,23 @@ class _CultiveDetailState extends State<CultiveDetail> {
                   color: Color(0xFF00D08D),
                   child: Text("去签到",style: TextStyle(color: Colors.white),),
                 ),
-            ),
-        onTap: (){
-          LogUtil.d('-------去签到');
-          Map params= {
-            "id":this.widget.params['id']
-          };
-          HomeRequest.requestSignCultivateData(StorageUtil().getSureUserModel().TokenID, params).then((value){
-            Navigator.pushNamed(
-              context,
-              '/courseSignSuccess',
-              arguments: {}, //　传递参数
-            );
-          });
-        },
-      )
+              ),
+              onTap: (){
+                LogUtil.d('-------去签到');
+                Map params= {
+                  "id":this.widget.params['id']
+                };
+                HomeRequest.requestSignCultivateData(StorageUtil().getSureUserModel().TokenID, params).then((value){
+                  Navigator.pushNamed(
+                    context,
+                    '/courseSignSuccess',
+                    arguments: {}, //　传递参数
+                  );
+                });
+              },
+            )
+        ),
+      ],
     );
   }
 

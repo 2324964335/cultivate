@@ -22,6 +22,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   List _dataTotal_list = [];
   bool canContinueLoading = true;
   int PageIndex = 1;
+  bool _isZan = false;
 
   void upLoadSee(){
     if(this.widget.params['st_see'] == 0){
@@ -67,8 +68,6 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
         _dataTotal = value;
         _dataTotal_list.addAll(value.data.xList);
         canContinueLoading = true;
-        setState(() {
-        });
       }else{
         if((value.data.xList as List).length > 0) {
           LogUtil.d('----2');
@@ -77,9 +76,14 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
         if((value.data.xList as List).length < 10){
           canContinueLoading = false;
         }
-        setState(() {
-        });
       }
+      if(_dataTotal.data.sT_MyLike == 1){
+        _isZan = true;
+      }else{
+        _isZan = false;
+      }
+      setState(() {
+      });
       PageIndex +=1;
     });
   }
@@ -90,6 +94,10 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   }
 
   void _dianZan(){
+    if(_isZan==true){
+      ToastShow.show('您已经赞过了！');
+      return;
+    }
     Map params = {
       "id":this.widget.params["id"],
       "ST_like":0
@@ -97,6 +105,9 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
      HomeRequest.requestHomeItemDetailZan(StorageUtil().getSureUserModel().TokenID, params).then((value){
        if(value["success"] == 1){
          ToastShow.show('点赞成功');
+         _isZan = true;
+         setState(() {
+         });
        }else{
          ToastShow.show('点赞失败');
        }
@@ -158,10 +169,35 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
 
   Widget _buildItemByIndex(BuildContext context,int index){
     if(index == 0){
-      return _buildHeaderItem(context, index);
+      if(_dataTotal_list.length == 0){
+        return Column(
+          children: [
+            _buildHeaderItem(context, index),
+            _buildZanwu(context, index)
+          ],
+        );
+      }else{
+        return _buildHeaderItem(context, index);
+
+      }
     }else{
       return _buildItem(context, index-1);
     }
+  }
+
+  Widget _buildZanwu(BuildContext context,index){
+    return Container(
+      alignment: Alignment.center,
+//      width: ScreenAdaper.width(750),
+      height: ScreenAdaper.height(100),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset("asset/images/home/zanwupinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
+          LightText.build('暂无评论'),
+        ],
+      ),
+    );
   }
 
   Widget _buildBottomTool(){
@@ -188,7 +224,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
             ),
             SizedBox(width: ScreenAdaper.width(10),),
             GestureDetector(
-              child: Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
+              child: Image.asset(_isZan==true?"asset/images/home/yidianzan.png":"asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
               onTap: (){
                 _dianZan();
               },
@@ -198,7 +234,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
               alignment: Alignment.center,
               width: ScreenAdaper.width(110),
               child: OutlineButton(
-                child: LightText.build('确定'),
+                child: LightText.build('发送'),
                 onPressed: (){
                   LogUtil.d('------');
                   requestComment();
@@ -211,6 +247,10 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   }
 
   void requestComment(){
+    if(_inputController.text == ""){
+      ToastShow.show('请输入评论内容');
+      return;
+    }
     Map params = {
       "id":this.widget.params["id"],
       "ST_comment":0,
@@ -305,6 +345,43 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
                                     Container(
                                       width: ScreenAdaper.width(580),
                                       child: Text(data.content,style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 100,),
+                                    ),
+                                    SizedBox(height: ScreenAdaper.height(20),),
+                                    Row(
+                                      children: [
+//                                        SizedBox(width: ScreenAdaper.width(20),),
+
+                                        Text('学时：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                                        SizedBox(width: ScreenAdaper.height(10),),
+                                        Text('${data.traineeScore}课时',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                                      ],
+                                    ),
+                                    SizedBox(height: ScreenAdaper.height(20),),
+                                    data.status == 0?Column(
+                                      children: [
+                                        Row(
+                                          children: [
+//                                            SizedBox(width: ScreenAdaper.width(20),),
+
+                                            Text('地  点',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                                            SizedBox(width: ScreenAdaper.height(10),),
+
+                                            Text(data.address,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                                          ],
+                                        ),
+                                        SizedBox(height: ScreenAdaper.height(20),),
+
+                                      ],
+                                    ):Container(),
+                                    Row(
+                                      children: [
+//                                        SizedBox(width: ScreenAdaper.width(20),),
+
+                                        Text('报名人数',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                                        SizedBox(width: ScreenAdaper.height(10),),
+
+                                        Text('${data.personCount}/${data.personMax}人',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                                      ],
                                     ),
                                     SizedBox(height: ScreenAdaper.height(20),),
 

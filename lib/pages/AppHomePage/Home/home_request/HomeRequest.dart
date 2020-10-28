@@ -13,6 +13,7 @@ import 'current_month_examine_list_entity.dart';
 import 'information_detail_comment_model_entity.dart';
 import 'home_unread_information_model_entity.dart';
 import 'home_unread_information_detail_model_entity.dart';
+import 'home_cultivate_mangager_list_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -176,6 +177,17 @@ class HomeRequest{
     LogUtil.d(resData);
     if (resData['success'] == 1){
       return JsonConvert.fromJsonAsT<HomeUnreadInformationDetailModelEntity>(resData['data']);
+    }else{
+      return null;
+    }
+  }
+
+  ///首页培训管理日历请求数据
+  static Future<dynamic> requestHomeCultiveMangagerList(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeCultiveMangagerList(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeCultivateMangagerListEntity>(resData['data'][0]);
     }else{
       return null;
     }
