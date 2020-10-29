@@ -217,4 +217,15 @@ class HomeRequest{
       return null;
     }
   }
+
+  ///首页公告关键词搜索
+  static Future<dynamic> requestHomeInformationByWords(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeInformationByWords(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomePageDataEntity>(resData['data'][0]);
+    }else{
+      return null;
+    }
+  }
 }

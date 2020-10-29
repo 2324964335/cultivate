@@ -21,5 +21,5 @@ const serviceUrl = {
    'app_home_cultive_mangager':appurlPro + 'Education/EduManagementList', ///首页培训管理日历请求数据
    'app_home_small_classroom':appurlPro + 'Education/TrainList', ///首页微课堂列表数据
    'app_home_small_classroom_item':appurlPro + 'Education/TrainPlay', ///首页微课堂列表视频数据
-
+   'app_home_information_byWords':appurlPro + 'Education/QryEduList', ///首页公告关键词搜索
 };

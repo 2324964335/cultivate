@@ -219,4 +219,14 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///首页公告关键词搜索
+  Future<Map> getRequestHomeInformationByWords(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_information_byWords'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }
