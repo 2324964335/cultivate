@@ -209,4 +209,14 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///首页微课堂列表数据播放视频
+  Future<Map> getRequestHomeSmallClassItemData(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_small_classroom_item'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }

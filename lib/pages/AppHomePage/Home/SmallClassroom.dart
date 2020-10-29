@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import 'package:flutter_section_list/flutter_section_list.dart';
 import 'package:flutter/cupertino.dart';
+import 'home_request/HomeRequest.dart';
+import 'home_request/home_classroom_data_entity.dart';
 class SmallClassroom extends StatefulWidget {
   SmallClassroom({Key key, this.params}) : super(key: key);
   final  params;
@@ -11,37 +13,95 @@ class SmallClassroom extends StatefulWidget {
 
 class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMixin, SectionGridAdapterMixin {
 
+  HomeClassroomDataEntity _dataList = null;
+  List _dataList_list = [];
+  ScrollController _scrollController = ScrollController(); //listview的控制器
+  bool canContinueLoading = true;
+  int PageIndex = 1;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    getListData(1);
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        print('滑动到了最底部');
+        getListData(PageIndex);
+      }
+    });
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _scrollController.dispose();
+
+  }
+
+
+  void getListData(int pageIndex){
+    if(pageIndex!=1&&canContinueLoading == false){
+      ToastShow.show('暂无更多数据');
+      return;
+    }
+    Map params = {
+//      'type':this.widget.index,
+      'pageIdx':pageIndex,
+      'pageSize':10
+    };
+    HomeRequest.requestHomeSmallClassData(StorageUtil().getSureUserModel().TokenID,params).then((value){
+      _dataList = value;
+      if(pageIndex==1){
+        _dataList_list = [];
+        _dataList = value;
+        _dataList_list.addAll(value.data);
+        canContinueLoading = true;
+      }else{
+        if((value.xList as List).length > 0) {
+          _dataList_list.addAll(value.data);
+        }
+        if((value.xList as List).length < 10){
+          canContinueLoading = false;
+        }
+      }
+      PageIndex +=1;
+      setState(() {
+      });
+    });
+  }
+
+  Future<Null> _handleRefresh() async {
+    PageIndex = 1;
+    getListData(PageIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('微课堂'),),
-      body:
-      SectionGridView.builder(adapter: this),
+      body:RefreshIndicator(
+              onRefresh: _handleRefresh,
+              child:
+                      SectionGridView.builder(
+                        physics: new AlwaysScrollableScrollPhysics(),
+                        adapter: this,
+                          controller: _scrollController,
+                      ),
+      )
     );
   }
 
-  void _changeCount(){
-    LogUtil.d('-----点击了课堂');
-    ///LessonPlayer
-    Navigator.pushNamed(
-      context,
-      '/lessonPlayer',
-      arguments: {}, //　传递参数
-    );
-  }
 
-  int count = 7;
+//  int count = _dataList_list.length;
 
   @override
   Widget getItem(BuildContext context, IndexPath indexPath) {
     // TODO: implement getItem
-
+    HomeClassroomDataData itemm = _dataList_list[indexPath.item];
     EdgeInsets inset = getSectionInsets(indexPath.section);
     double totalWidth = crossAxisExtent - getCrossAxisSpacing(indexPath.section) - inset.left - inset.right;
     double width;
@@ -61,7 +121,11 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
 
     return GestureDetector(
       onTap: (){
-        _changeCount();
+        Navigator.pushNamed(
+          context,
+          '/lessonPlayer',
+          arguments: {'id':itemm.iD}, //　传递参数
+        );
       },
       child: Container(
         width: totalWidth / 2,
@@ -71,25 +135,26 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
           children: [
             Container(
               alignment: Alignment.center,
-              color: Color(0xffF1B900),
+//              color: Color(0xffF1B900),
               width: totalWidth / 2,
               height: ScreenAdaper.width(200),
-              child: Text('护理常识',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(35)),),
+              child:
+              CachedNetworkImage(imageUrl: itemm.images,errorWidget: (context, url, error) => Icon(Icons.error),width:totalWidth / 2,height: ScreenAdaper.width(200),fit: BoxFit.contain,),
             ),
             SizedBox(height: ScreenAdaper.width(10),),
 
-            Text('2020.8 传染病防控',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(32),fontWeight: FontWeight.bold),),
+            Text(itemm.title,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(32),fontWeight: FontWeight.bold),),
             SizedBox(height: ScreenAdaper.width(10),),
-            LightText.build('护理考试'),
+            LightText.build(itemm.category),
             SizedBox(height: ScreenAdaper.width(10),),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                LightText.build('10课时'),
+                LightText.build('${itemm.score.toString()}课时'),
                 Container(
                   padding: EdgeInsets.only(right: ScreenAdaper.width(10)),
-                  child: LightText.build('1232次学习'),
+                  child: LightText.build('${itemm.learnCount}次学习'),
                 ),
 
               ],
@@ -102,7 +167,7 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
 
   @override
   int numberOfItems(int section) {
-    return this.count;
+    return _dataList_list.length;
   }
 
   @override

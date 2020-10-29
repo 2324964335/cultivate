@@ -144,6 +144,8 @@ class RouteName {
   ///IdentifiCode 验证码
   static String identifiCode = '/identifiCode';
 
+  ///HomeInfomationSearch 首页关键词搜索
+  static String homeInfomationSearch = '/homeInfomationSearch';
 
 
 

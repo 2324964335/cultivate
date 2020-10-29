@@ -14,6 +14,8 @@ import 'information_detail_comment_model_entity.dart';
 import 'home_unread_information_model_entity.dart';
 import 'home_unread_information_detail_model_entity.dart';
 import 'home_cultivate_mangager_list_entity.dart';
+import 'home_classroom_data_entity.dart';
+import 'home_classroom_data_video_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -198,7 +200,19 @@ class HomeRequest{
     Map resData = await Api().getRequestHomeSmallClassData(tokenID,params);
     LogUtil.d(resData);
     if (resData['success'] == 1){
-      return JsonConvert.fromJsonAsT<HomeCultivateMangagerListEntity>(resData['data'][0]);
+      return JsonConvert.fromJsonAsT<HomeClassroomDataEntity>(resData);
+    }else{
+      return null;
+    }
+  }
+
+
+  ///首页微课堂列表点击播放视频
+  static Future<dynamic> requestHomeSmallClassItemData(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeSmallClassItemData(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeClassroomDataVideoEntity>(resData);
     }else{
       return null;
     }

@@ -4,6 +4,8 @@ import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:chewie/src/chewie_player.dart';
 import 'package:flutter/cupertino.dart';
+import 'home_request/HomeRequest.dart';
+import 'home_request/home_classroom_data_video_entity.dart';
 class LessonPlayer extends StatefulWidget {
   LessonPlayer({Key key, this.params}) : super(key: key);
   final  params;
@@ -14,19 +16,42 @@ class LessonPlayer extends StatefulWidget {
 class _LessonPlayerState extends State<LessonPlayer> {
   VideoPlayerController _videoPlayerController1;
   ChewieController _chewieController;
-
+  HomeClassroomDataVideoData _videoData = null;
   @override
   void initState() {
     super.initState();
-    _videoPlayerController1 = VideoPlayerController.network(
-        'http://1252463788.vod2.myqcloud.com/95576ef5vodtransgzp1252463788/e1ab85305285890781763144364/v.f10.mp4');
-    _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController1,
-      aspectRatio: 3 / 2,
-      autoPlay: true,
-      looping: true,
-    );
+
+//    _videoPlayerController1 = VideoPlayerController.network(
+//        'http://1252463788.vod2.myqcloud.com/95576ef5vodtransgzp1252463788/e1ab85305285890781763144364/v.f10.mp4');
+//    _chewieController = ChewieController(
+//      videoPlayerController: _videoPlayerController1,
+//      aspectRatio: 3 / 2,
+//      autoPlay: true,
+//      looping: true,
+//    );
+    getVideoData();
   }
+
+  void getVideoData(){
+    Map params = {
+      "id":this.widget.params["id"]
+    };
+    HomeRequest.requestHomeSmallClassItemData(StorageUtil().getSureUserModel().TokenID, params).then((value){
+        _videoData = value.data;
+        _videoPlayerController1 = VideoPlayerController.network(
+            Uri.encodeFull(_videoData.fillPath));
+        _chewieController = ChewieController(
+          videoPlayerController: _videoPlayerController1,
+          aspectRatio: 3 / 2,
+          autoPlay: true,
+          looping: true,
+        );
+        setState(() {
+        });
+    });
+  }
+
+
 
   @override
   void dispose() {
@@ -34,6 +59,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
     _chewieController.dispose();
     super.dispose();
   }
+
 
 
   @override
@@ -90,7 +116,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
   }
   _topPlayer() {
     return Container(
-      child: Chewie(
+      child: _videoData==null?Container():Chewie(
         controller: _chewieController,
       ),
     );

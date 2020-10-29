@@ -48,6 +48,7 @@ import '../pages/AppHomePage/Mine/WorkingMessage.dart';
 import '../pages/AppHomePage/Mine/ChangeMobileFirst.dart';
 import '../pages/AppHomePage/Mine/InputNewMobile.dart';
 import '../pages/AppHomePage/Mine/IdentifiCode.dart';
+import '../pages/AppHomePage/Home/HomeInfomationSearch.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -190,4 +191,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///IdentifiCode 更改手机号输入验证码
   RouteName.identifiCode: (BuildContext context, {params}) =>
       IdentifiCode(params: params),
+  ///HomeInfomationSearch 首页关键词搜索页面
+  RouteName.homeInfomationSearch: (BuildContext context, {params}) =>
+      HomeInfomationSearch(params: params),
 };
