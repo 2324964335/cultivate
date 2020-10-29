@@ -232,9 +232,9 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
             SizedBox(width: ScreenAdaper.width(30),),
             Container(
               alignment: Alignment.center,
-              width: ScreenAdaper.width(110),
+              width: ScreenAdaper.width(120),
               child: OutlineButton(
-                child: LightText.build('发送'),
+                child: Text('发送',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(23)),maxLines: 1,),
                 onPressed: (){
                   LogUtil.d('------');
                   requestComment();

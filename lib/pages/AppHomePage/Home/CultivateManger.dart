@@ -19,7 +19,7 @@ class _CultivateMangerState extends State<CultivateManger> {
   CalendarController controller;
   CalendarViewWidget calendar;
   HashSet<DateTime> _selectedDate = new HashSet();
-  HashSet<DateModel> _selectedModels = new HashSet();
+//  HashSet<DateModel> _selectedModels = new HashSet();
   HomeCultivateMangagerListEntity _dataList = null;
 
   GlobalKey<CalendarContainerState> _globalKey = new GlobalKey();
@@ -61,7 +61,7 @@ class _CultivateMangerState extends State<CultivateManger> {
 //    _selectedModels.add(today);
     _selectDate_str = formatterTimeByLine(today);
     _desplay_selectData_str = formatterTime(today);
-    LogUtil.d('--------dsdsdsdsds------${_selectedModels.toString()}');
+//    LogUtil.d('--------dsdsdsdsds------${_selectedModels.toString()}');
 
     controller = new CalendarController(
         minYear: 2019,
@@ -73,25 +73,31 @@ class _CultivateMangerState extends State<CultivateManger> {
         selectedDateTimeList: _selectedDate,
         selectMode: CalendarSelectedMode.singleSelect)
       ..addOnCalendarSelectListener((dateModel) {
-        _selectedModels.add(dateModel);
-        LogUtil.d('--------dsdsdsdsds-ddd-----${_selectedModels.toString()}');
+//        _selectedModels.add(dateModel);
+//        LogUtil.d('--------dsdsdsdsds-ddd-----${_selectedModels.toString()}');
         _desplay_selectData_str = formatterTime(dateModel);
         _selectDate_str = formatterTimeByLine(dateModel);
         getListData();
-        setState(() {
-        });
-      })
-      ..addOnCalendarUnSelectListener((dateModel) {
-//        LogUtil.log(TAG: '_selectedModels', message: _selectedModels.toString());
-//        LogUtil.log(TAG: 'dateModel', message: dateModel.toString());
-      LogUtil.d('---------ssss------${_selectedModels.toString()}');
-        if (_selectedModels.contains(dateModel)) {
-          _selectedModels.remove(dateModel);
-        }
-        setState(() {
-          _selectDate_str = '';
-        });
+//        Future.delayed(Duration(milliseconds: 100)).then((e) {
+          LogUtil.d('--------------d--d-d-d-d--d-d--d-d-d--d-d-d---${ controller.calendarProvider.selectDateModel}');
+//          controller.calendarProvider.generation.value++;
+//        });
+//        controller.calendarProvider.generation.value++;
+//        setState(() {
+//        });
       });
+//      ..addOnCalendarUnSelectListener((dateModel) {
+////        LogUtil.log(TAG: '_selectedModels', message: _selectedModels.toString());
+////        LogUtil.log(TAG: 'dateModel', message: dateModel.toString());
+//      LogUtil.d('---------ssss------${_selectedModels.toString()}');
+//        if (_selectedModels.contains(dateModel)) {
+//          _selectedModels.remove(dateModel);
+//        }
+//      _selectDate_str = formatterTimeByLine(dateModel);
+//      _desplay_selectData_str = formatterTime(dateModel);
+//      setState(() {
+//        });
+//      });
     calendar = new CalendarViewWidget(
       key: _globalKey,
       calendarController: controller,
@@ -214,14 +220,14 @@ class _CultivateMangerState extends State<CultivateManger> {
       ),
       onTap: (){
         if(_isMonthSelected){
+          controller.weekAndMonthViewChange(
+              CalendarConstants.MODE_SHOW_ONLY_MONTH);
           setState(() {
-            controller.weekAndMonthViewChange(
-                CalendarConstants.MODE_SHOW_ONLY_MONTH);
           });
         }else{
+          controller.weekAndMonthViewChange(
+              CalendarConstants.MODE_SHOW_ONLY_WEEK);
           setState(() {
-            controller.weekAndMonthViewChange(
-                CalendarConstants.MODE_SHOW_ONLY_WEEK);
           });
         }
       },
@@ -345,14 +351,24 @@ class _CultivateMangerState extends State<CultivateManger> {
                 alignment: Alignment.center,
                 child: DarkText.build('培训计划'),
               ),
-              Container(
-                margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
+              GestureDetector(
+                child: Container(
+                  margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
 
-                color: Color(0xFFF1B900),
+                  color: Color(0xFFF1B900),
 
-                padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                child: Text("返回今天",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
-              ),
+                  padding: EdgeInsets.all(ScreenAdaper.width(10)),
+                  child: Text("返回今天",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                ),
+                onTap: (){
+                    LogUtil.d('-------------d--d-d--d-');
+                    DateModel today = DateModel.fromDateTime(DateTime.now());
+                    controller.changeDefaultSelectedDateModel(today);
+                    _selectDate_str = formatterTimeByLine(today);
+                    _desplay_selectData_str = formatterTime(today);
+                    getListData();
+                },
+              )
             ],
           ),
           Line.build(),

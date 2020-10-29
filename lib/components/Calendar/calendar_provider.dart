@@ -45,24 +45,40 @@ class CalendarProvider extends ChangeNotifier {
   DateModel get lastClickDateModel =>
       _lastClickDateModel; //保存最后点击的一个日期，用于周视图与月视图之间的切换和同步
 
+  void setToady(DateModel value){
+    _lastClickDateModel = value;
+    _selectDateModel = value;
+//    notifyListeners();
+  }
+
   set lastClickDateModel(DateModel value) {
     _lastClickDateModel = value;
+//    _selectDateModel = value;
     print("set lastClickDateModel:$lastClickDateModel");
+//    Future.delayed(Duration(milliseconds: 4000)).then((e) {
+//      generation.value++;
+//    });
   }
 
   DateModel get selectDateModel => _selectDateModel;
 
   set selectDateModel(DateModel value) {
     _selectDateModel = value;
+    _lastClickDateModel = value;
     LogUtil.log(TAG: this.runtimeType, message: "selectDateModel change:$selectDateModel");
 //    notifyListeners();
+//    generation.value++;
+//    Future.delayed(Duration(milliseconds: 4000)).then((e) {
+//          notifyListeners();
+//    });
   }
 
   //根据lastClickDateModel，去计算需要展示的星期视图的初始index
   int get weekPageIndex {
     //计算当前星期视图的index
     print('计算当前星期视图的index  = > lastClickDateModel$lastClickDateModel');
-    DateModel dateModel = lastClickDateModel;
+    print('-----------ssss2----${_selectDateModel}------${_lastClickDateModel}');
+    DateModel dateModel = _lastClickDateModel;
     DateTime firstWeek = calendarConfiguration.weekList[0].getDateTime();
     int index = 0;
     for (int i = 0; i < calendarConfiguration.weekList.length; i++) {
@@ -76,14 +92,15 @@ class CalendarProvider extends ChangeNotifier {
       }
     }
 
-    print("lastClickDateModel:$lastClickDateModel,weekPageIndex:$index, totalHeight:$totalHeight");
+    print("------kkkkkkk-------lastClickDateModel:$lastClickDateModel,weekPageIndex:$index, totalHeight:$totalHeight");
     return index;
   }
 
   //根据lastClickDateModel，去计算需要展示的月视图的index
   int get monthPageIndex {
     //计算当前月视图的index
-    DateModel dateModel = lastClickDateModel;
+    print('-----------ssss1----${_selectDateModel}------${_lastClickDateModel}');
+    DateModel dateModel = _lastClickDateModel;
     int index = 0;
     for (int i = 0; i < calendarConfiguration.monthList.length - 1; i++) {
       DateTime preMonth = calendarConfiguration.monthList[i].getDateTime();
@@ -97,7 +114,7 @@ class CalendarProvider extends ChangeNotifier {
       }
     }
 
-    print("lastClickDateModel:$lastClickDateModel, monthPageIndex:$index, totalHeight:$totalHeight");
+    print("------ssss--lastClickDateModel:$lastClickDateModel, monthPageIndex:$index, totalHeight:$totalHeight");
     return index;
   }
 
