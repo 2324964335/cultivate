@@ -44,9 +44,6 @@ class _WeekViewState extends State<WeekView> {
 
     //第一帧后,添加监听，generation发生变化后，需要刷新整个日历
     WidgetsBinding.instance.addPostFrameCallback((callback) {
-      Future.delayed(Duration(milliseconds: 200)).then((e) {
-          setState(() {});
-        });
       Provider.of<CalendarProvider>(context, listen: false)
           .generation
           .addListener(() async {
@@ -57,9 +54,6 @@ class _WeekViewState extends State<WeekView> {
             extraDataMap: extraDataMap,
             offset: widget.configuration.offset);
         setState(() {});
-//        Future.delayed(Duration(milliseconds: 200)).then((e) {
-//          setState(() {});
-//        });
       });
     });
   }
@@ -79,35 +73,29 @@ class _WeekViewState extends State<WeekView> {
         itemBuilder: (context, index) {
           DateModel dateModel = items[index];
           //判断是否被选择
-//          switch (configuration.selectMode) {
-//            case CalendarSelectedMode.multiSelect:
-//              if (calendarProvider.selectedDateList.contains(dateModel)) {
-//                dateModel.isSelected = true;
-//              } else {
-//                dateModel.isSelected = false;
-//              }
-//              break;
-//            case CalendarSelectedMode.singleSelect:
-              print('------------sssaaaaaaa---${calendarProvider.selectDateModel}---------${dateModel}');
-              if (calendarProvider.selectDateModel == dateModel) {
+          switch (configuration.selectMode) {
+            case CalendarSelectedMode.multiSelect:
+              if (calendarProvider.selectedDateList.contains(dateModel)) {
                 dateModel.isSelected = true;
-                print('-----------ddddddddssss---${calendarProvider.selectDateModel}---------${dateModel}');
-
               } else {
                 dateModel.isSelected = false;
               }
-//              Future.delayed(Duration(milliseconds: 300)).then((e) {
-//          setState(() {});
-//        });
-//              break;
-//            case CalendarSelectedMode.mutltiStartToEndSelect:
-//              if (calendarProvider.selectedDateList.contains(dateModel)) {
-//                dateModel.isSelected = true;
-//              } else {
-//                dateModel.isSelected = false;
-//              }
-//              break;
-//          }
+              break;
+            case CalendarSelectedMode.singleSelect:
+              if (calendarProvider.selectDateModel == dateModel) {
+                dateModel.isSelected = true;
+              } else {
+                dateModel.isSelected = false;
+              }
+              break;
+            case CalendarSelectedMode.mutltiStartToEndSelect:
+              if (calendarProvider.selectedDateList.contains(dateModel)) {
+                dateModel.isSelected = true;
+              } else {
+                dateModel.isSelected = false;
+              }
+              break;
+          }
 
           return ItemContainer(
               dateModel: dateModel,

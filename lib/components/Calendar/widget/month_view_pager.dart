@@ -25,13 +25,9 @@ class _MonthViewPagerState extends State<MonthViewPager>
     LogUtil.log(TAG: this.runtimeType, message: "MonthViewPager initState");
 
     calendarProvider = Provider.of<CalendarProvider>(context, listen: false);
-//    print('-----------ssss----${calendarProvider._se}------${_lastClickDateModel}');
 
     //计算当前月视图的index
-    DateModel dateModel = calendarProvider.selectDateModel;
-    DateModel dateModel2 = calendarProvider.lastClickDateModel;
-    print('-----------ssss3----${dateModel}------${dateModel2}');
-
+    DateModel dateModel = calendarProvider.lastClickDateModel;
     List<DateModel> monthList = calendarProvider.calendarConfiguration.monthList;
     int index = 0;
     for (int i = 0; i < monthList.length; i++) {

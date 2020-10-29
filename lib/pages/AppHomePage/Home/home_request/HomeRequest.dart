@@ -192,4 +192,15 @@ class HomeRequest{
       return null;
     }
   }
+
+  ///首页微课堂列表数据
+  static Future<dynamic> requestHomeSmallClassData(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeSmallClassData(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeCultivateMangagerListEntity>(resData['data'][0]);
+    }else{
+      return null;
+    }
+  }
 }

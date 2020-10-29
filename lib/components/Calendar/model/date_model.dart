@@ -11,8 +11,6 @@ class DateModel {
 
   List<int> lunar = List(3);
 
-//  DateModel(int i, int j, int k);
-
 //  List<int> get lunar {
 //    if (lunar?.isNotEmpty == false) {
 //      return lunar;

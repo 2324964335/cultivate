@@ -12,6 +12,12 @@ class SmallClassroom extends StatefulWidget {
 class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMixin, SectionGridAdapterMixin {
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('微课堂'),),

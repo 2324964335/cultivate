@@ -363,7 +363,7 @@ class _CultivateMangerState extends State<CultivateManger> {
                 onTap: (){
                     LogUtil.d('-------------d--d-d--d-');
                     DateModel today = DateModel.fromDateTime(DateTime.now());
-                    controller.changeDefaultSelectedDateModel(today);
+//                    controller.changeDefaultSelectedDateModel(today);
                     _selectDate_str = formatterTimeByLine(today);
                     _desplay_selectData_str = formatterTime(today);
                     getListData();
