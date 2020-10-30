@@ -49,6 +49,8 @@ import '../pages/AppHomePage/Mine/ChangeMobileFirst.dart';
 import '../pages/AppHomePage/Mine/InputNewMobile.dart';
 import '../pages/AppHomePage/Mine/IdentifiCode.dart';
 import '../pages/AppHomePage/Home/HomeInfomationSearch.dart';
+import '../pages/AppHomePage/Home/QuestionTotalSelect.dart';
+import '../pages/AppHomePage/Home/QuestionWrongTotalSelect.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -194,4 +196,10 @@ final Map<String, WidgetBuilder> routesData = {
   ///HomeInfomationSearch 首页关键词搜索页面
   RouteName.homeInfomationSearch: (BuildContext context, {params}) =>
       HomeInfomationSearch(params: params),
+  ///QuestionTotalSelect 总题库列表选择
+  RouteName.questionTotalSelect: (BuildContext context, {params}) =>
+      QuestionTotalSelect(params: params),
+  ///QuestionWrongTotalSelect 总错题库列表选择
+  RouteName.questionWrongTotalSelect: (BuildContext context, {params}) =>
+      QuestionWrongTotalSelect(params: params),
 };

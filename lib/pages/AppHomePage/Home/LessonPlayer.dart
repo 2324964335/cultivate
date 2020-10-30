@@ -45,6 +45,13 @@ class _LessonPlayerState extends State<LessonPlayer> {
           aspectRatio: 3 / 2,
           autoPlay: true,
           looping: true,
+          allowedScreenSleep: false,
+//          showControls: false
+//        customControls: Container(
+//          width: ScreenAdaper.width(750),
+//          height: ScreenAdaper.width(500),
+////          color: Colors.red,
+//        )
         );
         setState(() {
         });

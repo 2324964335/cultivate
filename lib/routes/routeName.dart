@@ -147,7 +147,10 @@ class RouteName {
   ///HomeInfomationSearch 首页关键词搜索
   static String homeInfomationSearch = '/homeInfomationSearch';
 
+  ///QuestionTotalSelect 题库列表选择
+  static String questionTotalSelect = '/questionTotalSelect';
 
-
+  ///QuestionWrongTotalSelect 题库错列表选择
+  static String questionWrongTotalSelect = '/questionWrongTotalSelect';
 
 }
