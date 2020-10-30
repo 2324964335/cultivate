@@ -19,6 +19,7 @@ const serviceUrl = {
    'app_home_unread':appurlPro + 'Education/GetEduNotice', ///首页未读公告数据列表
    'app_home_unread_detail':appurlPro + 'Education/GetEduNoticeDetail', ///首页未读公告数据列表详情页
    'app_home_cultive_mangager':appurlPro + 'Education/EduManagementList', ///首页培训管理日历请求数据
+   'app_home_examine_mangager':appurlPro + 'Education/ExamineManagementList', ///首页考核管理日历请求数据
    'app_home_small_classroom':appurlPro + 'Education/TrainList', ///首页微课堂列表数据
    'app_home_small_classroom_item':appurlPro + 'Education/TrainPlay', ///首页微课堂列表视频数据
    'app_home_information_byWords':appurlPro + 'Education/QryEduList', ///首页公告关键词搜索

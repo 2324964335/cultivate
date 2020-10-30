@@ -3,6 +3,8 @@ import '../../../utils/util.dart';
 import '../../../components/Calendar/flutter_custom_calendar.dart';
 import 'dart:collection';
 import 'package:flutter/cupertino.dart';
+import 'home_request/HomeRequest.dart';
+import 'home_request/home_examine_manager_list_entity.dart';
 class ExamineManger extends StatefulWidget {
   ExamineManger({Key key, this.params}) : super(key: key);
   final  params;
@@ -16,10 +18,11 @@ class _ExamineMangerState extends State<ExamineManger> {
   CalendarViewWidget calendar;
   HashSet<DateTime> _selectedDate = new HashSet();
   HashSet<DateModel> _selectedModels = new HashSet();
-
+  HomeExamineManagerListEntity _dataList = null;
   GlobalKey<CalendarContainerState> _globalKey = new GlobalKey();
   bool _isMonthSelected = false;
-  String _selectDate = '';
+  String _selectDate_str = '';
+  String _desplay_selectData_str = '';
 
   @override
   void dispose() {
@@ -27,10 +30,34 @@ class _ExamineMangerState extends State<ExamineManger> {
     super.dispose();
   }
 
+
+  void getListData(){
+    Map params = {
+      'date':_selectDate_str,
+    };
+    HomeRequest.requestHomeExamineMangagerList(StorageUtil().getSureUserModel().TokenID,params).then((value){
+      _dataList = value;
+      setState(() {
+      });
+    });
+  }
+
+  String formatterTime(DateModel model){
+    return '${model.year}年${model.month}月${model.day}日';
+  }
+
+  String formatterTimeByLine(DateModel model){
+    return '${model.year}-${model.month}-${model.day}';
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     _selectedDate.add(DateTime.now());
+    DateModel today = DateModel.fromDateTime(DateTime.now());
+//    _selectedModels.add(today);
+    _selectDate_str = formatterTimeByLine(today);
+    _desplay_selectData_str = formatterTime(today);
     controller = new CalendarController(
         minYear: 2019,
         minYearMonth: 1,
@@ -40,21 +67,20 @@ class _ExamineMangerState extends State<ExamineManger> {
         selectedDateTimeList: _selectedDate,
         selectMode: CalendarSelectedMode.singleSelect)
       ..addOnCalendarSelectListener((dateModel) {
-        _selectedModels.add(dateModel);
-        setState(() {
-          _selectDate = _selectedModels.toString();
-        });
-      })
-      ..addOnCalendarUnSelectListener((dateModel) {
-//        LogUtil.log(TAG: '_selectedModels', message: _selectedModels.toString());
-//        LogUtil.log(TAG: 'dateModel', message: dateModel.toString());
-        if (_selectedModels.contains(dateModel)) {
-          _selectedModels.remove(dateModel);
-        }
-        setState(() {
-          _selectDate = '';
-        });
+        _desplay_selectData_str = formatterTime(dateModel);
+        _selectDate_str = formatterTimeByLine(dateModel);
+        getListData();
       });
+//      ..addOnCalendarUnSelectListener((dateModel) {
+////        LogUtil.log(TAG: '_selectedModels', message: _selectedModels.toString());
+////        LogUtil.log(TAG: 'dateModel', message: dateModel.toString());
+//        if (_selectedModels.contains(dateModel)) {
+//          _selectedModels.remove(dateModel);
+//        }
+//        setState(() {
+//          _selectDate = '';
+//        });
+//      });
     calendar = new CalendarViewWidget(
       key: _globalKey,
       calendarController: controller,
@@ -64,7 +90,7 @@ class _ExamineMangerState extends State<ExamineManger> {
         if (_isSelected &&
             CalendarSelectedMode.singleSelect ==
                 controller.calendarConfiguration.selectMode) {
-          _selectDate = model.toString();
+          _selectDate_str = model.toString();
         }
         return Container(
           padding: EdgeInsets.all(ScreenAdaper.width(15)),
@@ -103,18 +129,18 @@ class _ExamineMangerState extends State<ExamineManger> {
         setState(() {});
       });
     });
-
+    getListData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('培训管理'),),
+      appBar: AppBar(title: Text('考核管理'),),
       body: Container(
         color: Colors.white,
         child:  ListView.builder(
-            itemCount: 30,
+            itemCount: _dataList == null?1:_dataList.xList.length==0?2:_dataList.xList.length + 1,
             itemBuilder: (ctx, index) {
               return _buildItemByIndex(context,index);
             }
@@ -127,9 +153,33 @@ class _ExamineMangerState extends State<ExamineManger> {
     if(index == 0){
       return _buildHeaderItem(context, index);
     }else{
-      return _buildItem(context, index);
+      if(_dataList.xList.length == 0){
+        return _buildNoData(context);
+      }else{
+        return _buildItem(context, index-1);
+      }
     }
   }
+
+
+  Widget _buildNoData(BuildContext context){
+    return GestureDetector(
+      child: Container(
+        width: ScreenAdaper.width(750),
+        height: ScreenAdaper.width(400),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("asset/images/home/zanwushuju.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
+            SizedBox(height: ScreenAdaper.width(20),),
+            LightText.build('暂无数据'),
+          ],
+        ),
+      ),
+    );
+  }
+
 
   Widget _calendarTool(){
     return GestureDetector(
@@ -194,7 +244,7 @@ class _ExamineMangerState extends State<ExamineManger> {
             alignment: Alignment.center,
             height: ScreenAdaper.width(70),
             width: ScreenAdaper.screenW(context),
-            child: Text('08月31日 周五',style: TextStyle(color: Color(0xffFF5B3E),fontSize: ScreenAdaper.sp(35)),),
+            child: Text(_desplay_selectData_str,style: TextStyle(color: Color(0xffFF5B3E),fontSize: ScreenAdaper.sp(35)),),
           ),
         ],
       ),
@@ -255,13 +305,22 @@ class _ExamineMangerState extends State<ExamineManger> {
                   alignment: Alignment.center,
                   child: DarkText.build('培训计划'),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
+                GestureDetector(
+                  child: Container(
+                    margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
 
-                  color: Color(0xFFF1B900),
+                    color: Color(0xFFF1B900),
 
-                  padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                  child: Text("返回今天",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                    padding: EdgeInsets.all(ScreenAdaper.width(10)),
+                    child: Text("返回今天",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                  ),
+                  onTap: (){
+                    DateModel today = DateModel.fromDateTime(DateTime.now());
+//                    controller.changeDefaultSelectedDateModel(today);
+                    _selectDate_str = formatterTimeByLine(today);
+                    _desplay_selectData_str = formatterTime(today);
+                    getListData();
+                  },
                 ),
               ],
             ),
@@ -272,6 +331,7 @@ class _ExamineMangerState extends State<ExamineManger> {
   }
 
   Widget _buildItem(BuildContext context,int index){
+    HomeExamineManagerListList item = _dataList.xList[index];
     return Container(
       padding: EdgeInsets.only(left: ScreenAdaper.width(20),right: ScreenAdaper.width(20)),
       child: Container(
@@ -288,7 +348,9 @@ class _ExamineMangerState extends State<ExamineManger> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        LightText.build('下午13:20'),
+                        LightText.build(item.signInTime.split(" ")[1]),
+                        SizedBox(width: ScreenAdaper.width(5),),
+
                         Container(
                           margin: EdgeInsets.only(left: ScreenAdaper.width(10),right: ScreenAdaper.width(10)),
                           child: new ClipRRect(
@@ -303,6 +365,7 @@ class _ExamineMangerState extends State<ExamineManger> {
                       ],
                     ),
                   ),
+                  SizedBox(width: ScreenAdaper.width(5),),
                   Row(
                     children: [
                       Container(
@@ -312,7 +375,7 @@ class _ExamineMangerState extends State<ExamineManger> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4.0),
                             gradient: LinearGradient(
-                              colors: index%2==1?[Color(0xFFFF9177), Color(0xFFF64640)]:[Color(0xFFCECCCC), Color(0xFFCECCCC)],
+                              colors: item.status==0?[Color(0xFFFF9177), Color(0xFFF64640)]:item.status==1?[Color(0xFFFF9177), Color(0xFFF64640)]:[Color(0xFFCECCCC), Color(0xFFCECCCC)],
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                             )),
@@ -333,17 +396,22 @@ class _ExamineMangerState extends State<ExamineManger> {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
+                                width: ScreenAdaper.width(240),
                                 margin: EdgeInsets.only(left: ScreenAdaper.width(10),top: ScreenAdaper.height(16)),
-                                child: Text('2020年跨科室晋级..',style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(27)),),
+                                child: Text(item.title,style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(27)),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  softWrap: true,
+                                ),
                               ),
                               SizedBox(width: ScreenAdaper.width(55),),
                               Container(
                                 margin: EdgeInsets.only(top: ScreenAdaper.height(16)),
 
-                                color: index%2==0?Color(0xFF00D08D):Color(0xFFCECCCC),
+                                color: item.status==0?Color(0xFF00D08D):item.status==1?Color(0xFF00D08D):Color(0xFFCECCCC),
 
                                 padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                                child: Text(index%2==1?"未开始":"已结束",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                                child: Text(item.status==0?"未开始":item.status == 1?"进行中":"已结束",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
                               ),
                             ],
                           ),
@@ -370,9 +438,9 @@ class _ExamineMangerState extends State<ExamineManger> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('2020年8月20日 14：20',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                  Text(item.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                   SizedBox(height: ScreenAdaper.width(10),),
-                                  Text('2020年8月20日 14：20',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                  Text(item.endTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                 ],
                               )
                             ],

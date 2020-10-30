@@ -295,7 +295,7 @@ class _CultivateMangerState extends State<CultivateManger> {
               Navigator.pushNamed(
                 context,
                 '/currentMonthCultive',
-                arguments: {},
+                arguments: {"isFromManager":1},
               );
             },
           ),
@@ -311,7 +311,7 @@ class _CultivateMangerState extends State<CultivateManger> {
                   Navigator.pushNamed(
                     context,
                     '/currentMonthCultive',
-                    arguments: {},
+                    arguments: {"isFromManager":1},
                   );
                 },
               ),
@@ -326,7 +326,7 @@ class _CultivateMangerState extends State<CultivateManger> {
                   Navigator.pushNamed(
                     context,
                     '/currentMonthCultive',
-                    arguments: {},
+                    arguments: {"isFromManager":1},
                   );
                 },
               )

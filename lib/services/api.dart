@@ -200,6 +200,16 @@ class Api{
     return resData ?? {};
   }
 
+  ///首页考核管理日历请求数据
+  Future<Map> getRequestHomeExamineMangagerList(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_examine_mangager'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
   ///首页微课堂列表数据
   Future<Map> getRequestHomeSmallClassData(String TokenID,Map params) async {
     Map resData = await safeRequest(

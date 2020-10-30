@@ -12,13 +12,17 @@ class _CurrentMonthCultiveState extends State<CurrentMonthCultive>  with SingleT
 
   // 选项卡控制器
   TabController _tabController;
+  bool _isFromMangager = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _tabController = TabController(initialIndex: 0,length: 3, vsync: this,);
-
+    LogUtil.d('----------${this.widget.params}');
+    if(this.widget.params["isFromManager"] == 1){
+      _isFromMangager = true;
+    }
   }
 
 
@@ -33,7 +37,7 @@ class _CurrentMonthCultiveState extends State<CurrentMonthCultive>  with SingleT
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('本月培训',style: TextStyle(color: Colors.black45),),
+        title: Text(_isFromMangager==true?'我的培训管理':'本月培训',style: TextStyle(color: Colors.black45),),
       ),
       body: Container(
         child: Container(

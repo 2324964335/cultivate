@@ -16,6 +16,7 @@ import 'home_unread_information_detail_model_entity.dart';
 import 'home_cultivate_mangager_list_entity.dart';
 import 'home_classroom_data_entity.dart';
 import 'home_classroom_data_video_entity.dart';
+import 'home_examine_manager_list_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -190,6 +191,17 @@ class HomeRequest{
     LogUtil.d(resData);
     if (resData['success'] == 1){
       return JsonConvert.fromJsonAsT<HomeCultivateMangagerListEntity>(resData['data'][0]);
+    }else{
+      return null;
+    }
+  }
+
+  ///首页考核管理日历请求数据
+  static Future<dynamic> requestHomeExamineMangagerList(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeExamineMangagerList(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeExamineManagerListEntity>(resData['data'][0]);
     }else{
       return null;
     }

@@ -213,7 +213,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 onRefresh: _handleRefresh,
                 child: ListView.builder(
                     physics: new AlwaysScrollableScrollPhysics(),
-                    itemCount: _bottomdata==null?2:_bottomdata.xList.length + 1,
+                    itemCount: _bottomdata==null?2:_bottomdata.xList.length==0?2:_bottomdata_list.length + 1,
                     controller: _scrollController,
                     itemBuilder: (ctx, index) {
                       return _judegeItemByIndex(context,index);
@@ -266,7 +266,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
        }
      );
     }else{
-      if(_bottomdata == null){
+      if(_bottomdata == null||_bottomdata_list.length == 0){
         return _buildGoToLogin(context);
       }else{
         return _buildItem(context,index-1);

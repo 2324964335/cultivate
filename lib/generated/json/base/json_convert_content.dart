@@ -25,6 +25,8 @@ import 'package:cultivate/pages/AppHomePage/Home/home_request/home_page_data_ent
 import 'package:cultivate/generated/json/home_page_data_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/home_unread_information_model_entity.dart';
 import 'package:cultivate/generated/json/home_unread_information_model_entity_helper.dart';
+import 'package:cultivate/pages/AppHomePage/Home/home_request/home_examine_manager_list_entity.dart';
+import 'package:cultivate/generated/json/home_examine_manager_list_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/home_page_top_month_entity.dart';
 import 'package:cultivate/generated/json/home_page_top_month_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/home_unread_information_detail_model_entity.dart';
@@ -65,7 +67,9 @@ class JsonConvert<T> {
 			return homePageDataEntityFromJson(data as HomePageDataEntity, json) as T;			case HomePageDataList:
 			return homePageDataListFromJson(data as HomePageDataList, json) as T;			case HomeUnreadInformationModelEntity:
 			return homeUnreadInformationModelEntityFromJson(data as HomeUnreadInformationModelEntity, json) as T;			case HomeUnreadInformationModelList:
-			return homeUnreadInformationModelListFromJson(data as HomeUnreadInformationModelList, json) as T;			case HomePageTopMonthEntity:
+			return homeUnreadInformationModelListFromJson(data as HomeUnreadInformationModelList, json) as T;			case HomeExamineManagerListEntity:
+			return homeExamineManagerListEntityFromJson(data as HomeExamineManagerListEntity, json) as T;			case HomeExamineManagerListList:
+			return homeExamineManagerListListFromJson(data as HomeExamineManagerListList, json) as T;			case HomePageTopMonthEntity:
 			return homePageTopMonthEntityFromJson(data as HomePageTopMonthEntity, json) as T;			case HomePageTopMonthList:
 			return homePageTopMonthListFromJson(data as HomePageTopMonthList, json) as T;			case HomeUnreadInformationDetailModelEntity:
 			return homeUnreadInformationDetailModelEntityFromJson(data as HomeUnreadInformationDetailModelEntity, json) as T;			case MyCultivateDetailTopTotalEntity:
@@ -98,7 +102,9 @@ class JsonConvert<T> {
 			return homePageDataEntityToJson(data as HomePageDataEntity);			case HomePageDataList:
 			return homePageDataListToJson(data as HomePageDataList);			case HomeUnreadInformationModelEntity:
 			return homeUnreadInformationModelEntityToJson(data as HomeUnreadInformationModelEntity);			case HomeUnreadInformationModelList:
-			return homeUnreadInformationModelListToJson(data as HomeUnreadInformationModelList);			case HomePageTopMonthEntity:
+			return homeUnreadInformationModelListToJson(data as HomeUnreadInformationModelList);			case HomeExamineManagerListEntity:
+			return homeExamineManagerListEntityToJson(data as HomeExamineManagerListEntity);			case HomeExamineManagerListList:
+			return homeExamineManagerListListToJson(data as HomeExamineManagerListList);			case HomePageTopMonthEntity:
 			return homePageTopMonthEntityToJson(data as HomePageTopMonthEntity);			case HomePageTopMonthList:
 			return homePageTopMonthListToJson(data as HomePageTopMonthList);			case HomeUnreadInformationDetailModelEntity:
 			return homeUnreadInformationDetailModelEntityToJson(data as HomeUnreadInformationDetailModelEntity);			case MyCultivateDetailTopTotalEntity:
@@ -131,7 +137,9 @@ class JsonConvert<T> {
 			return HomePageDataEntity().fromJson(json);			case 'HomePageDataList':
 			return HomePageDataList().fromJson(json);			case 'HomeUnreadInformationModelEntity':
 			return HomeUnreadInformationModelEntity().fromJson(json);			case 'HomeUnreadInformationModelList':
-			return HomeUnreadInformationModelList().fromJson(json);			case 'HomePageTopMonthEntity':
+			return HomeUnreadInformationModelList().fromJson(json);			case 'HomeExamineManagerListEntity':
+			return HomeExamineManagerListEntity().fromJson(json);			case 'HomeExamineManagerListList':
+			return HomeExamineManagerListList().fromJson(json);			case 'HomePageTopMonthEntity':
 			return HomePageTopMonthEntity().fromJson(json);			case 'HomePageTopMonthList':
 			return HomePageTopMonthList().fromJson(json);			case 'HomeUnreadInformationDetailModelEntity':
 			return HomeUnreadInformationDetailModelEntity().fromJson(json);			case 'MyCultivateDetailTopTotalEntity':
@@ -165,7 +173,9 @@ class JsonConvert<T> {
 			return List<HomePageDataEntity>();			case 'HomePageDataList':
 			return List<HomePageDataList>();			case 'HomeUnreadInformationModelEntity':
 			return List<HomeUnreadInformationModelEntity>();			case 'HomeUnreadInformationModelList':
-			return List<HomeUnreadInformationModelList>();			case 'HomePageTopMonthEntity':
+			return List<HomeUnreadInformationModelList>();			case 'HomeExamineManagerListEntity':
+			return List<HomeExamineManagerListEntity>();			case 'HomeExamineManagerListList':
+			return List<HomeExamineManagerListList>();			case 'HomePageTopMonthEntity':
 			return List<HomePageTopMonthEntity>();			case 'HomePageTopMonthList':
 			return List<HomePageTopMonthList>();			case 'HomeUnreadInformationDetailModelEntity':
 			return List<HomeUnreadInformationDetailModelEntity>();			case 'MyCultivateDetailTopTotalEntity':
