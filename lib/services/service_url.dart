@@ -22,5 +22,7 @@ const serviceUrl = {
    'app_home_examine_mangager':appurlPro + 'Education/ExamineManagementList', ///首页考核管理日历请求数据
    'app_home_small_classroom':appurlPro + 'Education/TrainList', ///首页微课堂列表数据
    'app_home_small_classroom_item':appurlPro + 'Education/TrainPlay', ///首页微课堂列表视频数据
+   'app_home_small_classroom_item_bottom':appurlPro + 'Education/TrainCategoryList', ///首页微课堂列表视频底部数据
    'app_home_information_byWords':appurlPro + 'Education/QryEduList', ///首页公告关键词搜索
+   'app_home_total_question_list':appurlPro + 'Education/QuestionBank', ///首页公告关键词搜索
 };

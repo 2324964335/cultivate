@@ -17,6 +17,7 @@ import 'home_cultivate_mangager_list_entity.dart';
 import 'home_classroom_data_entity.dart';
 import 'home_classroom_data_video_entity.dart';
 import 'home_examine_manager_list_entity.dart';
+import 'home_total_question_list_select_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -230,6 +231,17 @@ class HomeRequest{
     }
   }
 
+  ///首页微课堂列表视频底部数据
+  static Future<dynamic> requestHomeSmallClassItemBottomListData(String tokenID,Map params) async {
+    Map resData = await Api().getRequestHomeSmallClassItemBottomListData(tokenID,params);
+    LogUtil.d(resData);
+//    if (resData['success'] == 1){
+//      return JsonConvert.fromJsonAsT<HomeClassroomDataVideoEntity>(resData);
+//    }else{
+//      return null;
+//    }
+  }
+
   ///首页公告关键词搜索
   static Future<dynamic> requestHomeInformationByWords(String tokenID,Map params) async {
     Map resData = await Api().getRequestHomeInformationByWords(tokenID,params);
@@ -240,4 +252,16 @@ class HomeRequest{
       return null;
     }
   }
+
+  ///题库列表
+  static Future<dynamic> requestTotalQuestionList(String tokenID,Map params) async {
+    Map resData = await Api().getRequestTotalQuestionList(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeTotalQuestionListSelectEntity>(resData['data'][0]);
+    }else{
+      return null;
+    }
+  }
+
 }

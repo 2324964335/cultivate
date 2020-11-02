@@ -230,10 +230,30 @@ class Api{
     return resData ?? {};
   }
 
+  ///首页微课堂列表数据播放视频底部数据
+  Future<Map> getRequestHomeSmallClassItemBottomListData(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_small_classroom_item_bottom'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
   ///首页公告关键词搜索
   Future<Map> getRequestHomeInformationByWords(String TokenID,Map params) async {
     Map resData = await safeRequest(
       serviceUrl['app_home_information_byWords'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
+  ///首页题库列表数据
+  Future<Map> getRequestTotalQuestionList(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_total_question_list'],
       data: params,
       options: Options(method: 'POST',headers:{"TokenID":TokenID}),
     );

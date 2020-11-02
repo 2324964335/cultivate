@@ -13,6 +13,8 @@ import 'package:cultivate/pages/AppHomePage/Home/home_request/home_page_top_tota
 import 'package:cultivate/generated/json/home_page_top_total_data_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/home_classroom_data_entity.dart';
 import 'package:cultivate/generated/json/home_classroom_data_entity_helper.dart';
+import 'package:cultivate/pages/AppHomePage/Home/home_request/home_total_question_list_select_entity.dart';
+import 'package:cultivate/generated/json/home_total_question_list_select_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/current_month_examine_list_entity.dart';
 import 'package:cultivate/generated/json/current_month_examine_list_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/information_detail_comment_model_entity.dart';
@@ -54,7 +56,9 @@ class JsonConvert<T> {
 			return homePageTopTotalDataDataFromJson(data as HomePageTopTotalDataData, json) as T;			case HomePageTopTotalDataDataList:
 			return homePageTopTotalDataDataListFromJson(data as HomePageTopTotalDataDataList, json) as T;			case HomeClassroomDataEntity:
 			return homeClassroomDataEntityFromJson(data as HomeClassroomDataEntity, json) as T;			case HomeClassroomDataData:
-			return homeClassroomDataDataFromJson(data as HomeClassroomDataData, json) as T;			case CurrentMonthExamineListEntity:
+			return homeClassroomDataDataFromJson(data as HomeClassroomDataData, json) as T;			case HomeTotalQuestionListSelectEntity:
+			return homeTotalQuestionListSelectEntityFromJson(data as HomeTotalQuestionListSelectEntity, json) as T;			case HomeTotalQuestionListSelectList:
+			return homeTotalQuestionListSelectListFromJson(data as HomeTotalQuestionListSelectList, json) as T;			case CurrentMonthExamineListEntity:
 			return currentMonthExamineListEntityFromJson(data as CurrentMonthExamineListEntity, json) as T;			case CurrentMonthExamineListList:
 			return currentMonthExamineListListFromJson(data as CurrentMonthExamineListList, json) as T;			case InformationDetailCommentModelEntity:
 			return informationDetailCommentModelEntityFromJson(data as InformationDetailCommentModelEntity, json) as T;			case InformationDetailCommentModelData:
@@ -89,7 +93,9 @@ class JsonConvert<T> {
 			return homePageTopTotalDataDataToJson(data as HomePageTopTotalDataData);			case HomePageTopTotalDataDataList:
 			return homePageTopTotalDataDataListToJson(data as HomePageTopTotalDataDataList);			case HomeClassroomDataEntity:
 			return homeClassroomDataEntityToJson(data as HomeClassroomDataEntity);			case HomeClassroomDataData:
-			return homeClassroomDataDataToJson(data as HomeClassroomDataData);			case CurrentMonthExamineListEntity:
+			return homeClassroomDataDataToJson(data as HomeClassroomDataData);			case HomeTotalQuestionListSelectEntity:
+			return homeTotalQuestionListSelectEntityToJson(data as HomeTotalQuestionListSelectEntity);			case HomeTotalQuestionListSelectList:
+			return homeTotalQuestionListSelectListToJson(data as HomeTotalQuestionListSelectList);			case CurrentMonthExamineListEntity:
 			return currentMonthExamineListEntityToJson(data as CurrentMonthExamineListEntity);			case CurrentMonthExamineListList:
 			return currentMonthExamineListListToJson(data as CurrentMonthExamineListList);			case InformationDetailCommentModelEntity:
 			return informationDetailCommentModelEntityToJson(data as InformationDetailCommentModelEntity);			case InformationDetailCommentModelData:
@@ -124,7 +130,9 @@ class JsonConvert<T> {
 			return HomePageTopTotalDataData().fromJson(json);			case 'HomePageTopTotalDataDataList':
 			return HomePageTopTotalDataDataList().fromJson(json);			case 'HomeClassroomDataEntity':
 			return HomeClassroomDataEntity().fromJson(json);			case 'HomeClassroomDataData':
-			return HomeClassroomDataData().fromJson(json);			case 'CurrentMonthExamineListEntity':
+			return HomeClassroomDataData().fromJson(json);			case 'HomeTotalQuestionListSelectEntity':
+			return HomeTotalQuestionListSelectEntity().fromJson(json);			case 'HomeTotalQuestionListSelectList':
+			return HomeTotalQuestionListSelectList().fromJson(json);			case 'CurrentMonthExamineListEntity':
 			return CurrentMonthExamineListEntity().fromJson(json);			case 'CurrentMonthExamineListList':
 			return CurrentMonthExamineListList().fromJson(json);			case 'InformationDetailCommentModelEntity':
 			return InformationDetailCommentModelEntity().fromJson(json);			case 'InformationDetailCommentModelData':
@@ -160,7 +168,9 @@ class JsonConvert<T> {
 			return List<HomePageTopTotalDataData>();			case 'HomePageTopTotalDataDataList':
 			return List<HomePageTopTotalDataDataList>();			case 'HomeClassroomDataEntity':
 			return List<HomeClassroomDataEntity>();			case 'HomeClassroomDataData':
-			return List<HomeClassroomDataData>();			case 'CurrentMonthExamineListEntity':
+			return List<HomeClassroomDataData>();			case 'HomeTotalQuestionListSelectEntity':
+			return List<HomeTotalQuestionListSelectEntity>();			case 'HomeTotalQuestionListSelectList':
+			return List<HomeTotalQuestionListSelectList>();			case 'CurrentMonthExamineListEntity':
 			return List<CurrentMonthExamineListEntity>();			case 'CurrentMonthExamineListList':
 			return List<CurrentMonthExamineListList>();			case 'InformationDetailCommentModelEntity':
 			return List<InformationDetailCommentModelEntity>();			case 'InformationDetailCommentModelData':

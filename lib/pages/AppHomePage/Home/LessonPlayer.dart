@@ -17,6 +17,11 @@ class _LessonPlayerState extends State<LessonPlayer> {
   VideoPlayerController _videoPlayerController1;
   ChewieController _chewieController;
   HomeClassroomDataVideoData _videoData = null;
+//  CurrentCultivateListEntity _dataList = null;
+  List _dataList_list = [];
+  ScrollController _scrollController = ScrollController(); //listview的控制器
+  bool canContinueLoading = true;
+  int PageIndex = 1;
   @override
   void initState() {
     super.initState();
@@ -30,7 +35,60 @@ class _LessonPlayerState extends State<LessonPlayer> {
 //      looping: true,
 //    );
     getVideoData();
+    getListData(1);
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        print('滑动到了最底部');
+        getListData(PageIndex);
+      }
+    });
   }
+
+  @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
+    _scrollController.dispose();
+  }
+
+
+  void getListData(int pageIndex){
+    if(pageIndex!=1&&canContinueLoading == false){
+      ToastShow.show('暂无更多数据');
+      return;
+    }
+    Map params = {
+      'category':'string',
+      'pageIdx':pageIndex,
+      'pageSize':10
+    };
+    HomeRequest.requestHomeSmallClassItemBottomListData(StorageUtil().getSureUserModel().TokenID,params).then((value){
+//      _dataList = value;
+      if(pageIndex==1){
+        _dataList_list = [];
+//        _dataList = value;
+        _dataList_list.addAll(value.xList);
+        canContinueLoading = true;
+      }else{
+        if((value.xList as List).length > 0) {
+          _dataList_list.addAll(value.xList);
+        }
+        if((value.xList as List).length < 10){
+          canContinueLoading = false;
+        }
+      }
+      PageIndex +=1;
+      setState(() {
+      });
+    });
+  }
+
+  Future<Null> _handleRefresh() async {
+    PageIndex = 1;
+    getListData(PageIndex);
+  }
+
 
   void getVideoData(){
     Map params = {
@@ -110,6 +168,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
     },
     body: Center(
     child: ListView.builder(
+      controller: _scrollController,
       itemCount: 14,
       itemBuilder: (ctx,index){
         return _buildWidgetByIndex(context,index);
