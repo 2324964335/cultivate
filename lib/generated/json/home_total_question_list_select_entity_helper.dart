@@ -25,6 +25,9 @@ homeTotalQuestionListSelectListFromJson(HomeTotalQuestionListSelectList data, Ma
 	if (json['Caption'] != null) {
 		data.caption = json['Caption']?.toString();
 	}
+	if (json['Count'] != null) {
+		data.count = json['Count']?.toInt();
+	}
 	return data;
 }
 
@@ -32,5 +35,6 @@ Map<String, dynamic> homeTotalQuestionListSelectListToJson(HomeTotalQuestionList
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['SheetCode'] = entity.sheetCode;
 	data['Caption'] = entity.caption;
+	data['Count'] = entity.count;
 	return data;
 }

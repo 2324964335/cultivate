@@ -11,4 +11,6 @@ class HomeTotalQuestionListSelectList with JsonConvert<HomeTotalQuestionListSele
 	String sheetCode;
 	@JSONField(name: "Caption")
 	String caption;
+	@JSONField(name: "Count")
+	int count;
 }

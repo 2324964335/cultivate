@@ -14,17 +14,19 @@ class ShowAlertDialog extends StatefulWidget {
   String content;
   // 点击返回index 0 1
   Function onTap;
+  Function(String title,int index) onTapWithInput;
   //按钮
   List<String> items;
 
   ///定制审核不通过组件
   bool isShenhe;
-  ///定制修改手机号组件
+  ///定制修改手机号组件和代签输入他人工号组件
   bool isChangeMobile=false;
 
   ShowAlertDialog({
     this.contentAlign = TextAlign.left,
     this.onTap,
+    this.onTapWithInput,
     @required this.items,
     this.content,
     this.title,
@@ -52,74 +54,79 @@ class _ShowAlertDialogState extends State<ShowAlertDialog> {
   Widget build(BuildContext context) {
     return Material(
       color: ColorConst.Color_Clear,
-      child: Center(
-        // ClipRRect 创建圆角矩形 要不然发现下边button不是圆角
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
-          child: Container(
-            color: ColorConst.Color_Font_White,
-            width: (260),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SizedBox(height: 30),
-                (widget.title == null || widget.title.length == 0) ? Container() : Container(
-                  child: Text(
-                  widget.title,
-                  style: TextStyle(
-                      color: Color(0xff565656),
-                      fontWeight: FontWeight.bold,
-                      fontSize: (18)),
-                ),
-                ),
-                SizedBox(height: 30),
-                Container(
-                  margin: EdgeInsets.only(left: 15, right: 15),
-                  width: ScreenAdaper.width(460),
-                  alignment: widget.isShenhe==null?Alignment.center:widget.isShenhe==true?Alignment.centerLeft:Alignment.center,
-                  child: Text(
-                    widget.content==null?"温馨提示":widget.content,
-                    style: TextStyle(
-                      color: Color(0xff9E9A9A),
-                      fontSize: (12),
+      child: GestureDetector(
+        child: Center(
+          // ClipRRect 创建圆角矩形 要不然发现下边button不是圆角
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Container(
+              color: ColorConst.Color_Font_White,
+              width: (260),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  SizedBox(height: 30),
+                  (widget.title == null || widget.title.length == 0) ? Container() : Container(
+                    child: Text(
+                      widget.title,
+                      style: TextStyle(
+                          color: Color(0xff565656),
+                          fontWeight: FontWeight.bold,
+                          fontSize: (18)),
                     ),
                   ),
-                ),
-                SizedBox(height: widget.isShenhe != null?10:25),
-                widget.isShenhe != null?Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),///圆角
-                      border: Border.all(color: Color(0xff979797),width: ScreenAdaper.width(1))///边框颜色、宽
-                  ),
-                  height: this.widget.isChangeMobile==true?ScreenAdaper.width(80):ScreenAdaper.width(240),
-                  margin: EdgeInsets.only(left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.width(20)),
-                  padding: EdgeInsets.only(left: ScreenAdaper.width(10)),
-                  child: MyTextField(
-                    focusNode: _inputNode,
-                    placeHolder: this.widget.isChangeMobile==true?'':'请输入拒绝理由',
-                    maxLength: null,
-                    noBottomLine: true,
-                    keyboardType: TextInputType.multiline,
-                    controller: _inputController,
-                    isMultiHang: this.widget.isChangeMobile==true?false:true,
-                  ),
-                ):Container(),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: ColorConst.Color_Split_Line,
-                        width: 1,
+                  widget.isChangeMobile==true?SizedBox(height: 10):SizedBox(height: 30),
+                  Container(
+                    margin: EdgeInsets.only(left: 15, right: 15),
+                    width: ScreenAdaper.width(460),
+                    alignment: widget.isShenhe==null?Alignment.center:widget.isShenhe==true?Alignment.centerLeft:Alignment.center,
+                    child: Text(
+                      widget.content==null?"温馨提示":widget.content,
+                      style: TextStyle(
+                        color: Color(0xff9E9A9A),
+                        fontSize: (12),
                       ),
                     ),
                   ),
-                ),
-                _itemCreat(),
-              ],
+                  SizedBox(height: widget.isShenhe != null?10:25),
+                  widget.isShenhe != null?Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),///圆角
+                        border: Border.all(color: Color(0xff979797),width: ScreenAdaper.width(1))///边框颜色、宽
+                    ),
+                    height: this.widget.isChangeMobile==true?ScreenAdaper.width(80):ScreenAdaper.width(240),
+                    margin: EdgeInsets.only(left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.width(20)),
+                    padding: EdgeInsets.only(left: ScreenAdaper.width(10)),
+                    child: MyTextField(
+                      focusNode: _inputNode,
+                      placeHolder: this.widget.isChangeMobile==true?'':'请输入拒绝理由',
+                      maxLength: null,
+                      noBottomLine: true,
+                      keyboardType: TextInputType.multiline,
+                      controller: _inputController,
+                      isMultiHang: this.widget.isChangeMobile==true?false:true,
+                    ),
+                  ):Container(),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: ColorConst.Color_Split_Line,
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                  ),
+                  _itemCreat(),
+                ],
+              ),
             ),
           ),
         ),
-      ),
+        onTap: (){
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+      )
     );
   }
 
@@ -133,8 +140,14 @@ class _ShowAlertDialogState extends State<ShowAlertDialog> {
             child: GestureDetector(
               onTap: () {
                 FunctionUtil.pop(context);
-                if(widget.onTap != null){
-                  widget.onTap(index);
+                if(widget.isChangeMobile==true){
+                  if(widget.onTapWithInput != null){
+                    widget.onTapWithInput(_inputController.text,index);
+                  }
+                }else{
+                  if(widget.onTap != null){
+                    widget.onTap(index);
+                  }
                 }
               },
               child: Container(

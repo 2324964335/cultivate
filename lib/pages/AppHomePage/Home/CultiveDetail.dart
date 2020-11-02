@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import 'home_request/HomeRequest.dart';
 import 'home_request/cultivate_deatil_entity.dart';
+import '../../../components/func.dart';
+import '../../../components/alert_dialog.dart';
 class CultiveDetail extends StatefulWidget {
   CultiveDetail({Key key, this.params}) : super(key: key);
   final  params;
@@ -87,17 +89,62 @@ class _CultiveDetailState extends State<CultiveDetail> {
             ),
           ),
           onTap: (){
-            LogUtil.d('-------去签到');
-            Map params= {
-              "id":this.widget.params['id']
-            };
-            HomeRequest.requestSignCultivateData(StorageUtil().getSureUserModel().TokenID, params).then((value){
-              Navigator.pushNamed(
-                context,
-                '/courseSignSuccess',
-                arguments: {}, //　传递参数
-              );
-            });
+
+            FunctionUtil.popDialog(
+              context,
+              ShowAlertDialog(
+                title: "代签",
+
+                content: "请填写需要代签人的工号",
+                items: ['取消', '确认代签'],
+                onTapWithInput: (title,index) {
+                  LogUtil.d('object$index');
+                  if(title.length == 0){
+                    ToastShow.show("请输入需要代签人的工号");
+                    return;
+                  }
+                  if(index == 1){
+                    Map params= {
+                      "id":this.widget.params['id'],
+                      "usercode":title,
+                      "status":1,
+
+                    };
+                    HomeRequest.requestDaiSignCultivateData(StorageUtil().getSureUserModel().TokenID, params).then((value){
+                      if(value["success"] == 1){
+                        Navigator.pushNamed(
+                          context,
+                          '/courseSignSuccess',
+                          arguments: {}, //　传递参数
+                        );
+                      }else{
+                        ToastShow.show(value["msg"]);
+                      }
+                    });
+//                    ToastShow.show("验证成功");
+////                          Navigator.pop(context);
+//                    ///inputNewMobile
+//                    Navigator.pushNamed(
+//                      context,
+//                      '/inputNewMobile',
+//                      arguments: {'mobile':this.widget.params["mobile"]}, //　传递参数
+//                    );
+                  }
+                },
+                isShenhe: false,
+                isChangeMobile: true,
+              ),
+            );
+//            Map params= {
+//              "id":this.widget.params['id']
+//            };
+//            HomeRequest.requestSignCultivateData(StorageUtil().getSureUserModel().TokenID, params).then((value){
+//              Navigator.pushNamed(
+//                context,
+//                '/courseSignSuccess',
+//                arguments: {}, //　传递参数
+//              );
+//            });
           },
         )
        ),
@@ -125,7 +172,8 @@ class _CultiveDetailState extends State<CultiveDetail> {
               onTap: (){
                 LogUtil.d('-------去签到');
                 Map params= {
-                  "id":this.widget.params['id']
+                  "id":this.widget.params['id'],
+                  "status":1
                 };
                 HomeRequest.requestSignCultivateData(StorageUtil().getSureUserModel().TokenID, params).then((value){
                   Navigator.pushNamed(

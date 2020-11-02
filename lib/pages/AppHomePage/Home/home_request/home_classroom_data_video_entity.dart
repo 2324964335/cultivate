@@ -15,4 +15,6 @@ class HomeClassroomDataVideoData with JsonConvert<HomeClassroomDataVideoData> {
 	String fillPath;
 	@JSONField(name: "FillType")
 	String fillType;
+	@JSONField(name: "Category")
+	String category;
 }

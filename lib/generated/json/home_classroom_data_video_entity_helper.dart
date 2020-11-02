@@ -37,6 +37,9 @@ homeClassroomDataVideoDataFromJson(HomeClassroomDataVideoData data, Map<String, 
 	if (json['FillType'] != null) {
 		data.fillType = json['FillType']?.toString();
 	}
+	if (json['Category'] != null) {
+		data.category = json['Category']?.toString();
+	}
 	return data;
 }
 
@@ -45,5 +48,6 @@ Map<String, dynamic> homeClassroomDataVideoDataToJson(HomeClassroomDataVideoData
 	data['ID'] = entity.iD;
 	data['FillPath'] = entity.fillPath;
 	data['FillType'] = entity.fillType;
+	data['Category'] = entity.category;
 	return data;
 }

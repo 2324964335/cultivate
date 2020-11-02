@@ -19,6 +19,8 @@ import 'package:cultivate/pages/AppHomePage/Home/home_request/current_month_exam
 import 'package:cultivate/generated/json/current_month_examine_list_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/information_detail_comment_model_entity.dart';
 import 'package:cultivate/generated/json/information_detail_comment_model_entity_helper.dart';
+import 'package:cultivate/pages/AppHomePage/Home/home_request/home_video_learn_bottom_model_entity.dart';
+import 'package:cultivate/generated/json/home_video_learn_bottom_model_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/my_cultivate_detail_bottom_person_list_entity.dart';
 import 'package:cultivate/generated/json/my_cultivate_detail_bottom_person_list_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/current_cultivate_list_entity.dart';
@@ -63,7 +65,9 @@ class JsonConvert<T> {
 			return currentMonthExamineListListFromJson(data as CurrentMonthExamineListList, json) as T;			case InformationDetailCommentModelEntity:
 			return informationDetailCommentModelEntityFromJson(data as InformationDetailCommentModelEntity, json) as T;			case InformationDetailCommentModelData:
 			return informationDetailCommentModelDataFromJson(data as InformationDetailCommentModelData, json) as T;			case InformationDetailCommantModelDataList:
-			return informationDetailCommantModelDataListFromJson(data as InformationDetailCommantModelDataList, json) as T;			case MyCultivateDetailBottomPersonListEntity:
+			return informationDetailCommantModelDataListFromJson(data as InformationDetailCommantModelDataList, json) as T;			case HomeVideoLearnBottomModelEntity:
+			return homeVideoLearnBottomModelEntityFromJson(data as HomeVideoLearnBottomModelEntity, json) as T;			case HomeVideoLearnBottomModelData:
+			return homeVideoLearnBottomModelDataFromJson(data as HomeVideoLearnBottomModelData, json) as T;			case MyCultivateDetailBottomPersonListEntity:
 			return myCultivateDetailBottomPersonListEntityFromJson(data as MyCultivateDetailBottomPersonListEntity, json) as T;			case MyCultivateDetailBottomPersonListList:
 			return myCultivateDetailBottomPersonListListFromJson(data as MyCultivateDetailBottomPersonListList, json) as T;			case CurrentCultivateListEntity:
 			return currentCultivateListEntityFromJson(data as CurrentCultivateListEntity, json) as T;			case CurrentCultivateListList:
@@ -100,7 +104,9 @@ class JsonConvert<T> {
 			return currentMonthExamineListListToJson(data as CurrentMonthExamineListList);			case InformationDetailCommentModelEntity:
 			return informationDetailCommentModelEntityToJson(data as InformationDetailCommentModelEntity);			case InformationDetailCommentModelData:
 			return informationDetailCommentModelDataToJson(data as InformationDetailCommentModelData);			case InformationDetailCommantModelDataList:
-			return informationDetailCommantModelDataListToJson(data as InformationDetailCommantModelDataList);			case MyCultivateDetailBottomPersonListEntity:
+			return informationDetailCommantModelDataListToJson(data as InformationDetailCommantModelDataList);			case HomeVideoLearnBottomModelEntity:
+			return homeVideoLearnBottomModelEntityToJson(data as HomeVideoLearnBottomModelEntity);			case HomeVideoLearnBottomModelData:
+			return homeVideoLearnBottomModelDataToJson(data as HomeVideoLearnBottomModelData);			case MyCultivateDetailBottomPersonListEntity:
 			return myCultivateDetailBottomPersonListEntityToJson(data as MyCultivateDetailBottomPersonListEntity);			case MyCultivateDetailBottomPersonListList:
 			return myCultivateDetailBottomPersonListListToJson(data as MyCultivateDetailBottomPersonListList);			case CurrentCultivateListEntity:
 			return currentCultivateListEntityToJson(data as CurrentCultivateListEntity);			case CurrentCultivateListList:
@@ -137,7 +143,9 @@ class JsonConvert<T> {
 			return CurrentMonthExamineListList().fromJson(json);			case 'InformationDetailCommentModelEntity':
 			return InformationDetailCommentModelEntity().fromJson(json);			case 'InformationDetailCommentModelData':
 			return InformationDetailCommentModelData().fromJson(json);			case 'InformationDetailCommantModelDataList':
-			return InformationDetailCommantModelDataList().fromJson(json);			case 'MyCultivateDetailBottomPersonListEntity':
+			return InformationDetailCommantModelDataList().fromJson(json);			case 'HomeVideoLearnBottomModelEntity':
+			return HomeVideoLearnBottomModelEntity().fromJson(json);			case 'HomeVideoLearnBottomModelData':
+			return HomeVideoLearnBottomModelData().fromJson(json);			case 'MyCultivateDetailBottomPersonListEntity':
 			return MyCultivateDetailBottomPersonListEntity().fromJson(json);			case 'MyCultivateDetailBottomPersonListList':
 			return MyCultivateDetailBottomPersonListList().fromJson(json);			case 'CurrentCultivateListEntity':
 			return CurrentCultivateListEntity().fromJson(json);			case 'CurrentCultivateListList':
@@ -175,7 +183,9 @@ class JsonConvert<T> {
 			return List<CurrentMonthExamineListList>();			case 'InformationDetailCommentModelEntity':
 			return List<InformationDetailCommentModelEntity>();			case 'InformationDetailCommentModelData':
 			return List<InformationDetailCommentModelData>();			case 'InformationDetailCommantModelDataList':
-			return List<InformationDetailCommantModelDataList>();			case 'MyCultivateDetailBottomPersonListEntity':
+			return List<InformationDetailCommantModelDataList>();			case 'HomeVideoLearnBottomModelEntity':
+			return List<HomeVideoLearnBottomModelEntity>();			case 'HomeVideoLearnBottomModelData':
+			return List<HomeVideoLearnBottomModelData>();			case 'MyCultivateDetailBottomPersonListEntity':
 			return List<MyCultivateDetailBottomPersonListEntity>();			case 'MyCultivateDetailBottomPersonListList':
 			return List<MyCultivateDetailBottomPersonListList>();			case 'CurrentCultivateListEntity':
 			return List<CurrentCultivateListEntity>();			case 'CurrentCultivateListList':

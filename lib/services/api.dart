@@ -89,6 +89,17 @@ class Api{
     return resData ?? {};
   }
 
+
+  ///代人签到
+  Future<Map> getDaiSignCultivate(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_dai_sign_cultivate'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
   ///我的培训签到详情头部数据
   Future<Map> getMySignCultivateTotal(String TokenID,Map params) async {
     Map resData = await safeRequest(

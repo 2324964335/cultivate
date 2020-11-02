@@ -18,6 +18,7 @@ import 'home_classroom_data_entity.dart';
 import 'home_classroom_data_video_entity.dart';
 import 'home_examine_manager_list_entity.dart';
 import 'home_total_question_list_select_entity.dart';
+import 'home_video_learn_bottom_model_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -67,6 +68,7 @@ class HomeRequest{
     }
   }
 
+  ///本人签到
   static Future<dynamic> requestSignCultivateData(String tokenID,Map params) async {
     Map resData = await Api().getSignCultivate(tokenID,params);
     LogUtil.d(resData);
@@ -77,6 +79,21 @@ class HomeRequest{
 //    }else{
 //      return null;
 //    }
+  return resData;
+  }
+
+  ///代人签到
+  static Future<dynamic> requestDaiSignCultivateData(String tokenID,Map params) async {
+    Map resData = await Api().getDaiSignCultivate(tokenID,params);
+    LogUtil.d(resData);
+//    if (resData['success'] == 1){
+//      return JsonConvert.fromJsonAsT<CultivateDeatilEntity>(resData['data'][0]);
+//    }else if(resData['success'] == -1101){
+//      return resData;
+//    }else{
+//      return null;
+//    }
+  return resData;
   }
 
   ///我的培训签到详情
@@ -235,11 +252,11 @@ class HomeRequest{
   static Future<dynamic> requestHomeSmallClassItemBottomListData(String tokenID,Map params) async {
     Map resData = await Api().getRequestHomeSmallClassItemBottomListData(tokenID,params);
     LogUtil.d(resData);
-//    if (resData['success'] == 1){
-//      return JsonConvert.fromJsonAsT<HomeClassroomDataVideoEntity>(resData);
-//    }else{
-//      return null;
-//    }
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeVideoLearnBottomModelEntity>(resData);
+    }else{
+      return null;
+    }
   }
 
   ///首页公告关键词搜索

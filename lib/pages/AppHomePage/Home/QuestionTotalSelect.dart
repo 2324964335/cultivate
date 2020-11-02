@@ -132,7 +132,7 @@ class _QuestionTotalSelectState extends State<QuestionTotalSelect> {
                     ),
                     Container(
                       margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
-                      child:Text("共300题",style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                      child:Text("共${item.count}题",style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                     ),
                   ],
                 ),

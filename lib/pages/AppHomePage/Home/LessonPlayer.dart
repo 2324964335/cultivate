@@ -6,6 +6,7 @@ import 'package:chewie/src/chewie_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'home_request/HomeRequest.dart';
 import 'home_request/home_classroom_data_video_entity.dart';
+import 'home_request/home_video_learn_bottom_model_entity.dart';
 class LessonPlayer extends StatefulWidget {
   LessonPlayer({Key key, this.params}) : super(key: key);
   final  params;
@@ -17,11 +18,12 @@ class _LessonPlayerState extends State<LessonPlayer> {
   VideoPlayerController _videoPlayerController1;
   ChewieController _chewieController;
   HomeClassroomDataVideoData _videoData = null;
-//  CurrentCultivateListEntity _dataList = null;
+  HomeVideoLearnBottomModelEntity _dataList = null;
   List _dataList_list = [];
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool canContinueLoading = true;
   int PageIndex = 1;
+  String _category = "";
   @override
   void initState() {
     super.initState();
@@ -35,7 +37,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
 //      looping: true,
 //    );
     getVideoData();
-    getListData(1);
+//    getListData(1);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -59,22 +61,22 @@ class _LessonPlayerState extends State<LessonPlayer> {
       return;
     }
     Map params = {
-      'category':this.widget.params["category"],
+      'category':_category,
       'pageIdx':pageIndex,
       'pageSize':10
     };
     HomeRequest.requestHomeSmallClassItemBottomListData(StorageUtil().getSureUserModel().TokenID,params).then((value){
-//      _dataList = value;
+      _dataList = value;
       if(pageIndex==1){
         _dataList_list = [];
-//        _dataList = value;
-        _dataList_list.addAll(value.xList);
+        _dataList = value;
+        _dataList_list.addAll(value.data);
         canContinueLoading = true;
       }else{
-        if((value.xList as List).length > 0) {
-          _dataList_list.addAll(value.xList);
+        if((value.data as List).length > 0) {
+          _dataList_list.addAll(value.data);
         }
-        if((value.xList as List).length < 10){
+        if((value.data as List).length < 10){
           canContinueLoading = false;
         }
       }
@@ -96,6 +98,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
     };
     HomeRequest.requestHomeSmallClassItemData(StorageUtil().getSureUserModel().TokenID, params).then((value){
         _videoData = value.data;
+        _category = _videoData.category;
         _videoPlayerController1 = VideoPlayerController.network(
             Uri.encodeFull(_videoData.fillPath));
         _chewieController = ChewieController(
@@ -111,8 +114,9 @@ class _LessonPlayerState extends State<LessonPlayer> {
 ////          color: Colors.red,
 //        )
         );
-        setState(() {
-        });
+//        setState(() {
+//        });
+        getListData(1);
     });
   }
 
@@ -169,7 +173,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
     body: Center(
     child: ListView.builder(
       controller: _scrollController,
-      itemCount: 14,
+      itemCount: _dataList_list.length + 1,
       itemBuilder: (ctx,index){
         return _buildWidgetByIndex(context,index);
       },
@@ -201,7 +205,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
       if(index == 0){
         return _buildHeader(context);
       }else{
-        return _buildItem(context, index);
+        return _buildItem(context, index-1);
       }
   }
 
@@ -214,6 +218,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
   }
 
   Widget _buildItem(BuildContext context,int index){
+    HomeVideoLearnBottomModelData item = _dataList_list[index];
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
       child: GestureDetector(
@@ -239,9 +244,9 @@ class _LessonPlayerState extends State<LessonPlayer> {
                 height: ScreenAdaper.width(40),
                 alignment: Alignment.center,
                 padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                child: Text(index.toString(),style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                child: Text((index+1).toString(),style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
               ),
-              DarkText.build('传染病防治传染病防治备份'),
+              DarkText.build(item.title),
             ],
           ),
         ),
