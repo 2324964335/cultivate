@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27657289-e72f-4347-a534-1db8bef5a30b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/generated/json/home_video_learn_bottom_model_entity_helper.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/home_video_learn_bottom_model_entity.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Flutter/Flutter.framework/Flutter" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Flutter.framework/Flutter" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/alert_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/alert_dialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated/json/base/json_convert_content.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/json/base/json_convert_content.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated/json/home_classroom_data_video_entity_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/json/home_classroom_data_video_entity_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated/json/home_total_question_list_select_entity_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/json/home_total_question_list_select_entity_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/CultiveDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/CultiveDetail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/LessonPlayer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/LessonPlayer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/NoReadInfomation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/NoReadInfomation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/QuestionTotalSelect.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/QuestionTotalSelect.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/HomeRequest.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/HomeRequest.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/home_classroom_data_video_entity.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/home_classroom_data_video_entity.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/home_total_question_list_select_entity.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_request/home_total_question_list_select_entity.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/service_url.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/service_url.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
