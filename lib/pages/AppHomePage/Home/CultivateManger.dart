@@ -377,95 +377,106 @@ class _CultivateMangerState extends State<CultivateManger> {
     );
   }
 
+
   Widget _buildItem(BuildContext context,int index){
     HomeCultivateMangagerListList item = _dataList.xList[index];
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
-      child: Container(
-          margin: EdgeInsets.all(ScreenAdaper.width(15)),
-          width: ScreenAdaper.width(750),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  LightText.build(item.signInTime.split(" ")[1]),
-                  SizedBox(width: ScreenAdaper.width(5),),
-                  Container(
-                    margin: EdgeInsets.only(top: ScreenAdaper.width(10),left: ScreenAdaper.width(10),right: ScreenAdaper.width(10)),
-                    child: new ClipRRect(
-                      borderRadius: BorderRadius.circular(ScreenAdaper.width(5)),
-                      child:Container(
-                        width: ScreenAdaper.width(10),
-                        height: ScreenAdaper.width(10),
-                        color: Color(0xff00D08D),
+      child: GestureDetector(
+        child: Container(
+            color: Colors.white,
+            margin: EdgeInsets.all(ScreenAdaper.width(15)),
+            width: ScreenAdaper.width(750),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LightText.build(item.signInTime.split(" ")[1]),
+                    SizedBox(width: ScreenAdaper.width(5),),
+                    Container(
+                      margin: EdgeInsets.only(top: ScreenAdaper.width(10),left: ScreenAdaper.width(10),right: ScreenAdaper.width(10)),
+                      child: new ClipRRect(
+                        borderRadius: BorderRadius.circular(ScreenAdaper.width(5)),
+                        child:Container(
+                          width: ScreenAdaper.width(10),
+                          height: ScreenAdaper.width(10),
+                          color: Color(0xff00D08D),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: ScreenAdaper.width(5),),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: ScreenAdaper.width(18)),
-                        child: Text(item.title,style: TextStyle(color: Color(0xff565656),fontSize:ScreenAdaper.sp(30)),),
-                      ),
-                      SizedBox(height: ScreenAdaper.width(17),),
-                      Row(
-                        children: [
-                          SizedBox(width: ScreenAdaper.width(20),),
-                          Text('发布人：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-                          SizedBox(width: ScreenAdaper.height(10),),
-                          Text(item.opRegist,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
-                        ],
-                      ),
-                      SizedBox(height: ScreenAdaper.height(20),),
+                    SizedBox(width: ScreenAdaper.width(5),),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: ScreenAdaper.width(18)),
+                          child: Text(item.title,style: TextStyle(color: Color(0xff565656),fontSize:ScreenAdaper.sp(30)),),
+                        ),
+                        SizedBox(height: ScreenAdaper.width(17),),
+                        Row(
+                          children: [
+                            SizedBox(width: ScreenAdaper.width(20),),
+                            Text('发布人：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                            SizedBox(width: ScreenAdaper.height(10),),
+                            Text(item.opRegist,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          ],
+                        ),
+                        SizedBox(height: ScreenAdaper.height(20),),
 
-                      Row(
-                        children: [
-                          SizedBox(width: ScreenAdaper.width(20),),
-                          Text('发布时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-                          SizedBox(width: ScreenAdaper.height(10),),
-                          Text(item.tsRegist,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
-                        ],
-                      ),
-                      SizedBox(height: ScreenAdaper.height(20),),
-                      Row(
-                        children: [
-                          SizedBox(width: ScreenAdaper.width(20),),
-                          Text('培训类别：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-                          SizedBox(width: ScreenAdaper.height(10),),
-                          Text(item.category,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
-                        ],
-                      ),
-                      SizedBox(height: ScreenAdaper.height(20),),
-                      Row(
-                        children: [
-                          SizedBox(width: ScreenAdaper.width(20),),
-                          Text('课程类型：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-                          SizedBox(width: ScreenAdaper.height(10),),
-                          Text(item.status,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
-                        ],
-                      ),
-                      SizedBox(height: ScreenAdaper.height(20),),
-                      Row(
-                        children: [
-                          SizedBox(width: ScreenAdaper.width(20),),
-                          Text('开始时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-                          SizedBox(width: ScreenAdaper.height(10),),
-                          Text(item.beginTime,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: ScreenAdaper.width(20),),
-              Line.build()
-            ],
-          )
-      ),
+                        Row(
+                          children: [
+                            SizedBox(width: ScreenAdaper.width(20),),
+                            Text('发布时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                            SizedBox(width: ScreenAdaper.height(10),),
+                            Text(item.tsRegist,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          ],
+                        ),
+                        SizedBox(height: ScreenAdaper.height(20),),
+                        Row(
+                          children: [
+                            SizedBox(width: ScreenAdaper.width(20),),
+                            Text('培训类别：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                            SizedBox(width: ScreenAdaper.height(10),),
+                            Text(item.category,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          ],
+                        ),
+                        SizedBox(height: ScreenAdaper.height(20),),
+                        Row(
+                          children: [
+                            SizedBox(width: ScreenAdaper.width(20),),
+                            Text('课程类型：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                            SizedBox(width: ScreenAdaper.height(10),),
+                            Text(item.status,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          ],
+                        ),
+                        SizedBox(height: ScreenAdaper.height(20),),
+                        Row(
+                          children: [
+                            SizedBox(width: ScreenAdaper.width(20),),
+                            Text('开始时间:',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                            SizedBox(width: ScreenAdaper.height(10),),
+                            Text(item.beginTime,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: ScreenAdaper.width(20),),
+                Line.build()
+              ],
+            )
+        ),
+        onTap: (){
+          Navigator.pushNamed(
+            context,
+            '/cultiveDetail',
+            arguments: {"id":item.iD}, //　传递参数
+          );
+        },
+      )
     );
   }
 }

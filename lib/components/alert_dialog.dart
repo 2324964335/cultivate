@@ -1,3 +1,4 @@
+
 import 'package:cultivate/utils/screen_adaper.dart';
 import 'package:flutter/material.dart';
 import 'func.dart';
@@ -84,7 +85,7 @@ class _ShowAlertDialogState extends State<ShowAlertDialog> {
                     ),
                   ),
                 ),
-                SizedBox(height: widget.isShenhe != null?10:40),
+                SizedBox(height: widget.isShenhe != null?10:25),
                 widget.isShenhe != null?Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(2),///圆角
@@ -100,7 +101,7 @@ class _ShowAlertDialogState extends State<ShowAlertDialog> {
                     noBottomLine: true,
                     keyboardType: TextInputType.multiline,
                     controller: _inputController,
-                    isMultiHang: true,
+                    isMultiHang: this.widget.isChangeMobile==true?false:true,
                   ),
                 ):Container(),
                 Container(

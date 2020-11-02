@@ -12,7 +12,7 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - multi_image_picker (4.7.13):
+  - multi_image_picker (4.7.14):
     - BSImagePicker (~> 2.10.3)
     - Flutter
   - package_info (0.0.1):
@@ -25,9 +25,9 @@ PODS:
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
-  - sqflite (0.0.1):
+  - sqflite (0.0.2):
     - Flutter
-    - FMDB (~> 2.7.2)
+    - FMDB (>= 2.7.5)
   - url_launcher (0.0.1):
     - Flutter
   - video_player (0.0.1):
@@ -98,13 +98,13 @@ SPEC CHECKSUMS:
   flutter_my_picker: cc7c18b8de8b4d827df5140d6373d69cf6e68ab6
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  multi_image_picker: fd16be811b37ab030f72bf5c1c48b3a174254d13
+  multi_image_picker: c068931d08240565e0615fb01437d16984909183
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: eac8e15b4a1a3fba55b761d19f3f4e6b005d15b6
   r_scan: ff1d53ccf15e760a9b244da3bbf3c5ec7bd763b4
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
-  sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
+  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
   video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e
   wakelock: 0d4a70faf8950410735e3f61fb15d517c8a6efc4

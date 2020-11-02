@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_section_list/flutter_section_grid.dart';
 import '../../../utils/util.dart';
 import 'package:flutter_section_list/flutter_section_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -85,8 +86,7 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
       appBar: AppBar(title: Text('微课堂'),),
       body:RefreshIndicator(
               onRefresh: _handleRefresh,
-              child:
-                      SectionGridView.builder(
+              child:SectionGridView.builder(
                         physics: new AlwaysScrollableScrollPhysics(),
                         adapter: this,
                           controller: _scrollController,
@@ -124,7 +124,7 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
         Navigator.pushNamed(
           context,
           '/lessonPlayer',
-          arguments: {'id':itemm.iD}, //　传递参数
+          arguments: {'id':itemm.iD,'category':itemm.category}, //　传递参数
         );
       },
       child: Container(

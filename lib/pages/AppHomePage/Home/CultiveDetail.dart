@@ -62,12 +62,14 @@ class _CultiveDetailState extends State<CultiveDetail> {
   }
 
   Widget _buildBottomTool(){
-    return Column(
+    return Row(
+//      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
+
         Container(
-//      margin: EdgeInsets.only(left: 0,right: 0),
+      margin: EdgeInsets.only(left: ScreenAdaper.width(20),right: ScreenAdaper.width(20)),
         color: Colors.transparent,
-        width: ScreenAdaper.width(745),
+        width: ScreenAdaper.width(345),
 //        height: ScreenAdaper.height(200),
         alignment: Alignment.center,
         child: GestureDetector(
@@ -103,7 +105,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
         Container(
 //      margin: EdgeInsets.only(left: 0,right: 0),
             color: Colors.transparent,
-            width: ScreenAdaper.width(745),
+            width: ScreenAdaper.width(345),
             height: ScreenAdaper.height(200),
             alignment: Alignment.center,
             child: GestureDetector(

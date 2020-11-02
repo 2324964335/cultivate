@@ -59,7 +59,7 @@ class _LessonPlayerState extends State<LessonPlayer> {
       return;
     }
     Map params = {
-      'category':'string',
+      'category':this.widget.params["category"],
       'pageIdx':pageIndex,
       'pageSize':10
     };

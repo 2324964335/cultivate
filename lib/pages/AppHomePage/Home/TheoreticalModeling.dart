@@ -31,7 +31,7 @@ class _TheoreticalModelingState extends State<TheoreticalModeling> {
   Widget _buildItem(BuildContext context,int index){
     return Container(
       color: Colors.transparent,
-      padding: EdgeInsets.only(top: ScreenAdaper.height(130),left: ScreenAdaper.width(140),right: ScreenAdaper.width(140)),
+      padding: EdgeInsets.only(top: ScreenAdaper.height(210),left: ScreenAdaper.width(140),right: ScreenAdaper.width(140)),
       child: GestureDetector(
         child: Container(
           height: ScreenAdaper.width(200),
@@ -46,9 +46,9 @@ class _TheoreticalModelingState extends State<TheoreticalModeling> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(index == 0?'顺序练习':'错题回顾',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(40)),),
-              index ==0? SizedBox(height: ScreenAdaper.width(14),):Container(),
-              index ==0? Text('0/2000',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(26)),):Container(),
+              Text(index == 0?'模拟题库':'错题回顾',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(40)),),
+//              index ==0? SizedBox(height: ScreenAdaper.width(14),):Container(),
+//              index ==0? Text('0/2000',style: TextStyle(color: Colors.white,fontSize: ScreenAdaper.sp(26)),):Container(),
             ],
           ),
         ),
