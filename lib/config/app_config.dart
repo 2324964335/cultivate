@@ -16,7 +16,7 @@ class AppConfig {
 //  /// 是否显示jh_debug浮动按钮
 //  static const showJhDebugBtn = false;
 
-//  是否开启dio接口详细信息输出，以及其它相关插件调试信息
+///  是否开启dio接口详细信息输出，以及其它相关插件调试信息
   static const DEBUG = true;
 
   /// 是否开启LogUtil类打印方法

@@ -118,6 +118,61 @@ class QuestionPageState extends State<QuestionPage> {
             ),
             onTap: (){
               LogUtil.d('------');
+              if(question.duoUserClickAnswerList.length == 0){
+                ToastShow.show('请先选择选项');
+                return;
+              }
+              if(question.selfDuoAnswerString.length > 0){
+                ToastShow.show('您已经回答过这道题，请选择其他题作答');
+                return;
+              }
+              clickLabel = '';
+               _isSelected = true;
+              if(question.duoUserClickAnswerList.contains(0)){
+                question.selfDuoAnswerString = question.selfDuoAnswerString + 'A';
+              }
+              if(question.duoUserClickAnswerList.contains(1)){
+                question.selfDuoAnswerString = question.selfDuoAnswerString + 'B';
+
+              }
+              if(question.duoUserClickAnswerList.contains(2)){
+                question.selfDuoAnswerString = question.selfDuoAnswerString + 'C';
+
+              }
+              if(question.duoUserClickAnswerList.contains(3)){
+                question.selfDuoAnswerString = question.selfDuoAnswerString + 'D';
+
+              }
+              if(question.duoUserClickAnswerList.contains(4)){
+                question.selfDuoAnswerString = question.selfDuoAnswerString + 'E';
+
+              }
+              if(question.duoUserClickAnswerList.contains(5)){
+                question.selfDuoAnswerString = question.selfDuoAnswerString + 'F';
+              }
+              if(question.duoUserClickAnswerList.contains(6)){
+                question.selfDuoAnswerString = question.selfDuoAnswerString + 'G';
+              }
+          if (question.selfDuoAnswerString == question.correctAnswer) {
+            _isCorrect = true;
+            Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: true);
+          } else {
+            _isCorrect = false;
+            Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: false);
+          }
+          Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].isSelect = _isSelected;
+          Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].iscorrect = _isCorrect;
+          Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].clickLabel = clickLabel;
+
+          setState(() {});
+          //如果答对，延时1S跳到下一问题
+          if (_isCorrect) {
+            Future.delayed(Duration(milliseconds: 1000), () {
+              if( widget.selfControll != null && Provider.of<QuestionProvider>(context,listen: false).current != Provider.of<QuestionProvider>(context,listen: false).getQuestionList.length - 1){
+                widget.selfControll.next();
+              }
+            });
+          }
             },
           ),
         )
@@ -194,7 +249,7 @@ class QuestionPageState extends State<QuestionPage> {
               Text(
                 '答案', style: TextStyle(fontSize: ScreenAdaper.sp(26), fontWeight: FontWeight.bold),),
               SizedBox(width: ScreenAdaper.width(14),),
-              Text(question.answers[0],
+              Text(question.type == 1?question.correctAnswer:question.answers[question.answer],
                 style: TextStyle(fontSize: ScreenAdaper.sp(26),color: Colors.blueAccent, fontWeight: FontWeight.bold),),
               SizedBox(width: ScreenAdaper.width(14),),
             ],
@@ -205,7 +260,7 @@ class QuestionPageState extends State<QuestionPage> {
               Text('您选择',
                 style: TextStyle(fontSize: ScreenAdaper.sp(26), fontWeight: FontWeight.bold),),
               SizedBox(width: ScreenAdaper.width(14),),
-              Text(clickLabel, style: TextStyle(fontSize: ScreenAdaper.sp(26),color: Colors.redAccent, fontWeight: FontWeight.bold),),
+              Text(question.type == 1?question.selfDuoAnswerString:clickLabel, style: TextStyle(fontSize: ScreenAdaper.sp(26),color: Colors.redAccent, fontWeight: FontWeight.bold),),
             ],
           ),
           SizedBox(height: ScreenAdaper.width(20),),
@@ -256,27 +311,59 @@ class QuestionPageState extends State<QuestionPage> {
     return !_isSelected ? GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        clickLabel = answer_str;
-        _isSelected = true;
-        if (clickLabel == question.answers[question.answer]) {
-          _isCorrect = true;
-          Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: true);
-        } else {
-          _isCorrect = false;
-          Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: false);
-        }
-        Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].isSelect = _isSelected;
-        Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].iscorrect = _isCorrect;
-        Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].clickLabel = clickLabel;
-
-        setState(() {});
-        //如果答对，延时1S跳到下一问题
-        if (clickLabel == question.answers[question.answer]) {
-          Future.delayed(Duration(milliseconds: 1000), () {
-            if( widget.selfControll != null && Provider.of<QuestionProvider>(context,listen: false).current != Provider.of<QuestionProvider>(context,listen: false).getQuestionList.length - 1){
-              widget.selfControll.next();
-            }
+        if(question.type == 1){
+//          clickLabel = answer_str;
+//          _isSelected = true;
+//          if (clickLabel == question.answers[question.answer]) {
+//            _isCorrect = true;
+//            Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: true);
+//          } else {
+//            _isCorrect = false;
+//            Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: false);
+//          }
+//          Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].isSelect = _isSelected;
+//          Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].iscorrect = _isCorrect;
+//          Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].clickLabel = clickLabel;
+//
+//          setState(() {});
+//          //如果答对，延时1S跳到下一问题
+//          if (clickLabel == question.answers[question.answer]) {
+//            Future.delayed(Duration(milliseconds: 1000), () {
+//              if( widget.selfControll != null && Provider.of<QuestionProvider>(context,listen: false).current != Provider.of<QuestionProvider>(context,listen: false).getQuestionList.length - 1){
+//                widget.selfControll.next();
+//              }
+//            });
+//          }
+          if(question.duoUserClickAnswerList.contains(index)){
+            question.duoUserClickAnswerList.remove(index);
+          }else{
+            question.duoUserClickAnswerList.add(index);
+          }
+          setState(() {
           });
+        }else{
+          clickLabel = answer_str;
+          _isSelected = true;
+          if (clickLabel == question.answers[question.answer]) {
+            _isCorrect = true;
+            Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: true);
+          } else {
+            _isCorrect = false;
+            Provider.of<QuestionProvider>(context,listen: false).getCurrentSource(selectTrue: false);
+          }
+          Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].isSelect = _isSelected;
+          Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].iscorrect = _isCorrect;
+          Provider.of<QuestionProvider>(context,listen: false).getQuestionList[Provider.of<QuestionProvider>(context,listen: false).current].clickLabel = clickLabel;
+
+          setState(() {});
+          //如果答对，延时1S跳到下一问题
+          if (clickLabel == question.answers[question.answer]) {
+            Future.delayed(Duration(milliseconds: 1000), () {
+              if( widget.selfControll != null && Provider.of<QuestionProvider>(context,listen: false).current != Provider.of<QuestionProvider>(context,listen: false).getQuestionList.length - 1){
+                widget.selfControll.next();
+              }
+            });
+          }
         }
       },
       child: _unClickWidget(answer_str,index),
@@ -341,7 +428,20 @@ class QuestionPageState extends State<QuestionPage> {
 //            child: Image.asset('asset/images/home/practice_success.png',width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
 //          ) : _noSelectWidget) :
 //          _noSelectWidget,
-          _isSelected ? (_isCorrect ?(answer_str == question.clickLabel?_duiWidget():_noSelectWidget):(question.answers[question.answer] == answer_str?_duiWidget():(answer_str==question.clickLabel?_cuoWidget():_noSelectWidget))) : _noSelectWidget,
+          question.type == 1 ?Container(
+            child:new Checkbox(
+                value: question.duoUserClickAnswerList.contains(index)?true:false,
+                activeColor: Colors.orange,
+//                onChanged: (bool val) {
+//                  // val 是布尔值
+////                    setState(() {
+////                      _isYizhu = !_isYizhu;
+////                    });
+////                  _examineCountGoalProvider.changeSelectList(index, val);
+//                }
+                )
+          ):Container(),
+          question.type ==1?_noSelectWidget:_isSelected ? (_isCorrect ?(answer_str == question.clickLabel?_duiWidget():_noSelectWidget):(question.answers[question.answer] == answer_str?_duiWidget():(answer_str==question.clickLabel?_cuoWidget():_noSelectWidget))) : _noSelectWidget,
           SizedBox(width: width_10dp,),
           Expanded(child: Container(
             child: Text(answer_str,

@@ -20,4 +20,6 @@ class Question{
   String catname;
   List answers =[];
   String clickLabel;
+  List duoUserClickAnswerList = [];
+  String selfDuoAnswerString = '';
 }
