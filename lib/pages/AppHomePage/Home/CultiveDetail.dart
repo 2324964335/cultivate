@@ -176,11 +176,15 @@ class _CultiveDetailState extends State<CultiveDetail> {
                   "status":1
                 };
                 HomeRequest.requestSignCultivateData(StorageUtil().getSureUserModel().TokenID, params).then((value){
-                  Navigator.pushNamed(
-                    context,
-                    '/courseSignSuccess',
-                    arguments: {}, //　传递参数
-                  );
+                  if(value["success"] == 1){
+                    Navigator.pushNamed(
+                      context,
+                      '/courseSignSuccess',
+                      arguments: {}, //　传递参数
+                    );
+                  }else{
+                    ToastShow.show(value["msg"]);
+                  }
                 });
               },
             )
