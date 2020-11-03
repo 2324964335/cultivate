@@ -95,15 +95,43 @@ class QuestionPageState extends State<QuestionPage> {
     for (int i = 0; i < question.answers.length; i++) {
       _list.add(_answerSelect(question.answers[i],i));
     }
-//    //答案A，您选择B
-//    if (_isSelected && !_isCorrect) {
-//      _list.add(_correntTrip());
-//      /* //浅底
-//      _list.add(Container(
-//          height: height_5dp,
-//        color: countTint,
-//      ));*/
-//      //标题  试题解析
+    
+    if(question.type == 1){
+      _list.add(
+        Container(
+          margin: EdgeInsets.only(left: ScreenAdaper.width(180),top: ScreenAdaper.width(20),bottom: ScreenAdaper.width(20)),
+          width: ScreenAdaper.width(345),
+          height: ScreenAdaper.width(80),
+          child: GestureDetector(
+            child:
+            new ClipRRect(
+
+              borderRadius: BorderRadius.circular(ScreenAdaper.width(45)),
+              child:
+              Container(
+                height: ScreenAdaper.width(90),
+                width: ScreenAdaper.width(345),
+                alignment: Alignment.center,
+                color: Color(0xFF00D08D),
+                child: Text("确定",style: TextStyle(color: Colors.white),),
+              ),
+            ),
+            onTap: (){
+              LogUtil.d('------');
+            },
+          ),
+        )
+      );
+    }
+    //答案A，您选择B
+    if (_isSelected && !_isCorrect) {
+      _list.add(_correntTrip());
+      /* //浅底
+      _list.add(Container(
+          height: height_5dp,
+        color: countTint,
+      ));*/
+      //标题  试题解析
 //      _list.add(Container(
 //        margin: EdgeInsets.only(left: width_10dp, bottom: height_10dp, top: ScreenAdaper.width(16)),
 //        alignment: Alignment.centerLeft,
@@ -124,7 +152,7 @@ class QuestionPageState extends State<QuestionPage> {
 //      ));
 //      //真正解析
 //      _list.add(_questionAnalysis());
-//    }
+    }
     _list.add(Container(
       height: videoFixHeight,
     ));
@@ -158,20 +186,31 @@ class QuestionPageState extends State<QuestionPage> {
         color: Color(0XFFF8F6F9),
         borderRadius: BorderRadius.all(Radius.circular(2)),
       ),
-      child: Row(
-        children: <Widget>[
-          Text(
-            '答案', style: TextStyle(fontSize: ScreenAdaper.sp(26), fontWeight: FontWeight.bold),),
-          SizedBox(width: ScreenAdaper.width(14),),
-          Text(question.answers[0],
-            style: TextStyle(fontSize: ScreenAdaper.sp(26),color: Colors.blueAccent, fontWeight: FontWeight.bold),),
-          SizedBox(width: ScreenAdaper.width(14),),
-          Text('您选择',
-            style: TextStyle(fontSize: ScreenAdaper.sp(26), fontWeight: FontWeight.bold),),
-          SizedBox(width: ScreenAdaper.width(14),),
-          Text(clickLabel, style: TextStyle(fontSize: ScreenAdaper.sp(26),color: Colors.redAccent, fontWeight: FontWeight.bold),),
+      child:Column(
+        children: [
+          SizedBox(height: ScreenAdaper.width(20),),
+          Row(
+            children: <Widget>[
+              Text(
+                '答案', style: TextStyle(fontSize: ScreenAdaper.sp(26), fontWeight: FontWeight.bold),),
+              SizedBox(width: ScreenAdaper.width(14),),
+              Text(question.answers[0],
+                style: TextStyle(fontSize: ScreenAdaper.sp(26),color: Colors.blueAccent, fontWeight: FontWeight.bold),),
+              SizedBox(width: ScreenAdaper.width(14),),
+            ],
+          ),
+          SizedBox(height: ScreenAdaper.width(20),),
+          Row(
+            children: [
+              Text('您选择',
+                style: TextStyle(fontSize: ScreenAdaper.sp(26), fontWeight: FontWeight.bold),),
+              SizedBox(width: ScreenAdaper.width(14),),
+              Text(clickLabel, style: TextStyle(fontSize: ScreenAdaper.sp(26),color: Colors.redAccent, fontWeight: FontWeight.bold),),
+            ],
+          ),
+          SizedBox(height: ScreenAdaper.width(20),),
         ],
-      ),
+      )
     );
   }
 
@@ -253,7 +292,7 @@ class QuestionPageState extends State<QuestionPage> {
         alignment: Alignment.center,
         width: ScreenAdaper.width(40),
         height: ScreenAdaper.width(40),
-        child:Text(['A','B','C','D','E','F'][index],
+        child:Text(['A','B','C','D','E','F','G'][index],
           style: TextStyle(fontSize: ScreenAdaper.sp(29), fontWeight: FontWeight.w300),),
       ),
     );
@@ -267,15 +306,11 @@ class QuestionPageState extends State<QuestionPage> {
         _labelWidget = Container(
           margin: EdgeInsets.only(left: ScreenAdaper.width(5)),
           child: Image.asset("asset/images/home/practice_success.png",width: ScreenAdaper.width(_imageWith),height: ScreenAdaper.width(_imageWith),),
-//          width: ScreenAdaper.width(34),
-//          height: ScreenAdaper.width(34),
         );
       } else { //选择了错误的标签
         _labelWidget = Container(
           margin: EdgeInsets.only(left: ScreenAdaper.width(5)),
           child: Image.asset("asset/images/home/practice_fill.png",width: ScreenAdaper.width(_imageWith),height: ScreenAdaper.width(_imageWith),),
-//          width: ScreenAdaper.width(34),
-//          height: ScreenAdaper.width(34),
         );
       }
     }

@@ -221,9 +221,9 @@ class SliverPageSelfState extends State<SliverPageSelf>
         //如果当前图为第一张则不让右滑
         currentDrag = 1;
         print(
-            'current = ${Provider.of<QuestionProvider>(context).current}');
+            'current = ${Provider.of<QuestionProvider>(context, listen: false).current}');
         print(
-            'length - 1 =${Provider.of<QuestionProvider>(context).getQuestionList.length - 1}');
+            'length - 1 =${Provider.of<QuestionProvider>(context, listen: false).getQuestionList.length - 1}');
 
         return;
       }

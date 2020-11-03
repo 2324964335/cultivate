@@ -163,7 +163,7 @@ class _CultiveDetailState extends State<CultiveDetail> {
                 child:
                 Container(
                   height: ScreenAdaper.width(90),
-                  width: ScreenAdaper.width(640),
+                  width: ScreenAdaper.width(345),
                   alignment: Alignment.center,
                   color: Color(0xFF00D08D),
                   child: Text("去签到",style: TextStyle(color: Colors.white),),

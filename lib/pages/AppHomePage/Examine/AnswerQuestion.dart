@@ -38,7 +38,7 @@ class _AnswerQuestionState extends State<AnswerQuestion> {
   void getQuestionList(){
     Map params = {
       "sheetcode":this.widget.params["sheetcode"],
-      "type":0,
+      "type":this.widget.params["isTotal"]=='1'?0:1,
       "singleSelNum":10,
       "multiSelNum":10,
       "judgeSelNum":10
@@ -60,6 +60,21 @@ class _AnswerQuestionState extends State<AnswerQuestion> {
           m.iD = yuanmodel.iD;
           m.type = yuanmodel.type;
           m.correctAnswer = yuanmodel.correctAnswer;
+          if(yuanmodel.type==0||yuanmodel.type == 2){
+            if(yuanmodel.correctAnswer=='A'){
+              m.answer = 0;
+            }else if(yuanmodel.correctAnswer=='B'){
+              m.answer = 1;
+            }else if(yuanmodel.correctAnswer=='C'){
+              m.answer = 2;
+            }else if(yuanmodel.correctAnswer=='D'){
+              m.answer = 3;
+            }else if(yuanmodel.correctAnswer=='E'){
+              m.answer = 4;
+            }else if(yuanmodel.correctAnswer=='F'){
+              m.answer = 5;
+            }
+          }
           questionList.add(m);
         }
         _questionProvider.setQuestListData(questionList);

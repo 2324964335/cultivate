@@ -150,7 +150,7 @@ class _QuestionWrongTotalSelectState extends State<QuestionWrongTotalSelect> {
           Navigator.pushNamed(
             context,
             '/answerQuestion',
-            arguments: {}, //　传递参数
+            arguments: {"sheetcode":item.sheetCode,"isTotal":'0'}, //　传递参数
           );
 
         },
