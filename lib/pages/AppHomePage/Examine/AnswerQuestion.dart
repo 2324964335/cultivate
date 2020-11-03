@@ -1,3 +1,5 @@
+import 'package:cultivate/main.dart';
+import 'package:cultivate/pages/AppHomePage/Home/Home.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import 'AnswerQuestionBottomTool.dart';
@@ -6,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'QuestionModel.dart';
 import 'QuestionSliverControllProvider.dart';
 import 'QuestionPageChangeMiddle.dart';
+import '../Home/home_request/HomeRequest.dart';
+import 'home_question_model_entity.dart';
 class AnswerQuestion extends StatefulWidget {
   AnswerQuestion({Key key, this.params}) : super(key: key);
   final  params;
@@ -22,12 +26,45 @@ class _AnswerQuestionState extends State<AnswerQuestion> {
   double alpha = 0;
   bool isAllowShow = true;
   bool isAllowClick = false;
+  HomeQuestionModelEntity _data = null;
   
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    
+    getQuestionList();
+  }
+
+  void getQuestionList(){
+    Map params = {
+      "sheetcode":this.widget.params["sheetcode"],
+      "type":0,
+      "singleSelNum":10,
+      "multiSelNum":10,
+      "judgeSelNum":10
+    };
+
+    HomeRequest.requestQuestion(StorageUtil().getSureUserModel().TokenID, params).then((value){
+        _questionProvider.setQuestListData([]);
+        _data = value;
+//        setState(() {
+//        });
+      if(_questionProvider.getQuestionList.length == 0&&_data != null){
+        List<Question> questionList = [];
+        for (int i = 0;i < _data.xList.length;i++){
+          HomeQuestionModelList yuanmodel = _data.xList[i];
+          Question m = Question();
+          m.questionIndex = i + 1;
+          m.title = yuanmodel.title;
+          m.answers = yuanmodel.answer;
+          m.iD = yuanmodel.iD;
+          m.type = yuanmodel.type;
+          m.correctAnswer = yuanmodel.correctAnswer;
+          questionList.add(m);
+        }
+        _questionProvider.setQuestListData(questionList);
+      }
+    });
   }
   
   @override
@@ -42,15 +79,6 @@ class _AnswerQuestionState extends State<AnswerQuestion> {
     _questionProvider = Provider.of<QuestionProvider>(context);
     _sliverDrawBottomControll = Provider.of<SliverDrawBottomControll>(context);
     _questionSliverControllProvider = Provider.of<QuestionSliverControllProvider>(context);
-    if(_questionProvider.getQuestionList.length == 0){
-    List<Question> questionList = [];
-    for (int i = 0;i < 100;i++){
-      Question m = Question();
-      m.questionIndex = i + 1;
-      questionList.add(m);
-    }
-    _questionProvider.setQuestListData(questionList);
-    }
     return Scaffold(
       appBar: AppBar(
         title: Text('答题'),

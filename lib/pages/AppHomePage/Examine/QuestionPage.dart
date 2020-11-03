@@ -35,6 +35,7 @@ class QuestionPageState extends State<QuestionPage> {
   bool _isCorrect = false;
   String clickLabel = '';
   Question question;
+  double _imageWith = 49;
   @override
   void initState() {
     super.initState();
@@ -94,36 +95,36 @@ class QuestionPageState extends State<QuestionPage> {
     for (int i = 0; i < question.answers.length; i++) {
       _list.add(_answerSelect(question.answers[i],i));
     }
-    //答案A，您选择B
-    if (_isSelected && !_isCorrect) {
-      _list.add(_correntTrip());
-      /* //浅底
-      _list.add(Container(
-          height: height_5dp,
-        color: countTint,
-      ));*/
-      //标题  试题解析
-      _list.add(Container(
-        margin: EdgeInsets.only(left: width_10dp, bottom: height_10dp, top: ScreenAdaper.width(16)),
-        alignment: Alignment.centerLeft,
-        child: Row(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(width_5dp),
-                color: Colors.blueAccent,
-              ),
-              height: height_20dp,
-              width: width_4dp,
-            ),
-            SizedBox(width: width_10dp,),
-            Text('试题详解', style: TextStyle(fontSize: ScreenAdaper.sp(31), fontWeight: FontWeight.bold),)
-          ],
-        ),
-      ));
-      //真正解析
-      _list.add(_questionAnalysis());
-    }
+//    //答案A，您选择B
+//    if (_isSelected && !_isCorrect) {
+//      _list.add(_correntTrip());
+//      /* //浅底
+//      _list.add(Container(
+//          height: height_5dp,
+//        color: countTint,
+//      ));*/
+//      //标题  试题解析
+//      _list.add(Container(
+//        margin: EdgeInsets.only(left: width_10dp, bottom: height_10dp, top: ScreenAdaper.width(16)),
+//        alignment: Alignment.centerLeft,
+//        child: Row(
+//          children: <Widget>[
+//            Container(
+//              decoration: BoxDecoration(
+//                borderRadius: BorderRadius.circular(width_5dp),
+//                color: Colors.blueAccent,
+//              ),
+//              height: height_20dp,
+//              width: width_4dp,
+//            ),
+//            SizedBox(width: width_10dp,),
+//            Text('试题详解', style: TextStyle(fontSize: ScreenAdaper.sp(31), fontWeight: FontWeight.bold),)
+//          ],
+//        ),
+//      ));
+//      //真正解析
+//      _list.add(_questionAnalysis());
+//    }
     _list.add(Container(
       height: videoFixHeight,
     ));
@@ -203,7 +204,7 @@ class QuestionPageState extends State<QuestionPage> {
                     topRight: Radius.circular(5)),
               ),
               child: Text(
-                '单选', style: TextStyle(fontSize: ScreenAdaper.sp(20), color: Colors.white),),
+                question.type == 0?'单选':question.type==1?'多选':'判断', style: TextStyle(fontSize: ScreenAdaper.sp(20), color: Colors.white),),
             ),
           ),
         ],
@@ -252,7 +253,7 @@ class QuestionPageState extends State<QuestionPage> {
         alignment: Alignment.center,
         width: ScreenAdaper.width(40),
         height: ScreenAdaper.width(40),
-        child:Text(['A','B','C','D'][index],
+        child:Text(['A','B','C','D','E','F'][index],
           style: TextStyle(fontSize: ScreenAdaper.sp(29), fontWeight: FontWeight.w300),),
       ),
     );
@@ -265,14 +266,14 @@ class QuestionPageState extends State<QuestionPage> {
       if (_isCorrect) { //选择了正确的标签
         _labelWidget = Container(
           margin: EdgeInsets.only(left: ScreenAdaper.width(5)),
-          child: Image.asset("asset/images/home/practice_success.png",width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
+          child: Image.asset("asset/images/home/practice_success.png",width: ScreenAdaper.width(_imageWith),height: ScreenAdaper.width(_imageWith),),
 //          width: ScreenAdaper.width(34),
 //          height: ScreenAdaper.width(34),
         );
       } else { //选择了错误的标签
         _labelWidget = Container(
           margin: EdgeInsets.only(left: ScreenAdaper.width(5)),
-          child: Image.asset("asset/images/home/practice_fill.png",width: ScreenAdaper.width(34),height: ScreenAdaper.width(34),),
+          child: Image.asset("asset/images/home/practice_fill.png",width: ScreenAdaper.width(_imageWith),height: ScreenAdaper.width(_imageWith),),
 //          width: ScreenAdaper.width(34),
 //          height: ScreenAdaper.width(34),
         );
@@ -282,13 +283,13 @@ class QuestionPageState extends State<QuestionPage> {
     Widget _duiWidget(){
       return Container(
         margin: EdgeInsets.only(left: ScreenAdaper.width(7),right: ScreenAdaper.width(7)),
-        child: Image.asset("asset/images/home/practice_success.png",width: ScreenAdaper.width(43),height: ScreenAdaper.width(43),),
+        child: Image.asset("asset/images/home/practice_success.png",width: ScreenAdaper.width(_imageWith),height: ScreenAdaper.width(_imageWith),),
       );
     }
     Widget _cuoWidget(){
       return Container(
         margin: EdgeInsets.only(left: ScreenAdaper.width(7),right: ScreenAdaper.width(7)),
-        child: Image.asset("asset/images/home/practice_fill.png",width: ScreenAdaper.width(43),height: ScreenAdaper.width(43),),
+        child: Image.asset("asset/images/home/practice_fill.png",width: ScreenAdaper.width(_imageWith),height: ScreenAdaper.width(_imageWith),),
       );
     }
 
@@ -309,7 +310,7 @@ class QuestionPageState extends State<QuestionPage> {
           SizedBox(width: width_10dp,),
           Expanded(child: Container(
             child: Text(answer_str,
-              style: TextStyle(fontSize: ScreenAdaper.sp(28), fontWeight: FontWeight.w300),),
+              style: TextStyle(fontSize: ScreenAdaper.sp(29), fontWeight: FontWeight.w300),),
           )),
         ],
       ),

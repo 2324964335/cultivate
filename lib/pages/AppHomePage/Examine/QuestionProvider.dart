@@ -91,10 +91,13 @@ class QuestionProvider with ChangeNotifier {
     List get getQuestionList => _questionList;
 
     void setQuestListData(List<Question> questionList){
-      Future.delayed(Duration(milliseconds: 400)).then((e) {
+//      Future.delayed(Duration(milliseconds: 200)).then((e) {
         _questionList = questionList;
+        countTrue = 0;
+        countFalse = 0;
+        current = 0;
         notifyListeners();
-      });
+//      });
     }
 
     int questionIndex= 0;

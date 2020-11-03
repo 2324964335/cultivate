@@ -270,4 +270,14 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///首页题库数据
+  Future<Map> getRequestQuestion(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_question_list'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }

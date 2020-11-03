@@ -19,6 +19,7 @@ import 'home_classroom_data_video_entity.dart';
 import 'home_examine_manager_list_entity.dart';
 import 'home_total_question_list_select_entity.dart';
 import 'home_video_learn_bottom_model_entity.dart';
+import '../../Examine/home_question_model_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -276,6 +277,17 @@ class HomeRequest{
     LogUtil.d(resData);
     if (resData['success'] == 1){
       return JsonConvert.fromJsonAsT<HomeTotalQuestionListSelectEntity>(resData['data'][0]);
+    }else{
+      return null;
+    }
+  }
+
+  ///获取题库
+  static Future<dynamic> requestQuestion(String tokenID,Map params) async {
+    Map resData = await Api().getRequestQuestion(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeQuestionModelEntity>(resData['data'][0]);
     }else{
       return null;
     }

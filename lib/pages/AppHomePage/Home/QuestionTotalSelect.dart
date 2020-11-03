@@ -150,7 +150,7 @@ class _QuestionTotalSelectState extends State<QuestionTotalSelect> {
           Navigator.pushNamed(
             context,
             '/answerQuestion',
-            arguments: {}, //　传递参数
+            arguments: {"sheetcode":item.sheetCode}, //　传递参数
           );
 
         },
