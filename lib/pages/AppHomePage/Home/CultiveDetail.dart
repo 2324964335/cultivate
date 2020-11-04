@@ -99,11 +99,11 @@ class _CultiveDetailState extends State<CultiveDetail> {
                 items: ['取消', '确认代签'],
                 onTapWithInput: (title,index) {
                   LogUtil.d('object$index');
-                  if(title.length == 0){
-                    ToastShow.show("请输入需要代签人的工号");
-                    return;
-                  }
                   if(index == 1){
+                    if(title.length == 0){
+                      ToastShow.show("请输入需要代签人的工号");
+                      return;
+                    }
                     Map params= {
                       "id":this.widget.params['id'],
                       "usercode":title,

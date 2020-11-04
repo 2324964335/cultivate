@@ -66,7 +66,7 @@ class _ChangeMobileFirstState extends State<ChangeMobileFirst> {
 
                   content: "为了保障您的合法权益，请输入您的登陆密码进行身份验证",
                   items: ['取消', '确认提交'],
-                  onTap: (index) {
+                  onTapWithInput: (title,index) {
                     LogUtil.d('object$index');
                     if(index == 1){
                       ToastShow.show("验证成功");

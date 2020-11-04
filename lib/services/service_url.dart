@@ -12,7 +12,7 @@ const serviceUrl = {
    'app_my_sign_cultivate_total':appurlPro + 'Education/GetUserEduTotal', /// 我的签到培训详情总
    'app_my_sign_cultivate_fenlei':appurlPro + 'Education/GetUserEduList', /// 我的签到培训详情分类
    'app_curren_month_examine':appurlPro + 'Examine/GetCheckList', ///本月培训列表
-   'app_curren_month_examine_person':appurlPro + 'Examine/GetCheckUser', ///本月培训人员列表
+   'app_curren_month_examine_person':appurlPro + 'Examine/GetCheckPersonList', ///本月考核人员列表
    'app_home_item_detail':appurlPro + 'Notice/EduItemDetail', ///首页列表明细详情
    'app_home_item_detail_see':appurlPro + 'Notice/EduItemSee', ///首页列表明细详情查看
    'app_home_item_detail_zan':appurlPro + 'Notice/EduItemLikes', ///首页列表明细详情点赞
@@ -27,4 +27,5 @@ const serviceUrl = {
    'app_home_information_byWords':appurlPro + 'Education/QryEduList', ///首页公告关键词搜索
    'app_home_total_question_list':appurlPro + 'Questions/QuestionBank', ///首页题库列表
    'app_home_question_list':appurlPro + 'Questions/GetQuestionList', ///首页题库
+   'app_home_operation_total_sheet':appurlPro + 'Examine/GetOperateSheet', ///首页操作考扣分项
 };

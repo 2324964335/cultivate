@@ -20,6 +20,7 @@ import 'home_examine_manager_list_entity.dart';
 import 'home_total_question_list_select_entity.dart';
 import 'home_video_learn_bottom_model_entity.dart';
 import '../../Examine/home_question_model_entity.dart';
+import 'home_examine_person_list_model_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -136,17 +137,15 @@ class HomeRequest{
     }
   }
 
-  ///本月培训人员列表 getCurrentMonthExaminList
+  ///本月考核人员列表 getCurrentMonthExaminList
   static Future<dynamic> requestCurrentMonthExaminPersonList(String tokenID,Map params) async {
     Map resData = await Api().getCurrentMonthExaminPersonList(tokenID,params);
     LogUtil.d(resData);
-//    if (resData['success'] == 1){
-//      return JsonConvert.fromJsonAsT<CurrentMonthExamineListEntity>(resData['data'][0]);
-//    }else if(resData['success'] == -1101){
-//      return resData;
-//    }else{
-//      return null;
-//    }
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeExaminePersonListModelEntity>(resData['data'][0]);
+    }else{
+      return null;
+    }
   }
 
 
@@ -291,6 +290,17 @@ class HomeRequest{
     }else{
       return null;
     }
+  }
+
+  ///操作考扣分项
+  static Future<dynamic> requestTotalOperationExamineList(String tokenID,Map params) async {
+    Map resData = await Api().getTotalOperationExamineList(tokenID,params);
+    LogUtil.d(resData);
+//    if (resData['success'] == 1){
+//      return JsonConvert.fromJsonAsT<HomeQuestionModelEntity>(resData['data'][0]);
+//    }else{
+//      return null;
+//    }
   }
 
 }

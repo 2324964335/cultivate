@@ -269,8 +269,15 @@ class _HomeInfomationSearchState extends State<HomeInfomationSearch> {
                       Container(
                         margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
 
-                        color: Color(0xFFBD4EFB),
-
+//                        color: Color(0xFFBD4EFB),
+                        decoration: BoxDecoration(
+                          color: ittem.type==0?Color(0xFFBD4EFB):Color(0xFF00D08D),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(3),
+                              bottomLeft: Radius.circular(3),
+                              bottomRight: Radius.circular(3),
+                              topRight: Radius.circular(3)),
+                        ),
                         padding: EdgeInsets.all(ScreenAdaper.width(10)),
                         child: Text(ittem.type==0?"线下":"线上",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
                       ),

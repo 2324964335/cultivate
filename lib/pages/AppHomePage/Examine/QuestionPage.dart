@@ -284,18 +284,19 @@ class QuestionPageState extends State<QuestionPage> {
             ),
           ),
           Positioned(
-            top: ScreenAdaper.width(10),
+            top: ScreenAdaper.width(13),
             left: 0,
             child: Container(
               padding: EdgeInsets.fromLTRB(
                   width_7dp, height_4dp, width_7dp, height_4dp),
               margin: EdgeInsets.only(top: ScreenAdaper.width(14)),
               decoration: BoxDecoration(
-                color: Color(0XFF0676FC),
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(5),
-                    bottomLeft: Radius.circular(0),
-                    bottomRight: Radius.circular(5),
-                    topRight: Radius.circular(5)),
+                color: Color(0xff0676FC),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(3),
+                    bottomLeft: Radius.circular(3),
+                    bottomRight: Radius.circular(3),
+                    topRight: Radius.circular(3)),
               ),
               child: Text(
                 question.type == 0?'单选':question.type==1?'多选':'判断', style: TextStyle(fontSize: ScreenAdaper.sp(20), color: Colors.white),),
@@ -388,7 +389,6 @@ class QuestionPageState extends State<QuestionPage> {
       //未选择时的标签A,B,C,D
       _labelWidget = _noSelectWidget;
     } else {
-      LogUtil.d('dsddsdsds');
       if (_isCorrect) { //选择了正确的标签
         _labelWidget = Container(
           margin: EdgeInsets.only(left: ScreenAdaper.width(5)),

@@ -161,11 +161,19 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
                           )
                       ),
                       onTap: (){
-                        Navigator.pushNamed(
-                          context,
-                          '/homeInfomationSearch',
-                          arguments: {}, //　传递参数
-                        );
+                        if(this.widget.data==null){
+                          Navigator.pushNamed(
+                            context,
+                            '/login',
+                            arguments: {}, //　传递参数
+                          );
+                        }else{
+                          Navigator.pushNamed(
+                            context,
+                            '/homeInfomationSearch',
+                            arguments: {}, //　传递参数
+                          );
+                        }
                       },
                     )
                 ),
