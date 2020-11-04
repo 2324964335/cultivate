@@ -19,8 +19,8 @@ Map<String, dynamic> homeExaminePersonListModelEntityToJson(HomeExaminePersonLis
 }
 
 homeExaminePersonListModelListFromJson(HomeExaminePersonListModelList data, Map<String, dynamic> json) {
-	if (json['ExaminItemID'] != null) {
-		data.examinItemID = json['ExaminItemID']?.toInt();
+	if (json['ExamineItem'] != null) {
+		data.examinItem = json['ExamineItem']?.toInt();
 	}
 	if (json['Icon'] != null) {
 		data.icon = json['Icon']?.toString();
@@ -28,25 +28,29 @@ homeExaminePersonListModelListFromJson(HomeExaminePersonListModelList data, Map<
 	if (json['WorkNo'] != null) {
 		data.workNo = json['WorkNo']?.toString();
 	}
+	if (json['SheetCode'] != null) {
+		data.sheetCode = json['SheetCode']?.toString();
+	}
 	if (json['WorkName'] != null) {
 		data.workName = json['WorkName']?.toString();
 	}
 	if (json['WardName'] != null) {
 		data.wardName = json['WardName']?.toString();
 	}
-	if (json['Date'] != null) {
-		data.date = json['Date']?.toString();
+	if (json['TS_Create'] != null) {
+		data.tS_Create = json['TS_Create']?.toString();
 	}
 	return data;
 }
 
 Map<String, dynamic> homeExaminePersonListModelListToJson(HomeExaminePersonListModelList entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
-	data['ExaminItemID'] = entity.examinItemID;
+	data['ExamineItem'] = entity.examinItem;
 	data['Icon'] = entity.icon;
 	data['WorkNo'] = entity.workNo;
+	data['SheetCode'] = entity.sheetCode;
 	data['WorkName'] = entity.workName;
 	data['WardName'] = entity.wardName;
-	data['Date'] = entity.date;
+	data['TS_Create'] = entity.tS_Create;
 	return data;
 }

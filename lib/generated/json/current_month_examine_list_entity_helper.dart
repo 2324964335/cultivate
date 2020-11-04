@@ -40,6 +40,9 @@ currentMonthExamineListListFromJson(CurrentMonthExamineListList data, Map<String
 	if (json['ID'] != null) {
 		data.iD = json['ID']?.toInt();
 	}
+	if (json['Category'] != null) {
+		data.category = json['Category']?.toInt();
+	}
 	return data;
 }
 
@@ -52,5 +55,6 @@ Map<String, dynamic> currentMonthExamineListListToJson(CurrentMonthExamineListLi
 	data['Address'] = entity.address;
 	data['Score'] = entity.score;
 	data['ID'] = entity.iD;
+	data['Category'] = entity.category;
 	return data;
 }

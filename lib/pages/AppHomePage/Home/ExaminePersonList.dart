@@ -130,7 +130,7 @@ class _ExaminePersonListState extends State<ExaminePersonList> {
                     ),
                     Container(
                       margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
-                      child:Text(item.date,style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+                      child:Text(item.tS_Create,style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
                     ),
                   ],
                 ),
@@ -148,7 +148,7 @@ class _ExaminePersonListState extends State<ExaminePersonList> {
           Navigator.pushNamed(
             context,
             '/examinePersonUpload',
-            arguments: {}, //　传递参数
+            arguments: {"workName":item.workName,"title":this.widget.params["title"],'sheetCode':item.sheetCode}, //　传递参数
           );
 
         },

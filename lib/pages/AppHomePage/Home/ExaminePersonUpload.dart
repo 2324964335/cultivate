@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'provider/ExamineCountGoalProvider.dart';
 import '../../../components/func.dart';
 import '../../../components/alert_dialog.dart';
+import 'home_request/home_total_operation_examine_list_model_entity.dart';
+import 'home_request/OperationModel.dart';
 class ExaminePersonUpload extends StatefulWidget {
   ExaminePersonUpload({Key key, this.params}) : super(key: key);
   final  params;
@@ -39,14 +41,14 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
       List m = _examineCountGoalProvider.getList;
       _dataList = [];
       m.forEach((element) {
-        if(element["isSelect"] == 1){
+        if((element as OperationModel).isSelect == 1){
           _dataList.add(element);
         }
       });
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('刘医生'),
+        title: Text(this.widget.params["workName"]==null?'刘医生':this.widget.params["workName"]),
       ),
       body: Stack(
         children: [
@@ -87,7 +89,7 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
   Widget _buildTopHeader(BuildContext context){
       return Container(
         padding: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.width(30),bottom: ScreenAdaper.width(20)),
-        child: Text('考核项目，无菌技术评分标准',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(34)),),
+        child: Text('考核项目:${this.widget.params["title"]}',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(34)),),
       );
   }
 
@@ -112,7 +114,7 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
             Navigator.pushNamed(
               context,
               '/examineDoctorTotalForm',
-              arguments: {}, //　传递参数
+              arguments: {"sheetCode":this.widget.params["sheetCode"]}, //　传递参数
             );
 
           },
@@ -121,6 +123,7 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
   }
 
   Widget _buildItem(BuildContext context,int index){
+    OperationModel model = _dataList[index];
       return Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,20 +136,48 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
                     Row(
                     children: [
                       Text("${index+ 1}."),
-                      Text(_dataList[index]["title"]),
+                      Text(model.caption),
                       ],
                     ),
-                    FlatButton(
-                        child: Text("删除",style: TextStyle(fontSize: ScreenAdaper.sp(25)),),
-                        onPressed:(){
-                          LogUtil.d('------${_examineCountGoalProvider.getList}');
-                          Map m = _dataList[index];
-                          for (var i = 0; i < _examineCountGoalProvider.getList.length; i++) {
-                            if(m["id"] == _examineCountGoalProvider.getList[i]["id"]){
-                              _examineCountGoalProvider.changeSelectList(i, false);
-                            }
-                          }
-                        }),
+//                    FlatButton(
+//                        child: Text("删除",style: TextStyle(fontSize: ScreenAdaper.sp(25)),),
+//                        onPressed:(){
+//                          LogUtil.d('------${_examineCountGoalProvider.getList}');
+//                          OperationModel modelyuan = _dataList[index];
+//                          for (var i = 0; i < _examineCountGoalProvider.getList.length; i++) {
+//                            if(modelyuan.iD == (_examineCountGoalProvider.getList[i] as OperationModel).iD&&modelyuan.itemCode == (_examineCountGoalProvider.getList[i] as OperationModel).itemCode){
+//                              LogUtil.d('-----------${modelyuan.iD}--------${(_examineCountGoalProvider.getList[i] as OperationModel).iD.toString()}');
+//                              _examineCountGoalProvider.changeSelectList(i, false);
+//                            }
+//                          }
+//                        }),
+                  GestureDetector(
+                    child: Container(
+                      margin: EdgeInsets.only(right: ScreenAdaper.width(45),top: ScreenAdaper.height(16)),
+
+//                               color: Color(0xFFBD4EFB),
+
+                      padding: EdgeInsets.all(ScreenAdaper.width(10)),
+                      decoration: BoxDecoration(
+                        color: Color(0xFFBD4EFB),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(3),
+                            bottomLeft: Radius.circular(3),
+                            bottomRight: Radius.circular(3),
+                            topRight: Radius.circular(3)),
+                      ),
+                      child: Text("删除",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                    ),
+                    onTap: (){
+                      OperationModel modelyuan = _dataList[index];
+                      for (var i = 0; i < _examineCountGoalProvider.getList.length; i++) {
+                        if(modelyuan.iD == (_examineCountGoalProvider.getList[i] as OperationModel).iD&&modelyuan.itemCode == (_examineCountGoalProvider.getList[i] as OperationModel).itemCode){
+                          LogUtil.d('-----------${modelyuan.iD}--------${(_examineCountGoalProvider.getList[i] as OperationModel).iD.toString()}');
+                          _examineCountGoalProvider.changeSelectList(i, false);
+                        }
+                      }
+                    },
+                  )
                 ],
               ),
             ),
@@ -154,13 +185,19 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+//                Container(
+//                  margin: EdgeInsets.only(left: ScreenAdaper.width(30)),
+//                  child: Text(model.optionText,style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(25)),),
+//                ),
                 Container(
                   margin: EdgeInsets.only(left: ScreenAdaper.width(30)),
-                  child: Text(_dataList[index]["subTitle"],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(25)),),
+//                  padding: EdgeInsets.only(top: ScreenAdaper.width(10)),
+                  width: ScreenAdaper.width(620),
+                  child: Text(model.optionText,style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(25)),maxLines: 10,strutStyle: StrutStyle(forceStrutHeight: true, height:0.5, leading: 1),),
                 ),
                 Container(
-                  margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
-                  child: Text("-${_dataList[index]["goal"]}",style: TextStyle(color: Colors.red,fontSize: ScreenAdaper.sp(26)),
+                  margin: EdgeInsets.only(right: ScreenAdaper.width(35)),
+                  child: Text("-${model.weightedValue}",style: TextStyle(color: Colors.red,fontSize: ScreenAdaper.sp(26)),
                   ),)
               ],
             ),

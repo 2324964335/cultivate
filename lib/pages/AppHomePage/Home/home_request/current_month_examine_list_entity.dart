@@ -21,4 +21,6 @@ class CurrentMonthExamineListList with JsonConvert<CurrentMonthExamineListList> 
 	double score;
 	@JSONField(name: "ID")
 	int iD;
+	@JSONField(name: "Category")
+	int category;
 }

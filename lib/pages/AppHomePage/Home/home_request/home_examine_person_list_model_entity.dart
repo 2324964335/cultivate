@@ -7,16 +7,18 @@ class HomeExaminePersonListModelEntity with JsonConvert<HomeExaminePersonListMod
 }
 
 class HomeExaminePersonListModelList with JsonConvert<HomeExaminePersonListModelList> {
-	@JSONField(name: "ExaminItemID")
-	int examinItemID;
+	@JSONField(name: "ExamineItem")
+	int examinItem;
 	@JSONField(name: "Icon")
 	String icon;
 	@JSONField(name: "WorkNo")
 	String workNo;
+	@JSONField(name: "SheetCode")
+	String sheetCode;
 	@JSONField(name: "WorkName")
 	String workName;
 	@JSONField(name: "WardName")
 	String wardName;
-	@JSONField(name: "Date")
-	String date;
+	@JSONField(name: "TS_Create")
+	String tS_Create;
 }

@@ -21,6 +21,7 @@ import 'home_total_question_list_select_entity.dart';
 import 'home_video_learn_bottom_model_entity.dart';
 import '../../Examine/home_question_model_entity.dart';
 import 'home_examine_person_list_model_entity.dart';
+import 'home_total_operation_examine_list_model_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -296,11 +297,11 @@ class HomeRequest{
   static Future<dynamic> requestTotalOperationExamineList(String tokenID,Map params) async {
     Map resData = await Api().getTotalOperationExamineList(tokenID,params);
     LogUtil.d(resData);
-//    if (resData['success'] == 1){
-//      return JsonConvert.fromJsonAsT<HomeQuestionModelEntity>(resData['data'][0]);
-//    }else{
-//      return null;
-//    }
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<HomeTotalOperationExamineListModelEntity>(resData['data'][0]);
+    }else{
+      return null;
+    }
   }
 
 }

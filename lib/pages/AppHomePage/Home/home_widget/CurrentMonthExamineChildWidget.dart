@@ -150,19 +150,46 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
                    children: [
                      Container(
                        alignment: Alignment.centerLeft,
-                       width: ScreenAdaper.width(330),
+                       width: ScreenAdaper.width(300),
                        margin: EdgeInsets.only(left: ScreenAdaper.width(10),top: ScreenAdaper.height(16)),
                        child: Text(item.title,style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),maxLines: 1,overflow: TextOverflow.ellipsis,),
                      ),
-                     SizedBox(width: ScreenAdaper.width(75),),
-                     Container(
-                       margin: EdgeInsets.only(top: ScreenAdaper.height(16)),
+                     SizedBox(width: ScreenAdaper.width(45),),
+                     Row(
+                       children: [
+                         Container(
+                           margin: EdgeInsets.only(right: ScreenAdaper.width(15),top: ScreenAdaper.height(16)),
 
-                       color: item.status==0?Color(0xFF00D08D):Color(0xFFCECCCC),
+//                               color: Color(0xFFBD4EFB),
 
-                       padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                       child: Text(item.status==0?"未开始":"已结束",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
-                     ),
+                           padding: EdgeInsets.all(ScreenAdaper.width(10)),
+                           decoration: BoxDecoration(
+                             color: item.category==0?Color(0xFFBD4EFB):Color(0xFF00D08D),
+                             borderRadius: BorderRadius.only(
+                                 topLeft: Radius.circular(3),
+                                 bottomLeft: Radius.circular(3),
+                                 bottomRight: Radius.circular(3),
+                                 topRight: Radius.circular(3)),
+                           ),
+                           child: Text(item.category==0?"操作":"理论",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                         ),
+                         Container(
+                           margin: EdgeInsets.only(top: ScreenAdaper.height(16)),
+
+//                           color: item.status==0?Color(0xFF00D08D):Color(0xFFCECCCC),
+                           decoration: BoxDecoration(
+                             color: item.status==0?Color(0xFF00D08D):Color(0xFFCECCCC),
+                             borderRadius: BorderRadius.only(
+                                 topLeft: Radius.circular(3),
+                                 bottomLeft: Radius.circular(3),
+                                 bottomRight: Radius.circular(3),
+                                 topRight: Radius.circular(3)),
+                           ),
+                           padding: EdgeInsets.all(ScreenAdaper.width(10)),
+                           child: Text(item.status==0?"未开始":"已结束",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                         ),
+                       ],
+                     )
                    ],
                  ),
                  Container(
@@ -235,7 +262,7 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
               Navigator.pushNamed(
                 context,
                 '/examinePersonList',
-                arguments: {'id':item.iD}, //　传递参数
+                arguments: {'id':item.iD,'title':item.title}, //　传递参数
               );
             }
           }
