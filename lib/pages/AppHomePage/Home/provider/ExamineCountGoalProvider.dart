@@ -82,6 +82,14 @@ class ExamineCountGoalProvider with ChangeNotifier {
       notifyListeners();
     }
 
+    void changeSelectListGoal(int index,double goal){
+      _selectList = List.from(_totalList);
+      OperationModel model = _selectList[index];
+      model.gaiWeightedValue = goal;
+      _totalList = _selectList;
+      notifyListeners();
+    }
+
     void setTotalList(List totalList){
       _totalList = totalList;
       notifyListeners();

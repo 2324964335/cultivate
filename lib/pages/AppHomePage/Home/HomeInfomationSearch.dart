@@ -207,6 +207,7 @@ class _HomeInfomationSearchState extends State<HomeInfomationSearch> {
 //                    isMultiHang: false,
 //                  ),
 //                ),
+                 SizedBox(width: ScreenAdaper.width(10),),
                 Container(
                   alignment: Alignment.center,
                   height: ScreenAdaper.width(60),

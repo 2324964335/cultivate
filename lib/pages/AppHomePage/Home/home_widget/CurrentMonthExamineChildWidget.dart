@@ -251,8 +251,8 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
               );
             }//　传递参数
 
-          }else{
-            if(widget.examineType== 2){
+          }else if(widget.index == 0){
+            if(item.category== 1){
               Navigator.pushNamed(
                 context,
                 '/theoryExamineQuestion',

@@ -21,7 +21,7 @@ class _CultiveCourceSignDetailChildWidgetState extends State<CultiveCourceSignDe
       "id":this.widget.params["id"],
       "type":0,
       "pageIdx":1,
-      "pageSize":20
+      "pageSize":10
     };
     HomeRequest.requestMyCultivateSignBottomFeiLei(StorageUtil().getSureUserModel().TokenID, params).then((value){
         _data = value;
