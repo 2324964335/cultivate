@@ -14,6 +14,7 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
   locator.registerLazySingleton<CommonService>(() => CommonService());
   setupStoreLocal().then((value) => null);
+
 }
 
 Future<void> setupStoreLocal() async {

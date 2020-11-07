@@ -43,6 +43,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
+    StorageUtil().setUUID();
     LogUtil.d('-----1');
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==

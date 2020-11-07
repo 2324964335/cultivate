@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'LoginModel.dart';
 import '../utils/log_util.dart';
+import 'package:shortuuid/shortuuid.dart';
 /// 本地存储
 class StorageUtil {
 
@@ -17,6 +18,19 @@ class StorageUtil {
     if (_prefs == null) {
       _prefs = await SharedPreferences.getInstance();
     }
+  }
+
+  void setUUID(){
+    String jsonString = _prefs.getString("UUID_string");
+    if (jsonString != null){
+
+    }else{
+      _prefs.setString("UUID_string", ShortUuid.shortv4());
+    }
+  }
+
+  String getUUID(){
+    return  _prefs.getString("UUID_string");
   }
 
   /// 设置 json 对象

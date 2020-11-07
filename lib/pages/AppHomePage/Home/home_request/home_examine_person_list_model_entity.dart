@@ -21,4 +21,6 @@ class HomeExaminePersonListModelList with JsonConvert<HomeExaminePersonListModel
 	String wardName;
 	@JSONField(name: "TS_Create")
 	String tS_Create;
+	@JSONField(name: "WardCode")
+	String wardCode;
 }

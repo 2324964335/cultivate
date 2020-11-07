@@ -75,11 +75,14 @@ class _ExamineDoctorTotalFormState extends State<ExamineDoctorTotalForm> {
               child:
               Container(
                 child:
-                ListView.builder(
-                    itemCount: _dataList.length,
-                    itemBuilder: (ctx, index) {
-                      return _buildItem(context, index);
-                    }
+                Consumer<ExamineCountGoalProvider>(
+                  builder: (_, a, child) =>
+                      ListView.builder(
+                          itemCount: _examineCountGoalProvider.getList.length,
+                          itemBuilder: (ctx, index) {
+                            return _buildItem(context, index);
+                          }
+                      ),
                 ),
               ),
               left: 0,
@@ -97,7 +100,7 @@ class _ExamineDoctorTotalFormState extends State<ExamineDoctorTotalForm> {
   }
 
   Widget _buildItem(BuildContext context,int index){
-    OperationModel item = _dataList[index];
+    OperationModel item = _examineCountGoalProvider.getList[index];
       return Container(
         margin: item.isFirst==true?EdgeInsets.only(left:ScreenAdaper.width(20),right: ScreenAdaper.width(20),top: ScreenAdaper.width(30)):EdgeInsets.only(left: ScreenAdaper.width(20),right: ScreenAdaper.width(20)),
         color: Colors.white,
@@ -147,7 +150,7 @@ class _ExamineDoctorTotalFormState extends State<ExamineDoctorTotalForm> {
                               alignment: Alignment.center,
                               margin: EdgeInsets.only(left: ScreenAdaper.width(4)),
                               padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                              child: Text("${item.weightedValue}",style: TextStyle(color: Colors.red,fontSize: ScreenAdaper.sp(26)),),
+                              child: Text("${item.gaiWeightedValue}",style: TextStyle(color: Colors.red,fontSize: ScreenAdaper.sp(26)),),
                             ),
                             onTap: (){
 
@@ -157,22 +160,24 @@ class _ExamineDoctorTotalFormState extends State<ExamineDoctorTotalForm> {
                                   title: "修改扣分值",
                                   content: "请填写0～${item.weightedValue}之间的小数，精确到小数点后一位",
                                   items: ['取消', '确认修改'],
-                                  onTapWithInput: (title,index) {
+                                  onTapWithInput: (title,indexx) {
                                     LogUtil.d('object$index');
-                                    if(index == 1){
+                                    if(indexx == 1){
                                       if(title.length == 0){
                                         ToastShow.show("请输入需要修改的分值");
                                         return;
                                       }
                                       double input = double.parse(title);
-                                      if(input > 0){
-                                        ToastShow.show("输入格式不正确");
+                                      if(input == 0||input<0||input>item.weightedValue){
+                                        ToastShow.show("输入格式不正确或超过范围");
                                         return;
                                       }
 
                                       String last = formatNum(input, 1);
+                                      LogUtil.d('-----${last}');
                                       _examineCountGoalProvider.changeSelectListGoal(index, double.parse(last));
-
+//                                      setState(() {
+//                                      });
 //                                      Map params= {
 //                                        "id":this.widget.params['id'],
 //                                        "usercode":title,

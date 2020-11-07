@@ -290,4 +290,14 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///首页上报扣分考核项
+  Future<Map> getRequestUploadOperationExamineList(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_operation_upload_sheet'],
+      data: params,
+      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }

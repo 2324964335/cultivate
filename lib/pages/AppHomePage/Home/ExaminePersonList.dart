@@ -148,7 +148,7 @@ class _ExaminePersonListState extends State<ExaminePersonList> {
           Navigator.pushNamed(
             context,
             '/examinePersonUpload',
-            arguments: {"workName":item.workName,"title":this.widget.params["title"],'sheetCode':item.sheetCode}, //　传递参数
+            arguments: {"workName":item.workName,"title":this.widget.params["title"],'sheetCode':item.sheetCode,'id':this.widget.params["id"],'examineItem':item.examinItem,'workNo':item.workNo,'wardCode':item.wardCode}, //　传递参数
           );
 
         },

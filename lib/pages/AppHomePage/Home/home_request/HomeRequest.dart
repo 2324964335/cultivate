@@ -304,4 +304,15 @@ class HomeRequest{
     }
   }
 
+  ///上报操作考扣分项
+  static Future<dynamic> requestUploadOperationExamineList(String tokenID,Map params) async {
+    Map resData = await Api().getRequestUploadOperationExamineList(tokenID,params);
+    LogUtil.d(resData);
+//    if (resData['success'] == 1){
+//      return JsonConvert.fromJsonAsT<HomeTotalOperationExamineListModelEntity>(resData['data'][0]);
+//    }else{
+//      return null;
+//    }
+  }
+
 }

@@ -9,4 +9,5 @@ class OperationModel{
   String sheetCode = '';
   String caption = '';
   bool isFirst = false;
+  bool subIsFirst = false;
 }

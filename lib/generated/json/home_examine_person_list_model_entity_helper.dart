@@ -40,6 +40,9 @@ homeExaminePersonListModelListFromJson(HomeExaminePersonListModelList data, Map<
 	if (json['TS_Create'] != null) {
 		data.tS_Create = json['TS_Create']?.toString();
 	}
+	if (json['WardCode'] != null) {
+		data.wardCode = json['WardCode']?.toString();
+	}
 	return data;
 }
 
@@ -52,5 +55,6 @@ Map<String, dynamic> homeExaminePersonListModelListToJson(HomeExaminePersonListM
 	data['WorkName'] = entity.workName;
 	data['WardName'] = entity.wardName;
 	data['TS_Create'] = entity.tS_Create;
+	data['WardCode'] = entity.wardCode;
 	return data;
 }
