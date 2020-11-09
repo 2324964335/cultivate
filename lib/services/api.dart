@@ -11,14 +11,6 @@ class Api{
        'https://5f854e4ec29abd0016190594.mockapi.io/lala/update',
        options: Options(method: 'GET'), // 请求类型
      );
-//    Map resData = {
-//      "code": "0",
-//      "message": "success",
-//      "data": {
-//        "version": "2.2.4",
-//        "info": ["修复bug提升性能", "增加彩蛋有趣的功能页面", "测试功能"]
-//      }
-//    };
     return resData ?? {};
   }
 

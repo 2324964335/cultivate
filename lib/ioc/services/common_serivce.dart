@@ -11,7 +11,6 @@ class CommonService {
   saveGolbalKey(GlobalKey<NavigatorState> globalKey) {
     _globalKey = globalKey;
   }
-
   /// 获取全局Key
   GlobalKey get getGlobalKey => _globalKey;
 }

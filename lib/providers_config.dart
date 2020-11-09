@@ -9,7 +9,7 @@ import 'pages/AppHomePage/Examine/AnswerQuestionBottomTool.dart';
 import 'pages/AppHomePage/Examine/QuestionSliverControllProvider.dart';
 import 'provider/appCommenNetData.dart';
 List<SingleChildWidget> providersConfig = [
-  ChangeNotifierProvider<ThemeStore>.value(value: ThemeStore()), // 主题颜色
+  ChangeNotifierProvider<ThemeStore>.value(value: ThemeStore()), /// 主题颜色
   ChangeNotifierProvider<AppHomePageStore>.value(value: AppHomePageStore()),
   ChangeNotifierProvider<CounterStore>.value(value: CounterStore()),
   ChangeNotifierProvider<ExamineCountGoalProvider>.value(value: ExamineCountGoalProvider()), ///考试的扣分项

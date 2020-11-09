@@ -7,8 +7,6 @@ import '../../components/UpdateAppVersion/UpdateAppVersion.dart'
     show getNewAppVer;
 import '../../config/app_config.dart';
 import '../../components/DoubleBackExitApp/DoubleBackExitApp.dart';
-import 'MyPersonal/MyPersonal.dart';
-import 'Search/Search.dart';
 import 'Home/Home.dart';
 import 'provider/appHomePageStore.p.dart';
 import 'Message/Message.dart';

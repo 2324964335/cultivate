@@ -1,6 +1,6 @@
 {
-  "name": "flutter_flexible",
-  "version": "1.5.1",
+  "name": "flutter",
+  "version": "1.0.0",
   "scripts": {
     "initApp": "flutter pub get && npm run start",
     "start": "flutter run",

@@ -1,81 +1,13 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/util.dart';
 import 'package:flutter/material.dart';
-//首页
-double bannerHeight = ScreenUtil().setHeight(160);
-//首页按钮板块高度
-double homeButtonHeight = ScreenUtil().setHeight(100);
-//首页外边距
-double homeMarginWidth = ScreenUtil().setWidth(15);
 
-
-
-
-//视频模块页面
-double videoItemHeight = ScreenUtil().setHeight(85);
-
-//视频详情页
-//底部固定模块
+////底部固定模块
 double videoFixHeight = ScreenUtil().setHeight(100);
 
 
-//考试模块
-//上半部练习
-double practiceTestTypeHeight = ScreenUtil().setHeight(480);
-
-//下半部测试
-double practiceTestTestHeight = ScreenUtil().setHeight(250);
-//左侧宽度
-double practiceTestLeftSelectWidth = ScreenUtil().setWidth(105);
-//左侧单一Item高度
-double practiceTestLeftSelectHeight = ScreenUtil().setHeight(70);
-//右侧单一Item高度
-double practiceTestRightSelectHeight = ScreenUtil().setHeight(100);
 //底部Drawer
 double practiceBottomDrawerHeight = ScreenUtil().setHeight(700);
-//考试结束Img高度
-double testCompleteImgHeight = ScreenUtil().setHeight(420);
-//考试结束按钮宽度
-double testCompleteButtonWidth = ScreenUtil().setHeight(180);
-//考试结束按钮高度
-double testCompleteButtonHeight = ScreenUtil().setHeight(35);
-//考试结束结果距底部高度
-double testCompleteSourceBottomHeight = ScreenUtil().setHeight(70);
-
-
-
-
-//我的
-//Appbar
-double mineAppbarHeight = ScreenUtil().setHeight(120);
-//人物头像
-double mineHeadHeight = ScreenUtil().setHeight(62);
-//MineItem
-double mineItemHeight = ScreenUtil().setHeight(57);
-//修改个人资料Item
-double mineUpdateSelfItemHeight = ScreenUtil().setHeight(55);
-//修改个人资料Item
-double mineUpdateImageSheetHeight = ScreenUtil().setHeight(80);
-//我的收藏Item
-double mineCollectHeight = ScreenUtil().setWidth(105);
-//我的收藏Item
-double mineCollectImgWidth = ScreenUtil().setWidth(95);
-//我的收藏Item
-double mineCollectImgHeight = ScreenUtil().setHeight(60);
-//修改头像时的SheetHeight
-double imgSheetHeight = ScreenUtil().setHeight(300);
-
-
-//登陆注册
-double loginMarginWidth = ScreenUtil().setWidth(30);
-//每一个Item高度
-double loginItemHeight = ScreenUtil().setHeight(60);
-//验证码占宽
-double authCodeWidth = ScreenUtil().setWidth(110);
-
-//Appbar
-double loginAppbarHeight = ScreenUtil().setHeight(165);
-
 
 
 double width_1dp = ScreenUtil().setWidth(1);
