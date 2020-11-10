@@ -350,7 +350,7 @@ class _HomeInfomationSearchState extends State<HomeInfomationSearch> {
                                   children: [
                                     Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                     SizedBox(width: ScreenAdaper.width(5),),
-                                    Text(ittem.viewCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                    Text(ittem.seeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                   ],
                                 ),
 
@@ -369,7 +369,7 @@ class _HomeInfomationSearchState extends State<HomeInfomationSearch> {
               Navigator.pushNamed(
                 context,
                 '/informationDetailComment',
-                arguments: {'id':ittem.iD,'st_see':ittem.st_see}, //　传递参数
+                arguments: {'id':ittem.linkID,'st_see':ittem.st_see}, //　传递参数
               );
             },
           ),

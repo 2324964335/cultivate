@@ -12,8 +12,12 @@ class HomeTopHeader extends StatefulWidget {
   final Function(String Lei,String yue) onSelected;
 
   final HomePageTopTotalDataData data;
+  String lei = '-1';
+  String yue = '-1';
   HomeTopHeader({Key key,
     this.data,
+    this.lei,
+    this.yue,
     this.onSelected
   });
   @override
@@ -80,6 +84,26 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
   }
   @override
   Widget build(BuildContext context) {
+    if(this.widget.yue == '-1'){
+      yuedu_str = '全部';
+    }else if(this.widget.yue == '0'){
+      yuedu_str = '未读';
+    }else if(this.widget.yue == '1'){
+      yuedu_str = '已读';
+    }
+
+    if(this.widget.lei == '-1'){
+      leixing_str = '全部';
+    }else if(this.widget.lei == '0'){
+      leixing_str = '公告';
+    }else if(this.widget.lei == '1'){
+      leixing_str = '员工培训';
+    }else if(this.widget.lei == '2'){
+      leixing_str = '员工考核';
+    }else if(this.widget.lei == '3'){
+      leixing_str = '微课堂';
+    }
+
     LogUtil.d('-----------0-${this.widget.data}');
     if(this.widget.data != null){
       this.widget.data.xList.forEach((element) {
@@ -600,7 +624,7 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
                     ),
                   ),
                   onTap: (){
-                      _choiceDialog('选择类型', ['全部','线下','线上']);
+                      _choiceDialog('选择类型', ['全部','公告','员工培训','员工考核','微课堂']);
                   },
                 ),
                 GestureDetector(

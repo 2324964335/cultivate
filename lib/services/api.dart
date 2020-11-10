@@ -1,8 +1,10 @@
+import 'package:cultivate/components/Calendar/utils/LogUtil.dart';
 import 'package:dio/dio.dart';
 import '../utils/dio/safeRequest.dart';
 import 'service_url.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
+import '../utils/util.dart';
 class Api{
   /// 获取APP最新版本号, 演示更新APP组件
   Future<Map> getNewVersion([String version]) async {
@@ -44,11 +46,23 @@ class Api{
   /// 首页数据
   Future<Map> getHomePageData(String TokenID,Map params) async {
     Map resData = await safeRequest(
-      serviceUrl['app_home_bottom'],
-      data: params,
-      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+      serviceUrl['app_home_bottom']+ getByParams(params),
+      data: {},
+      options: Options(method: 'GET',headers:{"TokenID":TokenID}),
     );
     return resData ?? {};
+  }
+
+  String getByParams(Map params){
+    if(params.keys.length == 0){
+      return "";
+    }
+    String params_string = "?";
+    params.forEach((key, value) {
+      params_string = params_string + "${key}=${value}&";
+    });
+    params_string = params_string.substring(0,params_string.length -1);
+  return params_string;
   }
 
   ///本月培训

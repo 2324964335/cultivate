@@ -92,8 +92,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       return;
     }
     Map params = {
-      "leixing":lei,
-      "yuedu":yue,
+      "LinkType":lei,
+      "ST_See":yue,
       "pageIdx":pageIndex,
       "pageSize":10
     };
@@ -132,6 +132,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
     _userModelProvider = Provider.of<GainUserModel>(context);
     if(_userModelProvider.getuserModel == null){
       _userModelProvider.setCurrenUserModel();
@@ -242,14 +243,20 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 //        });
        return HomeTopHeader(
          data: _topdata,
+         lei: _lei,
+         yue: _yue,
          onSelected: (lei,yue){
            LogUtil.d('------${lei}------${yue}');
            if(lei=='全部'){
              _lei = '-1';
-           }else if(lei == '线上'){
-             _lei = '1';
-           }else{
+           }else if(lei == '公告'){
              _lei = '0';
+           }else if(lei == '员工培训'){
+             _lei = '1';
+           }else if(lei == '员工考核'){
+             _lei = '2';
+           }else if(lei == '微课堂'){
+             _lei = '3';
            }
 
            if(yue=='全部'){
@@ -295,6 +302,21 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   Widget _buildItem(BuildContext context,int index){
     HomePageDataList ittem = _bottomdata_list[index];
+    Color colorr = Color(0xFFBD4EFB);
+    String title_string = "";
+    if(ittem.linkType == 0){
+      title_string = "公告";
+      colorr = Color(0xFFBD4EFB);
+    }else if(ittem.linkType == 1){
+      title_string = "员工培训";
+      colorr = Color(0xFF00D08D);
+    }else if(ittem.linkType == 2){
+      title_string = "员工考核";
+      colorr = Color(0xFFBD4EFB);
+    }else if(ittem.linkType == 3){
+      title_string = "微课堂";
+      colorr = Color(0xFF00D08D);
+    }
       return Container(
         padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
         child: Container(
@@ -340,7 +362,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                      bottomRight: Radius.circular(3),
                                      topRight: Radius.circular(3)),
                                ),
-                               child: Text(ittem.type==0?"线下":"线上",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                               child: Text(title_string,style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
                              ),
                            ],
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -369,7 +391,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 //                                     Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
                                      CachedNetworkImage(imageUrl: ittem.icon,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(70),height: ScreenAdaper.width(70),fit: BoxFit.contain,),
                                      SizedBox(width: ScreenAdaper.width(10),),
-                                     Text(ittem.trainer,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                     Text(ittem.senderObjName,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                      SizedBox(width: ScreenAdaper.width(40),),
                                      Text(ittem.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                    ],
@@ -410,7 +432,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                          children: [
                                            Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                            SizedBox(width: ScreenAdaper.width(5),),
-                                           Text(ittem.viewCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                           Text(ittem.seeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                          ],
                                        ),
 
@@ -429,7 +451,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       Navigator.pushNamed(
                         context,
                         '/informationDetailComment',
-                        arguments: {'id':ittem.iD,'st_see':ittem.st_see}, //　传递参数
+                        arguments: {'id':ittem.linkID,'st_see':ittem.st_see}, //　传递参数
                       );
                     },
                   ),

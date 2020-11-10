@@ -11,22 +11,28 @@ class HomePageDataList with JsonConvert<HomePageDataList> {
 	String title;
 	@JSONField(name: "ST_See")
 	int st_see;
-	@JSONField(name: "ID")
-	String iD;
+	@JSONField(name: "LinkID")
+	String linkID;
 	@JSONField(name: "Type")
 	int type;
 	@JSONField(name: "ReadType")
 	int readType;
+	@JSONField(name: "LinkType")
+	int linkType;
 	@JSONField(name: "Icon")
 	String icon;
 	@JSONField(name: "Trainer")
 	String trainer;
 	@JSONField(name: "BeginTime")
 	String beginTime;
+	@JSONField(name: "TeachType")
+	String teachType;
+	@JSONField(name: "senderObjName")
+	String senderObjName;
 	@JSONField(name: "LikeCount")
 	int likeCount;
 	@JSONField(name: "CommentCount")
 	int commentCount;
-	@JSONField(name: "ViewCount")
-	int viewCount;
+	@JSONField(name: "SeeCount")
+	int seeCount;
 }

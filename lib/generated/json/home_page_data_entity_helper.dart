@@ -25,14 +25,17 @@ homePageDataListFromJson(HomePageDataList data, Map<String, dynamic> json) {
 	if (json['ST_See'] != null) {
 		data.st_see = json['ST_See']?.toInt();
 	}
-	if (json['ID'] != null) {
-		data.iD = json['ID']?.toString();
+	if (json['LinkID'] != null) {
+		data.linkID = json['LinkID']?.toString();
 	}
 	if (json['Type'] != null) {
 		data.type = json['Type']?.toInt();
 	}
 	if (json['ReadType'] != null) {
 		data.readType = json['ReadType']?.toInt();
+	}
+	if (json['LinkType'] != null) {
+		data.linkType = json['LinkType']?.toInt();
 	}
 	if (json['Icon'] != null) {
 		data.icon = json['Icon']?.toString();
@@ -43,14 +46,20 @@ homePageDataListFromJson(HomePageDataList data, Map<String, dynamic> json) {
 	if (json['BeginTime'] != null) {
 		data.beginTime = json['BeginTime']?.toString();
 	}
+	if (json['TeachType'] != null) {
+		data.teachType = json['TeachType']?.toString();
+	}
+	if (json['senderObjName'] != null) {
+		data.senderObjName = json['senderObjName']?.toString();
+	}
 	if (json['LikeCount'] != null) {
 		data.likeCount = json['LikeCount']?.toInt();
 	}
 	if (json['CommentCount'] != null) {
 		data.commentCount = json['CommentCount']?.toInt();
 	}
-	if (json['ViewCount'] != null) {
-		data.viewCount = json['ViewCount']?.toInt();
+	if (json['SeeCount'] != null) {
+		data.seeCount = json['SeeCount']?.toInt();
 	}
 	return data;
 }
@@ -59,14 +68,17 @@ Map<String, dynamic> homePageDataListToJson(HomePageDataList entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['Title'] = entity.title;
 	data['ST_See'] = entity.st_see;
-	data['ID'] = entity.iD;
+	data['LinkID'] = entity.linkID;
 	data['Type'] = entity.type;
 	data['ReadType'] = entity.readType;
+	data['LinkType'] = entity.linkType;
 	data['Icon'] = entity.icon;
 	data['Trainer'] = entity.trainer;
 	data['BeginTime'] = entity.beginTime;
+	data['TeachType'] = entity.teachType;
+	data['senderObjName'] = entity.senderObjName;
 	data['LikeCount'] = entity.likeCount;
 	data['CommentCount'] = entity.commentCount;
-	data['ViewCount'] = entity.viewCount;
+	data['SeeCount'] = entity.seeCount;
 	return data;
 }
