@@ -99,7 +99,7 @@ class _AllInformationState extends State<AllInformation> {
                           ListView.builder(
                             physics: new AlwaysScrollableScrollPhysics(),
                             controller: _scrollController,
-                            itemCount: 100,
+                            itemCount: _dataList_list.length + 1,
                             itemBuilder: (ctx,index){
                               return _buildItemByIndex(context, index);
                             },
@@ -113,7 +113,7 @@ class _AllInformationState extends State<AllInformation> {
     if(index == 0){
       return _buildTopItem(context, index);
     }else{
-      return _buildItem(context,index);
+      return _buildItem(context,index-1);
     }
   }
 
@@ -134,12 +134,12 @@ class _AllInformationState extends State<AllInformation> {
                 children: [
                   Text(fanweiString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30)),),
                   SizedBox(width: ScreenAdaper.width(10),),
-                  Image.asset(isFanWei==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
+                  Image.asset("asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
                 ],
               ),
             ),
             onTap: (){
-              _choiceDialog("选择类型", ['全部','科室','院内']);
+              _choiceDialog("选择类型", ['全部','公告','员工培训','员工考核','微课堂']);
             },
           ),
           Container(
@@ -154,13 +154,13 @@ class _AllInformationState extends State<AllInformation> {
                 children: [
                   Text(readString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30)),),
                   SizedBox(width: ScreenAdaper.width(10),),
-                  Image.asset(isRead==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
+                  Image.asset("asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
 
                 ],
               ),
             ),
             onTap: (){
-              _choiceDialog("选择阅读", ['全部','已阅读','未阅读']);
+              _choiceDialog("选择阅读", ['全部','已读','未读']);
 
             },
           ),
@@ -170,7 +170,7 @@ class _AllInformationState extends State<AllInformation> {
   }
 
   void _choiceDialog(String titlee,List titleList) async {
-    if(titlee == '选择发布范围'){
+    if(titlee == '选择类型'){
       isFanWei = true;
     }else{
       isRead = true;
@@ -194,13 +194,33 @@ class _AllInformationState extends State<AllInformation> {
 //                  }
 //                });
 
-                if(titlee == '选择发布范围'){
+                if(titlee == '选择类型'){
                   fanweiString = title;
                   isFanWei = false;
+                  if(title=='全部'){
+                    _lei = '-1';
+                  }else if(title == '公告'){
+                    _lei = '0';
+                  }else if(title == '员工培训'){
+                    _lei = '1';
+                  }else if(title == '员工考核'){
+                    _lei = '2';
+                  }else if(title == '微课堂'){
+                    _lei = '3';
+                  }
                 }else{
                   readString = title;
                   isRead = false;
+                  if(title=='全部'){
+                    _yue = '-1';
+                  }else if(title == '已读'){
+                    _yue = '1';
+                  }else if(title == '未读'){
+                    _yue = '0';
+                  }
                 }
+                PageIndex = 1;
+                getListData(PageIndex);
                 setState(() {});
               },
               title: titlee,
@@ -212,6 +232,22 @@ class _AllInformationState extends State<AllInformation> {
 
 
   Widget _buildItem(BuildContext context,int index){
+    HomePageDataList item = _dataList_list[index];
+    Color colorr = Color(0xFFBD4EFB);
+    String title_string = "";
+    if(item.linkType == 0){
+      title_string = "公告";
+      colorr = Color(0xFFBD4EFB);
+    }else if(item.linkType == 1){
+      title_string = "员工培训";
+      colorr = Color(0xFF00D08D);
+    }else if(item.linkType == 2){
+      title_string = "员工考核";
+      colorr = Color(0xFFBD4EFB);
+    }else if(item.linkType == 3){
+      title_string = "微课堂";
+      colorr = Color(0xFF00D08D);
+    }
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
       child: Container(
@@ -240,16 +276,16 @@ class _AllInformationState extends State<AllInformation> {
                     children: [
                       Container(
 
-                        child: Text("2020.8 传染病防控",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
+                        child: Text(item.title,style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
                         margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
                       ),
                       Container(
                         margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
 
-                        color: Color(0xFFF1B900),
+                        color: colorr,
 
                         padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                        child: Text("公告",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                        child: Text(title_string,style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
                       ),
                     ],
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -269,7 +305,7 @@ class _AllInformationState extends State<AllInformation> {
                           child: Row(
 
                             children: [
-                              Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(75),height:ScreenAdaper.width(75),),
+                              CachedNetworkImage(imageUrl: item.icon,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(75),height: ScreenAdaper.width(75),fit: BoxFit.contain,),
                               SizedBox(width: ScreenAdaper.width(20),),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -278,17 +314,17 @@ class _AllInformationState extends State<AllInformation> {
                                   Row(
                                     children: [
 //                                      SizedBox(width: ScreenAdaper.width(20),),
-                                      Text('主讲人：',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                                      Text('某某某',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                      Text('发布人：',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                                      Text(item.senderObjName,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                       SizedBox(width: ScreenAdaper.width(50),),
                                       Text('开始时间:',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                                      Text('2020年8月20日',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                      Text(item.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                     ],
                                   ),
                                   SizedBox(height: ScreenAdaper.height(20),),
 
-                                  Text('请至微课堂栏目中进行学习',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                                  SizedBox(height: ScreenAdaper.height(20),),
+//                                  Text('请至微课堂栏目中进行学习',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+//                                  SizedBox(height: ScreenAdaper.height(20),),
 
                                   Container(
                                     child: Row(
@@ -301,7 +337,7 @@ class _AllInformationState extends State<AllInformation> {
                                             children: [
                                               Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                               SizedBox(width: ScreenAdaper.width(5),),
-                                              Text("126",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                              Text(item.likeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                             ],
                                           ),
 
@@ -313,7 +349,7 @@ class _AllInformationState extends State<AllInformation> {
                                             children: [
                                               Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                               SizedBox(width: ScreenAdaper.width(5),),
-                                              Text("64",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                              Text(item.commentCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                             ],
                                           ),
 
@@ -325,7 +361,7 @@ class _AllInformationState extends State<AllInformation> {
                                             children: [
                                               Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                               SizedBox(width: ScreenAdaper.width(5),),
-                                              Text("1526",style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                              Text(item.seeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                             ],
                                           ),
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
+import '../../../components/flutter_jd_address_selector.dart';
 import 'home_request/HomeRequest.dart';
-import 'home_request/home_unread_information_model_entity.dart';
+import 'home_request/home_page_data_entity.dart';
+
 class NoReadInfomation extends StatefulWidget {
   NoReadInfomation({Key key, this.params}) : super(key: key);
   final  params;
@@ -11,7 +13,13 @@ class NoReadInfomation extends StatefulWidget {
 
 class _NoReadInfomationState extends State<NoReadInfomation> {
 
-  HomeUnreadInformationModelEntity _dataList = null;
+  bool isFanWei = false;
+  bool isRead = false;
+  
+  String _lei = '-1';
+  String _yue = '-1';
+
+  HomePageDataEntity _dataList = null;
   List _dataList_list = [];
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool canContinueLoading = true;
@@ -45,11 +53,12 @@ class _NoReadInfomationState extends State<NoReadInfomation> {
       return;
     }
     Map params = {
-//      'type':this.widget.index,
-      'pageIdx':pageIndex,
-      'pageSize':10
+      "LinkType":_lei,
+      "ST_See":0,
+      "pageIdx":pageIndex,
+      "pageSize":10
     };
-    HomeRequest.requestHomeUnreadInformation(StorageUtil().getSureUserModel().TokenID,params).then((value){
+    HomeRequest.requestHomePageData(StorageUtil().getSureUserModel().TokenID,params).then((value){
       _dataList = value;
       if(pageIndex==1){
         _dataList_list = [];
@@ -75,50 +84,52 @@ class _NoReadInfomationState extends State<NoReadInfomation> {
     getListData(PageIndex);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('未读公告'),),
+      appBar: AppBar(title: Text('公告'),),
       body: Container(
-        child:
-        RefreshIndicator(
-          onRefresh: _handleRefresh,
           child:
-        ListView.builder(
-          physics: new AlwaysScrollableScrollPhysics(),
-          itemCount: _dataList==null?1:_dataList_list.length==0?1:_dataList_list.length,
-          controller: _scrollController,
-          itemBuilder: (ctx,index){
-            return _buildWidgetByIndex(context, index);
-          },
-        ),
-        )
+          RefreshIndicator(
+            onRefresh: _handleRefresh,
+            child:
+            ListView.builder(
+              physics: new AlwaysScrollableScrollPhysics(),
+              controller: _scrollController,
+              itemCount: _dataList_list.length,
+              itemBuilder: (ctx,index){
+                return _buildItemByIndex(context, index);
+              },
+            ),
+          )
       ),
     );
   }
 
-  Widget _buildWidgetByIndex(BuildContext context,int index){
-    if(index == 0&&_dataList_list.length==0){
-      return Container(
-        width: ScreenAdaper.width(750),
-        height: ScreenAdaper.width(700),
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("asset/images/home/zanwushuju.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
-            SizedBox(height: ScreenAdaper.width(20),),
-            LightText.build('暂无数据'),
-          ],
-        ),
-      );
-    }else{
-      return _buildItem(context, index);
-    }
+  Widget _buildItemByIndex(BuildContext context,int index){
+      return _buildItem(context,index);
+    
   }
 
+ 
   Widget _buildItem(BuildContext context,int index){
-    HomeUnreadInformationModelList item = _dataList_list[index];
+    HomePageDataList item = _dataList_list[index];
+    Color colorr = Color(0xFFBD4EFB);
+    String title_string = "";
+    if(item.linkType == 0){
+      title_string = "公告";
+      colorr = Color(0xFFBD4EFB);
+    }else if(item.linkType == 1){
+      title_string = "员工培训";
+      colorr = Color(0xFF00D08D);
+    }else if(item.linkType == 2){
+      title_string = "员工考核";
+      colorr = Color(0xFFBD4EFB);
+    }else if(item.linkType == 3){
+      title_string = "微课堂";
+      colorr = Color(0xFF00D08D);
+    }
     return Container(
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
       child: Container(
@@ -153,10 +164,10 @@ class _NoReadInfomationState extends State<NoReadInfomation> {
                       Container(
                         margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
 
-                        color: Color(0xFFF1B900),
+                        color: colorr,
 
                         padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                        child: Text("公告",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+                        child: Text(title_string,style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
                       ),
                     ],
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,8 +196,8 @@ class _NoReadInfomationState extends State<NoReadInfomation> {
                                   Row(
                                     children: [
 //                                      SizedBox(width: ScreenAdaper.width(20),),
-                                      Text('主讲人：',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                                      Text(item.trianer,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                                      Text('发布人：',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                                      Text(item.senderObjName,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                                       SizedBox(width: ScreenAdaper.width(50),),
                                       Text('开始时间:',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
                                       Text(item.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
@@ -194,8 +205,8 @@ class _NoReadInfomationState extends State<NoReadInfomation> {
                                   ),
                                   SizedBox(height: ScreenAdaper.height(20),),
 
-                                  Text(item.content,style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                                  SizedBox(height: ScreenAdaper.height(20),),
+//                                  Text('请至微课堂栏目中进行学习',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+//                                  SizedBox(height: ScreenAdaper.height(20),),
 
                                   Container(
                                     child: Row(
@@ -208,7 +219,7 @@ class _NoReadInfomationState extends State<NoReadInfomation> {
                                             children: [
                                               Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                               SizedBox(width: ScreenAdaper.width(5),),
-                                              Text(item.likes.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                              Text(item.likeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                             ],
                                           ),
 
@@ -220,7 +231,7 @@ class _NoReadInfomationState extends State<NoReadInfomation> {
                                             children: [
                                               Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                               SizedBox(width: ScreenAdaper.width(5),),
-                                              Text(item.comments.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                              Text(item.commentCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                             ],
                                           ),
 
@@ -258,7 +269,7 @@ class _NoReadInfomationState extends State<NoReadInfomation> {
               Navigator.pushNamed(
                 context,
                 '/informationDetail',
-                arguments: {'id':item.iD}, //　传递参数
+                arguments: {}, //　传递参数
               );
             },
           ),
