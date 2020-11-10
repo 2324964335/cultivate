@@ -17,14 +17,14 @@ class Api{
   }
 
   /// 账号密码登录
-  Future<Map> loginByPass(String account,String password) async {
+  Future<Map> loginByPass(String account,String password,String deviceID) async {
     Map resData = await safeRequest(
       serviceUrl['app_login'],
       data: {
         'Account':account,
         'Password':md5.convert(utf8.encode(password)).toString(),
         'TenantID':"",
-        'DeviceID':'',
+        'DeviceID':deviceID,
         'Build':0
       },
       options: Options(method: 'POST'),

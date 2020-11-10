@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import 'home_request/HomeRequest.dart';
 import 'home_request/home_examine_person_list_model_entity.dart';
+import 'provider/ExamineCountGoalProvider.dart';
+import 'package:provider/provider.dart';
 class ExaminePersonList extends StatefulWidget {
   ExaminePersonList({Key key, this.params}) : super(key: key);
   final  params;
@@ -12,6 +14,8 @@ class ExaminePersonList extends StatefulWidget {
 class _ExaminePersonListState extends State<ExaminePersonList> {
 
   HomeExaminePersonListModelEntity _dataList = null;
+  ExamineCountGoalProvider _examineCountGoalProvider;
+
   List _dataList_list = [];
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool canContinueLoading = true;
@@ -77,6 +81,13 @@ class _ExaminePersonListState extends State<ExaminePersonList> {
 
   @override
   Widget build(BuildContext context) {
+    _examineCountGoalProvider = Provider.of<ExamineCountGoalProvider>(context);
+    if(_examineCountGoalProvider.getIsComplete == true){
+      PageIndex = 1;
+      getListData(PageIndex);
+      _examineCountGoalProvider.setFalseComplete();
+
+    }
     return Scaffold(
       appBar: AppBar(title: Text('考核人员列表'),),
       body: Container(

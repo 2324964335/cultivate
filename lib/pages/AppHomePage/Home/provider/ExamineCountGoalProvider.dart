@@ -101,4 +101,17 @@ class ExamineCountGoalProvider with ChangeNotifier {
       });
     }
 
+    bool _isComplete = false;
+    bool get getIsComplete => _isComplete;
+    void setChangeComplete(){
+      _isComplete = true;
+      _totalList = [];
+      _selectList = [];
+      notifyListeners();
+    }
+
+    void setFalseComplete(){
+      _isComplete = false;
+    }
+
 }

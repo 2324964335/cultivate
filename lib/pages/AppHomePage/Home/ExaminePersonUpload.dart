@@ -275,7 +275,6 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
                   LogUtil.d('object$index');
                   if(index == 1){
                     _examineCountGoalProvider.clearSelectList();
-                    ToastShow.show("提交成功");
 //                    Navigator.pop(context);
                     List itemList = [];
                     _dataList.forEach((element) {
@@ -292,7 +291,7 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
                     Map params = {
 //                      ShortUuid.shortv4()
                       //mbWU58jUuHKhdJK2WizcA6
-                      "ID":StorageUtil().getUUID(),
+                      "ID":ShortUuid.shortv4(),
                       "ExamineID":this.widget.params["id"],
                       "ExamineItemID":this.widget.params["examineItem"],
                       "WardCode":this.widget.params["wardCode"],
@@ -302,7 +301,11 @@ class _ExaminePersonUploadState extends State<ExaminePersonUpload> {
                       "Item":itemList
                     };
                   HomeRequest.requestUploadOperationExamineList(StorageUtil().getSureUserModel().TokenID, params).then((value){
-
+                      if(value["msg"]=="成功"){
+                        Navigator.pop(context);
+                        _examineCountGoalProvider.setChangeComplete();
+                      }
+                      ToastShow.show(value["msg"]);
                   });
                   }
                 },

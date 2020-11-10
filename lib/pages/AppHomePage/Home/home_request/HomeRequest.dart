@@ -313,6 +313,7 @@ class HomeRequest{
 //    }else{
 //      return null;
 //    }
+  return resData;
   }
 
 }

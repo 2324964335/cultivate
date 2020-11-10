@@ -153,7 +153,7 @@ class _passwordState extends State<password>  with AutomaticKeepAliveClientMixin
 //        duration: Duration(milliseconds: 700)
 //    );
     print('login action');
-    LoginByPass.requestLoginByPASS(_namePassController.text, _passwordController.text).then((value){
+    LoginByPass.requestLoginByPASS(_namePassController.text, _passwordController.text,StorageUtil().getUUID()).then((value){
       LogUtil.d(value);
       if (value != null){
         _userModelProvider.setCurrenUserModel();

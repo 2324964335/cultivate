@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import '../../../components/flutter_jd_address_selector.dart';
+import 'home_request/HomeRequest.dart';
+import 'home_request/home_page_data_entity.dart';
 
 class AllInformation extends StatefulWidget {
   AllInformation({Key key, this.params}) : super(key: key);
@@ -16,6 +18,73 @@ class _AllInformationState extends State<AllInformation> {
 
   String fanweiString = "全部";
   String readString = "全部";
+  String _lei = '-1';
+  String _yue = '-1';
+
+  HomePageDataEntity _dataList = null;
+  List _dataList_list = [];
+  ScrollController _scrollController = ScrollController(); //listview的控制器
+  bool canContinueLoading = true;
+  int PageIndex = 1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getListData(1);
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        print('滑动到了最底部');
+        getListData(PageIndex);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _scrollController.dispose();
+
+  }
+
+  void getListData(int pageIndex){
+    if(pageIndex!=1&&canContinueLoading == false){
+      ToastShow.show('暂无更多数据');
+      return;
+    }
+    Map params = {
+      "LinkType":_lei,
+      "ST_See":_yue,
+      "pageIdx":pageIndex,
+      "pageSize":10
+    };
+    HomeRequest.requestHomePageData(StorageUtil().getSureUserModel().TokenID,params).then((value){
+      _dataList = value;
+      if(pageIndex==1){
+        _dataList_list = [];
+        _dataList = value;
+        _dataList_list.addAll(value.xList);
+        canContinueLoading = true;
+      }else{
+        if((value.xList as List).length > 0) {
+          _dataList_list.addAll(value.xList);
+        }
+        if((value.xList as List).length < 10){
+          canContinueLoading = false;
+        }
+      }
+      PageIndex +=1;
+      setState(() {
+      });
+    });
+  }
+
+  Future<Null> _handleRefresh() async {
+    PageIndex = 1;
+    getListData(PageIndex);
+  }
 
 
   @override
@@ -23,12 +92,19 @@ class _AllInformationState extends State<AllInformation> {
     return Scaffold(
       appBar: AppBar(title: Text('公告'),),
       body: Container(
-        child: ListView.builder(
-          itemCount: 100,
-          itemBuilder: (ctx,index){
-            return _buildItemByIndex(context, index);
-          },
-        ),
+                child:
+                      RefreshIndicator(
+                      onRefresh: _handleRefresh,
+                      child:
+                          ListView.builder(
+                            physics: new AlwaysScrollableScrollPhysics(),
+                            controller: _scrollController,
+                            itemCount: 100,
+                            itemBuilder: (ctx,index){
+                              return _buildItemByIndex(context, index);
+                            },
+                          ),
+                      )
       ),
     );
   }
@@ -63,7 +139,7 @@ class _AllInformationState extends State<AllInformation> {
               ),
             ),
             onTap: (){
-              _choiceDialog("选择发布范围", ['全部','科室','院内']);
+              _choiceDialog("选择类型", ['全部','科室','院内']);
             },
           ),
           Container(
