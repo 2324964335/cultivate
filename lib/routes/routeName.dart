@@ -153,4 +153,8 @@ class RouteName {
   ///QuestionWrongTotalSelect 题库错列表选择
   static String questionWrongTotalSelect = '/questionWrongTotalSelect';
 
+  ///CollegeInfomation 同事个人信息
+  static String collegeInfomation = '/collegeInfomation';
+
+
 }

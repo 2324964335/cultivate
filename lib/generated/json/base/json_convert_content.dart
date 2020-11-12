@@ -17,6 +17,8 @@ import 'package:cultivate/pages/AppHomePage/Home/home_request/home_total_questio
 import 'package:cultivate/generated/json/home_total_question_list_select_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/home_examine_person_list_model_entity.dart';
 import 'package:cultivate/generated/json/home_examine_person_list_model_entity_helper.dart';
+import 'package:cultivate/pages/AppHomePage/Contact/contact_request/contact_list_entity.dart';
+import 'package:cultivate/generated/json/contact_list_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Examine/home_question_model_entity.dart';
 import 'package:cultivate/generated/json/home_question_model_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/current_month_examine_list_entity.dart';
@@ -68,7 +70,12 @@ class JsonConvert<T> {
 			return homeTotalQuestionListSelectEntityFromJson(data as HomeTotalQuestionListSelectEntity, json) as T;			case HomeTotalQuestionListSelectList:
 			return homeTotalQuestionListSelectListFromJson(data as HomeTotalQuestionListSelectList, json) as T;			case HomeExaminePersonListModelEntity:
 			return homeExaminePersonListModelEntityFromJson(data as HomeExaminePersonListModelEntity, json) as T;			case HomeExaminePersonListModelList:
-			return homeExaminePersonListModelListFromJson(data as HomeExaminePersonListModelList, json) as T;			case HomeQuestionModelEntity:
+			return homeExaminePersonListModelListFromJson(data as HomeExaminePersonListModelList, json) as T;			case ContactListEntity:
+			return contactListEntityFromJson(data as ContactListEntity, json) as T;			case ContactListData:
+			return contactListDataFromJson(data as ContactListData, json) as T;			case ContactListDataList:
+			return contactListDataListFromJson(data as ContactListDataList, json) as T;			case ContactListDataListEmpInfo:
+			return contactListDataListEmpInfoFromJson(data as ContactListDataListEmpInfo, json) as T;			case ContactListDataListEmpInfoItem:
+			return contactListDataListEmpInfoItemFromJson(data as ContactListDataListEmpInfoItem, json) as T;			case HomeQuestionModelEntity:
 			return homeQuestionModelEntityFromJson(data as HomeQuestionModelEntity, json) as T;			case HomeQuestionModelList:
 			return homeQuestionModelListFromJson(data as HomeQuestionModelList, json) as T;			case CurrentMonthExamineListEntity:
 			return currentMonthExamineListEntityFromJson(data as CurrentMonthExamineListEntity, json) as T;			case CurrentMonthExamineListList:
@@ -114,7 +121,12 @@ class JsonConvert<T> {
 			return homeTotalQuestionListSelectEntityToJson(data as HomeTotalQuestionListSelectEntity);			case HomeTotalQuestionListSelectList:
 			return homeTotalQuestionListSelectListToJson(data as HomeTotalQuestionListSelectList);			case HomeExaminePersonListModelEntity:
 			return homeExaminePersonListModelEntityToJson(data as HomeExaminePersonListModelEntity);			case HomeExaminePersonListModelList:
-			return homeExaminePersonListModelListToJson(data as HomeExaminePersonListModelList);			case HomeQuestionModelEntity:
+			return homeExaminePersonListModelListToJson(data as HomeExaminePersonListModelList);			case ContactListEntity:
+			return contactListEntityToJson(data as ContactListEntity);			case ContactListData:
+			return contactListDataToJson(data as ContactListData);			case ContactListDataList:
+			return contactListDataListToJson(data as ContactListDataList);			case ContactListDataListEmpInfo:
+			return contactListDataListEmpInfoToJson(data as ContactListDataListEmpInfo);			case ContactListDataListEmpInfoItem:
+			return contactListDataListEmpInfoItemToJson(data as ContactListDataListEmpInfoItem);			case HomeQuestionModelEntity:
 			return homeQuestionModelEntityToJson(data as HomeQuestionModelEntity);			case HomeQuestionModelList:
 			return homeQuestionModelListToJson(data as HomeQuestionModelList);			case CurrentMonthExamineListEntity:
 			return currentMonthExamineListEntityToJson(data as CurrentMonthExamineListEntity);			case CurrentMonthExamineListList:
@@ -160,7 +172,12 @@ class JsonConvert<T> {
 			return HomeTotalQuestionListSelectEntity().fromJson(json);			case 'HomeTotalQuestionListSelectList':
 			return HomeTotalQuestionListSelectList().fromJson(json);			case 'HomeExaminePersonListModelEntity':
 			return HomeExaminePersonListModelEntity().fromJson(json);			case 'HomeExaminePersonListModelList':
-			return HomeExaminePersonListModelList().fromJson(json);			case 'HomeQuestionModelEntity':
+			return HomeExaminePersonListModelList().fromJson(json);			case 'ContactListEntity':
+			return ContactListEntity().fromJson(json);			case 'ContactListData':
+			return ContactListData().fromJson(json);			case 'ContactListDataList':
+			return ContactListDataList().fromJson(json);			case 'ContactListDataListEmpInfo':
+			return ContactListDataListEmpInfo().fromJson(json);			case 'ContactListDataListEmpInfoItem':
+			return ContactListDataListEmpInfoItem().fromJson(json);			case 'HomeQuestionModelEntity':
 			return HomeQuestionModelEntity().fromJson(json);			case 'HomeQuestionModelList':
 			return HomeQuestionModelList().fromJson(json);			case 'CurrentMonthExamineListEntity':
 			return CurrentMonthExamineListEntity().fromJson(json);			case 'CurrentMonthExamineListList':
@@ -207,7 +224,12 @@ class JsonConvert<T> {
 			return List<HomeTotalQuestionListSelectEntity>();			case 'HomeTotalQuestionListSelectList':
 			return List<HomeTotalQuestionListSelectList>();			case 'HomeExaminePersonListModelEntity':
 			return List<HomeExaminePersonListModelEntity>();			case 'HomeExaminePersonListModelList':
-			return List<HomeExaminePersonListModelList>();			case 'HomeQuestionModelEntity':
+			return List<HomeExaminePersonListModelList>();			case 'ContactListEntity':
+			return List<ContactListEntity>();			case 'ContactListData':
+			return List<ContactListData>();			case 'ContactListDataList':
+			return List<ContactListDataList>();			case 'ContactListDataListEmpInfo':
+			return List<ContactListDataListEmpInfo>();			case 'ContactListDataListEmpInfoItem':
+			return List<ContactListDataListEmpInfoItem>();			case 'HomeQuestionModelEntity':
 			return List<HomeQuestionModelEntity>();			case 'HomeQuestionModelList':
 			return List<HomeQuestionModelList>();			case 'CurrentMonthExamineListEntity':
 			return List<CurrentMonthExamineListEntity>();			case 'CurrentMonthExamineListList':

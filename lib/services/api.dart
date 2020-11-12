@@ -317,4 +317,14 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///获取通讯录列表
+  Future<Map> getContactList(String TokenID) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_contact_list'],
+      data: {},
+      options: Options(method: 'GET',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }

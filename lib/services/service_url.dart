@@ -4,7 +4,7 @@ const appurlPro = "http://app.hosmart.com:7194/api/UPF/";
 const serviceUrl = {
    'app_login': appurlPro +'Account/Login', ///登录接口
    'app_home_total':appurlPro + 'Education/Main/GetMonthTotal', ///首页头部数据
-   'app_home_bottom':appurlPro + 'Notice/Mian/NoticeList', ///首页底部数据
+   'app_home_bottom':appurlPro + 'Notice/Main/NoticeList', ///首页底部数据
    'app_current_cultivate':appurlPro + 'Education/ToMonth/GetEduList', /// 本月培训
    'app_current_cultivate_detail':appurlPro + 'Education/GetEduDetail', /// 本月培训详情
    'app_sign_cultivate':appurlPro + 'Education/EduDetail/EduSign', /// 签到
@@ -29,4 +29,5 @@ const serviceUrl = {
    'app_home_question_list':appurlPro + 'Questions/QuestionBank/GetQuestionList', ///首页题库
    'app_home_operation_total_sheet':appurlPro + 'Examine/Operate/Sheet/DeductionTtem', ///首页操作考扣分项
    'app_home_operation_upload_sheet':appurlPro + 'Examine/Operate/Staff/Sheet/SaveSheetItem', ///首页操作考上报
+   'app_contact_list':appurlPro + 'Notice/Contact/WardList',///Notice/Contact/WardList 通讯录列表
 };

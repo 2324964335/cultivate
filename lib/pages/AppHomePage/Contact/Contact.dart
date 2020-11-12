@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
-
+import './contact_request/ContactRequest.dart';
+import './contact_request/contact_list_entity.dart';
 class Contact extends StatefulWidget {
   Contact({Key key, this.params}) : super(key: key);
   final params;
@@ -18,10 +19,22 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
   List bumenDataList = ['南院（2346）','北院（26）','我的科室（6）','骨科（22）','内科（346）','外科（656）',];
   List changyongDataList = ['王淑珍','石海','李雷'];
 
+  ContactListEntity _totalData = null;
+
+
+  void getContact(){
+    ContactRequest.requestContactList(StorageUtil().getSureUserModel().TokenID).then((value){
+      _totalData = value;
+      setState(() {
+      });
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     LogUtil.d(widget.params);
+    getContact();
   }
 
   @override
@@ -45,7 +58,7 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
             },
             child:
                 ListView(
-                  children: List.generate(2+bumenDataList.length + changyongDataList.length, (index) {
+                  children: List.generate(_totalData==null?1:1+ _totalData.data[0].xList.length, (index) {
                     return _judgeItemByIndex(context, index);
                   }),
                 ),
@@ -54,18 +67,15 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
   }
 
   Widget _judgeItemByIndex(BuildContext context,int index){
-    if(index == 0||index == bumenDataList.length + 1){
+    if(index == 0){
       return _buildItemHeader(context, index);
     }else{
-      if(index >0&&index < bumenDataList.length + 1){
-        return _buildItem(context, index-1,bumenDataList,false);
-      }else{
-        return _buildItem(context, index-2-bumenDataList.length,changyongDataList,true);
-      }
+      return _buildItem(context, index-1, true);
     }
   }
 
-  Widget _buildItem(BuildContext context,int index,List data,bool single){
+  Widget _buildItem(BuildContext context,int index,bool single){
+    ContactListDataList item = _totalData.data[0].xList[index];
     return GestureDetector(
       child: Container(
         color: Colors.white,
@@ -76,7 +86,7 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(data[index],style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
+                  Text(item.wardName + "(" + item.empInfo[0].empList.length.toString() + ')',style: TextStyle(color: Color(0xff9e9a9a),fontSize: ScreenAdaper.sp(28)),),
                   Container(
                     margin: EdgeInsets.only(right: ScreenAdaper.width(40)),
                     child: Image.asset("asset/images/contact/jianttou.png",width: ScreenAdaper.width(40),height: ScreenAdaper.width(45),),
@@ -94,19 +104,11 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
         ),
       ),
       onTap: (){
-        if(single){
-          Navigator.pushNamed(
-            context,
-            '/personInfomation',
-            arguments: {"isme":"0"}, //　传递参数
-          );
-        }else{
           Navigator.pushNamed(
             context,
             '/contactList',
-            arguments: {}, //　传递参数
+            arguments: {"list":item.empInfo[0].empList,"wardName":item.wardName}, //　传递参数
           );
-        }
       },
     );
   }
@@ -172,9 +174,9 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
             margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.width(30),bottom: ScreenAdaper.width(30)),
             child: Row(
               children: [
-                Image.asset(index == 0?"asset/images/contact/bumen.png":"asset/images/contact/changyong.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
+                Image.asset("asset/images/contact/bumen.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
                 SizedBox(width: ScreenAdaper.width(10),),
-                Text(index==0?'上海第九人民医院':"常用联系人",style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30),fontWeight: FontWeight.bold),),
+                Text(_totalData==null?"":_totalData.data[0].hosName,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30),fontWeight: FontWeight.bold),),
               ],
             ),
           ),
