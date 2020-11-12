@@ -27,7 +27,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   void upLoadSee(){
     if(this.widget.params['st_see'] == 0){
       Map params = {
-        "id":this.widget.params["id"],
+        "id":this.widget.params["id"].trim(),
         "ST_see":0
       };
       HomeRequest.requestHomeItemDetailSee(StorageUtil().getSureUserModel().TokenID, params).then((value){
@@ -39,8 +39,9 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getListData(1);
-    upLoadSee();
+    getTopData();
+//    getListData(1);
+//    upLoadSee();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -50,17 +51,24 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
     });
   }
 
+  void getTopData(){
+    HomeRequest.requestHomeItemDetailTop(StorageUtil().getSureUserModel().TokenID, {}, this.widget.params['id'].trim()).then((value){
+      LogUtil.d('-------');
+    });
+  }
+
+
   void getListData(int pageIndex){
     if(pageIndex!=1&&canContinueLoading == false){
       ToastShow.show('暂无更多数据');
       return;
     }
     Map params = {
-      'id':this.widget.params['id'],
+//      'linkId':this.widget.params['id'],
       'pageIdx':pageIndex,
       'pageSize':10
     };
-    HomeRequest.requestHomeItemDetail(StorageUtil().getSureUserModel().TokenID,params).then((value){
+    HomeRequest.requestHomeItemDetail(StorageUtil().getSureUserModel().TokenID,params,this.widget.params['id'].trim()).then((value){
       _dataTotal = value;
       if(pageIndex==1){
         LogUtil.d('----3');
@@ -99,7 +107,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
       return;
     }
     Map params = {
-      "id":this.widget.params["id"],
+      "id":this.widget.params["id"].trim(),
       "ST_like":0
     };
      HomeRequest.requestHomeItemDetailZan(StorageUtil().getSureUserModel().TokenID, params).then((value){

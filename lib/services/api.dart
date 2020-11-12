@@ -147,21 +147,32 @@ class Api{
   }
 
   ///首页列表明细
-  Future<Map> getRequestHomeItemDetail(String TokenID,Map params) async {
+  Future<Map> getRequestHomeItemDetail(String TokenID,Map params,String linkID) async {
     Map resData = await safeRequest(
-      serviceUrl['app_home_item_detail'],
-      data: params,
-      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+      serviceUrl['app_home_item_detail']+ linkID + '/DetailComments' + getByParams(params),
+      data: {},
+      options: Options(method: 'GET',headers:{"TokenID":TokenID}),
     );
     return resData ?? {};
   }
 
+  ///首页列表明细顶部
+  Future<Map> getRequestHomeItemDetailTop(String TokenID,Map params,String linkID) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_home_item_detail']+ linkID + '/Detail',
+      data: {},
+      options: Options(method: 'GET',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
+
+
   ///首页列表明细查看
   Future<Map> getRequestHomeItemDetailSee(String TokenID,Map params) async {
     Map resData = await safeRequest(
-      serviceUrl['app_home_item_detail_see'],
-      data: params,
-      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+      serviceUrl['app_home_item_detail_see'] + getByParams(params),
+      data: {},
+      options: Options(method: 'PUT',headers:{"TokenID":TokenID}),
     );
     return resData ?? {};
   }

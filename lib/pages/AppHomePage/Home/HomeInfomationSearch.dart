@@ -350,7 +350,7 @@ class _HomeInfomationSearchState extends State<HomeInfomationSearch> {
                                   children: [
                                     Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
                                     SizedBox(width: ScreenAdaper.width(5),),
-                                    Text(ittem.seeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+                                    Text(ittem.viewCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
                                   ],
                                 ),
 

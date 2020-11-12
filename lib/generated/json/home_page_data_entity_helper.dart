@@ -61,6 +61,9 @@ homePageDataListFromJson(HomePageDataList data, Map<String, dynamic> json) {
 	if (json['SeeCount'] != null) {
 		data.seeCount = json['SeeCount']?.toInt();
 	}
+	if (json['ViewCount'] != null) {
+		data.viewCount = json['ViewCount']?.toInt();
+	}
 	return data;
 }
 
@@ -80,5 +83,6 @@ Map<String, dynamic> homePageDataListToJson(HomePageDataList entity) {
 	data['LikeCount'] = entity.likeCount;
 	data['CommentCount'] = entity.commentCount;
 	data['SeeCount'] = entity.seeCount;
+	data['ViewCount'] = entity.viewCount;
 	return data;
 }

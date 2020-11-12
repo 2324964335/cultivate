@@ -151,8 +151,19 @@ class HomeRequest{
 
 
   ///首页公告列表明细
-  static Future<dynamic> requestHomeItemDetail(String tokenID,Map params) async {
-    Map resData = await Api().getRequestHomeItemDetail(tokenID,params);
+  static Future<dynamic> requestHomeItemDetail(String tokenID,Map params,String linkId) async {
+    Map resData = await Api().getRequestHomeItemDetail(tokenID,params,linkId);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<InformationDetailCommentModelEntity>(resData);
+    }else{
+      return null;
+    }
+  }
+
+  ///首页公告列表明细
+  static Future<dynamic> requestHomeItemDetailTop(String tokenID,Map params,String linkId) async {
+    Map resData = await Api().getRequestHomeItemDetailTop(tokenID,params,linkId);
     LogUtil.d(resData);
     if (resData['success'] == 1){
       return JsonConvert.fromJsonAsT<InformationDetailCommentModelEntity>(resData);

@@ -35,4 +35,6 @@ class HomePageDataList with JsonConvert<HomePageDataList> {
 	int commentCount;
 	@JSONField(name: "SeeCount")
 	int seeCount;
+	@JSONField(name: "ViewCount")
+	int viewCount;
 }
