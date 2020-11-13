@@ -28,6 +28,9 @@ homePageDataListFromJson(HomePageDataList data, Map<String, dynamic> json) {
 	if (json['LinkID'] != null) {
 		data.linkID = json['LinkID']?.toString();
 	}
+	if (json['BroadID'] != null) {
+		data.broadID = json['BroadID']?.toString();
+	}
 	if (json['Type'] != null) {
 		data.type = json['Type']?.toInt();
 	}
@@ -72,6 +75,7 @@ Map<String, dynamic> homePageDataListToJson(HomePageDataList entity) {
 	data['Title'] = entity.title;
 	data['ST_See'] = entity.st_see;
 	data['LinkID'] = entity.linkID;
+	data['BroadID'] = entity.broadID;
 	data['Type'] = entity.type;
 	data['ReadType'] = entity.readType;
 	data['LinkType'] = entity.linkType;

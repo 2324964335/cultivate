@@ -180,9 +180,9 @@ class Api{
   ///首页列表明细评论
   Future<Map> getRequestHomeItemDetailComment(String TokenID,Map params) async {
     Map resData = await safeRequest(
-      serviceUrl['app_home_item_detail_comment'],
-      data: params,
-      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+      serviceUrl['app_home_item_detail_comment'] + getByParams(params),
+      data: {},
+      options: Options(method: 'PUT',headers:{"TokenID":TokenID}),
     );
     return resData ?? {};
   }

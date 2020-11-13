@@ -155,7 +155,7 @@ class HomeRequest{
     Map resData = await Api().getRequestHomeItemDetail(tokenID,params,linkId);
     LogUtil.d(resData);
     if (resData['success'] == 1){
-      return JsonConvert.fromJsonAsT<InformationDetailCommentModelEntity>(resData);
+      return JsonConvert.fromJsonAsT<InformationDetailCommentModelData>(resData["data"][0]);
     }else{
       return null;
     }
@@ -166,7 +166,7 @@ class HomeRequest{
     Map resData = await Api().getRequestHomeItemDetailTop(tokenID,params,linkId);
     LogUtil.d(resData);
     if (resData['success'] == 1){
-      return JsonConvert.fromJsonAsT<InformationDetailCommentModelEntity>(resData);
+      return JsonConvert.fromJsonAsT<CultivateDeatilEntity>(resData["data"]);
     }else{
       return null;
     }

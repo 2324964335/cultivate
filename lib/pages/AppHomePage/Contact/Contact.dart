@@ -16,13 +16,11 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
   
   final controller = TextEditingController();
 
-  List bumenDataList = ['南院（2346）','北院（26）','我的科室（6）','骨科（22）','内科（346）','外科（656）',];
-  List changyongDataList = ['王淑珍','石海','李雷'];
-
   ContactListEntity _totalData = null;
 
 
   void getContact(){
+    _totalData = null;
     ContactRequest.requestContactList(StorageUtil().getSureUserModel().TokenID).then((value){
       _totalData = value;
       setState(() {
@@ -42,6 +40,11 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
     super.dispose();
   }
 
+  Future<Null> _handleRefresh() async {
+    getContact();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -57,11 +60,15 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
               FocusScope.of(context).requestFocus(FocusNode());
             },
             child:
-                ListView(
-                  children: List.generate(_totalData==null?1:1+ _totalData.data[0].xList.length, (index) {
-                    return _judgeItemByIndex(context, index);
-                  }),
-                ),
+                  RefreshIndicator(
+                  onRefresh: _handleRefresh,
+                  child:
+                              ListView(
+                                children: List.generate(_totalData==null?1:1+ _totalData.data[0].xList.length, (index) {
+                                  return _judgeItemByIndex(context, index);
+                                }),
+                              ),
+                  )
         )
     );
   }

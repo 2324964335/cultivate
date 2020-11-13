@@ -4,7 +4,7 @@ import '../../../utils/util.dart';
 import '../../../components/text_field.dart';
 import 'home_request/HomeRequest.dart';
 import 'home_request/information_detail_comment_model_entity.dart';
-
+import 'home_request/cultivate_deatil_entity.dart';
 class InformationDetailComment extends StatefulWidget {
   InformationDetailComment({Key key, this.params}) : super(key: key);
   final  params;
@@ -18,7 +18,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   final FocusNode _inputNode = FocusNode();
   TextEditingController _inputController = TextEditingController();
   ScrollController _scrollController = ScrollController(); //listview的控制器
-  InformationDetailCommentModelEntity _dataTotal = null;
+  CultivateDeatilEntity _dataTotal = null;
   List _dataTotal_list = [];
   bool canContinueLoading = true;
   int PageIndex = 1;
@@ -40,8 +40,8 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
     // TODO: implement initState
     super.initState();
     getTopData();
-//    getListData(1);
-//    upLoadSee();
+    getListData(1);
+    upLoadSee();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -54,6 +54,9 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   void getTopData(){
     HomeRequest.requestHomeItemDetailTop(StorageUtil().getSureUserModel().TokenID, {}, this.widget.params['id'].trim()).then((value){
       LogUtil.d('-------');
+      _dataTotal = value;
+      setState(() {
+      });
     });
   }
 
@@ -64,36 +67,37 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
       return;
     }
     Map params = {
-//      'linkId':this.widget.params['id'],
+      'broadId':this.widget.params['broadId'].trim(),
       'pageIdx':pageIndex,
       'pageSize':10
     };
-    HomeRequest.requestHomeItemDetail(StorageUtil().getSureUserModel().TokenID,params,this.widget.params['id'].trim()).then((value){
-      _dataTotal = value;
+    HomeRequest.requestHomeItemDetail(StorageUtil().getSureUserModel().TokenID,params,this.widget.params['broadId'].trim()).then((value){
+//      _dataTotal = value;
       if(pageIndex==1){
         LogUtil.d('----3');
         _dataTotal_list = [];
-        _dataTotal = value;
-        _dataTotal_list.addAll(value.data.xList);
+//        _dataTotal = value;
+        _dataTotal_list.addAll(value.xList);
         canContinueLoading = true;
       }else{
-        if((value.data.xList as List).length > 0) {
+        if((value.xList as List).length > 0) {
           LogUtil.d('----2');
-          _dataTotal_list.addAll(value.data.xList);
+          _dataTotal_list.addAll(value.xList);
         }
-        if((value.data.xList as List).length < 10){
+        if((value.xList as List).length < 10){
           canContinueLoading = false;
         }
       }
-      if(_dataTotal.data.sT_MyLike == 1){
-        _isZan = true;
-      }else{
-        _isZan = false;
-      }
+//      if(_dataTotal.data.sT_MyLike == 1){
+//        _isZan = true;
+//      }else{
+//        _isZan = false;
+//      }
       setState(() {
       });
       PageIndex +=1;
-    });
+    }
+    );
   }
 
   Future<Null> _handleRefresh() async {
@@ -107,7 +111,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
       return;
     }
     Map params = {
-      "id":this.widget.params["id"].trim(),
+      "id":this.widget.params["broadId"].trim(),
       "ST_like":0
     };
      HomeRequest.requestHomeItemDetailZan(StorageUtil().getSureUserModel().TokenID, params).then((value){
@@ -260,9 +264,9 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
       return;
     }
     Map params = {
-      "id":this.widget.params["id"],
-      "ST_comment":0,
-      "comment":_inputController.text
+      "id":this.widget.params["broadId"].trim(),
+      "st_Comment":0,
+      "content":_inputController.text
     };
     HomeRequest.requestHomeItemDetailComment(StorageUtil().getSureUserModel().TokenID, params).then((value){
       LogUtil.d('-----------${value}');
@@ -275,188 +279,300 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
   }
 
   Widget _buildHeaderItem(BuildContext context,int index){
-    InformationDetailCommentModelData data = _dataTotal.data;
+    CultivateDeatilEntity data = _dataTotal;
+//    return Container(
+//      padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
+//      child: Column(
+//        children: [
+//          Container(
+//            decoration: BoxDecoration(
+//                color: Colors.white,
+//                borderRadius: BorderRadius.circular(4.0),
+//                boxShadow: [
+//                  BoxShadow(
+//                      color: Colors.black12,
+//                      offset: Offset(0.0, 0.5), //阴影xy轴偏移量
+//                      blurRadius: 1.0, //阴影模糊程度
+//                      spreadRadius: 1.0 //阴影扩散程度
+//                  )
+//                ]),
+//            child: new ClipRRect(
+//
+//              borderRadius: BorderRadius.circular(5),
+//              child:Container(
+//                color: Colors.white,
+//                child: Column(
+//                  children: [
+//                    Row(
+//
+//                      children: [
+//                        Container(
+//
+//                          child: Text(data.title,style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
+//                          margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
+//                        ),
+//                        Container(
+//                          margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
+//
+//                          color: Color(0xFFF1B900),
+//
+//                          padding: EdgeInsets.all(ScreenAdaper.width(10)),
+//                          child: Text("公告",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
+//                        ),
+//                      ],
+//                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                    ),
+//                    Container(
+//                      margin: EdgeInsets.only(top: ScreenAdaper.height(10)),
+//                      color: Color(0xffe7e7e7),
+//                      height: ScreenAdaper.height(1),
+//                      width: ScreenAdaper.width(680),
+//                    ),
+//                    Container(
+//                      padding: EdgeInsets.only(left: ScreenAdaper.width(10),top: ScreenAdaper.height(10),bottom: ScreenAdaper.height(10)),
+//                      child: Row(
+//                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                        children: [
+//                          Container(
+//                            child: Row(
+//
+//                              children: [
+//                                CachedNetworkImage(imageUrl: data.icon,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(75),height: ScreenAdaper.width(75),fit: BoxFit.contain,),
+//                                SizedBox(width: ScreenAdaper.width(20),),
+//                                Column(
+//                                  crossAxisAlignment: CrossAxisAlignment.start,
+//                                  children: [
+//                                    SizedBox(height: ScreenAdaper.height(20),),
+//                                    Row(
+//                                      children: [
+////                                      SizedBox(width: ScreenAdaper.width(20),),
+//                                        Text('主讲人：',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+//                                        Text(data.trainer,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+//                                        SizedBox(width: ScreenAdaper.width(30),),
+//                                        Text('开始时间:',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+//                                        Text(data.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+//                                      ],
+//                                    ),
+//                                    SizedBox(height: ScreenAdaper.height(20),),
+//                                    Container(
+//                                      width: ScreenAdaper.width(580),
+//                                      child: Text(data.content,style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 100,),
+//                                    ),
+//                                    SizedBox(height: ScreenAdaper.height(20),),
+//                                    Row(
+//                                      children: [
+////                                        SizedBox(width: ScreenAdaper.width(20),),
+//
+//                                        Text('学时：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+//                                        SizedBox(width: ScreenAdaper.height(10),),
+//                                        Text('${data.traineeScore}课时',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+//                                      ],
+//                                    ),
+//                                    SizedBox(height: ScreenAdaper.height(20),),
+//                                    data.status == 0?Column(
+//                                      children: [
+//                                        Row(
+//                                          children: [
+////                                            SizedBox(width: ScreenAdaper.width(20),),
+//
+//                                            Text('地  点',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+//                                            SizedBox(width: ScreenAdaper.height(10),),
+//
+//                                            Text(data.address,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+//                                          ],
+//                                        ),
+//                                        SizedBox(height: ScreenAdaper.height(20),),
+//
+//                                      ],
+//                                    ):Container(),
+//                                    Row(
+//                                      children: [
+////                                        SizedBox(width: ScreenAdaper.width(20),),
+//
+//                                        Text('报名人数',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
+//                                        SizedBox(width: ScreenAdaper.height(10),),
+//
+//                                        Text('${data.personCount}/${data.personMax}人',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
+//                                      ],
+//                                    ),
+//                                    SizedBox(height: ScreenAdaper.height(20),),
+//
+//                                    Container(
+//                                      child: Row(
+//                                        children: [
+//                                          Container(
+//                                            margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+//
+//                                            child: Row(
+//                                              crossAxisAlignment: CrossAxisAlignment.center,
+//                                              children: [
+//                                                Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
+//                                                SizedBox(width: ScreenAdaper.width(5),),
+//                                                Text(data.likes.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+//                                              ],
+//                                            ),
+//
+//                                          ),
+//                                          Container(
+//                                            margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+//
+//                                            child: Row(
+//                                              children: [
+//                                                Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
+//                                                SizedBox(width: ScreenAdaper.width(5),),
+//                                                Text(data.comments.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+//                                              ],
+//                                            ),
+//
+//                                          ),
+//                                          Container(
+//                                            margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+//                                            child: Row(
+//                                              crossAxisAlignment: CrossAxisAlignment.center,
+//                                              children: [
+//                                                Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
+//                                                SizedBox(width: ScreenAdaper.width(5),),
+//                                                Text(data.seeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+//                                              ],
+//                                            ),
+//
+//                                          ),
+//                                        ],
+//                                      ),
+//                                    ),
+//                                    SizedBox(height: ScreenAdaper.height(20),)
+//                                  ],
+//                                ),
+//                              ],
+//                              crossAxisAlignment: CrossAxisAlignment.start,
+//                            ),
+//                          ),
+//                        ],
+//                      ),
+//                    ),
+//                  ],
+//                ),
+//              ),
+//            ),
+//          ),
+//          Container(
+//            child: Text("评论",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
+//            margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(30),bottom: ScreenAdaper.height(16)),
+//          ),
+//        ],
+//        crossAxisAlignment: CrossAxisAlignment.start,
+//      ),
+//    );
     return Container(
-      padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),bottom: ScreenAdaper.height(10)),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(4.0),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(0.0, 0.5), //阴影xy轴偏移量
-                      blurRadius: 1.0, //阴影模糊程度
-                      spreadRadius: 1.0 //阴影扩散程度
-                  )
-                ]),
-            child: new ClipRRect(
-
-              borderRadius: BorderRadius.circular(5),
-              child:Container(
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    Row(
-
-                      children: [
-                        Container(
-
-                          child: Text(data.title,style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
-                          margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: ScreenAdaper.width(30),top: ScreenAdaper.height(16)),
-
-                          color: Color(0xFFF1B900),
-
-                          padding: EdgeInsets.all(ScreenAdaper.width(10)),
-                          child: Text("公告",style: TextStyle(color: Colors.white,fontSize:ScreenAdaper.sp(20)),),
-                        ),
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: ScreenAdaper.height(10)),
-                      color: Color(0xffe7e7e7),
-                      height: ScreenAdaper.height(1),
-                      width: ScreenAdaper.width(680),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: ScreenAdaper.width(10),top: ScreenAdaper.height(10),bottom: ScreenAdaper.height(10)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            child: Row(
-
-                              children: [
-                                CachedNetworkImage(imageUrl: data.icon,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(75),height: ScreenAdaper.width(75),fit: BoxFit.contain,),
-                                SizedBox(width: ScreenAdaper.width(20),),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(height: ScreenAdaper.height(20),),
-                                    Row(
-                                      children: [
-//                                      SizedBox(width: ScreenAdaper.width(20),),
-                                        Text('主讲人：',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                                        Text(data.trainer,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
-                                        SizedBox(width: ScreenAdaper.width(30),),
-                                        Text('开始时间:',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
-                                        Text(data.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
-                                      ],
-                                    ),
-                                    SizedBox(height: ScreenAdaper.height(20),),
-                                    Container(
-                                      width: ScreenAdaper.width(580),
-                                      child: Text(data.content,style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 100,),
-                                    ),
-                                    SizedBox(height: ScreenAdaper.height(20),),
-                                    Row(
-                                      children: [
-//                                        SizedBox(width: ScreenAdaper.width(20),),
-
-                                        Text('学时：',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-                                        SizedBox(width: ScreenAdaper.height(10),),
-                                        Text('${data.traineeScore}课时',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
-                                      ],
-                                    ),
-                                    SizedBox(height: ScreenAdaper.height(20),),
-                                    data.status == 0?Column(
-                                      children: [
-                                        Row(
-                                          children: [
-//                                            SizedBox(width: ScreenAdaper.width(20),),
-
-                                            Text('地  点',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-                                            SizedBox(width: ScreenAdaper.height(10),),
-
-                                            Text(data.address,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
-                                          ],
-                                        ),
-                                        SizedBox(height: ScreenAdaper.height(20),),
-
-                                      ],
-                                    ):Container(),
-                                    Row(
-                                      children: [
-//                                        SizedBox(width: ScreenAdaper.width(20),),
-
-                                        Text('报名人数',style: TextStyle(color: Color(0xff9E9A9A),fontSize: ScreenAdaper.sp(25)),),
-                                        SizedBox(width: ScreenAdaper.height(10),),
-
-                                        Text('${data.personCount}/${data.personMax}人',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(25)),),
-                                      ],
-                                    ),
-                                    SizedBox(height: ScreenAdaper.height(20),),
-
-                                    Container(
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
-
-                                            child: Row(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
-                                                SizedBox(width: ScreenAdaper.width(5),),
-                                                Text(data.likes.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
-                                              ],
-                                            ),
-
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
-
-                                            child: Row(
-                                              children: [
-                                                Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
-                                                SizedBox(width: ScreenAdaper.width(5),),
-                                                Text(data.comments.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
-                                              ],
-                                            ),
-
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
-                                            child: Row(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
-                                                SizedBox(width: ScreenAdaper.width(5),),
-                                                Text(data.seeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
-                                              ],
-                                            ),
-
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: ScreenAdaper.height(20),)
-                                  ],
-                                ),
-                              ],
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+      padding: EdgeInsets.only(left: ScreenAdaper.width(20),right: ScreenAdaper.width(20),top: ScreenAdaper.height(20)),
+      child: Container(
+        child: Column(
+          children: [
+//              new ClipRRect(
+//                borderRadius: BorderRadius.circular(5),
+//                child: Container(
+//                  color: Colors.black12,
+//                  width: ScreenAdaper.width(700),
+//                  height: ScreenAdaper.height(230),
+//                ),
+//              ),
+            CachedNetworkImage(imageUrl: data.banner,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(700),height: ScreenAdaper.width(230),fit: BoxFit.cover,),
+            SizedBox(height: ScreenAdaper.height(20),),
+            Container(
+              margin: EdgeInsets.only(left: ScreenAdaper.width(20),),
+              alignment: Alignment.centerLeft,
+              child: Text(data.title,style: TextStyle(color: Colors.black,fontSize: ScreenAdaper.sp(37),fontWeight: FontWeight.bold),),
             ),
-          ),
-          Container(
-            child: Text("评论",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
-            margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(30),bottom: ScreenAdaper.height(16)),
-          ),
-        ],
-        crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(height: ScreenAdaper.height(20),),
+            Row(
+              children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+                Text('发布人',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                Text(data.oP_Regist,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                SizedBox(width: ScreenAdaper.width(50),),
+                Text('发布时间:',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                Text(data.releaseTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+              ],
+            ),
+            SizedBox(height: ScreenAdaper.height(30),),
+//            Container(
+//              height: ScreenAdaper.height(0.5),
+//              color: Colors.black12,
+//              width: ScreenAdaper.screenWidth(),
+//            ),
+//            SizedBox(height: ScreenAdaper.height(20),),
+//            Container(
+//              margin: EdgeInsets.only(left: ScreenAdaper.width(20),),
+//              alignment: Alignment.centerLeft,
+//              child: Text('培训详情',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(32),fontWeight: FontWeight.bold),),
+//            ),
+//            SizedBox(height: ScreenAdaper.height(20),),
+
+            Row(
+              children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+                Text('开始时间',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                SizedBox(width: ScreenAdaper.height(10),),
+                Text(data.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+              ],
+            ),
+            SizedBox(height: ScreenAdaper.height(20),),
+
+            Row(
+              children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+
+                Text('讲   师',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                SizedBox(width: ScreenAdaper.height(10),),
+                Text(data.trainer,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+              ],
+            ),
+            SizedBox(height: ScreenAdaper.height(20),),
+
+            Row(
+              children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+
+                Text('地  点',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                SizedBox(width: ScreenAdaper.height(10),),
+
+                Text(data.address,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+              ],
+            ),
+            SizedBox(height: ScreenAdaper.height(20),),
+
+            Row(
+              children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+
+                Text('培训对象',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                SizedBox(width: ScreenAdaper.height(10),),
+
+                Text(data.trainingObjects,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+              ],
+            ),
+            SizedBox(height: ScreenAdaper.height(20),),
+
+            Row(
+              children: [
+                SizedBox(width: ScreenAdaper.width(20),),
+
+                Text('报名人数',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),),
+                SizedBox(width: ScreenAdaper.height(10),),
+
+                Text('${data.personCount}/' +'${data.joinCount}' + '人',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  child: Text("评论",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(40)),),
+                  margin: EdgeInsets.only(left: ScreenAdaper.width(30),top: ScreenAdaper.height(30),bottom: ScreenAdaper.height(16)),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -451,7 +451,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       Navigator.pushNamed(
                         context,
                         '/informationDetailComment',
-                        arguments: {'id':ittem.linkID,'st_see':ittem.st_see}, //　传递参数
+                        arguments: {'broadId':ittem.broadID,'id':ittem.linkID,'st_see':ittem.st_see}, //　传递参数
                       );
                     },
                   ),

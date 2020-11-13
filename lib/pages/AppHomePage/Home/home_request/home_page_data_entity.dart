@@ -13,6 +13,8 @@ class HomePageDataList with JsonConvert<HomePageDataList> {
 	int st_see;
 	@JSONField(name: "LinkID")
 	String linkID;
+	@JSONField(name: "BroadID")
+	String broadID;
 	@JSONField(name: "Type")
 	int type;
 	@JSONField(name: "ReadType")

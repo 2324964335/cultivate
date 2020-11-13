@@ -226,16 +226,6 @@ class _CultiveDetailState extends State<CultiveDetail> {
               ],
             ),
             SizedBox(height: ScreenAdaper.height(70),),
-//            Row(
-//              mainAxisAlignment: MainAxisAlignment.spaceAround,
-//              children: [
-//                Text('分享',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
-//                Text('添加到',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
-//                Text('收藏',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
-//                Text('关注',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(28))),
-//              ],
-//            ),
-//            SizedBox(height: ScreenAdaper.height(20),),
             Container(
               height: ScreenAdaper.height(0.5),
               color: Colors.black12,
