@@ -9,7 +9,7 @@ class WorkingMessage extends StatefulWidget {
 
 class _WorkingMessageState extends State<WorkingMessage> {
   List _titleArr = ["工号","能级","","职位","职称","所属病区","所属科室"];
-  List _subTitleArr = ["NO.123324343","N2","","护士","高级护士","南九病区","儿科"];
+  List _subTitleArr = [StorageUtil().getSureUserModel().WorkNo,"N2","","护士","高级护士","南九病区","儿科"];
 
   @override
   Widget build(BuildContext context) {

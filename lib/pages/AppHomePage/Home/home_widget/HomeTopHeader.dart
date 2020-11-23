@@ -4,7 +4,8 @@ import 'package:cultivate/utils/screen_adaper.dart';
 import '../home_request/home_page_top_month_entity.dart';
 import '../home_request/home_page_top_total_data_entity.dart';
 import '../../../../components/flutter_jd_address_selector.dart';
-
+import '../../provider/appHomePageStore.p.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -38,7 +39,7 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
     String leixing_str = "全部";
     String yuedu_str = "全部";
 
-
+  AppHomePageStore _appHomePageStore;
 
 
   void _choiceDialog(String titlee,List titleList) async {
@@ -84,6 +85,7 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
   }
   @override
   Widget build(BuildContext context) {
+    _appHomePageStore = Provider.of<AppHomePageStore>(context);
     if(this.widget.yue == '-1'){
       yuedu_str = '全部';
     }else if(this.widget.yue == '0'){
@@ -270,7 +272,7 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
                                   height: ScreenAdaper.width(120),
                                   child: Image.asset("asset/images/home/richeng.png"),
                                 ),
-                                Text('日程',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(30)),)
+                                Text('消息',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(30)),)
                               ],
                             ),
                           ),
@@ -282,11 +284,13 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
                                 arguments: {}, //　传递参数
                               );
                             }else{
-                              Navigator.pushNamed(
-                                context,
-                                '/schedule',
-                                arguments: {},
-                              );//　传递参数
+                              _appHomePageStore.getBarTabsCont.jumpToPage(1);
+//                              Navigator.pushNamed(
+//                                context,
+//                                '/schedule',
+//                                arguments: {},
+//                              );//　传递参数
+
                             }
                           },
                         )

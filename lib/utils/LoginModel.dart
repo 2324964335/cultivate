@@ -12,6 +12,12 @@ class UserModel{
   String RefreshToken = "";
   String Job = "";
   int IsAdmin = 0;
+  String WardName = "";
+  String JobTitle = "";
+  String NurseLevel = "";
+  String WorkNo = "";
+
+
   UserModel.fromMap(Map<String, dynamic> json) {
     this.nickname = json["nickname"].toString();
     this.MobilePhone = json["MobilePhone"].toString();
@@ -26,5 +32,9 @@ class UserModel{
     this.RefreshToken = json["RefreshToken"].toString();
     this.Job = json["Job"].toString();
     this.IsAdmin = json["IsAdmin"];
+    this.WardName = json["WardName"].toString();
+    this.JobTitle = json["JobTitle"].toString();
+    this.NurseLevel = json["NurseLevel"].toString();
+    this.WorkNo = json["WorkNo"].toString();
   }
 }

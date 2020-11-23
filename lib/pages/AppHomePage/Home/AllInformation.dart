@@ -386,8 +386,8 @@ class _AllInformationState extends State<AllInformation> {
               LogUtil.d("------点击");
               Navigator.pushNamed(
                 context,
-                '/informationDetail',
-                arguments: {}, //　传递参数
+                '/informationDetailComment',
+                arguments: {'broadId':item.broadID,'id':item.linkID,'st_see':item.st_see}, //　传递参数
               );
             },
           ),

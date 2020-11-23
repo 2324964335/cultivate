@@ -12,6 +12,7 @@ import 'provider/appHomePageStore.p.dart';
 import 'Message/Message.dart';
 import 'Mine/Mine.dart';
 import 'Contact/Contact.dart';
+import '../../provider/appCommenNetData.dart';
 
 /// [params] 别名路由传递的参数
 /// [params.pageId] 跳转到指定tab页面（0第一页），如果不是别名路由跳转的话，又想实现跳转到指定tab页面，推荐别名路由跳转方式。
