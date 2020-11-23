@@ -53,7 +53,7 @@ class _ContactSearchState extends State<ContactSearch> {
           Container(
               child:
                 ListView.builder(
-                    itemCount: _dataList_search.length + 1,
+                    itemCount: _dataList_search.length==0?2:_dataList_search.length + 1,
 //                    physics: new AlwaysScrollableScrollPhysics(),
                     itemBuilder: (ctx,index){
                       return _buildByIndex(context, index);
@@ -68,7 +68,7 @@ class _ContactSearchState extends State<ContactSearch> {
     if(index == 0){
       return _buildHeader(context, index);
     }else{
-      if(_dataList.length == 0){
+      if(_dataList_search.length == 0){
         return _buildGNoData(context);
       }else{
         return _buildItem(context, index -1);
@@ -168,8 +168,11 @@ class _ContactSearchState extends State<ContactSearch> {
                           _dataList_search.add(element);
                         }
                       });
-                      setState(() {
-                      });
+                      if(_dataList_search.length == 0){
+                        ToastShow.show('暂未搜索到与此关键字匹配的人员');
+                      }
+                        setState(() {
+                        });
                       },
                     ),
                   )
