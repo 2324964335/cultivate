@@ -113,6 +113,9 @@ contactListDataListEmpInfoItemFromJson(ContactListDataListEmpInfoItem data, Map<
 	if (json['Tell'] != null) {
 		data.tell = json['Tell']?.toString();
 	}
+	if (json['WardName'] != null) {
+		data.wardName = json['WardName']?.toString();
+	}
 	return data;
 }
 
@@ -122,5 +125,6 @@ Map<String, dynamic> contactListDataListEmpInfoItemToJson(ContactListDataListEmp
 	data['WorkNo'] = entity.workNo;
 	data['Name'] = entity.name;
 	data['Tell'] = entity.tell;
+	data['WardName'] = entity.wardName;
 	return data;
 }

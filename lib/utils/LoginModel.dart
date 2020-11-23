@@ -16,6 +16,7 @@ class UserModel{
   String JobTitle = "";
   String NurseLevel = "";
   String WorkNo = "";
+  String WardCode = "";
 
 
   UserModel.fromMap(Map<String, dynamic> json) {
@@ -36,5 +37,6 @@ class UserModel{
     this.JobTitle = json["JobTitle"].toString();
     this.NurseLevel = json["NurseLevel"].toString();
     this.WorkNo = json["WorkNo"].toString();
+    this.WardCode = json["WardCode"].toString();
   }
 }

@@ -156,5 +156,7 @@ class RouteName {
   ///CollegeInfomation 同事个人信息
   static String collegeInfomation = '/collegeInfomation';
 
+  ///ContactSearch 联系人搜索
+  static String contactSearch = '/contactSearch';
 
 }

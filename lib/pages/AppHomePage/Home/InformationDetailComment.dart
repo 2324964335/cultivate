@@ -112,7 +112,7 @@ class _InformationDetailCommentState extends State<InformationDetailComment> {
     }
     Map params = {
       "id":this.widget.params["broadId"].trim(),
-      "ST_like":0
+      "st_Like":0
     };
      HomeRequest.requestHomeItemDetailZan(StorageUtil().getSureUserModel().TokenID, params).then((value){
        if(value["success"] == 1){

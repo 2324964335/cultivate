@@ -15,7 +15,7 @@ const serviceUrl = {
    'app_curren_month_examine_person':appurlPro + 'Examine/ToMonth/GetCheckPersonList', ///本月考核人员列表
    'app_home_item_detail':appurlPro + 'Notice/NoticeList/', ///首页列表明细详情
    'app_home_item_detail_see':appurlPro + 'Notice/NoticeList/Detail/See', ///首页列表明细详情查看
-   'app_home_item_detail_zan':appurlPro + 'Notice/NoticeList/Detail/EduItemLikes', ///首页列表明细详情点赞
+   'app_home_item_detail_zan':appurlPro + 'Notice/NoticeList/Detail/Likes', ///首页列表明细详情点赞
    'app_home_item_detail_comment':appurlPro + 'Notice/NoticeList/Detail/Comment', ///首页列表明细详情评论
    'app_home_unread':appurlPro + 'Notice/GetEduNotice', ///首页未读公告数据列表
    'app_home_unread_detail':appurlPro + 'Notice/NoticeList/GetEduNoticeDetail', ///首页未读公告数据列表详情页

@@ -40,4 +40,6 @@ class ContactListDataListEmpInfoItem with JsonConvert<ContactListDataListEmpInfo
 	String name;
 	@JSONField(name: "Tell")
 	String tell;
+	@JSONField(name: "WardName")
+	String wardName;
 }

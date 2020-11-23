@@ -8,8 +8,8 @@ class WorkingMessage extends StatefulWidget {
 }
 
 class _WorkingMessageState extends State<WorkingMessage> {
-  List _titleArr = ["工号","能级","","职位","职称","所属病区","所属科室"];
-  List _subTitleArr = [StorageUtil().getSureUserModel().WorkNo,"N2","","护士","高级护士","南九病区","儿科"];
+  List _titleArr = ["工号","能级","","职位","职称","所属部门"];
+  List _subTitleArr = [StorageUtil().getSureUserModel().WorkNo,StorageUtil().getSureUserModel().NurseLevel,"",StorageUtil().getSureUserModel().Job,StorageUtil().getSureUserModel().JobTitle,StorageUtil().getSureUserModel().WardName];
 
   @override
   Widget build(BuildContext context) {

@@ -52,6 +52,7 @@ import '../pages/AppHomePage/Home/HomeInfomationSearch.dart';
 import '../pages/AppHomePage/Home/QuestionTotalSelect.dart';
 import '../pages/AppHomePage/Home/QuestionWrongTotalSelect.dart';
 import '../pages/AppHomePage/Contact/CollegeInfomation.dart';
+import '../pages/AppHomePage/Contact/ContactSearch.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -206,4 +207,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///CollegeInfomation 同事个人信息
   RouteName.collegeInfomation: (BuildContext context, {params}) =>
       CollegeInfomation(params: params),
+  ///ContactSearch 联系人搜索
+  RouteName.contactSearch: (BuildContext context, {params}) =>
+      ContactSearch(params: params),
 };

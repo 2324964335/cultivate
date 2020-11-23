@@ -190,9 +190,9 @@ class Api{
   ///首页列表明细点赞
   Future<Map> getRequestHomeItemDetailZan(String TokenID,Map params) async {
     Map resData = await safeRequest(
-      serviceUrl['app_home_item_detail_zan'],
-      data: params,
-      options: Options(method: 'POST',headers:{"TokenID":TokenID}),
+      serviceUrl['app_home_item_detail_zan'] + getByParams(params),
+      data: {},
+      options: Options(method: 'PUT',headers:{"TokenID":TokenID}),
     );
     return resData ?? {};
   }
