@@ -338,4 +338,14 @@ class Api{
     );
     return resData ?? {};
   }
+
+  ///获取消息详情查看
+  Future<Map> getMessageDetailSee(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_message_detail_see'] + getByParams(params),
+      data: {},
+      options: Options(method: 'PUT',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }

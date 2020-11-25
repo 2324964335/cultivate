@@ -66,9 +66,9 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
 
     if(readString == "全部"){
       st_see = -1;
-    }else if(readString == "未读"){
+    }else if(readString == "未阅读"){
       st_see = 0;
-    }else if(readString == "已读"){
+    }else if(readString == "已阅读"){
       st_see = 1;
     }
 
@@ -117,7 +117,7 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
             child:
               ListView.builder(
                   physics: new AlwaysScrollableScrollPhysics(),
-                  itemCount: _dataList_list.length,
+                  itemCount: _dataList_list.length == 0 ? 2:_dataList_list.length + 1,
                   controller: _scrollController,
                   itemBuilder: (ctx, index) {
                     return _buildItemByIndex(context, index);
@@ -131,15 +131,37 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
     if(index == 0){
       return _buildTopItem(context, index);
     }else{
-      return _buildMessageItem(context,index -1);
+      if(_dataList_list.length == 0){
+        return _buildGNoData(context);
+      }else{
+        return _buildMessageItem(context,index -1);
+      }
     }
+  }
+
+  Widget _buildGNoData(BuildContext context){
+    return GestureDetector(
+      child: Container(
+        width: ScreenAdaper.width(750),
+        height: ScreenAdaper.width(700),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("asset/images/home/zanwushuju.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
+            SizedBox(height: ScreenAdaper.width(20),),
+            LightText.build('暂无数据'),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildTopItem(BuildContext context,int index){
     return Container(
       height: ScreenAdaper.width(80),
       margin: EdgeInsets.only(top: ScreenAdaper.width(17)),
-      padding: EdgeInsets.only(top:ScreenAdaper.width(20),bottom: ScreenAdaper.width(20),left: ScreenAdaper.width(50),right: ScreenAdaper.width(50)),
+      padding: EdgeInsets.only(top:ScreenAdaper.width(20),bottom: ScreenAdaper.width(20),left: ScreenAdaper.width(80),right: ScreenAdaper.width(80)),
       color: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -152,12 +174,12 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
                 children: [
                   Text(timeString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30)),),
                   SizedBox(width: ScreenAdaper.width(10),),
-                  Image.asset(isTimeSelect==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
+                  Image.asset("asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
                 ],
               ),
             ),
             onTap: (){
-              _choiceDialog("选择日期", ['全部','当日','近一周','近一月']);
+              _choiceDialog("选择日期", ['全部','近一周','近一月']);
             },
           ),
           Container(
@@ -172,7 +194,7 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
                 children: [
                   Text(readString,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30)),),
                   SizedBox(width: ScreenAdaper.width(10),),
-                  Image.asset(isRead==true?"asset/images/home/richengguan.png":"asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
+                  Image.asset("asset/images/home/richengkai.png",width: ScreenAdaper.width(25),height:ScreenAdaper.width(25),),
 
                 ],
               ),

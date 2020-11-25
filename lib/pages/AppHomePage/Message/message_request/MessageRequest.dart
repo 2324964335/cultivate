@@ -16,4 +16,29 @@ class MessageRequest{
       return null;
     }
   }
+
+  static Future<dynamic> requestMessageDetail(String tokenID,Map params) async {
+    Map resData = await Api().getMessageList(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<MessageModelListEntity>(resData["data"][0]);
+    }else if(resData['success'] == -1101){
+      return resData;
+    }else{
+      return null;
+    }
+  }
+
+  static Future<dynamic> requestMessageDetailSee(String tokenID,Map params) async {
+    Map resData = await Api().getMessageDetailSee(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<MessageModelListEntity>(resData["data"][0]);
+    }else if(resData['success'] == -1101){
+      return resData;
+    }else{
+      return null;
+    }
+  }
+
 }
