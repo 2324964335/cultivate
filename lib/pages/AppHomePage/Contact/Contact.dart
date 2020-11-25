@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import './contact_request/ContactRequest.dart';
 import './contact_request/contact_list_entity.dart';
+import '../../../provider/appCommenNetData.dart';
+import 'package:provider/provider.dart';
 class Contact extends StatefulWidget {
   Contact({Key key, this.params}) : super(key: key);
   final params;
@@ -13,26 +15,31 @@ class Contact extends StatefulWidget {
 class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-  
+  GainUserModel _userModelProvider;
   final controller = TextEditingController();
 
   ContactListEntity _totalData = null;
+  bool _isLoading = false;
+
 
 
   void getContact(){
-    _totalData = null;
-    ContactRequest.requestContactList(StorageUtil().getSureUserModel().TokenID).then((value){
-      _totalData = value;
-      setState(() {
+    if(_userModelProvider.getIsLogin() == true) {
+      _totalData = null;
+      ContactRequest.requestContactList(StorageUtil()
+          .getSureUserModel()
+          .TokenID).then((value) {
+        _totalData = value;
+        setState(() {});
       });
-    });
+    }
   }
 
   @override
   void initState() {
     super.initState();
     LogUtil.d(widget.params);
-    getContact();
+//    getContact();
   }
 
   @override
@@ -48,6 +55,30 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    _userModelProvider = Provider.of<GainUserModel>(context);
+    if(_userModelProvider.getuserModel == null){
+      _userModelProvider.setCurrenUserModel();
+    }else{
+    }
+    if(_userModelProvider.getIsLogin()==false){
+      _totalData = null;
+    }
+//    LogUtil.d('----54----${_topdata}------${_userModelProvider.getIsLogin()}-------${_isLoading}');
+    Future.delayed(Duration(milliseconds: 200)).then((e) {
+      if(_userModelProvider.getIsLogin()==true&&_totalData == null&&_isLoading == false){
+        _isLoading = true;
+        getContact();
+      }else if(_userModelProvider.getIsLogin()==false&&_isLoading == false){
+        _isLoading = true;
+        _totalData = null;
+        setState(() {
+        });
+      }
+    });
+
+    Future.delayed(Duration(milliseconds: 2000)).then((e) {
+      _isLoading = false;
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text('通讯录'),
@@ -64,7 +95,7 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
                   onRefresh: _handleRefresh,
                   child:
                               ListView(
-                                children: List.generate(_totalData==null?1:1+ _totalData.data[0].xList.length, (index) {
+                                children: List.generate(_totalData==null?2:1+ _totalData.data[0].xList.length, (index) {
                                   return _judgeItemByIndex(context, index);
                                 }),
                               ),
@@ -77,9 +108,32 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
     if(index == 0){
       return _buildItemHeader(context, index);
     }else{
-      return _buildItem(context, index-1, true);
+      if(_totalData==null){
+        return _buildGNoData(context);
+      }else{
+        return _buildItem(context, index-1, true);
+      }
     }
   }
+
+  Widget _buildGNoData(BuildContext context){
+    return GestureDetector(
+      child: Container(
+        width: ScreenAdaper.width(750),
+        height: ScreenAdaper.width(700),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("asset/images/home/zanwushuju.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
+            SizedBox(height: ScreenAdaper.width(20),),
+            LightText.build('暂无数据'),
+          ],
+        ),
+      ),
+    );
+  }
+
 
   Widget _buildItem(BuildContext context,int index,bool single){
     ContactListDataList item = _totalData.data[0].xList[index];
@@ -175,11 +229,19 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
                           )
                       ),
                       onTap: (){
-                        Navigator.pushNamed(
-                          context,
-                          '/contactSearch',
-                          arguments: {"params":_totalData}, //　传递参数
-                        );
+                        if(_userModelProvider.getIsLogin() == false){
+                          Navigator.pushNamed(
+                            context,
+                            '/login',
+                            arguments: {}, //　传递参数
+                          );
+                        }else{
+                          Navigator.pushNamed(
+                            context,
+                            '/contactSearch',
+                            arguments: {"params":_totalData}, //　传递参数
+                          );
+                        }
                       },
                     )
                 ),
@@ -192,7 +254,7 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
               children: [
                 Image.asset("asset/images/contact/bumen.png",width: ScreenAdaper.width(30),height: ScreenAdaper.width(30),),
                 SizedBox(width: ScreenAdaper.width(10),),
-                Text(_totalData==null?"":_totalData.data[0].hosName,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30),fontWeight: FontWeight.bold),),
+                Text(_totalData==null?"暂无数据":_totalData.data[0].hosName,style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(30),fontWeight: FontWeight.bold),),
               ],
             ),
           ),

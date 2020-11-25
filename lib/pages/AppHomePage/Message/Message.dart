@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../components/flutter_jd_address_selector.dart';
 import './message_request/MessageRequest.dart';
 import './message_request/message_model_list_entity.dart';
+import '../../../provider/appCommenNetData.dart';
+import 'package:provider/provider.dart';
 class Message extends StatefulWidget {
   Message({Key key, this.params}) : super(key: key);
   final params;
@@ -15,7 +17,7 @@ class Message extends StatefulWidget {
 class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-
+  GainUserModel _userModelProvider;
   bool isTimeSelect = false;
   bool isRead = false;
   bool isRemind = false;
@@ -28,10 +30,11 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool canContinueLoading = true;
   int PageIndex = 1;
+  bool _isLoading = false;
 
   @override
   void initState() {
-    getListData(1);
+//    getListData(1);
     super.initState();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -78,25 +81,30 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
       'pageIdx':PageIndex,
       'pageSize':10
     };
-    MessageRequest.requestMessageList(StorageUtil().getSureUserModel().TokenID,params).then((value){
-      _dataList = value;
-      if(pageIndex==1){
-        _dataList_list = [];
+    if(_userModelProvider.getIsLogin() == true) {
+      MessageRequest.requestMessageList(StorageUtil()
+          .getSureUserModel()
+          .TokenID, params).then((value) {
         _dataList = value;
-        _dataList_list.addAll(value.xList);
-        canContinueLoading = true;
-      }else{
-        if((value.xList as List).length > 0) {
+        if (pageIndex == 1) {
+          _dataList_list = [];
+          _dataList = value;
           _dataList_list.addAll(value.xList);
+          canContinueLoading = true;
+        } else {
+          if ((value.xList as List).length > 0) {
+            _dataList_list.addAll(value.xList);
+          }
+          if ((value.xList as List).length < 10) {
+            canContinueLoading = false;
+          }
         }
-        if((value.xList as List).length < 10){
-          canContinueLoading = false;
-        }
-      }
-      PageIndex +=1;
-      setState(() {
+        PageIndex += 1;
+        setState(() {});
       });
-    });
+    }else{
+      ToastShow.show("暂无登陆，请先登录");
+    }
   }
 
   Future<Null> _handleRefresh() async {
@@ -107,6 +115,44 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    _userModelProvider = Provider.of<GainUserModel>(context);
+    if(_userModelProvider.getuserModel == null){
+      _userModelProvider.setCurrenUserModel();
+    }else{
+    }
+    if(_userModelProvider.getIsLogin()==false){
+      _dataList_list = [];
+    }
+//    LogUtil.d('----54----${_topdata}------${_userModelProvider.getIsLogin()}-------${_isLoading}');
+    Future.delayed(Duration(milliseconds: 200)).then((e) {
+      if(_userModelProvider.getIsLogin()==true&&_isLoading == false){
+        _isLoading = true;
+        timeString = '全部';
+        readString = '全部';
+        canContinueLoading = true;
+        PageIndex = 1;
+        getListData(PageIndex);
+        LogUtil.d('-------d-s-ds--ds--ds--d-s-d-s');
+      }else if(_userModelProvider.getIsLogin()==false&&_isLoading == false){
+        _isLoading = true;
+        timeString = '全部';
+        readString = '全部';
+        canContinueLoading = true;
+        PageIndex = 1;
+        _dataList_list = [];
+        setState(() {
+        });
+        LogUtil.d('--111111-----d-s-ds--ds--ds--d-s-d-s');
+
+      }
+    });
+
+    LogUtil.d('------ffffffssdsffdsffdsfdsf-d-s-ds--ds--ds--d-s-d-s');
+
+
+    Future.delayed(Duration(milliseconds: 2000)).then((e) {
+      _isLoading = false;
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text('消息',style: TextStyle(color: Colors.black54),),

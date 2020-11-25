@@ -41,12 +41,12 @@ class GainUserModel with ChangeNotifier{
     var m = StorageUtil().getUserModel();
     if (m != null){
       _userModel = m;
-      Future.delayed(Duration(milliseconds: 100)).then((e) {
+      Future.delayed(Duration(milliseconds: 50)).then((e) {
         notifyListeners();
       });
     }else{
       _userModel = 0;
-      Future.delayed(Duration(milliseconds: 100)).then((e) {
+      Future.delayed(Duration(milliseconds: 50)).then((e) {
         notifyListeners();
       });
     }

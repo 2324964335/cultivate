@@ -12,7 +12,6 @@ import './home_widget/HomeTopHeader.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'home_request/HomeRequest.dart';
-import 'package:provider/provider.dart';
 import '../../../provider/appCommenNetData.dart';
 import 'home_request/home_page_top_total_data_entity.dart';
 import 'home_request/home_page_data_entity.dart';
