@@ -332,6 +332,7 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
     MessageModelListList item = _dataList_list[index];
     return GestureDetector(
       child: Container(
+        color:  Colors.white,
         padding: EdgeInsets.only(left: ScreenAdaper.width(40),top: ScreenAdaper.width(20),right: ScreenAdaper.width(40)),
         child: Column(
           children: [
