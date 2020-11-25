@@ -15,6 +15,7 @@ class _PersonInfomationState extends State<PersonInfomation> {
     return Scaffold(
       appBar: AppBar(title: Text(this.widget.params["isme"] == "1"?'我的':'刘医生'),),
       body: Container(
+        color: Colors.white,
         child: ListView.builder(
           itemCount: 3,
           itemBuilder: (ctx, index){
