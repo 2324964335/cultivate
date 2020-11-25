@@ -159,4 +159,8 @@ class RouteName {
   ///ContactSearch 联系人搜索
   static String contactSearch = '/contactSearch';
 
+  ///CultiveSecondManger 培训管理界面
+  static String cultiveSecondManger = '/cultiveSecondManger';
+
+
 }

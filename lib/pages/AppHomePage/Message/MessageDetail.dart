@@ -3,6 +3,7 @@ import 'package:flutter_section_list/flutter_section_grid.dart';
 import '../../../utils/util.dart';
 import 'package:flutter_section_list/flutter_section_list.dart';
 import 'package:flutter/cupertino.dart';
+import './message_request/message_model_list_entity.dart';
 class MessageDetail extends StatefulWidget {
   MessageDetail({Key key, this.params}) : super(key: key);
   final  params;
@@ -12,6 +13,14 @@ class MessageDetail extends StatefulWidget {
 
 class _MessageDetailState extends State<MessageDetail>  with SectionAdapterMixin, SectionGridAdapterMixin {
 
+  MessageModelListList _data = null;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _data = this.widget.params["param"];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,44 +42,45 @@ class _MessageDetailState extends State<MessageDetail>  with SectionAdapterMixin
     );
   }
 
-  int count = 20;
+  int count = 0;
 
   @override
   Widget getItem(BuildContext context, IndexPath indexPath) {
     // TODO: implement getItem
 
-    EdgeInsets inset = getSectionInsets(indexPath.section);
-    double totalWidth = crossAxisExtent - getCrossAxisSpacing(indexPath.section) - inset.left - inset.right;
-    double width;
-    double height;
-
-    switch(indexPath.item % 6){
-//      case 0 :
-//      case 4 :
-//        width = totalWidth / 3;
-//        height = 200;
+//    EdgeInsets inset = getSectionInsets(indexPath.section);
+//    double totalWidth = crossAxisExtent - getCrossAxisSpacing(indexPath.section) - inset.left - inset.right;
+//    double width;
+//    double height;
+//
+//    switch(indexPath.item % 6){
+////      case 0 :
+////      case 4 :
+////        width = totalWidth / 3;
+////        height = 200;
+////        break;
+//      default :
+//        width = totalWidth / 5.3;
+//        height = (200 - getMainAxisSpacing(indexPath.section)) / 2;
 //        break;
-      default :
-        width = totalWidth / 5.3;
-        height = (200 - getMainAxisSpacing(indexPath.section)) / 2;
-        break;
-    }
-
-    return GestureDetector(
-      onTap: (){
-//        _changeCount();
-      },
-      child: Container(
-          width: width,
-          height: width*1,
-          child: Column(
-            children: [
-              Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(75),height:ScreenAdaper.width(75),),
-              LightText.build('王淑珍')
-            ],
-          ),
-      ),
-    );
+//    }
+//
+//    return GestureDetector(
+//      onTap: (){
+////        _changeCount();
+//      },
+//      child: Container(
+//          width: width,
+//          height: width*1,
+//          child: Column(
+//            children: [
+//              Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(75),height:ScreenAdaper.width(75),),
+//              LightText.build('王淑珍')
+//            ],
+//          ),
+//      ),
+//    );
+  return Container();
   }
 
   @override
@@ -139,7 +149,8 @@ class _MessageDetailState extends State<MessageDetail>  with SectionAdapterMixin
                   child: Row(
 
                     children: [
-                      Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(75),height:ScreenAdaper.width(75),),
+                      CachedNetworkImage(imageUrl: _data.icon,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(75),height: ScreenAdaper.width(75),fit: BoxFit.contain,),
+//                      Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(75),height:ScreenAdaper.width(75),),
                       SizedBox(width: ScreenAdaper.width(20),),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,25 +158,29 @@ class _MessageDetailState extends State<MessageDetail>  with SectionAdapterMixin
                           SizedBox(height: ScreenAdaper.height(20),),
                           Row(
                             children: [
-                              Text("微课堂《输液规则技术》",style: TextStyle(color: Color(0xff565656),fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
+                              Text(_data.title,style: TextStyle(color: Color(0xff565656),fontWeight: FontWeight.bold,fontSize:ScreenAdaper.sp(30)),),
                               SizedBox(width: ScreenAdaper.width(40),),
-                              Text('2020年8月20日',style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+//                              Text(_data.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                             ],
                           ),
+                          SizedBox(height: ScreenAdaper.height(20),),
+
+                          Text(_data.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+
                           SizedBox(height: ScreenAdaper.height(20),),
                           Container(
                             width: ScreenAdaper.width(550),
-                            height: ScreenAdaper.height(60),
-                            child:Text('关于2020 考试的通知的评论关于2020 考试的通知的评论关于2020 考试的通知的评论',style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 2,),
+//                            height: ScreenAdaper.height(60),
+                            child:Text(_data.content,style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 2,),
                           ),
                           SizedBox(height: ScreenAdaper.height(20),),
-                          Row(
-                            children: [
-                              LightText.build('接收范围：'),
-                              DarkText.build('护理部'),
-                              SizedBox(width: ScreenAdaper.width(15),),
-                            ],
-                          ),
+//                          Row(
+//                            children: [
+//                              LightText.build('接收范围：'),
+//                              DarkText.build('护理部'),
+//                              SizedBox(width: ScreenAdaper.width(15),),
+//                            ],
+//                          ),
                         ],
                       ),
                     ],
@@ -181,30 +196,30 @@ class _MessageDetailState extends State<MessageDetail>  with SectionAdapterMixin
             height: ScreenAdaper.height(1),
             width: ScreenAdaper.width(680),
           ),
-          SizedBox(height: ScreenAdaper.width(30),),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                DarkText.buildBold('未读人员'),
-                GestureDetector(
-                  child: Container(
-                    color: Colors.white,
-                    child: Row(
-                      children: [
-                        Image.asset("asset/images/message/ding.png",width: ScreenAdaper.width(35),height:ScreenAdaper.width(35),),
-                        LightText.buildColor('DING一下', Color(0xffF1B900)),
-                      ],
-                    ),
-                  ),
-                  onTap: (){
-                    ToastShow.show('已经通知未读人员');
-                  },
-                )
-              ],
-            ),
-          ),
-          SizedBox(height: ScreenAdaper.width(30),),
+//          SizedBox(height: ScreenAdaper.width(30),),
+//          Container(
+//            child: Row(
+//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//              children: [
+//                DarkText.buildBold('未读人员'),
+//                GestureDetector(
+//                  child: Container(
+//                    color: Colors.white,
+//                    child: Row(
+//                      children: [
+//                        Image.asset("asset/images/message/ding.png",width: ScreenAdaper.width(35),height:ScreenAdaper.width(35),),
+//                        LightText.buildColor('DING一下', Color(0xffF1B900)),
+//                      ],
+//                    ),
+//                  ),
+//                  onTap: (){
+//                    ToastShow.show('已经通知未读人员');
+//                  },
+//                )
+//              ],
+//            ),
+//          ),
+//          SizedBox(height: ScreenAdaper.width(30),),
 
         ],
       ),

@@ -563,7 +563,7 @@ class _HomeTopHeaderState extends State<HomeTopHeader> {
                         }
                         Navigator.pushNamed(
                           context,
-                          '/cultivateManger',
+                          '/cultiveSecondManger',
                           arguments: {},
                         );
                       },

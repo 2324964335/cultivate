@@ -53,6 +53,7 @@ import '../pages/AppHomePage/Home/QuestionTotalSelect.dart';
 import '../pages/AppHomePage/Home/QuestionWrongTotalSelect.dart';
 import '../pages/AppHomePage/Contact/CollegeInfomation.dart';
 import '../pages/AppHomePage/Contact/ContactSearch.dart';
+import '../pages/AppHomePage/Home/CultiveSecondManger.dart';
 
 final String initialRoute = '/'; // 初始默认显示的路由
 final Map<String, WidgetBuilder> routesData = {
@@ -210,4 +211,7 @@ final Map<String, WidgetBuilder> routesData = {
   ///ContactSearch 联系人搜索
   RouteName.contactSearch: (BuildContext context, {params}) =>
       ContactSearch(params: params),
+  ///CultiveSecondManger 培训管理界面
+  RouteName.cultiveSecondManger: (BuildContext context, {params}) =>
+      CultiveSecondManger(params: params),
 };

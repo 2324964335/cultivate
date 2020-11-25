@@ -361,7 +361,7 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
                             SizedBox(height: ScreenAdaper.height(20),),
                             Container(
                               width: ScreenAdaper.width(550),
-                              height: ScreenAdaper.height(60),
+//                              height: ScreenAdaper.height(80),
                               child:Text(item.content,style: TextStyle(color: Colors.black45,fontSize: ScreenAdaper.sp(25)),maxLines: 2,),
                             ),
                             SizedBox(height: ScreenAdaper.height(20),),
@@ -408,7 +408,7 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
         Navigator.pushNamed(
           context,
           '/messageDetail',
-          arguments: {}, //　传递参数
+          arguments: {"param":item}, //　传递参数
         );
       },
     );
