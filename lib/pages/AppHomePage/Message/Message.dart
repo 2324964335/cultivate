@@ -25,7 +25,7 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
   String timeString = "全部";
   String readString = "全部";
 //  String remindString = "全部";
-  MessageModelListEntity _dataList = null;
+//  MessageModelListEntity _dataList = null;
   List _dataList_list = [];
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool canContinueLoading = true;
@@ -85,10 +85,10 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
       MessageRequest.requestMessageList(StorageUtil()
           .getSureUserModel()
           .TokenID, params).then((value) {
-        _dataList = value;
+//        _dataList = value;
         if (pageIndex == 1) {
           _dataList_list = [];
-          _dataList = value;
+//          _dataList = value;
           _dataList_list.addAll(value.xList);
           canContinueLoading = true;
         } else {
@@ -125,7 +125,7 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
     }
 //    LogUtil.d('----54----${_topdata}------${_userModelProvider.getIsLogin()}-------${_isLoading}');
     Future.delayed(Duration(milliseconds: 200)).then((e) {
-      if(_userModelProvider.getIsLogin()==true&&_isLoading == false){
+      if(_userModelProvider.getIsLogin()==true&&_dataList_list.length == 0&&_isLoading == false){
         _isLoading = true;
         timeString = '全部';
         readString = '全部';

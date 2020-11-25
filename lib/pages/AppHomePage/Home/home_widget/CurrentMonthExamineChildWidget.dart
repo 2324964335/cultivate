@@ -93,13 +93,40 @@ class _CurrentMonthExamineChildWidgetState extends State<CurrentMonthExamineChil
                 ListView.builder(
                     physics: new AlwaysScrollableScrollPhysics(),
 
-                    itemCount: _data==null?0:_data_list.length,
+                    itemCount: _data_list.length==0?1:_data_list.length,
                     controller: _scrollController,
                     itemBuilder: (ctx, index) {
-                      return _buildItem(context,index);
+                      return buildItemByIndex(context,index);
                     }
                 ),
       )
+    );
+  }
+
+
+  Widget buildItemByIndex(BuildContext context,int index){
+    if(_data_list.length == 0){
+      return _buildGNoData(context);
+    }else{
+      return _buildItem(context, index);
+    }
+  }
+
+  Widget _buildGNoData(BuildContext context){
+    return GestureDetector(
+      child: Container(
+        width: ScreenAdaper.width(750),
+        height: ScreenAdaper.width(700),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("asset/images/home/zanwushuju.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
+            SizedBox(height: ScreenAdaper.width(20),),
+            LightText.build('暂无数据'),
+          ],
+        ),
+      ),
     );
   }
 

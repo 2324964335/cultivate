@@ -245,86 +245,87 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
 
   @override
   Widget getHeader(BuildContext context) {
-    return GestureDetector(
-      child: Container(
-        height: ScreenAdaper.width(200),
-        margin: EdgeInsets.only(top: ScreenAdaper.width(10)),
-        padding: EdgeInsets.all(ScreenAdaper.width(40)),
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('0',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(70)),),
-                        LightText.build('分钟'),
-                      ],
-                    ),
-                    LightText.build('今日学习'),
-
-                  ],
-                ),
-              ],
-            ),
-            Container(
-              color: Color(0xffDDDDDD),
-              width: ScreenAdaper.width(1),
-              height: ScreenAdaper.width(100),
-            ),
-            Row(
-              children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('1',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(70)),),
-                        LightText.build('天'),
-                      ],
-                    ),
-                    LightText.build('连续学习'),
-
-                  ],
-                ),
-              ],
-            ),
-            Container(
-              color: Color(0xffDDDDDD),
-              width: ScreenAdaper.width(1),
-              height: ScreenAdaper.width(100),
-            ),
-            Row(
-              children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('15',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(70)),),
-                        LightText.build('小时'),
-                      ],
-                    ),
-                    LightText.build('累计学习'),
-
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      onTap: (){
-        LogUtil.d('-----');
-        Navigator.pushNamed(
-          context,
-          '/smallClassroomLearnStep',
-          arguments: {}, //　传递参数
-        );
-      },
-    );
+//    return GestureDetector(
+//      child: Container(
+//        height: ScreenAdaper.width(200),
+//        margin: EdgeInsets.only(top: ScreenAdaper.width(10)),
+//        padding: EdgeInsets.all(ScreenAdaper.width(40)),
+//        color: Colors.white,
+//        child: Row(
+//          mainAxisAlignment: MainAxisAlignment.spaceAround,
+//          crossAxisAlignment: CrossAxisAlignment.start,
+//          children: [
+//            Row(
+//              children: [
+//                Column(
+//                  children: [
+//                    Row(
+//                      children: [
+//                        Text('0',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(70)),),
+//                        LightText.build('分钟'),
+//                      ],
+//                    ),
+//                    LightText.build('今日学习'),
+//
+//                  ],
+//                ),
+//              ],
+//            ),
+//            Container(
+//              color: Color(0xffDDDDDD),
+//              width: ScreenAdaper.width(1),
+//              height: ScreenAdaper.width(100),
+//            ),
+//            Row(
+//              children: [
+//                Column(
+//                  children: [
+//                    Row(
+//                      children: [
+//                        Text('1',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(70)),),
+//                        LightText.build('天'),
+//                      ],
+//                    ),
+//                    LightText.build('连续学习'),
+//
+//                  ],
+//                ),
+//              ],
+//            ),
+//            Container(
+//              color: Color(0xffDDDDDD),
+//              width: ScreenAdaper.width(1),
+//              height: ScreenAdaper.width(100),
+//            ),
+//            Row(
+//              children: [
+//                Column(
+//                  children: [
+//                    Row(
+//                      children: [
+//                        Text('15',style: TextStyle(color: Color(0xff565656),fontSize: ScreenAdaper.sp(70)),),
+//                        LightText.build('小时'),
+//                      ],
+//                    ),
+//                    LightText.build('累计学习'),
+//
+//                  ],
+//                ),
+//              ],
+//            ),
+//          ],
+//        ),
+//      ),
+//      onTap: (){
+//        LogUtil.d('-----');
+//        Navigator.pushNamed(
+//          context,
+//          '/smallClassroomLearnStep',
+//          arguments: {}, //　传递参数
+//        );
+//      },
+//    );
+   return Container();
   }
 
   @override
