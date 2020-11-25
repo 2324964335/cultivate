@@ -30,4 +30,5 @@ const serviceUrl = {
    'app_home_operation_total_sheet':appurlPro + 'Examine/Operate/Sheet/DeductionTtem', ///首页操作考扣分项
    'app_home_operation_upload_sheet':appurlPro + 'Examine/Operate/Staff/Sheet/SaveSheetItem', ///首页操作考上报
    'app_contact_list':appurlPro + 'Notice/Contact/WardList',///Notice/Contact/WardList 通讯录列表
+    'app_message_list':appurlPro + 'Notice/Main/MessageList',///Notice/Main/MessageList 消息列表
 };

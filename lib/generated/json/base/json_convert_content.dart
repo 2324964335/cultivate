@@ -19,6 +19,8 @@ import 'package:cultivate/pages/AppHomePage/Home/home_request/home_examine_perso
 import 'package:cultivate/generated/json/home_examine_person_list_model_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Contact/contact_request/contact_list_entity.dart';
 import 'package:cultivate/generated/json/contact_list_entity_helper.dart';
+import 'package:cultivate/pages/AppHomePage/Message/message_request/message_model_list_entity.dart';
+import 'package:cultivate/generated/json/message_model_list_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Examine/home_question_model_entity.dart';
 import 'package:cultivate/generated/json/home_question_model_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/current_month_examine_list_entity.dart';
@@ -75,7 +77,9 @@ class JsonConvert<T> {
 			return contactListDataFromJson(data as ContactListData, json) as T;			case ContactListDataList:
 			return contactListDataListFromJson(data as ContactListDataList, json) as T;			case ContactListDataListEmpInfo:
 			return contactListDataListEmpInfoFromJson(data as ContactListDataListEmpInfo, json) as T;			case ContactListDataListEmpInfoItem:
-			return contactListDataListEmpInfoItemFromJson(data as ContactListDataListEmpInfoItem, json) as T;			case HomeQuestionModelEntity:
+			return contactListDataListEmpInfoItemFromJson(data as ContactListDataListEmpInfoItem, json) as T;			case MessageModelListEntity:
+			return messageModelListEntityFromJson(data as MessageModelListEntity, json) as T;			case MessageModelListList:
+			return messageModelListListFromJson(data as MessageModelListList, json) as T;			case HomeQuestionModelEntity:
 			return homeQuestionModelEntityFromJson(data as HomeQuestionModelEntity, json) as T;			case HomeQuestionModelList:
 			return homeQuestionModelListFromJson(data as HomeQuestionModelList, json) as T;			case CurrentMonthExamineListEntity:
 			return currentMonthExamineListEntityFromJson(data as CurrentMonthExamineListEntity, json) as T;			case CurrentMonthExamineListList:
@@ -126,7 +130,9 @@ class JsonConvert<T> {
 			return contactListDataToJson(data as ContactListData);			case ContactListDataList:
 			return contactListDataListToJson(data as ContactListDataList);			case ContactListDataListEmpInfo:
 			return contactListDataListEmpInfoToJson(data as ContactListDataListEmpInfo);			case ContactListDataListEmpInfoItem:
-			return contactListDataListEmpInfoItemToJson(data as ContactListDataListEmpInfoItem);			case HomeQuestionModelEntity:
+			return contactListDataListEmpInfoItemToJson(data as ContactListDataListEmpInfoItem);			case MessageModelListEntity:
+			return messageModelListEntityToJson(data as MessageModelListEntity);			case MessageModelListList:
+			return messageModelListListToJson(data as MessageModelListList);			case HomeQuestionModelEntity:
 			return homeQuestionModelEntityToJson(data as HomeQuestionModelEntity);			case HomeQuestionModelList:
 			return homeQuestionModelListToJson(data as HomeQuestionModelList);			case CurrentMonthExamineListEntity:
 			return currentMonthExamineListEntityToJson(data as CurrentMonthExamineListEntity);			case CurrentMonthExamineListList:
@@ -177,7 +183,9 @@ class JsonConvert<T> {
 			return ContactListData().fromJson(json);			case 'ContactListDataList':
 			return ContactListDataList().fromJson(json);			case 'ContactListDataListEmpInfo':
 			return ContactListDataListEmpInfo().fromJson(json);			case 'ContactListDataListEmpInfoItem':
-			return ContactListDataListEmpInfoItem().fromJson(json);			case 'HomeQuestionModelEntity':
+			return ContactListDataListEmpInfoItem().fromJson(json);			case 'MessageModelListEntity':
+			return MessageModelListEntity().fromJson(json);			case 'MessageModelListList':
+			return MessageModelListList().fromJson(json);			case 'HomeQuestionModelEntity':
 			return HomeQuestionModelEntity().fromJson(json);			case 'HomeQuestionModelList':
 			return HomeQuestionModelList().fromJson(json);			case 'CurrentMonthExamineListEntity':
 			return CurrentMonthExamineListEntity().fromJson(json);			case 'CurrentMonthExamineListList':
@@ -229,7 +237,9 @@ class JsonConvert<T> {
 			return List<ContactListData>();			case 'ContactListDataList':
 			return List<ContactListDataList>();			case 'ContactListDataListEmpInfo':
 			return List<ContactListDataListEmpInfo>();			case 'ContactListDataListEmpInfoItem':
-			return List<ContactListDataListEmpInfoItem>();			case 'HomeQuestionModelEntity':
+			return List<ContactListDataListEmpInfoItem>();			case 'MessageModelListEntity':
+			return List<MessageModelListEntity>();			case 'MessageModelListList':
+			return List<MessageModelListList>();			case 'HomeQuestionModelEntity':
 			return List<HomeQuestionModelEntity>();			case 'HomeQuestionModelList':
 			return List<HomeQuestionModelList>();			case 'CurrentMonthExamineListEntity':
 			return List<CurrentMonthExamineListEntity>();			case 'CurrentMonthExamineListList':

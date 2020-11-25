@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import '../../../components/text_field.dart';
-import 'package:flutter_my_picker/flutter_my_picker.dart';
-import 'package:flutter_my_picker/common/date.dart';
+//import 'package:flutter_my_picker/flutter_my_picker.dart';
+//import 'package:flutter_my_picker/common/date.dart';
 import '../../../components/flutter_jd_address_selector.dart';
 
 class AddCultivatePlan extends StatefulWidget {
@@ -38,10 +38,10 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
     // TODO: implement initState
     super.initState();
     date = new DateTime.now();
-    startDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
-    endDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
-    signStartDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
-    baomingEndDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
+//    startDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
+//    endDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
+//    signStartDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
+//    baomingEndDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
   }
   @override
   void dispose() {
@@ -64,16 +64,16 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
 //        }
         switch (timeClickIndex){
           case 4:
-            startDateStr = MyDate.format(formatString, _date);
+//            startDateStr = MyDate.format(formatString, _date);
           break;
           case 5:
-            endDateStr = MyDate.format(formatString, _date);
+//            endDateStr = MyDate.format(formatString, _date);
             break;
           case 6:
-            signStartDateStr = MyDate.format(formatString, _date);
+//            signStartDateStr = MyDate.format(formatString, _date);
             break;
           case 7:
-            baomingEndDateStr = MyDate.format(formatString, _date);
+//            baomingEndDateStr = MyDate.format(formatString, _date);
             break;
           default:
 
@@ -343,13 +343,13 @@ class _AddCultivatePlanState extends State<AddCultivatePlan> {
         ),
       ),
       onTap: (){
-        MyPicker.showPicker(
-          context: context,
-          current: date,
-          mode: MyPickerMode.dateTime,
-          onChange: _change('yyyy年MM月dd日 HH:mm'),
-        );
-        timeClickIndex = index;
+//        MyPicker.showPicker(
+//          context: context,
+//          current: date,
+//          mode: MyPickerMode.dateTime,
+//          onChange: _change('yyyy年MM月dd日 HH:mm'),
+//        );
+//        timeClickIndex = index;
       },
     );
   }

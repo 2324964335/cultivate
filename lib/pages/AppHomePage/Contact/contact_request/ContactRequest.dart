@@ -16,6 +16,4 @@ class ContactRequest{
       return null;
     }
   }
-
-
 }

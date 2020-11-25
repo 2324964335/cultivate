@@ -205,7 +205,7 @@ class _HomeInfomationSearchState extends State<HomeInfomationSearch> {
 //                    keyboardType: TextInputType.multiline,
 //                    controller: _inputController,
 //                    isMultiHang: false,
-//                  ),
+//                  ),winter2020168
 //                ),
                  SizedBox(width: ScreenAdaper.width(10),),
                 Container(
@@ -251,7 +251,6 @@ class _HomeInfomationSearchState extends State<HomeInfomationSearch> {
               )
             ]),
         child: new ClipRRect(
-
           borderRadius: BorderRadius.circular(5),
           child:
           GestureDetector(
@@ -369,7 +368,7 @@ class _HomeInfomationSearchState extends State<HomeInfomationSearch> {
               Navigator.pushNamed(
                 context,
                 '/informationDetailComment',
-                arguments: {'id':ittem.linkID,'st_see':ittem.st_see}, //　传递参数
+                arguments: {'broadId':ittem.broadID,'id':ittem.linkID,'st_see':ittem.st_see}, //　传递参数
               );
             },
           ),

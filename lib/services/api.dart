@@ -327,4 +327,15 @@ class Api{
     );
     return resData ?? {};
   }
+
+
+  ///获取消息列表
+  Future<Map> getMessageList(String TokenID,Map params) async {
+    Map resData = await safeRequest(
+      serviceUrl['app_message_list'] + getByParams(params),
+      data: {},
+      options: Options(method: 'GET',headers:{"TokenID":TokenID}),
+    );
+    return resData ?? {};
+  }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
 import '../../../components/text_field.dart';
-import 'package:flutter_my_picker/flutter_my_picker.dart';
-import 'package:flutter_my_picker/common/date.dart';
+//import 'package:flutter_my_picker/flutter_my_picker.dart';
+//import 'package:flutter_my_picker/common/date.dart';
 class AddSchedule extends StatefulWidget {
   AddSchedule({Key key, this.params}) : super(key: key);
   final  params;
@@ -28,8 +28,8 @@ class _AddScheduleState extends State<AddSchedule> {
     // TODO: implement initState
     super.initState();
     date = new DateTime.now();
-    startDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
-    endDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
+//    startDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
+//    endDateStr = MyDate.format("yyyy年MM月dd日 HH:mm", date);
   }
   @override
   void dispose() {
@@ -45,9 +45,9 @@ class _AddScheduleState extends State<AddSchedule> {
       setState(() {
         date = _date;
         if(this.isClickStartTime){
-          startDateStr = MyDate.format(formatString, _date);
+//          startDateStr = MyDate.format(formatString, _date);
         }else{
-          endDateStr = MyDate.format(formatString, _date);
+//          endDateStr = MyDate.format(formatString, _date);
         }
       });
     };
@@ -238,12 +238,12 @@ class _AddScheduleState extends State<AddSchedule> {
         ),
       ),
       onTap: (){
-        MyPicker.showPicker(
-          context: context,
-          current: date,
-          mode: MyPickerMode.dateTime,
-          onChange: _change('yyyy年MM月dd日 HH:mm'),
-        );
+//        MyPicker.showPicker(
+//          context: context,
+//          current: date,
+//          mode: MyPickerMode.dateTime,
+//          onChange: _change('yyyy年MM月dd日 HH:mm'),
+//        );
         if(index == 1){
           this.isClickStartTime = true;
         }else{
