@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27657289-e72f-4347-a534-1db8bef5a30b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/PersonInfomation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/PersonInfomation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Contact/ContactList.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Contact/ContactList.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/ChangeMobileFirst.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/ChangeMobileFirst.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -16,6 +16,7 @@ class _ChangeMobileFirstState extends State<ChangeMobileFirst> {
     return Scaffold(
       appBar: AppBar(title: Text('更换手机号'),),
       body: Container(
+        color: Colors.white,
         child: ListView.builder(
             itemCount: 1,
             itemBuilder: (ctx,index){
