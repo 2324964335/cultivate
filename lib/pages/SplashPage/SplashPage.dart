@@ -62,7 +62,7 @@ class _SplashPageState extends State<SplashPage> {
     }
 
     jpush.setup(
-      appKey: "e58a32cb3e4469ebf31867e5", //你自己应用的 AppKey
+      appKey: "9b18088e04b1846729fd38e3", //你自己应用的 AppKey
       channel: "theChannel",
       production: false,
       debug: true,
