@@ -60,6 +60,7 @@ class _CultiveCourceSignDetailState extends State<CultiveCourceSignDetail>  with
     return Scaffold(
       appBar: AppBar(title: Text('签到详情'),),
       body: Container(
+        color: Colors.white,
         child: _buildBodyWidget()
       ),
     );

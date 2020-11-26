@@ -9,7 +9,8 @@ class MessageRemindSetting extends StatefulWidget {
 
 class _MessageRemindSettingState extends State<MessageRemindSetting> {
 
-  List titleArr = ["消息推送通知","声音","震动"];
+//  List titleArr = ["消息推送通知","声音","震动"];
+  List titleArr = ["消息推送通知"];
 
   bool isXiaoxi = true;
 
@@ -23,7 +24,7 @@ class _MessageRemindSettingState extends State<MessageRemindSetting> {
       appBar: AppBar(title: Text('消息提醒设置'),),
       body: Container(
         child: ListView.builder(
-            itemCount: 3,
+            itemCount: titleArr.length,
             itemBuilder: (ctx,index){
               return _buildItem(context,index);
             }),

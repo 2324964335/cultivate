@@ -9,8 +9,9 @@ class CultiveCourceSignDetailChildWidget extends StatefulWidget {
   _CultiveCourceSignDetailChildWidgetState createState() => _CultiveCourceSignDetailChildWidgetState();
 }
 
-class _CultiveCourceSignDetailChildWidgetState extends State<CultiveCourceSignDetailChildWidget> {
-
+class _CultiveCourceSignDetailChildWidgetState extends State<CultiveCourceSignDetailChildWidget>  with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   MyCultivateDetailBottomPersonListEntity _data = null;
 
   @override
@@ -87,11 +88,11 @@ class _CultiveCourceSignDetailChildWidgetState extends State<CultiveCourceSignDe
           ],
         ),
         onTap: (){
-            Navigator.pushNamed(
-              context,
-              '/cultiveSignQrcode',
-              arguments: {}, //　传递参数
-            );
+//            Navigator.pushNamed(
+//              context,
+//              '/cultiveSignQrcode',
+//              arguments: {}, //　传递参数
+//            );
 
         },
       ),
