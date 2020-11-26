@@ -60,6 +60,7 @@ dependencies:
   webview_flutter: ^0.3.7+1 #网页加载
   qr_flutter: ^3.1.0
   shortuuid: ^2.1.1
+  jpush_flutter: 0.6.1
 
 dev_dependencies:
   flutter_test:

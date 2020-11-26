@@ -62,10 +62,10 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
         _dataList_list.addAll(value.data);
         canContinueLoading = true;
       }else{
-        if((value.xList as List).length > 0) {
+        if((value.data as List).length > 0) {
           _dataList_list.addAll(value.data);
         }
-        if((value.xList as List).length < 10){
+        if((value.data as List).length < 10){
           canContinueLoading = false;
         }
       }
@@ -84,13 +84,16 @@ class _SmallClassroomState extends State<SmallClassroom>  with SectionAdapterMix
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('微课堂'),),
-      body:RefreshIndicator(
-              onRefresh: _handleRefresh,
-              child:SectionGridView.builder(
-                        physics: new AlwaysScrollableScrollPhysics(),
-                        adapter: this,
-                          controller: _scrollController,
-                      ),
+      body:Container(
+        color: Colors.white,
+        child: RefreshIndicator(
+          onRefresh: _handleRefresh,
+          child:SectionGridView.builder(
+            physics: new AlwaysScrollableScrollPhysics(),
+            adapter: this,
+            controller: _scrollController,
+          ),
+        ),
       )
     );
   }

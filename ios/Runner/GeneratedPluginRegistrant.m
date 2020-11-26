@@ -10,6 +10,12 @@
 @import fluttertoast;
 #endif
 
+#if __has_include(<jpush_flutter/JPushPlugin.h>)
+#import <jpush_flutter/JPushPlugin.h>
+#else
+@import jpush_flutter;
+#endif
+
 #if __has_include(<multi_image_picker/MultiImagePickerPlugin.h>)
 #import <multi_image_picker/MultiImagePickerPlugin.h>
 #else
@@ -80,6 +86,7 @@
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [FluttertoastPlugin registerWithRegistrar:[registry registrarForPlugin:@"FluttertoastPlugin"]];
+  [JPushPlugin registerWithRegistrar:[registry registrarForPlugin:@"JPushPlugin"]];
   [MultiImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"MultiImagePickerPlugin"]];
   [FLTPackageInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPackageInfoPlugin"]];
   [FLTPathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPathProviderPlugin"]];
