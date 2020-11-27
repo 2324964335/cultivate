@@ -86,6 +86,9 @@ class _MessageState extends State<Message> with AutomaticKeepAliveClientMixin {
           .getSureUserModel()
           .TokenID, params).then((value) {
 //        _dataList = value;
+      if(value == null){
+        return;
+      }
         if (pageIndex == 1) {
           _dataList_list = [];
 //          _dataList = value;

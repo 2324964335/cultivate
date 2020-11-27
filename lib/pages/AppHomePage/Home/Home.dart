@@ -74,6 +74,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             return;
           }
         }
+        if(value == null){
+          return;
+        }
         _topdata = value.data[0];
         setState(() {
         });
@@ -109,9 +112,15 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
           return;
         }
       }
+
+      if(value == null){
+        return;
+      }
+
       if(pageInx==1){
         _bottomdata_list = [];
         _bottomdata = value;
+//        LogUtil.d('------ffff----${value}');
         _bottomdata_list.addAll(value.xList);
         canContinueLoading = true;
       }else{
