@@ -32,6 +32,17 @@ class Api{
     return resData ?? {};
   }
 
+  /// 关于我们
+  Future<Map> aboutUS() async {
+    Map resData = await safeRequest(
+      serviceUrl['app_about_us'],
+      data: {
+      },
+      options: Options(method: 'GET'),
+    );
+    return resData ?? {};
+  }
+
   /// 首页头部数据
   Future<Map> getHomePageTopData(String TokenID) async {
     Map resData = await safeRequest(

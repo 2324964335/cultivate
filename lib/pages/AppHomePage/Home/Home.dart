@@ -67,12 +67,18 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         LogUtil.d('------ffff----${value}');
         _isLoading = false;
         if(value is Map){
-          if(value["success"] == -1101){
+          if(value["success"] == -1101||value["success"] == -1102){
             StorageUtil().removeLogin().then((value){
               _userModelProvider.setCurrenUserModel();
             });
             return;
           }
+        }else if(value == null){
+          StorageUtil().removeLogin().then((value){
+            _userModelProvider.setCurrenUserModel();
+          });
+          ToastShow.show('登录过期，请重新登录');
+          return;
         }
         if(value == null){
           return;

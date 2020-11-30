@@ -16,12 +16,15 @@ class _ContactListState extends State<ContactList> {
       appBar: AppBar(
         title: Text(this.widget.params["wardName"]),
       ),
-      body: ListView.builder(
-        itemBuilder: (ctx,index){
-          return buildItemByIndex(context,index);
-        },
-        itemCount: (this.widget.params["list"] as List).length==0?1:(this.widget.params["list"] as List).length,
-      ),
+      body: Container(
+        color: Colors.white,
+        child: ListView.builder(
+          itemBuilder: (ctx,index){
+            return buildItemByIndex(context,index);
+          },
+          itemCount: (this.widget.params["list"] as List).length==0?1:(this.widget.params["list"] as List).length,
+        ),
+      )
     );
   }
   

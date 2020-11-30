@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
-import '../../../components/UpdateAppVersion/UpdateAppVersion.dart'
-    show getNewAppVer;
+import '../../../components/UpdateAppVersion/UpdateAppVersion.dart' show getNewAppVer;
+import './LoginRuest/LoginRequest.dart';
 class AboutUS extends StatefulWidget {
   AboutUS({Key key, this.params}) : super(key: key);
   final  params;
@@ -12,6 +12,32 @@ class AboutUS extends StatefulWidget {
 class _AboutUSState extends State<AboutUS> {
 
   List data = ["服务与协议","隐私政策","版本更新"];
+
+  String privacy_str = 'https://www.baidu.com';
+  String service_str = 'https://www.baidu.com';
+
+  void getAboutUSData(){
+    MineRequest.requestAboutUS().then((value){
+      LogUtil.d('-----------${value}');
+      if(value['success'] == 1){
+        (value["data"] as List).forEach((element) {
+          if(element["key"] == "Privacy"){
+              privacy_str = element["value"];
+          }else if(element["key"] == "Service"){
+              service_str = element["value"];
+          }
+        });
+      }
+//      setState(() {
+//      });
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getAboutUSData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,13 +133,13 @@ class _AboutUSState extends State<AboutUS> {
             Navigator.pushNamed(
               context,
               '/commenWebview',
-              arguments: {"url":"https://www.baidu.com","title":"服务与协议"}, //　传递参数
+              arguments: {"url":service_str,"title":"服务与协议"}, //　传递参数
             );
           }else if(index == 1){
             Navigator.pushNamed(
               context,
               '/commenWebview',
-              arguments: {"url":"https://www.baidu.com","title":"隐私政策"}, //　传递参数
+              arguments: {"url":privacy_str,"title":"隐私政策"}, //　传递参数
             );
           }else{
             getNewAppVer();

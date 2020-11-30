@@ -15,6 +15,7 @@ class _CollegeInfomationState extends State<CollegeInfomation> {
     return Scaffold(
       appBar: AppBar(title: Text((this.widget.params["info"] as ContactListDataListEmpInfoItem).name),),
       body: Container(
+        color: Colors.white,
         child: ListView.builder(
           itemCount: 3,
           itemBuilder: (ctx, index){
