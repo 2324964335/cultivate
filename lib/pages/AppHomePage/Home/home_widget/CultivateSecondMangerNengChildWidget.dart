@@ -64,13 +64,71 @@ class _CultivateSecondMangerNengChildWidgetState extends State<CultivateSecondMa
       return;
     }
 
-    
+    String Level = '-1';
+    String Classtype = '-1';
+    String ST_See = '-1';
+
+    switch(levelString){
+      case '全部':
+        Level = '-1';
+        break;
+      default:
+        _levelList.data.forEach((element) {
+          if(element.name == levelString){
+            Level = element.code;
+          }
+        });
+        break;
+    }
+
+    switch(keString){
+      case '全部':
+        Classtype = '-1';
+        break;
+      case '选修课':
+        Classtype = '0';
+        break;
+      case '必修课':
+        Classtype = '1';
+        break;
+      default:
+
+        break;
+    }
+
+    switch(learndString){
+      case '全部':
+        ST_See = '-1';
+        break;
+      case '未学习':
+        ST_See = '0';
+        break;
+      case '已学习':
+        ST_See = '1';
+        break;
+      default:
+
+        break;
+    }
+
+    switch(levelString){
+      case '全部':
+        Level = '-1';
+        break;
+      default:
+        _levelList.data.forEach((element) {
+          if(element.name == levelString){
+            Level = element.code;
+          }
+        });
+        break;
+    }
 
 
     Map params = {
-      'Level':'-1',
-      'Classtype':'-1',
-      'ST_See':'-1',
+      'Level':Level,
+      'Classtype':Classtype,
+      'ST_See':ST_See,
       'pageIdx':pageIndex,
       'pageSize':10
     };
