@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../../utils/util.dart';
 import '../home_request/HomeRequest.dart';
-import '../home_request/current_cultivate_list_entity.dart';
-import '../home_request/home_page_data_entity.dart';
+import '../home_request/cultivate_manger_neng_data_list_entity.dart';
 import '../../../../components/flutter_jd_address_selector.dart';
 import '../home_request/cultivate_manger_level_model_entity.dart';
+
 class CultivateSecondMangerNengChildWidget extends StatefulWidget {
-  final int index;
-  CultivateSecondMangerNengChildWidget(this.index);
   @override
   _CultivateSecondMangerNengChildWidgetState createState() => _CultivateSecondMangerNengChildWidgetState();
 }
@@ -15,7 +13,7 @@ class CultivateSecondMangerNengChildWidget extends StatefulWidget {
 class _CultivateSecondMangerNengChildWidgetState extends State<CultivateSecondMangerNengChildWidget>  with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-  CurrentCultivateListEntity _dataList = null;
+  CultivateMangerNengDataListEntity _dataList = null;
   List _dataList_list = [];
   ScrollController _scrollController = ScrollController(); //listview的控制器
   bool canContinueLoading = true;
@@ -65,23 +63,29 @@ class _CultivateSecondMangerNengChildWidgetState extends State<CultivateSecondMa
       ToastShow.show('暂无更多数据');
       return;
     }
+
+    
+
+
     Map params = {
-      'type':this.widget.index,
+      'Level':'-1',
+      'Classtype':'-1',
+      'ST_See':'-1',
       'pageIdx':pageIndex,
       'pageSize':10
     };
-    HomeRequest.requestCurrentCultivateData(StorageUtil().getSureUserModel().TokenID,params).then((value){
+    HomeRequest.requestCultivateMangerNengList(StorageUtil().getSureUserModel().TokenID,params).then((value){
       _dataList = value;
       if(pageIndex==1){
         _dataList_list = [];
         _dataList = value;
-        _dataList_list.addAll(value.xList);
+        _dataList_list.addAll(value.data);
         canContinueLoading = true;
       }else{
-        if((value.xList as List).length > 0) {
-          _dataList_list.addAll(value.xList);
+        if((value.data as List).length > 0) {
+          _dataList_list.addAll(value.data);
         }
-        if((value.xList as List).length < 10){
+        if((value.data as List).length < 10){
           canContinueLoading = false;
         }
       }
@@ -145,30 +149,14 @@ class _CultivateSecondMangerNengChildWidgetState extends State<CultivateSecondMa
   }
 
   Widget _buildItem(BuildContext context,int index){
-    HomePageDataList ittem = HomePageDataList();
-    ittem.linkType = 1;
-    ittem.title = "新冠肺炎防控期间护理管理制度培训";
-    ittem.st_see = 0;
-    ittem.linkID = "25";
-    ittem.senderObjName = "管理员";
-    ittem.seeCount= 0;
-    ittem.commentCount = 0;
-    ittem.likeCount = 0;
-    ittem.beginTime = "2020-11-24 09:00:00";
-    ittem.icon= "http://app.hosmart.com:7194/Upload/002.png";
+    CultivateMangerNengDataListData ittem = _dataList_list[index];
     Color colorr = Color(0xFFBD4EFB);
     String title_string = "";
-    if(ittem.linkType == 0){
-      title_string = "公告";
+    if(ittem.classType == 0){
+      title_string = "选修";
       colorr = Color(0xFFBD4EFB);
-    }else if(ittem.linkType == 1){
-      title_string = "员工培训";
-      colorr = Color(0xFF00D08D);
-    }else if(ittem.linkType == 2){
-      title_string = "员工考核";
-      colorr = Color(0xFFBD4EFB);
-    }else if(ittem.linkType == 3){
-      title_string = "微课堂";
+    }else if(ittem.classType == 1){
+      title_string = "必修";
       colorr = Color(0xFF00D08D);
     }
     return Container(
@@ -245,55 +233,55 @@ class _CultivateSecondMangerNengChildWidgetState extends State<CultivateSecondMa
 //                                     Image.asset("asset/images/mine/touxiang.png",width: ScreenAdaper.width(70),height:ScreenAdaper.width(70),),
                               CachedNetworkImage(imageUrl: ittem.icon,errorWidget: (context, url, error) => Icon(Icons.error),width: ScreenAdaper.width(70),height: ScreenAdaper.width(70),fit: BoxFit.contain,),
                               SizedBox(width: ScreenAdaper.width(10),),
-                              Text(ittem.senderObjName,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                              Text(ittem.opRegist,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                               SizedBox(width: ScreenAdaper.width(40),),
-                              Text(ittem.beginTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
+                              Text(ittem.bizTime,style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),),
                             ],
                           ),
                         ),
-                        Container(
-                          child: Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
-
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
-                                    SizedBox(width: ScreenAdaper.width(5),),
-                                    Text(ittem.likeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
-                                  ],
-                                ),
-
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
-
-                                child: Row(
-                                  children: [
-                                    Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
-                                    SizedBox(width: ScreenAdaper.width(5),),
-                                    Text(ittem.commentCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
-                                  ],
-                                ),
-
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
-                                    SizedBox(width: ScreenAdaper.width(5),),
-                                    Text(ittem.seeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
-                                  ],
-                                ),
-
-                              ),
-                            ],
-                          ),
-                        ),
+//                        Container(
+//                          child: Row(
+//                            children: [
+//                              Container(
+//                                margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+//
+//                                child: Row(
+//                                  crossAxisAlignment: CrossAxisAlignment.center,
+//                                  children: [
+//                                    Image.asset("asset/images/home/dianzan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
+//                                    SizedBox(width: ScreenAdaper.width(5),),
+//                                    Text(ittem.likeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+//                                  ],
+//                                ),
+//
+//                              ),
+//                              Container(
+//                                margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+//
+//                                child: Row(
+//                                  children: [
+//                                    Image.asset("asset/images/home/pinglun.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
+//                                    SizedBox(width: ScreenAdaper.width(5),),
+//                                    Text(ittem.commentCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+//                                  ],
+//                                ),
+//
+//                              ),
+//                              Container(
+//                                margin: EdgeInsets.only(right: ScreenAdaper.width(15)),
+//                                child: Row(
+//                                  crossAxisAlignment: CrossAxisAlignment.center,
+//                                  children: [
+//                                    Image.asset("asset/images/home/chakan.png",width: ScreenAdaper.width(30),height: ScreenAdaper.height(30),),
+//                                    SizedBox(width: ScreenAdaper.width(5),),
+//                                    Text(ittem.seeCount.toString(),style: TextStyle(color: Colors.black54,fontSize: ScreenAdaper.sp(25)),)
+//                                  ],
+//                                ),
+//
+//                              ),
+//                            ],
+//                          ),
+//                        ),
                       ],
                     ),
                   ),
@@ -430,9 +418,9 @@ class _CultivateSecondMangerNengChildWidgetState extends State<CultivateSecondMa
                   learndString = title;
                   isLearn = false;
                 }
-//                PageIndex = 1;
-//                _dataList_list = [];
-//                getListData(PageIndex);
+                PageIndex = 1;
+                _dataList_list = [];
+                getListData(PageIndex);
                 setState(() {});
               },
               title: titlee,

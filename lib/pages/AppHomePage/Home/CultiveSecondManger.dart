@@ -78,7 +78,7 @@ class _CultiveSecondMangerState extends State<CultiveSecondManger>  with SingleT
                   child: TabBarView(
                     controller: _tabController,
                     children: <Widget>[
-                      CultivateSecondMangerNengChildWidget(0),
+                      CultivateSecondMangerNengChildWidget(),
                       CultivateSecondMangerGangChildWidget(1),
                     ],
                   ),

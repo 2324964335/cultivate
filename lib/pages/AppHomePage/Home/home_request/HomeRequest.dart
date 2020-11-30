@@ -23,6 +23,7 @@ import '../../Examine/home_question_model_entity.dart';
 import 'home_examine_person_list_model_entity.dart';
 import 'home_total_operation_examine_list_model_entity.dart';
 import 'cultivate_manger_level_model_entity.dart';
+import 'cultivate_manger_neng_data_list_entity.dart';
 class HomeRequest{
   static Future<dynamic> requestHomePageMonth(String tokenID) async {
     Map resData = await Api().getHomePageTopData(tokenID);
@@ -334,6 +335,17 @@ class HomeRequest{
     LogUtil.d(resData);
     if (resData['success'] == 1){
       return JsonConvert.fromJsonAsT<CultivateMangerLevelModelEntity>(resData);
+    }else{
+      return null;
+    }
+  }
+
+  ///获取培训管理能级培训培训列表
+  static Future<dynamic> requestCultivateMangerNengList(String tokenID,Map params) async {
+    Map resData = await Api().getRequestCultivateMangerNengList(tokenID,params);
+    LogUtil.d(resData);
+    if (resData['success'] == 1){
+      return JsonConvert.fromJsonAsT<CultivateMangerNengDataListEntity>(resData);
     }else{
       return null;
     }

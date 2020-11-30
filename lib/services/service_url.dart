@@ -34,4 +34,5 @@ const serviceUrl = {
    'app_message_detail_see':appurlPro + 'Notice/MessageList/Detail/See',/// 消息详情查看
    'app_about_us':appurlPro + 'Account/AboutUs',/// 我的关于我们
    'app_cultivate_manger_level_list':appurlPro + 'Education/EduManagement/LevelList',/// 培训管理能级列表
+   'app_cultivate_manger_neng_data_list':appurlPro + 'Education/EduManagement/NurseLevel',/// 培训管理能级培训列表
 };
