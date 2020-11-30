@@ -12,6 +12,35 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+
+  String privacy_str = 'https://www.baidu.com';
+  String service_str = 'https://www.baidu.com';
+
+  void getAboutUSData(){
+    MineRequest.requestAboutUS().then((value){
+      LogUtil.d('-----------${value}');
+      if(value['success'] == 1){
+        (value["data"] as List).forEach((element) {
+          if(element["key"] == "Privacy"){
+            privacy_str = element["value"];
+          }else if(element["key"] == "Service"){
+            service_str = element["value"];
+          }
+        });
+      }
+      setState(() {
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getAboutUSData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,13 +101,16 @@ class _LoginState extends State<Login> {
     return Container(
       color: Colors.white,
       padding: EdgeInsets.only(top: ScreenAdaper.height(20),left: ScreenAdaper.width(20),right: ScreenAdaper.width(20)),
-      child: password()
+      child: password(service_str,privacy_str)
     );
   }
 }
 
 
 class password extends StatefulWidget {
+  String service_str = '';
+  String privacy_str = '';
+  password(this.service_str,this.privacy_str);
   @override
   _passwordState createState() => _passwordState();
 }
@@ -152,7 +184,6 @@ class _passwordState extends State<password>  with AutomaticKeepAliveClientMixin
 //    BotToast.showLoading(
 //        duration: Duration(milliseconds: 700)
 //    );
-    print('login action');
     MineRequest.requestLoginByPASS(_namePassController.text, _passwordController.text,StorageUtil().getUUID()).then((value){
       LogUtil.d(value);
       if (value != null){
@@ -243,20 +274,35 @@ class _passwordState extends State<password>  with AutomaticKeepAliveClientMixin
 //            ),
 //          ),
           SizedBox(
-            height: ScreenAdaper.width(170),
+            height: ScreenAdaper.width(20),
           ),
           Container(
             alignment: Alignment.center,
-            child: FlatButton(
-              child: LightText.build('版权信息'),
-              onPressed: () {
-//                Navigator.pushNamed(
-//                  context,
-//                  '/registerv',
-//                  arguments: {}, //　传递参数
-//                );
-              },
-            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                FlatButton(
+                  child: LightText.build('服务与协议'),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/commenWebview',
+                      arguments: {"url":this.widget.service_str,"title":"服务与协议"}, //　传递参数
+                    );
+                  },
+                ),
+                FlatButton(
+                  child: LightText.build('隐私政策'),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/commenWebview',
+                      arguments: {"url":this.widget.privacy_str,"title":"隐私政策"}, //　传递参数
+                    );
+                  },
+                ),
+              ],
+            )
           )
         ],
       ),

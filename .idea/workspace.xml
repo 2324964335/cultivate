@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="27657289-e72f-4347-a534-1db8bef5a30b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_widget/CultivateSecondMangerNengChildWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Home/home_widget/CultivateSecondMangerNengChildWidget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/Login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AppHomePage/Mine/Login.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
