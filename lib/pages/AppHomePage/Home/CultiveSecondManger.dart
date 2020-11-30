@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/util.dart';
-import 'home_widget/CultiveSecondMangerChildWidget.dart';
+import 'home_widget/CultivateSecondMangerGangChildWidget.dart';
+import 'home_widget/CultivateSecondMangerNengChildWidget.dart';
 class CultiveSecondManger extends StatefulWidget {
   CultiveSecondManger({Key key, this.params}) : super(key: key);
   final  params;
@@ -77,8 +78,8 @@ class _CultiveSecondMangerState extends State<CultiveSecondManger>  with SingleT
                   child: TabBarView(
                     controller: _tabController,
                     children: <Widget>[
-                      CultiveSecondMangerChildWidget(0),
-                      CultiveSecondMangerChildWidget(1),
+                      CultivateSecondMangerNengChildWidget(0),
+                      CultivateSecondMangerGangChildWidget(1),
                     ],
                   ),
                 )

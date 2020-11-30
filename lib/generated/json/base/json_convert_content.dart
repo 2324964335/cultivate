@@ -13,6 +13,8 @@ import 'package:cultivate/pages/AppHomePage/Home/home_request/home_page_top_tota
 import 'package:cultivate/generated/json/home_page_top_total_data_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/home_classroom_data_entity.dart';
 import 'package:cultivate/generated/json/home_classroom_data_entity_helper.dart';
+import 'package:cultivate/pages/AppHomePage/Home/home_request/cultivate_manger_level_model_entity.dart';
+import 'package:cultivate/generated/json/cultivate_manger_level_model_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/home_total_question_list_select_entity.dart';
 import 'package:cultivate/generated/json/home_total_question_list_select_entity_helper.dart';
 import 'package:cultivate/pages/AppHomePage/Home/home_request/home_examine_person_list_model_entity.dart';
@@ -68,7 +70,9 @@ class JsonConvert<T> {
 			return homePageTopTotalDataDataFromJson(data as HomePageTopTotalDataData, json) as T;			case HomePageTopTotalDataDataList:
 			return homePageTopTotalDataDataListFromJson(data as HomePageTopTotalDataDataList, json) as T;			case HomeClassroomDataEntity:
 			return homeClassroomDataEntityFromJson(data as HomeClassroomDataEntity, json) as T;			case HomeClassroomDataData:
-			return homeClassroomDataDataFromJson(data as HomeClassroomDataData, json) as T;			case HomeTotalQuestionListSelectEntity:
+			return homeClassroomDataDataFromJson(data as HomeClassroomDataData, json) as T;			case CultivateMangerLevelModelEntity:
+			return cultivateMangerLevelModelEntityFromJson(data as CultivateMangerLevelModelEntity, json) as T;			case CultivateMangerLevelModelData:
+			return cultivateMangerLevelModelDataFromJson(data as CultivateMangerLevelModelData, json) as T;			case HomeTotalQuestionListSelectEntity:
 			return homeTotalQuestionListSelectEntityFromJson(data as HomeTotalQuestionListSelectEntity, json) as T;			case HomeTotalQuestionListSelectList:
 			return homeTotalQuestionListSelectListFromJson(data as HomeTotalQuestionListSelectList, json) as T;			case HomeExaminePersonListModelEntity:
 			return homeExaminePersonListModelEntityFromJson(data as HomeExaminePersonListModelEntity, json) as T;			case HomeExaminePersonListModelList:
@@ -121,7 +125,9 @@ class JsonConvert<T> {
 			return homePageTopTotalDataDataToJson(data as HomePageTopTotalDataData);			case HomePageTopTotalDataDataList:
 			return homePageTopTotalDataDataListToJson(data as HomePageTopTotalDataDataList);			case HomeClassroomDataEntity:
 			return homeClassroomDataEntityToJson(data as HomeClassroomDataEntity);			case HomeClassroomDataData:
-			return homeClassroomDataDataToJson(data as HomeClassroomDataData);			case HomeTotalQuestionListSelectEntity:
+			return homeClassroomDataDataToJson(data as HomeClassroomDataData);			case CultivateMangerLevelModelEntity:
+			return cultivateMangerLevelModelEntityToJson(data as CultivateMangerLevelModelEntity);			case CultivateMangerLevelModelData:
+			return cultivateMangerLevelModelDataToJson(data as CultivateMangerLevelModelData);			case HomeTotalQuestionListSelectEntity:
 			return homeTotalQuestionListSelectEntityToJson(data as HomeTotalQuestionListSelectEntity);			case HomeTotalQuestionListSelectList:
 			return homeTotalQuestionListSelectListToJson(data as HomeTotalQuestionListSelectList);			case HomeExaminePersonListModelEntity:
 			return homeExaminePersonListModelEntityToJson(data as HomeExaminePersonListModelEntity);			case HomeExaminePersonListModelList:
@@ -174,7 +180,9 @@ class JsonConvert<T> {
 			return HomePageTopTotalDataData().fromJson(json);			case 'HomePageTopTotalDataDataList':
 			return HomePageTopTotalDataDataList().fromJson(json);			case 'HomeClassroomDataEntity':
 			return HomeClassroomDataEntity().fromJson(json);			case 'HomeClassroomDataData':
-			return HomeClassroomDataData().fromJson(json);			case 'HomeTotalQuestionListSelectEntity':
+			return HomeClassroomDataData().fromJson(json);			case 'CultivateMangerLevelModelEntity':
+			return CultivateMangerLevelModelEntity().fromJson(json);			case 'CultivateMangerLevelModelData':
+			return CultivateMangerLevelModelData().fromJson(json);			case 'HomeTotalQuestionListSelectEntity':
 			return HomeTotalQuestionListSelectEntity().fromJson(json);			case 'HomeTotalQuestionListSelectList':
 			return HomeTotalQuestionListSelectList().fromJson(json);			case 'HomeExaminePersonListModelEntity':
 			return HomeExaminePersonListModelEntity().fromJson(json);			case 'HomeExaminePersonListModelList':
@@ -228,7 +236,9 @@ class JsonConvert<T> {
 			return List<HomePageTopTotalDataData>();			case 'HomePageTopTotalDataDataList':
 			return List<HomePageTopTotalDataDataList>();			case 'HomeClassroomDataEntity':
 			return List<HomeClassroomDataEntity>();			case 'HomeClassroomDataData':
-			return List<HomeClassroomDataData>();			case 'HomeTotalQuestionListSelectEntity':
+			return List<HomeClassroomDataData>();			case 'CultivateMangerLevelModelEntity':
+			return List<CultivateMangerLevelModelEntity>();			case 'CultivateMangerLevelModelData':
+			return List<CultivateMangerLevelModelData>();			case 'HomeTotalQuestionListSelectEntity':
 			return List<HomeTotalQuestionListSelectEntity>();			case 'HomeTotalQuestionListSelectList':
 			return List<HomeTotalQuestionListSelectList>();			case 'HomeExaminePersonListModelEntity':
 			return List<HomeExaminePersonListModelEntity>();			case 'HomeExaminePersonListModelList':
